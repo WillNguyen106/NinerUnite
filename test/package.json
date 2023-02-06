@@ -6,6 +6,6 @@
   "scripts": {
     "test": "jest"
   },
-  "author": "Will Nguyen",
+  "author": "Quang Ho",
   "license": "ISC"
 }

@@ -1,0 +1,51 @@
+
+	<%- include('../partials/header.ejs', {cs: 'newConnection'})%>
+	<main>
+		<form action="/connections" method="POST">
+			
+			<table class="new">
+				<tr>
+					<td><label for="topic">Topic</label></td>
+					<td><input type="text" name="topic" id="topic" placeholder="topic" required></td>
+				</tr>
+				<tr>
+					<td><label for="title">Title</label></td>
+					<td><input type="text" name="title" id="title" placeholder="title" required></td>
+				</tr>
+				<tr>
+					<td><label for="details">Details</label></td>
+					<td><textarea name="detail" id="dets" placeholder="description" required minlength="10"></textarea></td>
+				</tr>
+				<tr>
+					<td><label for="location">Where</label></td>
+					<td><input type="text" name="locate" id="location" placeholder="location" required></td>
+				</tr>
+				<tr>
+					<td><label for="date">When</label></td>
+					<td><input type="date" name="date" id="time" required></td>
+				</tr>
+				<tr>
+					<td><label for="startTime">Start</label></td>
+					<td><input type="time" name="startTime" id="startTime" required></td>
+				</tr>
+				<tr>
+					<td><label for="endTime">End</label></td>
+					<td><input type="time" name="endTime" id="endTime" required></td>
+				</tr>
+				<tr>
+					<td><label for="image_url">Image URL</label></td>
+					<td><input type="text" name="image" id="image" placeholder="imageURL" required></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="submit">Create Connection</button></td>
+				</tr>
+			</table>
+			
+		</form> 
+	</main>
+	<%- include('../partials/footer.ejs')%>
+	
+	
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+	<%- include('../partials/header.ejs', {cs: 'edit'})%>
+	<main>
+		<form method="POST" action="/connections/<%= connect.id%>?_method=PUT">
+			<table>
+				<tr>
+					<td><label for="topic">Topic</label></td>
+					<td><input type="text" name="topic" id="topic" value="<%= connect.topic%>" required></td>
+				</tr>
+				<tr>
+					<td><label for="title">Title</label></td>
+					<td><input type="text" name="title" id="title" value="<%= connect.title%>" required></td>
+				</tr>
+				<!-- <tr>
+					<td><label for="host">Host</label></td>
+					<td><input type="text" name="host" id="host" value="<%= connect.author.firstName + ' ' + connect.author.lastName%>"></td>
+				</tr> -->
+				<tr>
+					<td><label for="detail">Details</label></td>
+					<td><textarea name="detail" id="dets" required minlength="10"><%= connect.detail%></textarea></td>
+				</tr>
+				<tr>
+					<td><label for="locate">Where</label></td>
+					<td><input type="text" name="locate" id="location" value="<%= connect.locate%>" required></td>
+				</tr>
+				<tr>
+					<td><label for="date">When</label></td>
+					<td><input type="date" name="date" id="time" value="<%= connect.date%>" required></td>
+				</tr>
+				<tr>
+					<td><label for="time_start">Start</label></td>
+					<td><input type="time" name="startTime" id="time_start" value="<%= connect.startTime%>" required></td>
+				</tr>
+				<tr>
+					<td><label for="time_end">End</label></td>
+					<td><input type="time" name="endTime" id="time_end" value="<%= connect.endTime%>" required></td>
+				</tr>
+				<tr>
+					<td><label for="image_url">Image URL</label></td>
+					<td><input type="text" name="image" id="image_url" value="<%= connect.image%>" required></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="submit">Update Connection</button></td>
+				</tr>
+			</table>
+			
+		</form> 
+	</main>
+	<%- include('../partials/footer.ejs')%>
+	
+	
+</body>
+</html>

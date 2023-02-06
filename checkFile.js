@@ -2,4 +2,4 @@
 // Quang change it again
 
 // change all
-console.log("Hello World!")
+console.log("Hello World!");

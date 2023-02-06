@@ -1,0 +1,23 @@
+
+	<%- include('../partials/header.ejs', {cs: 'connections'})%>
+	
+	<main>
+		
+		<%newConnects.forEach((top) => { %>
+			<h2><%= top[0].topic%></h2>
+			<ul>
+			<%top.forEach((connect) => { %>
+				
+				<li><a href="./connections/<%= connect.id%>"><%= connect.title%></a></li>
+			
+			<%})%>
+			</ul>
+		<%})%>
+			
+		
+		
+	</main>
+	<%- include('../partials/footer.ejs')%>
+	
+</body>
+</html>

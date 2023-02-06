@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs', {cs: 'style'})%>
+<br>
+        
+<form action="/users" method="POST" class="signUpForm">
+        <label for="firstName">First Name</label><br>
+        <input type="text" id="firstName" name="firstName" required><br><br>
+        <label for="lastName">Last Name</label><br>
+        <input type="text" id="lastName" name="lastName" required><br><br>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" required minlength="8" maxlength="64"><br><br>
+        <button>Sign Up</button><br>
+    </form>
+    <%- include('../partials/footer.ejs')%>
+</body>
+
+
+</html>

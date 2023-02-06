@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/<%= cs%>.css">
+	
+</head>
+<body>
+    <header>
+            
+        <!-- Create the header-->
+        <!-- Create the user-specific navigation -->
+        <table id="user_nav">
+            <tr>
+                <td><a href="/connections/newConnection" id="newConnection">Start a new connection</a></td>
+                <%if(!user) {%>
+                    <td><a href='/users/new' id="signup">Sign Up</a></td>
+                    <td><a href='/users/login' id="login">Login</a></td>
+                <%} else {%>
+                    <td><a href='/users/profile' id="profile">Profile</a></td>
+                    <td><a href='/users/logout' id="logout" >Logout</a></td>
+                <%}%>
+               
+            </tr>
+            
+        </table>	
+        <nav id="gen_nav">
+            <!-- create the general navigation-->
+            <a href="/"><img src="/images/premier_league.jpeg" alt="Premier League Soccer Ball" id="ball"></a>
+            <div id="green_horizontal_line"></div>
+            <p><a href="/connections" id="connection">Connections</a></p>
+            <%if(user) {%>
+                <h3 id="welcome">Welcome, <%= user.firstName + " " + user.lastName%>!</h3>
+            <%}%>
+            
+            
+        </nav>	
+    </header>
+    
+    <%if(errorMessages.length > 0) {
+        errorMessages.forEach(message => {%>
+            <div class="error"><%= message%></div>
+        <%});
+    }%>
+    <%if(successMessages.length > 0) {
+        successMessages.forEach(message => {%>
+            <div class="success"><%= message%></div>
+        <%});
+    }%>

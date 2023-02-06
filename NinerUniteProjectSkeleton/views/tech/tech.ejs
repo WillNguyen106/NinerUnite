@@ -1,0 +1,63 @@
+
+	<%- include('../partials/header.ejs', {cs: 'connection'})%>
+	
+	<main>
+		
+		<div>
+			<article>
+					<%if(user){%>	
+						<%if(user.id == connect.author._id){%>
+							<form class="btn">
+								<p><%= rsvps.length%> member RSVP'd.</p>
+								<button class="update" type="submit" formmethod="GET" formaction="/connections/<%= connect._id%>/edit">Update</button>
+								<button class="delete" type="submit" formmethod="POST" formaction="/connections/<%= connect._id%>?_method=DELETE">Delete</button>
+							</form>	
+						<%}
+						else {%>
+							<div class="btn">
+								<div class="rsvp">
+									<p>&nbsp;  &nbsp; <%= rsvps.length%> member RSVP'd.<br>
+									&nbsp;  &nbsp; RSVP to attend!</p>
+									<div>
+										<form>
+											<button class="yes" type="submit" name="decision" value="yes" formmethod="POST" formaction="/connections/<%= connect._id%>/rsvp">Yes</button>
+											<button class="no" type="submit" name="decision" value="no" formmethod="POST" formaction="/connections/<%= connect._id%>/rsvp">No</button>
+											<button class="maybe" type="submit" name="decision" value="maybe" formmethod="POST" formaction="/connections/<%= connect._id%>/rsvp">Maybe</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						<%}%>
+					<%} else {%>
+					<div class="btn">
+						<div class="rsvp">
+							<p>&nbsp;  &nbsp; <%= rsvps.length%> member RSVP'd.<br>
+							&nbsp;  &nbsp; RSVP to attend!</p>
+							<div>
+								<form>
+									<button class="yes" type="submit" name="decision" value="yes" formmethod="POST" formaction="/connections/<%= connect._id%>/rsvp">Yes</button>
+									<button class="no" type="submit" name="decision" value="no" formmethod="POST" formaction="/connections/<%= connect._id%>/rsvp">No</button>
+									<button class="maybe" type="submit" name="decision" value="maybe" formmethod="POST" formaction="/connections/<%= connect._id%>/rsvp">Maybe</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<%}%>
+					<h3 class=title><%= connect.title%></h3>
+					<img src="<%= connect.image%>" class=image>
+					<p class="host">Hosted By: <%= connect.author.firstName + ' ' + connect.author.lastName%><p>
+					<p class="time"><%= connect.startTime%> - <%= connect.endTime%></p>
+					<p class="date"><%= connect.date%></p>
+					<p class="locate">Location: <%= connect.locate%></p>
+					<h3 class="deta">Details</h3>
+					<p class="desc"><%= connect.detail%>
+					</p>
+			</article>
+		</div>
+		
+	</main>
+	<%- include('../partials/footer.ejs')%>
+	
+	
+</body>
+</html>
