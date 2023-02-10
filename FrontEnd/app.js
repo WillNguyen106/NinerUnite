@@ -14,9 +14,9 @@ Initialize routes
  2. tech produtcs
  3. textbook
 */
-const domicile = require('./routes/domicileRoutes');
-const techProducts = require('./routes/techproductsRoutes');
-const textbook = require('./routes/textbookRoutes');
+//const domicileRoutes = require('./routes/domicileRoutes');
+//const techProductsRoutes = require('./routes/techProductsRoutes');
+const textbookRoutes = require('./routes/textbookRoutes');
 
 // Create app
 const app = express();
@@ -39,8 +39,28 @@ app.get('/',(req,res)=>{
     res.render('landing');
 });
 
+// Handler for the products path
+app.use('/books', textbookRoutes);
+//app.use('/techProducts',techProductsRoutes);
+//app.use('/domiciles', domicileRoutes);
 
+app.use((req,res,next)=>{
+    let err = new Error("The server cannot locate " + req.url);
+    err.status = 404;
+    next(err);
+});
 
+// Error handler
+app.use((err,req,res,next)=>{
+    console.log(err.stack); //See the error on the server view
+    if(!err.status){
+        err.status = 500;
+        err.message = ("Internal Server Error");
+    }
+
+    res.status(err.status);
+    res.render('error',{error:err});
+});
 
 
 
