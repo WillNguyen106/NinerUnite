@@ -13,15 +13,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <title>NinerUnite</title>
 </head>
+
+
 <body>
+<header>
+
     <nav class="navbar navbar-expand-md bg-light p-2">
         <a class="navbar-brand brand-padding brand-font fs-2" href="#">NinerUnite</a>
 
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navBarC">
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navBarHB">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!--ms-auto adds margin to the start of the nav items, p-2 adds padding, gap-2 adds a gap between the buttons-->
-        <div id="navBarC" class="collapse navbar-collapse">
+        <div id="navBarHB" class="collapse navbar-collapse">
 
             <!--d-grid makes the buttons block buttons, this can only be seen when in collapsable menu, otherwise they are in a small size-->
             <ul class="navbar-nav ms-auto gap-2">
@@ -30,7 +34,6 @@
                 </li>
                 <li class="nav-item d-grid">
                     <button type="button" class="btn btn-warning">Log In</button> 
-
                 </li>
             </ul> 
 
@@ -38,29 +41,43 @@
 
     </nav>
 
+</header>
 
-    <!--section 1-->
-    <div class="container-fluid">
-        <div class="row text-center">
-
-            <!--
-                col-md changes rows into columns by a certain screensize, d-flex and flex-column work to
-                present <h1> and <p> as columns and justify-content-center centers everything in space
-            -->
-            <div class="col-md-4 p-2 d-flex flex-column justify-content-center">
-                <h1 >By Niners, For Niners</h1>
-                <p >NinerUnite is the best peer-to-peer marketplace for UNC Charlotte students.</p>
+<!--content area-->
+<main>
+<!--section 1-->
+    <div class="bg-warning container-fluid">
+            <div class="row text-center">
+    
+                <!--
+                    col-md changes rows into columns by a certain screensize, d-flex and flex-column work to
+                    present <h1> and <p> as columns and justify-content-center centers everything in space
+                -->
+                <div class="col-md-4 p-2 d-flex flex-column justify-content-center">
+                    <h1 >By Niners, For Niners</h1>
+                    <p >NinerUnite is the best peer-to-peer marketplace for UNC Charlotte students.</p>
+                </div>
+                <div class="col-md-8 p-2 d-flex justify-content-center">
+                <!--img-fluid makes the images responsive by dynamically adjusting with parent-->
+                    <img class="w-75 img-fluid" src="../pexels-monstera-6238120.jpg" alt="group_of_students_with_books">
+                </div>
+    
             </div>
-            <div class="col-md-8 p-2 d-flex justify-content-center">
-            <!--img-fluid makes the images responsive by dynamically adjusting with parent-->
-                <img class="w-75 img-fluid" src="../pexels-monstera-6238120.jpg" alt="group_of_students_with_books">
-            </div>
-
+    
         </div>
-
+    
+        <!--section 2-->
+        <div class="container-fluid">
+    
+    
     </div>
 
-    <!--section 2-->
+</main>
+
+<!--footer-->
+<footer>
+
+</footer>
     
 
 
