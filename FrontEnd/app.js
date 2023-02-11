@@ -16,7 +16,7 @@ Initialize routes
 */
 //const domicileRoutes = require('./routes/domicileRoutes');
 //const techProductsRoutes = require('./routes/techProductsRoutes');
-const textbookRoutes = require('./routes/textbookRoutes');
+const textbookRoutes = require('./routes/bookRoutes');
 
 // Create app
 const app = express();
@@ -36,7 +36,7 @@ app.use(methodOverride('_method'));
 
 // Set up routes
 app.get('/',(req,res)=>{
-    res.render('landing');
+    res.render('index');
 });
 
 // Handler for the products path
