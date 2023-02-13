@@ -30,6 +30,7 @@ app.set('view engine','ejs');
 
 // Mount middleware
 app.use(express.static('public'));
+app.use(express.static('images'));
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));

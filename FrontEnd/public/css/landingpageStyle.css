@@ -1,0 +1,26 @@
+html{
+    height: 100%;
+}
+
+.brand-padding {
+    padding: 10px;
+}
+
+.brand-font {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.footerStyle {
+    background-color: #101820;
+}
+
+body{
+    min-height: 100%;
+}
+
+footer {
+    position: sticky;
+    top: 100%;
+    width: 100%;
+}
+
