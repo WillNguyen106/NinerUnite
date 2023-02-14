@@ -7,7 +7,7 @@ const {logInLimiter} = require('../middlewares/rateLimiters');// limiting login 
 
 const router = express.Router();
 
-router.get('/', userController.index);
+router.get('/index', userController.index);
 //get the login page
 router.get('/login', userController.login);
 

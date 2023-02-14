@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 exports.index = (req, res) => {
     console.log(req.flash());
-    res.render('./user/login');
+    res.render('./user/index');
 };
 
 //routes to login page
@@ -58,7 +58,7 @@ exports.process =  (req, res, next) => {
                     req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName};// store user._id and firstName and lastName in the session 
                     console.log(req.session.user);
                     req.flash('success', 'You have successfully logged in!');
-                    res.redirect('./profile');
+                    res.redirect('./index');
                 }else{
                     //console.log('Wrong password!');
                     req.flash('error', 'Wrong password!')
@@ -79,11 +79,12 @@ exports.profile =  (req, res) => {
 }; 
 // for logout functionality
 exports.logout = (req, res, next) => { 
+
     req.session.destroy(err => {
         if(err){
             return next(err);
         }else {
-            res.redirect('/users');// go back to the login page when logged out.
+            res.redirect('./login');// go back to the login page when logged out.
         }
     });
 } ;

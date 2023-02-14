@@ -29,17 +29,38 @@
             <div id="navBarHB" class="collapse navbar-collapse">
 
                 <!--d-grid makes the buttons block buttons, this can only be seen when in collapsable menu, otherwise they are in a small size-->
+                
                 <ul class="navbar-nav ms-auto gap-2">
+                    <%if(!user) {%>
                     <li class="nav-item  d-grid ">
-                        <button type="button" class="btn btn-warning" ><a href='/users/signup' id="signup">Sign Up</a></button> 
+                        <a class="btn btn-warning" href='/users/signup' id="signup">Sign Up</a>
                     </li>
                     <li class="nav-item d-grid">
-                        <button type="button" class="btn btn-warning"><a href='/users/login' id="login">Login</button> 
+                        <a class="btn btn-warning" href='/users/login' id="login">Login</a>
                     </li>
-                </ul> 
-
+                    <%} else {%> 
+                        <li class="nav-item  d-grid ">
+                                <a class="btn btn-warning" href='/users/profile' id="signup">Profile</a>
+                            </li>
+                            <li class="nav-item d-grid">
+                                <a class="btn btn-warning" href='/users/logout' id="login">Logout</a>
+                            </li>
+                    <%}%>        
+                </ul>
+                
+                    
             </div>
 
         </nav>
 
     </header>
+    <%if(errorMessages.length > 0) {
+        errorMessages.forEach(message => {%>
+            <div class="error" style="background-color: yellow"><%= message%></div>
+        <%});
+    }%>
+    <%if(successMessages.length > 0) {
+        successMessages.forEach(message => {%>
+            <div class="success" style="background-color: green"><%= message%></div>
+        <%});
+    }%>

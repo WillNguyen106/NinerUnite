@@ -7,4 +7,5 @@ router.get('/', mainController.landing);// route to the landing page
 
 
 
+
 module.exports = router;
