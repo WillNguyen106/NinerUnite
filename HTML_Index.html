@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap css CDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!--personal stylesheet-->
+    <link href="/NinerUnite/FrontEnd/public/css/landingpageStyle.css" rel="stylesheet">
+    <!--font for brand name-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>NinerUnite</title>
+</head>
+
+<body>
+    <!--header-->
+    <header>
+        <nav class="navbar navbar-expand-md green">
+            <a class="navbar-brand brand-padding brand-font text-white fs-2" href="#">NinerUnite</a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navBarHB">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--ms-auto adds margin to the start of the nav items, p-2 adds padding, gap-2 adds a gap between the buttons-->
+            <div id="navBarHB" class="collapse navbar-collapse">
+
+                <!--d-grid makes the buttons block buttons, this can only be seen when in collapsable menu, otherwise they are in a small size-->
+
+                <ul class="navbar-nav ms-auto gap-2">
+                    <%if(!user) {%>
+                        <li class="nav-item  d-grid ">
+                            <a class="btn yellow" href='/users/signup' id="signup">Sign Up</a>
+                        </li>
+                        <li class="nav-item d-grid">
+                            <a class="btn yellow" href='/users/login' id="login">Login</a>
+                        </li>
+                        <%} else {%>
+                            <li class="nav-item  d-grid ">
+                                <a class="btn yellow" href='/users/profile' id="signup">Profile</a>
+                            </li>
+                            <li class="nav-item d-grid">
+                                <a class="btn yellow" href='/users/logout' id="login">Logout</a>
+                            </li>
+                            <%}%>
+                </ul>
+
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main class="personal_space">
+        <!-- Search bar -->
+        <div class="text-center">
+            <form>
+                <input class="p-3 mb-2 bg-light text-dark border-0 w-75 p-3" type="text"
+                    placeholder="Search UNCC for textbooks, technology, or dorms!" name="search">
+                <button class="p-3 mb-2  green text-white text-dark border-0 green_hover" type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- About Us (short) -->
+        <div>
+            <h2>Useful information regarding the campus and this app</h2>
+            <p>There was a recent forest fire in the Woodward building! No students were injured from the fire, but
+                Smokey was not happy. Five residences nearby reported a bear started the fire with the assistance of two
+                students.</p>
+        </div>
+
+        <!-- Dorm Highlights -->
+        <h3>Dorm Highlights</h3>
+        <!-- carousel -->
+
+        <!-- reference table, could be useful -->
+        <table class="center">
+            <tr>
+                <th>Student</th>
+                <th>On Campus?</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>Jill Smith</td>
+                <td>No</td>
+                <td>$500</td>
+            </tr>
+            <tr>
+                <td>Eve Jackson</td>
+                <td>Yes</td>
+                <td>$94</td>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>Homeless</td>
+                <td>$1</td>
+            </tr>
+        </table>
+        <!-- end table -->
+
+        <!-- Display Textbooks -->
+        <h3>Need a Book?</h3>
+
+        <!-- Display Technology -->
+        <h3>In the Market for a New Computer!</h3>
+
+        <br>
+    </main>
+
+    <footer>
+        <div class="text-center p-4 text-white footerStyle">
+            <small>
+                NinerUnite Company
+            </small>
+        </div>
+    </footer>
+    <!-- bootstrap javascript and popper -->
+    <!-- popper is a tooltip positioner-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
