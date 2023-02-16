@@ -1,5 +1,17 @@
+/*html, body and footer help keep the footer at the bottom of the page */
 html{
     height: 100%;
+}
+
+body{
+    min-height: 100%;
+}
+
+
+footer {
+    position: sticky;
+    top: 100%;
+    width: 100%;
 }
 
 .brand-padding {
@@ -14,13 +26,5 @@ html{
     background-color: #101820;
 }
 
-body{
-    min-height: 100%;
-}
 
-footer {
-    position: sticky;
-    top: 100%;
-    width: 100%;
-}
 
