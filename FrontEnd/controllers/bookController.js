@@ -75,11 +75,3 @@ exports.delete = (req,res, next)=>{
     }
 };
 
-// Function that search book by id, title, author
-exports.search = (req,res)=>{
-    // let id = req.body.id;
-    // let title = req.body.title;
-    // let author = req.body.author;
-    // let results = model.search(id,title,author);
-    res.render('./textbook/search');
-}

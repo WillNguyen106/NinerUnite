@@ -66,19 +66,3 @@ exports.deleteById =  function(id){
         return false;
     }
 }
-
-// Function allow to search book by id, author, title
-exports.search = function(id, author, title){
-    let results = [];
-    if(id){
-        results = books.filter(book=>book.id === id);
-    }
-    if(author){
-        results = books.filter(book=>book.author.toLowerCase().includes(author.toLowerCase()));
-    }
-    if(title){
-        results = books.filter(book=>book.title.toLowerCase.includes(title.toLowerCase()));
-    }
-
-    return results;
-}

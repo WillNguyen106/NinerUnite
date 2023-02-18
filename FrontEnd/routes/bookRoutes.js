@@ -27,9 +27,6 @@ router.get('/:id', controller.show);
 //     *Method: GET and PUT
 // */
 
-// //SEARCH /books/search: search textbook
-// router.get('/:search', controller.search);
-
 //GET /books/:id/edit: send HTML form for editing an existing textbook post
 router.get('/:id/edit', controller.edit);
 
