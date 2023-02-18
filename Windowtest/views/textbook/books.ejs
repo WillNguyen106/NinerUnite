@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs')%>
+
+    <div>
+        <%if(books.length){ %>
+            <p>Book List</p>
+            <%books.forEach(book=>{%>
+                <a href="/books/<%=book.id%>"><p><%= book.title %></p></a>
+            <% });
+            } else {%>
+            <p>There are no books to display</p>
+        <%} %>
+    </div>
+
+<%- include('../partials/footer.ejs')%>

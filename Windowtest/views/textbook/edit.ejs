@@ -1,0 +1,16 @@
+<%- include('../partials/header.ejs')%>
+<div>
+    
+    <form method = "POST" action = "/books/<%= book.id%>?_method=PUT">
+        <label for="title" >Title</label><br>
+        <input type="text" id="title" name="title" value = "<%= book.title%>"><br>
+        
+        <label for="content">Content</label><br>
+        <textarea id="content" name="content"><%= book.content%></textarea><br>
+        
+        <input type="submit" value="Submit">   
+      
+    </form>
+
+    </div>
+    <%- include('../partials/footer.ejs')%>
