@@ -1,4 +1,4 @@
-<%- include('./partials/header.ejs')%>
+<%- include('./partials/header.ejs', {cs: 'landingpageStyle'})%>
 	
 
 <!--content area-->
@@ -45,7 +45,7 @@
     
                 <div class="text-center">
                     <h1>Haven't become a member?</h1>
-                    <button class="btn btn-warning m-3 text-white"><a href='/users/signup' id="signup">Sign Up</a></button>
+                    <a class="btn btn-warning m-3 " href="/users/signup" id="signup">Sign Up</a>
                 </div>
     
             </div>

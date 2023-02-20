@@ -2,6 +2,16 @@
     background-color: #005035;
 }
 
+
+.navbar-color {
+    background-color:#005035;
+}
+
+
+.brand-font {
+    font-family: 'Bebas Neue', cursive;
+}
+
 .green_hover:hover {
     background-color: #026342;
 }

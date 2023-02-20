@@ -14,8 +14,12 @@ footer {
     width: 100%;
 }
 
-.brand-padding {
+/* .brand-padding {
     padding: 10px;
+} */
+
+.navbar-color {
+    background-color:#005035;
 }
 
 .brand-font {
