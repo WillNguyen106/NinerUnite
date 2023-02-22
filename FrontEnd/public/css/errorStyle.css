@@ -14,21 +14,19 @@ footer {
     width: 100%;
 }
 
-/* .brand-padding {
-    padding: 10px;
-} */
+.footerStyle {
+    background-color: #101820;
+}
+
+/* nav-bar styles */
 
 .navbar-color {
-    background-color:#ffffff;
+    background-color:#005035;
 }
 
 .brand-font {
     font-family: 'Bebas Neue', cursive;
 }
 
-.footerStyle {
-    background-color: #101820;
-}
-
-
+/* error message styles */
 
