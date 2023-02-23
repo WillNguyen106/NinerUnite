@@ -1,39 +1,49 @@
-<%- include('./partials/header.ejs', {cs: 'landingpageStyle'})%>
+<%- include('./partials/header.ejs', {cs: 'defaultstyle'})%>
 	
 
 <!--content area-->
 <main>
 
     <!--section 1-->
-            <div class=" container-fluid p-5">
-                <div class="row text-center">
+            <div class=" container-fluid p-3 text-center text-md-start">
+                <div class="row">
         
                     <!--
                         col-md changes rows into columns by a certain screensize, d-flex and flex-column work to
                         present <h1> and <p> as columns and justify-content-center centers everything in space
                     -->
-                    <div class="col-md-4 p-2 d-flex flex-column justify-content-center">
-                        <h1 >By Niners, For Niners</h1>
-                        <p >NinerUnite is the best peer-to-peer marketplace for UNC Charlotte students.</p>
+                    <div class="col-md-6 p-2 d-flex flex-column justify-content-center">
+                        <div class="">
+                            <h1 class="px-3">By Niners, For Niners</h1>
+                            <p class="px-3">NinerUnite is the best peer-to-peer marketplace for UNC Charlotte students.</p>
+                            <a class="btn btn-warning m-3 " href="/users/signup" id="signup">Get Started Today</a>
+                        </div>
                     </div>
-                    <div class="col-md-8 p-2 d-flex justify-content-center">
+                    <div class="col-md-6 p-2 d-flex justify-content-center">
                     <!--img-fluid makes the images responsive by dynamically adjusting with parent-->
-                        <!-- <img class="w-75 img-fluid" src="../pexels-monstera-6238120.jpg" alt="group_of_students_with_books"> -->
+                        <img class="w-75 img-fluid" src="/images/image2.jpg" alt="group_of_students_with_books">
                     </div>
                     
                 </div>
             </div>
         
             <!--section 2-->
-            <div class="bg-secondary container-fluid text-white p-5 text-center">
+            <div class="bg-secondary container-fluid text-white p-3 text-center">
                 <div class="row text-center">
     
+<<<<<<< Updated upstream
                     <div class="col-md-4 d-flex justify-content-center">
                         <img class="w-75 img-fluid d-sm-block size" src="/images/image1.jpg" alt="group_of_students_with_books">
+=======
+                    <div class="col-md-6 d-flex justify-content-center">
+                    <img class="w-75 img-fluid d-none d-sm-block" src="/images/image1.jpg" alt="group_of_students_with_books">
+>>>>>>> Stashed changes
                     </div>
-                    <div class="col-md-4 p-2 d-flex flex-column justify-content-center text-wrap">
-                        <h1>About Us</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque reiciendis laboriosam natus, nesciunt, aliquid molestiae ipsam ab quo quod tenetur tempore necessitatibus optio voluptatum ad doloribus soluta eligendi excepturi deserunt.</p>
+                    <div class="col-md-6 p-2 d-flex flex-column justify-content-center text-wrap">
+                        <h1 class="px-3">About Us</h1>
+                        <p class="px-5">NinerUnite is all about give UNC Charlotte students a place to sell their textbooks, technology, or other items old or new.
+                            As current students, we understand how difficult it can be to get rid of old materials we no longer use, so we aim to create a safe marketplace between fellow Niners.
+                        </p>
                     </div>
                     
                 </div>
@@ -44,8 +54,8 @@
     
     
                 <div class="text-center">
-                    <h1>Haven't become a member?</h1>
-                    <a class="btn btn-warning m-3 " href="/users/signup" id="signup">Sign Up</a>
+                    <h1>Already a member?</h1>
+                    <a class="btn btn-warning m-3 " href="/users/login" id="login">Login</a>
                 </div>
     
             </div>
