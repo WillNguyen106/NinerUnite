@@ -21,6 +21,9 @@ router.post('/', controller.create);
 //GET /books/:id: send details of textbook product indentified by id
 router.get('/:id', controller.show);
 
+
+router.post('/search', controller.searchController);
+
 // /*
 //     *Allow users to edit their textbook post
 //     *or update their textbook post

@@ -5,7 +5,7 @@ const {DateTime} = require("luxon");
 const {v4: uuidv4} = require('uuid');
 const books = [
     {
-        id:'1',
+        id: '1',
         title:'Computer Architecture',
         content:'I would like to sell this book to anyone who want to learn computer hardware or going to take this class next semester',
         condition: 'like new, 98%',
@@ -65,4 +65,18 @@ exports.deleteById =  function(id){
     }else{
         return false;
     }
+}
+
+exports.search = function(optitons){
+    let results = books;
+    const {id, author, title} = optitons;
+    if(id){
+        results = books.filter(book=>book.id === id);
+    }else if(author){
+        results = books.filter(book=>book.author.toLowerCase().includes(author.toLowerCase()));
+    }else if(title){
+        results = books.filter(book=>book.title.toLowerCase().includes(title.toLowerCase()))
+    }
+
+    return results;
 }

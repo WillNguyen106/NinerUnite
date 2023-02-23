@@ -95,3 +95,6 @@ exports.logout = (req, res, next) => {
     });
 } ;
 
+exports.test =(req,res)=>{
+    res.render('./textbook/search');
+};

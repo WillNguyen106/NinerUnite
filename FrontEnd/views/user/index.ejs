@@ -1,21 +1,11 @@
-
-    
-    <!-- <div>
-        <h3>This is home page</h3> 
-        <p>Welcome to NinerUnite Website. Sell more used books to free your home space.</p>
-    </div> -->
-
-
-
-
-    <%- include('../partials/header.ejs', {cs: 'homepage'})%>
+<%- include('../partials/header.ejs', {cs: 'homepage'})%>
 
     <main class="personal_space">
         <!-- Search bar -->
         <div class="text-center">
-            <form>
+            <form action="/books/search" method="POST">
                 <input class="p-3 mb-2 bg-light text-dark border-0 w-75 p-3" type="text"
-                    placeholder="Search UNCC for textbooks, technology, or dorms!" name="search">
+                    placeholder="Author, Title, or ISBN" name="search">
                 <button class="p-3 mb-2  green text-white text-dark border-0 green_hover" type="submit">Submit</button>
             </form>
         </div>

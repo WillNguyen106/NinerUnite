@@ -110,8 +110,6 @@ app.use((err,req,res,next)=>{
     res.render('error',{error:err});
 });
 
-
-
 // Start the server
 // app.listen(port, host, ()=>{
 //     console.log('Server is running on port ', port);

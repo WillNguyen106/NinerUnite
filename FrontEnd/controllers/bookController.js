@@ -32,6 +32,14 @@ exports.show = (req,res, next)=>{
     }   
 };
 
+// Function that allow to search book.
+exports.searchController = (req,res,next)=>{
+    const {search} = req.body;
+    let results = model.search({ id: search, author: search, title: search });
+    let books = model.find();
+    res.render('./textbook/search',{books, results, searched:true});
+}
+
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
@@ -44,7 +52,6 @@ exports.edit = (req,res, next)=>{
         err.status = 404;
         next(err);
     }
-    //res.render('./textbook/edit');
     
 };
 
