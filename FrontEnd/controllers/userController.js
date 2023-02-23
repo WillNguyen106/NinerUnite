@@ -21,6 +21,7 @@ exports.newUser =  (req, res, next) => {
     console.log(req.body);
     if(req.body.password != req.body.cfpassword){
         console.log('Your password is not being matched!');
+        req.flash('error', 'Your passwords do not match!');
         return res.redirect('/users/signup');//route to signup page
     }else {
         let user = new User(req.body);
