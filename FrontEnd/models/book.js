@@ -67,16 +67,33 @@ exports.deleteById =  function(id){
     }
 }
 
-exports.search = function(optitons){
+exports.search = function(search){
     let results = books;
-    const {id, author, title} = optitons;
-    if(id){
-        results = books.filter(book=>book.id === id);
-    }else if(author){
-        results = books.filter(book=>book.author.toLowerCase().includes(author.toLowerCase()));
-    }else if(title){
-        results = books.filter(book=>book.title.toLowerCase().includes(title.toLowerCase()))
+    /*
+    if option === id return books. filter by id
+    else if option  === author return books. filter by id
+    */
+
+    if(search){
+        let id = books.filter((book)=>book.id ===search);
+        let author = books.filter(book=>book.author.toLowerCase().includes(search.toLowerCase()));
+        let title = books.filter(book=>book.title.toLowerCase().includes(search.toLowerCase()));
+        if(id.length > 0){
+            console.log(id);
+            return id;
+        }
+
+        if(author.length > 0){
+            console.log(author);
+            return author;
+        }
+
+        if(title.length > 0){
+            console.log(title);
+            return title;
+        }
     }
 
+    
     return results;
 }

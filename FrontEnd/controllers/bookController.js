@@ -34,9 +34,10 @@ exports.show = (req,res, next)=>{
 
 // Function that allow to search book.
 exports.searchController = (req,res,next)=>{
-    const {search} = req.body;
-    let results = model.search({ id: search, author: search, title: search });
     let books = model.find();
+    let search = req.body;// is object
+    console.log(search);
+    let results = model.search(search.search);
     res.render('./textbook/search',{books, results, searched:true});
 }
 
