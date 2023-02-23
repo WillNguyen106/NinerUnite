@@ -36,6 +36,20 @@
               </div>
         </header>
 
+                <!--message display is error occurs-->
+        <%if(errorMessages.length> 0) {
+            errorMessages.forEach(message => {%>
+            <div class="p-3 m-3 bg-warning" >
+                    <%= message%>
+            </div>
+        <%}); }%>
+        <%if(successMessages.length> 0) {
+            successMessages.forEach(message => {%>
+            <div class="p-3 m-3 bg-success">
+                    <%= message%>
+            </div>
+        <%}); }%>
+
         <div class="form-container">
         <div class="forms">
             <div class="form-content">     
