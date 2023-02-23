@@ -1,6 +1,6 @@
-<%- include('./partials/header.ejs')%>
+<%- include('./partials/header.ejs', {cs: 'errorStyle'})%>
   
-    <div>
+    <div class="position-absolute top-50 start-50 translate-middle">
         <h3><%= error.status%> Error</h3> 
         <p><%= error.message%></p>
     </div>

@@ -18,25 +18,31 @@ exports.signup =  (req, res) => {
 }; 
 //create new User from infor retrieved in signup page
 exports.newUser =  (req, res, next) => {  
-    
-    let user = new User(req.body);
+    console.log(req.body);
+    if(req.body.password != req.body.cfpassword){
+        console.log('Your password is not being matched!');
+        return res.redirect('/users/signup');//route to signup page
+    }else {
+        let user = new User(req.body);
    
-    if(user.email){
-        user.email = user.email.toLowerCase();
+        if(user.email){
+            user.email = user.email.toLowerCase();
+        }
+        user.save()
+        .then(() => res.redirect('/users/login'))//route to login page
+        .catch(err => {
+            if(err.name === 'ValidationError'){
+                req.flash('error', err.message);
+                return res.redirect('/users/signup');
+            }
+            if(err.code === 11000){
+                req.flash('error', 'Email address has been used');
+                return res.redirect('/users/signup');//route to signup page
+            }
+            next(err);
+        });
     }
-    user.save()
-    .then(() => res.redirect('/users/login'))//route to login page
-    .catch(err => {
-        if(err.name === 'ValidationError'){
-            req.flash('error', err.message);
-            return res.redirect('/users/signup');
-        }
-        if(err.code === 11000){
-            req.flash('error', 'Email address has been used');
-            return res.redirect('/users/signup');//route to signup page
-        }
-        next(err);
-    });
+    
 }; 
 //check in and login into as user enter the account credentials
 exports.process =  (req, res, next) => {  
