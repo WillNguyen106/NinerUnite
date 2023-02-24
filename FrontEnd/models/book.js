@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
     title:{type: String, required: [true, 'title is required']},
-    content: {type: String, required: [true, 'content is required'], 
-              minLength: [3, 'the detail should have at least 3 character']},
+    condition: {type: String, required: [true, 'condition is required'], 
+              minLength: [3, 'the condition should have at least 3 character']},
+    ispn: {type: String, required: [true, 'ispn is required'], 
+              minLength: [3, 'the ispn should have at least 3 character']},
     author : {type:Schema.Types.ObjectId, ref: 'User'},
 }, {timestamps:true});
 

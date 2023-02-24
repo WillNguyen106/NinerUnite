@@ -27,7 +27,8 @@
                    <h2 class="bookTitle"><%= book.title%></h2>
                    <hr>
                    <p>Posted <%=book.createdAt%> by <%=book.author.firstName + ' ' + book.author.lastName%></p>
-                   <p>Description: <%=book.content%></p>
+                   <p>ISPN: <%=book.ispn%></p>
+                   <p>Condition: <%=book.condition%></p>
                    <form>
                      <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id%>/edit"><i class="fas fa-edit"></i></button>
                      <button class="btn btn-danger" type="submit" formmethod="POST" formaction="/books/<%= book.id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
