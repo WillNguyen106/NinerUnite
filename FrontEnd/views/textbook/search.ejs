@@ -9,7 +9,7 @@
                 <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Seller</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">ISBN</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,7 +17,7 @@
                 <tr>
                     <td><a href="/books/<%=book.id%>"><%=book.title%></a></td>
                     <td><%=book.author.firstName + ' ' + book.author.lastName%></td>
-                    <td>null</td>
+                    <td><%=book.ispn%></td>
                 </tr>
             <%});%>
             </tbody>
