@@ -40,7 +40,7 @@
         <!--message display is error occurs-->
         <%if(errorMessages.length> 0) {
                 errorMessages.forEach(message => {%>
-                <div class="p-3 m-3 bg-danger" >
+                <div class="p-3 m-3 bg-danger-subtle border-danger border" >
                     <%= message%>
                 </div>
                 <%}); }%>
@@ -72,11 +72,11 @@
                     </div>
                     <div class="user-input">
                       <i class="fas fa-lock"></i>
-                      <input type="password" id="password" name="password" placeholder="Password" required>
+                      <input type="password" id="password" name="password" minlength="8" maxlength="64" placeholder="Password" required>
                     </div>
                     <div class="user-input">
                       <i class="fas fa-lock"></i>
-                      <input type="password" id="cfpassword" name="cfpassword" placeholder="Confirm your password" required>
+                      <input type="password" id="cfpassword" name="cfpassword" minlength="8" maxlength="64" placeholder="Confirm your password" required>
                     </div>
                     <div class="signup-button user-input">
                       <input type="submit" value="Sign Up">

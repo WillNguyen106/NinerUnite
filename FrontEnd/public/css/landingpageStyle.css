@@ -22,6 +22,16 @@ footer {
     background-color:#ffffff;
 }
 
+.nav-bar-btn-color {
+    background-color: #A49665;
+    color: white;
+}
+
+.nav-bar-btn-color:hover {
+    background-color: #b9af88;
+    color: white;
+}
+
 .brand-font {
     font-family: 'Bebas Neue', cursive;
 }

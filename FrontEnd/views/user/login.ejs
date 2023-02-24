@@ -36,10 +36,10 @@
               </div>
         </header>
 
-                <!--message display is error occurs-->
+        <!--message display is error occurs-->
         <%if(errorMessages.length> 0) {
             errorMessages.forEach(message => {%>
-            <div class="p-3 m-3 bg-warning" >
+            <div class="p-3 m-3 bg-danger-subtle border-danger border" >
                     <%= message%>
             </div>
         <%}); }%>
