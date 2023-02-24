@@ -1,8 +1,8 @@
-<%- include('../partials/header.ejs')%>
+<%- include('../partials/header.ejs', {cs: 'homepage'})%>
   
 <div>
    <h4><%= book.title%></h4>
-   <small>Posted <%=book.createdAt%> by <%=book.author%></small>
+   <small>Posted <%=book.createdAt%> by <%=book.author.firstName + ' ' + book.author.lastName%></small>
    <div><%=book.content%></div>
    <form>
       <button type="submit" formmethod="GET" formaction="/books/<%= book.id%>/edit">Edit</button>

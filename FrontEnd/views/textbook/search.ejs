@@ -7,7 +7,7 @@
     <%if(results && results.length > 0) {%>
         <%results.forEach(book=>{%>
             <ul>
-                <li><a href="/"><%=book.title%> by <%=book.author%></a></li>
+                <li><a href="/books/<%=book.id%>"><%=book.title%> by <%=book.author.firstName + ' ' + book.author.lastName%></a></li>
             </ul>
         <%});%>
     <%}else if(searched){%>

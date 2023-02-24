@@ -22,7 +22,7 @@ router.post('/', controller.create);
 router.get('/:id', controller.show);
 
 
-router.post('/search', controller.searchController);
+router.post('/search', controller.search);
 
 // /*
 //     *Allow users to edit their textbook post

@@ -1,58 +1,88 @@
+const { connect } = require('mongoose');
 const model = require('../models/book')
 
 // Function that find all books
-exports.index = (req, res)=>{
-    let books = model.find();
-    res.render('./textbook/books',{books});
+exports.index = (req, res, next)=>{
+    model.find()
+    .then(books => {
+        res.render('./textbook/books', {books});
+    })
+    .catch(err => next(err));
 }
-
 // Function that create new book post and save new post
 exports.new = (req,res)=>{
     res.render('./textbook/new');
 };
 
-exports.create = (req,res)=>{
-    let book = req.body;
-    model.save(book);
-    res.redirect('/books');
+exports.create = (req,res, next)=>{
+    let book = new model(req.body);
+    book.author = req.session.user.id;
+    book.save()
+    .then(book => {
+        res.redirect('/books');
+    })
+    .catch(err => {
+        if(err.name === 'ValidationError'){
+            err.status = 400;
+        }
+        next(err);
+    })
+    
 };
 
 // Function that show detail book
-exports.show = (req,res, next)=>{
-    //res.render('./textbook/show');
-    let id = req.params.id;
-    let book  = model.findById(id);
-    if(book){
-        res.render('./textbook/show',{book});
-    }else{
-        //Error handler
-       let err = new Error('Cannot find a story with id ' + id);
-       err.status = 404;
-       next(err);
-    }   
+exports.show = async (req,res, next)=>{
+    try{
+        let id = req.params.id;
+        let book  = await model.findById(id).populate('author','firstName lastName');
+        if(book){
+            res.render('./textbook/show',{book});
+        }else{
+            //Error handler
+            let err = new Error('Cannot find a story with id ' + id);
+            err.status = 404;
+            throw err;
+        }   
+    }catch (err){
+        next(err);
+    }
+    
 };
 
 // Function that allow to search book.
-exports.searchController = (req,res,next)=>{
-    let books = model.find();
-    let search = req.body;// is object
-    console.log(search);
-    let results = model.search(search.search);
+exports.search = async (req,res,next)=>{
+    let search = req.body.search;// req.body is an object
+    let books = await model.find().populate('author','firstName lastName').exec();
+    let results = [];
+    if(search){
+        let author = books.filter((book)=>
+            book.author.firstName.toLowerCase().includes(search.toLowerCase()) || 
+            book.author.lastName.toLowerCase().includes(search.toLowerCase())
+        );
+        let title = books.filter((book)=>book.title.toLowerCase().includes(search.toLowerCase()));
+
+        if(author.length > 0){
+            console.log(author);
+            results =  author;
+        }
+
+        if(title.length > 0){
+            console.log(title);
+            results = title;
+        }
+    }
     res.render('./textbook/search',{books, results, searched:true});
+    
 }
 
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
-    let book  = model.findById(id);
-    if(book){
-        res.render('./textbook/edit',{book});
-    }else{
-        //Error handler
-        let err = new Error('Cannot find a story with id ' + id);
-        err.status = 404;
-        next(err);
-    }
+    let book = model.findById(id)
+    .then(book => {
+        res.render('./textbook/edit', {book});
+    })
+    .catch(err => next(err));
     
 };
 
@@ -60,26 +90,32 @@ exports.edit = (req,res, next)=>{
 exports.update = (req,res, next)=>{
     let book = req.body;
     let id = req.params.id;
-    if(model.updateById(id, book)){
+    model.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
+    .then(book =>{
         res.redirect('/books/' + id);
-    }else{
-        //Error handler
-        let err = new Error('Cannot find a story with id ' + id);
-        err.status = 404;
+    })
+    .catch(err => {
+        if(err.name = 'ValidationError'){
+            err.status = 400;
+        }
         next(err);
-    }
+    })
 };
 
 // Function that delete post
 exports.delete = (req,res, next)=>{
     let id = req.params.id;
-    if(model.deleteById(id)){
-        res.redirect('/books');
-    }else{
-        //Error handler
-        let err = new Error('Cannot find a story with id ' + id);
-        err.status = 404;
-        next(err);
-    }
+
+    model.findByIdAndDelete(id, {useFindAndModify: false})
+    .then(book => {
+       res.redirect('/books')
+    })
+    .catch(err => {
+        if(err.name == 'ValidationError'){
+            err.status = 400;
+        }
+        next(err)}
+    );
+    
 };
 

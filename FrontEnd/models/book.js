@@ -1,35 +1,27 @@
-// Get Date and Time package
-const {DateTime} = require("luxon");
+const mongoose = require('mongoose');// for mongo db
+mongoose.set('strictQuery', true);
+const Schema = mongoose.Schema;
 
-// Unique ID package
-const {v4: uuidv4} = require('uuid');
-const books = [
-    {
-        id: '1',
-        title:'Computer Architecture',
-        content:'I would like to sell this book to anyone who want to learn computer hardware or going to take this class next semester',
-        condition: 'like new, 98%',
-        author:'Will Nguyen',
-        createdAt: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
-    },
-    {
-        id:'2',
-        title:'Software engineer',
-        content:'Want to be a good software engineer, buy this one',
-        condition: 'good looking, 97%',
-        author:'Robin Kunde',
-        createdAt: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
-    },
-    {
-        id:'3',
-        title:'Network Based Web App Development',
-        content:'Love this book',
-        condition:'100%, bought but not use it',
-        author:'John Mendes',
-        createdAt: DateTime.now().toLocaleString(DateTime.DATETIME_SHORT)
-    }
-    
-];
+const bookSchema = new Schema({
+    title:{type: String, required: [true, 'title is required']},
+    content: {type: String, required: [true, 'content is required'], 
+              minLength: [3, 'the detail should have at least 3 character']},
+    author : {type:Schema.Types.ObjectId, ref: 'User'},
+}, {timestamps:true});
+
+
+
+module.exports = mongoose.model('Books', bookSchema);
+
+
+
+
+
+
+
+
+
+/*
 
 // Function that exports all the book in the array
 exports.find = () => books;
@@ -66,14 +58,10 @@ exports.deleteById =  function(id){
         return false;
     }
 }
+*/
 
 exports.search = function(search){
-    let results = books;
-    /*
-    if option === id return books. filter by id
-    else if option  === author return books. filter by id
-    */
-
+    let results = [];
     if(search){
         let id = books.filter((book)=>book.id ===search);
         let author = books.filter(book=>book.author.toLowerCase().includes(search.toLowerCase()));
@@ -93,7 +81,5 @@ exports.search = function(search){
             return title;
         }
     }
-
-    
     return results;
 }
