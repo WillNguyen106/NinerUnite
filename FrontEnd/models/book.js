@@ -60,26 +60,26 @@ exports.deleteById =  function(id){
 }
 */
 
-exports.search = function(search){
-    let results = [];
-    if(search){
-        let id = books.filter((book)=>book.id ===search);
-        let author = books.filter(book=>book.author.toLowerCase().includes(search.toLowerCase()));
-        let title = books.filter(book=>book.title.toLowerCase().includes(search.toLowerCase()));
-        if(id.length > 0){
-            console.log(id);
-            return id;
-        }
+// exports.search = function(search){
+//     let results = [];
+//     if(search){
+//         let id = books.filter((book)=>book.id ===search);
+//         let author = books.filter(book=>book.author.toLowerCase().includes(search.toLowerCase()));
+//         let title = books.filter(book=>book.title.toLowerCase().includes(search.toLowerCase()));
+//         if(id.length > 0){
+//             console.log(id);
+//             return id;
+//         }
 
-        if(author.length > 0){
-            console.log(author);
-            return author;
-        }
+//         if(author.length > 0){
+//             console.log(author);
+//             return author;
+//         }
 
-        if(title.length > 0){
-            console.log(title);
-            return title;
-        }
-    }
-    return results;
-}
+//         if(title.length > 0){
+//             console.log(title);
+//             return title;
+//         }
+//     }
+//     return results;
+// }

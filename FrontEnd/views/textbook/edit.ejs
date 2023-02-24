@@ -2,14 +2,6 @@
 <div class="container p-3">
     <h1>Edit</h1>
     <form method = "POST" action = "/books/<%= book.id%>?_method=PUT">
-        <!-- <label for="title" >Title</label><br>
-        <input type="text" id="title" name="title" value = "<%= book.title%>"><br>
-        
-        <label for="content">Content</label><br>
-        <textarea id="content" name="content"><%= book.content%></textarea><br>
-        
-        <input type="submit" value="Submit">    -->
-
         <div class="mb-3 row">
                 <label class="col-form-label" for="title" >Title</label>
             <div class="col-sm-10">
@@ -25,10 +17,6 @@
         </div>
         
         <input class="btn btn-secondary" type="submit" value="Submit"> 
-
-
-        
-      
     </form>
 
 </div>

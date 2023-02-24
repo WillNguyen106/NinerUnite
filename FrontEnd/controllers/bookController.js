@@ -34,7 +34,7 @@ exports.create = (req,res, next)=>{
 exports.show = async (req,res, next)=>{
     try{
         let id = req.params.id;
-        let book  = await model.findById(id).populate('author','firstName lastName');
+        let book  = await model.findById(id).populate('author','firstName lastName');// Promise
         if(book){
             res.render('./textbook/show',{book});
         }else{
@@ -52,7 +52,7 @@ exports.show = async (req,res, next)=>{
 // Function that allow to search book.
 exports.search = async (req,res,next)=>{
     let search = req.body.search;// req.body is an object
-    let books = await model.find().populate('author','firstName lastName').exec();
+    let books = await model.find().populate('author','firstName lastName');
     let results = [];
     if(search){
         let author = books.filter((book)=>
