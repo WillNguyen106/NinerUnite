@@ -1,19 +1,43 @@
-<%- include('../partials/header.ejs', {cs: 'homepage'})%>
-  
-<div>
-    <form action = '/books' method = 'POST'>
-        <label for="author">Author</label><br>
-        <input type="text" id="author" name="author"><br>
+<%- include('../partials/header.ejs', {cs: 'new_textbook'})%>
 
-        <label for="title">Title</label><br>
-        <input type="text" id="title" name="title"><br>
+<h2 class="text-center mt-5">Selling</h2>
 
-        <label for="content">Content</label><br>
-        <textarea id="content" name="content"></textarea><br>
-        
-        <input type="submit" value="Submit">   
+<!-- Receiving the Textbook -->
+<div class="position-absolute top-50 start-50 translate-middle">
+    <form action='/books' method='POST'>
+        <table>
+            <tr>
+                <th>
+                    <h3>Info</h3><br>
+                </th>
+            </tr>
+            <tr>
+                <td><label for="title" class="fw-bold">Name:</label></td>
+                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
+                        name="title" placeholder="Ex: Computer Organization and Design RISC-V Edition"></td>
+            </tr>
+            <tr>
+                <td><label for="author" class="fw-bold">Author:</label></td>
+                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text"
+                        id="author" name="author" placeholder="Ex: David Patterson, John Hennessy"></td>
+            </tr>
+            <tr>
+                <td><label for="isbn" class="fw-bold">ISBN:</label></td>
+                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="isbn" name="isbn"
+                        placeholder="Ex: 9780128122761"></td>
+            </tr>
+            <tr>
+                <td><label for="condition" class="fw-bold">Condition:</label></td>
+                <td><textarea class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
+                        name="condition" placeholder="Pages 120-136 are missing, my dog ate them."></textarea></td>
+            </tr>
+            <!-- <tr>
+                <td class="fw-bold">Image:</td>
+                <td><input class="p-2" type="file" id="file" name="filename"></td>
+            </tr>-->
+        </table><br><br>
+        <input class="position-absolute bottom-0 end-0 text-end bg-success green text-white border-0 green_hover" type="submit" value="Submit">
     </form>
-
 </div>
 
-<%- include('../partials/footer.ejs')%>
+    <%- include('../partials/footer.ejs')%>
