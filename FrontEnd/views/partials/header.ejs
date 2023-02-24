@@ -11,6 +11,8 @@
     <!--personal stylesheet-->
     <link href="/css/landingpageStyle.css" rel="stylesheet">
     <link href="/css/<%=cs%>.css" rel="stylesheet" type="text/css">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!--font for brand name-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,13 +47,16 @@
                         </li>
                         <%} else {%>
                             <li class="nav-item  d-grid ">
-                                <a class="btn btn-warning" href='/books/new' id="index">Sell Product</a>
-                            </li>
-                            <li class="nav-item  d-grid ">
                                 <a class="btn btn-warning" href='/users/index' id="index">Dashboard</a>
                             </li>
                             <li class="nav-item  d-grid ">
-                                <a class="btn btn-warning" href='/users/profile' id="signup">Profile</a>
+                                <a class="btn btn-warning" href='/books' id="browse">Book List</a>
+                            </li>
+                            <li class="nav-item  d-grid ">
+                                <a class="btn btn-warning" href='/books/new' id="newPost">New Post</a>
+                            </li>
+                            <li class="nav-item  d-grid ">
+                                <a class="btn btn-warning" href='/users/profile' id="signup"><i class="fa solid fa-user"></i></a>
                             </li>
                             <li class="nav-item d-grid">
                                 <a class="btn btn-warning" href='/users/logout' id="login">Logout</a>

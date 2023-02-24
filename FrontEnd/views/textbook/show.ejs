@@ -1,6 +1,6 @@
-<%- include('../partials/header.ejs', {cs: 'homepage'})%>
+<%- include('../partials/header.ejs', {cs: 'bookDescriptionStyles'})%>
   
-<div>
+<!-- <div>
    <h4><%= book.title%></h4>
    <small>Posted <%=book.createdAt%> by <%=book.author.firstName + ' ' + book.author.lastName%></small>
    <div><%=book.content%></div>
@@ -8,6 +8,36 @@
       <button type="submit" formmethod="GET" formaction="/books/<%= book.id%>/edit">Edit</button>
       <button type="submit" formmethod="POST" formaction="/books/<%= book.id%>?_method=DELETE">Delete</button>
    </form>
-</div>
+</div> -->
+
+
+<main>
+
+   <div class="container mt-5 mainContainer">
+       <div class="row">
+
+           <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
+               <div class="border">
+                   <img class=" img-fluid w-75 imageCenter" src="/images/bookIconStockPhoto.jpeg" alt="bookIcon">
+               </div>
+
+           </div>
+           <div class="col-lg-6  d-flex justify-content-center">
+               <div class="p-3 m-3 bg-light text-wrap ">
+                   <h2 class="bookTitle"><%= book.title%></h2>
+                   <hr>
+                   <p>Posted <%=book.createdAt%> by <%=book.author.firstName + ' ' + book.author.lastName%></p>
+                   <p>Description: <%=book.content%></p>
+                   <form>
+                     <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id%>/edit"><i class="fas fa-edit"></i></button>
+                     <button class="btn btn-danger" type="submit" formmethod="POST" formaction="/books/<%= book.id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                  </form>
+               </div>
+           </div>
+
+       </div>
+   </div>
+
+</main>
 
 <%- include('../partials/footer.ejs')%>

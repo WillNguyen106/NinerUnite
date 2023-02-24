@@ -1,13 +1,29 @@
 <%- include('../partials/header.ejs', {cs: 'homepage'})%>
 
-    <div>
+
+    <div class="container p-3">
+        <h1>Book List</h1>
+        <br>
         <%if(books.length){ %>
-            <p>Book List</p>
+
+            <table class="table">
+                <tr>
+                    <th scope="col">Book Title</th>
+                </tr>
+
+            <tbody>
             <%books.forEach(book=>{%>
-                <a href="/books/<%=book.id%>"><p><%= book.title %></p></a>
-            <% });
-            } else {%>
-            <p>There are no books to display</p>
+                <tr>
+                    <td><a href="/books/<%=book.id%>"><p><%= book.title %></p></a></td>
+                </tr>
+                <!-- <a href="/books/<%=book.id%>"><p><%= book.title %></p></a> -->
+            <% }); %>
+
+            </tbody>
+            </table>
+            
+            <%} else {%>
+            <h2>There are no books to display</h2>
         <%} %>
     </div>
 

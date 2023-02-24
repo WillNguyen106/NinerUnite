@@ -1,12 +1,16 @@
 <%- include('../partials/header.ejs', {cs: 'homepage'})%>
 
-    <main class="personal_space">
+    <main class=" container p-3">
         <!-- Search bar -->
         <div class="text-center">
-            <form action="/books/search" method="POST">
-                <input class="p-3 mb-2 bg-light text-dark border-0 w-75 p-3" type="text"
-                    placeholder="Search books authors, ID, ISBN, or title!" 
-                    name="search">
+            <form action="/books/search" method="POST" class="d-flex p-3">
+                <!-- <input class="mb-2 bg-light text-dark w-75" type="text"
+                placeholder="Search books authors, ID, ISBN, or title!" 
+                name="search"> -->
+
+                <input class="form-control me-2" type="text"
+                placeholder="Search books authors, ID, ISBN, or title!" 
+                name="search">
                 <button class="btn green text-white border-0 green_hover" type="submit">Submit</button>
             </form>
         </div>

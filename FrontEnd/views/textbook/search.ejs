@@ -1,18 +1,35 @@
 <%- include('../partials/header.ejs', {cs: 'homepage'})%>
-    
-<h1>Book Search</h1>
-<p>This is search page
-</p>
-<div>
-    <%if(results && results.length > 0) {%>
-        <%results.forEach(book=>{%>
-            <ul>
-                <li><a href="/books/<%=book.id%>"><%=book.title%> by <%=book.author.firstName + ' ' + book.author.lastName%></a></li>
-            </ul>
-        <%});%>
-    <%}else if(searched){%>
-        <p>No results found.</p>
-    <%}%>
+<div class="container p-3">
+    <h1>Search Results</h1>
+    <br>
+    <div>
+        <%if(results && results.length > 0) {%>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Seller</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%results.forEach(book=>{%>
+                <tr>
+                    <td><a href="/books/<%=book.id%>"><%=book.title%></a></td>
+                    <td><%=book.author.firstName + ' ' + book.author.lastName%></td>
+                    <td>null</td>
+                </tr>
+
+                <!-- <ul>
+                    <li><a href="/books/<%=book.id%>"><%=book.title%> by <%=book.author.firstName + ' ' + book.author.lastName%></a></li>
+                </ul> -->
+            <%});%>
+            </tbody>
+        </table>
+        <%}else if(searched){%>
+            <p>No results found.</p>
+        <%}%>
+    </div>
 </div>
 
 
