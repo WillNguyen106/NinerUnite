@@ -1,6 +1,9 @@
 <%- include('../partials/header.ejs', {cs: 'homepage'})%>
 
     <main class=" container p-3">
+
+        <h1>Hello, User!</h1>
+
         <!-- Search bar -->
         <div class="text-center">
             <form action="/books/search" method="POST" class="d-flex p-3">
@@ -8,7 +11,7 @@
                 placeholder="Search books authors, ID, ISBN, or title!" 
                 name="search"> -->
 
-                <input class="form-control me-2" type="text"
+                <input class="form-control me-2 border-dark" type="text"
                 placeholder="Search books authors, ID, ISBN, or title!" 
                 name="search">
                 <button class="btn green text-white border-0 green_hover" type="submit">Submit</button>
@@ -54,6 +57,7 @@
     
         <!-- Display Textbooks -->
         <h3>Need a Book?</h3>
+        <p>Use the search bar to find books.</p>
     
         <!-- Display Technology -->
         <!-- <h3>In the Market for a New Computer!</h3> -->
