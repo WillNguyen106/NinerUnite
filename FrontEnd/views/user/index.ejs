@@ -2,16 +2,17 @@
 
     <main class=" container p-3">
 
-        <h1>Hello, User!</h1>
+        <!--greeting message to the user-->
+        <h1>Hello, <%- user.firstName%>!</h1>
 
         <!-- Search bar -->
         <div class="text-center">
-            <form action="/books/search" method="POST" class="d-flex p-3">
+            <form action="/books/search" method="POST" class="d-flex justify-content-center p-3">
                 <!-- <input class="mb-2 bg-light text-dark w-75" type="text"
                 placeholder="Search books authors, ID, ISBN, or title!" 
                 name="search"> -->
 
-                <input class="form-control me-2 border-dark" type="text"
+                <input class="form-control me-2 border-dark " type="text"
                 placeholder="Search books authors, ID, ISBN, or title!" 
                 name="search">
                 <button class="btn green text-white border-0 green_hover" type="submit">Submit</button>
