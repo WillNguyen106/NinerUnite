@@ -29,7 +29,7 @@
 <h2 class="text-center mt-5">Edit</h2>
 
 <!-- Receiving the Textbook -->
-<div class="position-absolute top-50 start-50 translate-middle">
+<div class="container d-flex justify-content-center my-5">
     <form action="/books/<%= book.id%>?_method=PUT" method='POST'>
         <table>
             <tr>
@@ -61,8 +61,11 @@
                 <td class="fw-bold">Image:</td>
                 <td><input class="p-2" type="file" id="file" name="filename"></td>
             </tr>-->
-        </table><br><br>
-        <input class="position-absolute bottom-0 end-0 text-end  btn bg-success green text-white border-0 green_hover" type="submit" value="Submit">
+        </table>
+        <!-- <input class=" btn bg-success  border-0 green_hover" type="submit" value="Submit"> -->
+        <div class="text-end">
+            <input class="btn btn-success" type="submit" value="Submit">
+        </div>
     </form>
 </div>
     <%- include('../partials/footer.ejs')%>
