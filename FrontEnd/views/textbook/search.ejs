@@ -16,8 +16,8 @@
             <%results.forEach(book=>{%>
                 <tr>
                     <td><a href="/books/<%=book.id%>"><%=book.title%></a></td>
-                    <td><%=book.author.firstName + ' ' + book.author.lastName%></td>
-                    <td>null</td>
+                    <td><%=book.author%></td>
+                    <td><%=book.price%></td>
                 </tr>
             <%});%>
             </tbody>

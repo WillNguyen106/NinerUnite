@@ -16,7 +16,7 @@ exports.new = (req,res)=>{
 
 exports.create = (req,res, next)=>{
     let book = new model(req.body);
-    book.author = req.session.user.id;
+    //book.user = req.session.user.id;
     book.save()
     .then(book => {
         res.redirect('/books');
@@ -34,7 +34,9 @@ exports.create = (req,res, next)=>{
 exports.show = async (req,res, next)=>{
     try{
         let id = req.params.id;
-        let book  = await model.findById(id).populate('author','firstName lastName');// Promise
+        let user = req.params.user;
+        console.log(user);
+        let book  = await model.findById(id);// Promise
         if(book){
             res.render('./textbook/show',{book});
         }else{
@@ -52,14 +54,13 @@ exports.show = async (req,res, next)=>{
 // Function that allow to search book.
 exports.search = async (req,res,next)=>{
     let search = req.body.search;// req.body is an object
-    let books = await model.find().populate('author','firstName lastName');
+    let books = await model.find();
     let results = [];
     if(search){
-        let author = books.filter((book)=>
-            book.author.firstName.toLowerCase().includes(search.toLowerCase()) || 
-            book.author.lastName.toLowerCase().includes(search.toLowerCase())
-        );
+        let author = books.filter((book)=>book.author.toLowerCase().includes(search.toLowerCase()));
         let title = books.filter((book)=>book.title.toLowerCase().includes(search.toLowerCase()));
+
+        let ISBN = books.filter((book)=>book.isbn.includes(search));
 
         if(author.length > 0){
             console.log(author);
@@ -69,6 +70,10 @@ exports.search = async (req,res,next)=>{
         if(title.length > 0){
             console.log(title);
             results = title;
+        }
+
+        if(ISBN.length > 0){
+            results = ISBN;
         }
     }
     res.render('./textbook/search',{books, results, searched:true});
