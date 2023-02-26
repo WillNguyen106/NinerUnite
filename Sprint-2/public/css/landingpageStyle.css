@@ -1,0 +1,47 @@
+/*html, body and footer help keep the footer at the bottom of the page */
+html{
+    height: 100%;
+}
+
+body{
+    min-height: 100%;
+}
+
+
+footer {
+    position: sticky;
+    top: 100%;
+    width: 100%;
+}
+
+/* .brand-padding {
+    padding: 10px;
+} */
+
+.navbar-color {
+    background-color:#ffffff;
+}
+
+.nav-bar-btn-color {
+    background-color: #A49665;
+    color: white;
+}
+
+.nav-bar-btn-color:hover {
+    background-color: #b9af88;
+    color: white;
+}
+
+.brand-font {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.footerStyle {
+    background-color: #101820;
+}
+
+
+.size{
+    width: 100%;
+    height: 100%;
+}
