@@ -6,7 +6,7 @@ exports.isGuest = (req, res, next) => {
         return next();
     }else {
         req.flash('error', 'You are logged in already!');
-        return res.redirect('/users/profile');
+        return res.redirect('/users/index');
     }
 };
 //check if user is authenticated
