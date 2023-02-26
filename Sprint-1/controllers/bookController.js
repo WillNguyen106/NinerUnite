@@ -80,7 +80,7 @@ exports.search = async (req,res,next)=>{
     
 }
 
-// Function that allow to edit post
+// Function that allow to edit post (TEST FEATURE FOR NEXT SPRINT)
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
     let book = model.findById(id)
@@ -91,7 +91,7 @@ exports.edit = (req,res, next)=>{
     
 };
 
-// Function that update new post
+// Function that update new post (TEST FEATURE FOR NEXT SPRINT)
 exports.update = (req,res, next)=>{
     let book = req.body;
     let id = req.params.id;
@@ -107,7 +107,7 @@ exports.update = (req,res, next)=>{
     })
 };
 
-// Function that delete post
+// Function that delete post (TEST FEATURE FOR NEXT SPRINT)
 exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
