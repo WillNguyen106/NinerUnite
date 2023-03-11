@@ -36,6 +36,7 @@ exports.show = async (req,res, next)=>{
         let id = req.params.id;
         let user = req.params.user;
         console.log(user);
+        //book.date = DateTime.fromISO(book.date).toLocaleString(DateTime.DATE_MED);
         let book  = await model.findById(id);// Promise
         if(book){
             res.render('./textbook/show',{book});
