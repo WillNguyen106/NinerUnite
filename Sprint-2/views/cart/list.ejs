@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs', {cs: 'homepage'})%>
+
+
+    <div class="container p-3">
+        <h1>Cart List</h1>
+        <br>
+        <%if(cart.length){ %>
+
+            <table class="table">
+                <tr>
+                    <th scope="col">Book Title</th>
+                </tr>
+
+            <tbody>
+            <%cart.forEach(item=>{%>
+                <tr>
+                    <td><img src="data:image/<%=item.image.contentType%>;base64,
+                        <%=image.img.data.toString('base64')%>"></td>
+                    <td><a href=""><p><%= item.title %></p></a></td>
+                </tr>
+            <% }); %>
+
+            </tbody>
+            </table>
+            
+            <%} else {%>
+            <h2>There are no items to display</h2>
+        <%} %>
+    </div>
+
+<%- include('../partials/footer.ejs')%>
