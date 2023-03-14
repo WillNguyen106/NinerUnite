@@ -2,7 +2,7 @@ const Cart = require('../models/cart');
 
 
 
-exports.showCart = (req, res) => {
+exports.showcart = (req, res) => {
     Cart.find()
     .then(items => {
         res.render('/', {items});
