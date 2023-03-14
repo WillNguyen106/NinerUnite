@@ -18,8 +18,13 @@ footer {
     padding: 10px;
 } */
 
+.navColor {
+    color: white;
+}
+
 .navbar-color {
-    background-color:#ffffff;
+    /* background-color:#ffffff; */
+    background-color: #005035;
 }
 
 .nav-bar-btn-color {
@@ -37,7 +42,8 @@ footer {
 }
 
 .footerStyle {
-    background-color: #101820;
+    /* background-color: #101820; */
+    background-color: #005035;
 }
 
 
