@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 
 const cartSchema = new Schema({
     userId : {type:Schema.Types.ObjectId, ref: 'User'},
-    itemId : {type: String, required: [true, 'itemId is required']}
+    bookId : {type:Schema.Types.ObjectId, ref: 'Book'},
+    techId : {type:Schema.Types.ObjectId, ref: 'Tech'},
+    category:{type: String, required: [true, 'category is required']},
 }, {timestamps:true});
 
 
