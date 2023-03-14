@@ -5,7 +5,7 @@ const Cart = require('../models/cart');
 exports.showcart = (req, res) => {
     Cart.find()
     .then(items => {
-        res.render('/', {items});
+        res.render('./cart/list', {items});
     })
     .catch(err => next(err));
    
