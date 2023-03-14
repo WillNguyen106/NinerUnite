@@ -27,7 +27,7 @@ Initialize routes
 const textbookRoutes = require('./routes/bookRoutes');
 const mainRoutes = require('./routes/mainRoutes');//for main routes to the landing page
 const userRoutes = require('./routes/userRoutes');//for user routes to login, sign up pages
-
+const cartRoutes = require('./routes/cartRoutes');//for cart routes to the cart of items
 // Create app
 const app = express();
 
@@ -84,7 +84,8 @@ app.use('/', mainRoutes);
 app.use('/books', textbookRoutes);
 // Handler for the all user path including login and signup
 app.use('/users', userRoutes);
-
+// Handler for the cart path
+app.use('/cart', cartRoutes);
 //app.use('/techProducts',techProductsRoutes);
 //app.use('/domiciles', domicileRoutes);
 
