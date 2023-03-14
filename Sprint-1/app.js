@@ -32,7 +32,7 @@ const userRoutes = require('./routes/userRoutes');//for user routes to login, si
 const app = express();
 
 // Configure app
-let port = 8084;
+let port = 8085;
 let host = 'localhost';
 let url = 'mongodb://localhost:27017/NinerUnite';//for NinerUnite DB in mongoose
 
