@@ -18,9 +18,7 @@ footer {
     padding: 10px;
 } */
 
-.navColor {
-    color: white;
-}
+
 
 .navbar-color {
     /* background-color:#ffffff; */
@@ -32,10 +30,19 @@ footer {
     color: white;
 }
 
+.hamburger-button {
+    background-color: #A49665;
+}
+
 .nav-bar-btn-color:hover {
     background-color: #b9af88;
     color: white;
 }
+
+/* .nav-bar-btn-color:active {
+    background-color: orange;
+    color: white;
+} */
 
 .brand-font {
     font-family: 'Bebas Neue', cursive;

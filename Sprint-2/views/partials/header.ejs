@@ -49,14 +49,23 @@
                             <li class="nav-item  d-grid ">
                                 <a class="btn nav-bar-btn-color" href='/users/index' id="index">Dashboard</a>
                             </li>
-                            <li class="nav-item  d-grid ">
-                                <a class="btn nav-bar-btn-color" href='/books' id="browse">Book List</a>
+                            <li class="nav-item  dropdown d-grid ">
+                                <a class="btn nav-bar-btn-color dropdown-toggle" href='#' data-bs-toggle="dropdown" aria-expanded="false">Lists</a>
+
+                                <!-- options available via dropdown-->
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href='/books' id="browseBooks">Book List</a></li>
+                                    <li><a class="dropdown-item" href='#' id="browseTech">Tech List</a></li>  
+                                </ul>
                             </li>
                             <li class="nav-item  d-grid ">
                                 <a class="btn nav-bar-btn-color" href='/books/new' id="newPost">New Post</a>
                             </li>
                             <li class="nav-item  d-grid ">
                                 <a class="btn nav-bar-btn-color" href='/users/profile' id="signup"><i class="fa solid fa-user"></i></a>
+                            </li>
+                            <li class="nav-item d-grid ">
+                                <a class="btn nav-bar-btn-color" href="/cart" id="cart">My Cart</a>
                             </li>
                             <li class="nav-item d-grid">
                                 <a class="btn nav-bar-btn-color" href='/users/logout' id="login">Logout</a>
