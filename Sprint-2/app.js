@@ -23,7 +23,7 @@ Initialize routes
  3. textbook
 */
 //const domicileRoutes = require('./routes/domicileRoutes');
-//const techProductsRoutes = require('./routes/techProductsRoutes');
+const techRoutes = require('./routes/techRoutes');
 const textbookRoutes = require('./routes/bookRoutes');
 const mainRoutes = require('./routes/mainRoutes');//for main routes to the landing page
 const userRoutes = require('./routes/userRoutes');//for user routes to login, sign up pages
@@ -86,7 +86,7 @@ app.use('/books', textbookRoutes);
 app.use('/users', userRoutes);
 // Handler for the cart path
 app.use('/cart', cartRoutes);
-//app.use('/techProducts',techProductsRoutes);
+app.use('/techs',techRoutes);
 //app.use('/domiciles', domicileRoutes);
 
 app.use((req,res,next)=>{
