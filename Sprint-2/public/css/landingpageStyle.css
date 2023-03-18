@@ -14,11 +14,9 @@ footer {
     width: 100%;
 }
 
-/* .brand-padding {
-    padding: 10px;
-} */
-
-
+.index {
+    background-image: url(../images/image3.jpg);
+}
 
 .navbar-color {
     /* background-color:#ffffff; */
