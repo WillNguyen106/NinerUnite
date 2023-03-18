@@ -42,7 +42,11 @@
                                     </div>
                                 </form>
                         <%}else{%>
-                            <p>There is no button to display</p>
+                    
+                            <!--add to cart button-->
+                            <form>
+                                <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= book.id %>/book">Add To Cart</button>
+                            </form>
                         <%}%>
                     <%});%>
                     <hr>

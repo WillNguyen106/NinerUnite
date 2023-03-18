@@ -1,52 +1,19 @@
 <%- include('../partials/header.ejs', {cs: 'new_textbook'})%>
 
-<h2 class="text-center mt-5">Sell Books</h2>
+<!-- <h2 class="text-center mt-5">Sell Books</h2> -->
 
-<!-- Receiving the Textbook -->
-<!-- <div class=" container d-flex justify-content-center my-5">
-    <form action='/books' method='POST'>
-        <table>
-            <tr>
-                <td><label for="title" class="fw-bold">Title:</label></td>
-                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
-                    name="title" placeholder="Ex: Computer Organization and Design RISC-V Edition" required></td>
-            </tr>
-            <tr>
-                <td><label for="author" class="fw-bold">Author:</label></td>
-                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text"
-                    id="author" name="author" placeholder="Ex: David Patterson, John Hennessy" required></td>
-            </tr>
-            <tr>
-                <td><label for="isbn" class="fw-bold">ISBN:</label></td>
-                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="isbn" name="isbn"
-                    placeholder="Ex: 9780128122761" required></td>
-            </tr>
-            <tr>
-                <td><label for="condition" class="fw-bold">Condition:</label></td>
-                <td><textarea class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
-                        name="condition" placeholder="Ex: Pages 120-136 are missing, my dog ate them." required></textarea></td>
-            </tr>
-            <tr>
-                <td><label for="price" class="fw-bold">Price:</label></td>
-                <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="price"
-                        name="price" placeholder="Ex: 1,2,50,100" required></input></td>
-            </tr>
-            <tr>
-                <td class="fw-bold">Image:</td>
-                <td><input class="p-2" type="file" id="file" name="filename"></td>
-            </tr>
-        </table> -->
+<!--old form-->
 
-        <!-- <input class="btn position-absolute bottom-0 end-0 text-end bg-success green text-white border-0 green_hover" type="submit" value="Submit"> -->
-        <!-- <div class="text-end">
-            <input class="btn btn-success" type="submit" value="Submit">
-        </div>
-    </form>
-</div> -->
-
-
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <div class="container  my-5">
     <form action='/books' method='POST' enctype="multipart/form-data">
+=======
+=======
+>>>>>>> Stashed changes
+<!-- <div class="container  my-5">
+    <form action='/books' method='POST'>
+>>>>>>> Stashed changes
 
         <div class="row mb-3">
             <div class="col-md-1">
@@ -119,6 +86,100 @@
             <input class="btn btn-success btn-lg" type="submit" value="Submit">
         </div>
     </form>
+</div> -->
+
+
+<!--new form-->
+<h2 class="text-center mt-5">New Post</h2>
+
+<div class="container my-5">
+
+    <form action='/books' method='POST'>
+        <!--horizontal center by using bootstrap's grid alignment for rows-->
+        <div class="row justify-content-center">
+
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="title" class="form-label fw-bold">Title:</label>
+                </div>
+                <div class="col-md-10">
+                    <input class="form-control bg-light text-dark border-0" type="text" id="title" name="title"
+                        placeholder="Ex: Computer Organization and Design RISC-V Edition" required>
+                </div>
+            </div>
+
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="author" class="form-label fw-bold">Author:</label>
+                </div>
+                <div class="col-md-10">
+                    <input class="form-control bg-light text-dark border-0" type="text" id="author" name="author"
+                        placeholder="Ex: David Patterson, John Hennessy" required>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="isbn" class="form-label fw-bold">ISBN:</label>
+                </div>
+                <div class="col-md-10 col-form-label">
+                    <input class="form-control bg-light text-dark border-0" type="text" id="isbn" name="isbn"
+                        placeholder="Ex: 9780128122761" required>
+                </div>
+            </div>
+
+
+            <div class="row mb-4 w-75">
+                <div class="col-lg-2 col-form-label">
+                    <label for="condition" class="form-label fw-bold">Condition:</label>
+                </div>
+                <div class="col-lg-10">
+                    <textarea class="form-control bg-light text-dark border-0" id="condition" name="condition"
+                        placeholder="Ex: Pages 120-136 are missing, my dog ate them." required></textarea>
+                </div>
+
+            </div>
+
+            <div class="row mb-4 w-75">
+
+                <div class="col-md-2 col-form-label">
+                    <label for="price" class="form-label fw-bold">Price:</label>
+                </div>
+
+                <div class="col-md-10">
+                    <input class="form-control bg-light text-dark border-0" type="text" id="price" name="price"
+                        placeholder="Ex: 1,2,50,100" required></input>
+                </div>
+
+            </div>
+
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="image" class="form-label fw-bold">Image:</label>
+                </div>
+                <div class="col-md-10">
+                    <!--currently accepts any type of image, but this could change-->
+                    <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                </div>
+            </div>
+
+
+
+            <div class="text-center">
+                <input class="btn btn-success btn-lg" type="submit" value="Submit">
+            </div>
+
+        </div>
+
+
+    </form>
+
+
+
+
+
 </div>
 
-    <%- include('../partials/footer.ejs')%>
+<%- include('../partials/footer.ejs')%>

@@ -1,10 +1,10 @@
-<%- include('../partials/header.ejs', {cs: 'homepage'})%>
+<%- include('../partials/header.ejs', {cs: 'listStyle'})%>
 
 
 
 
     <div class="container p-3">
-        <h1>Techs List</h1>
+        <h1>Tech List</h1>
         <br>
         <%if(techs.length){ %>
 
@@ -25,7 +25,7 @@
             </table>
             
             <%} else {%>
-            <h2>There are no product to display</h2>
+            <h2>There are no products to display</h2>
         <%} %>
     </div>
 
