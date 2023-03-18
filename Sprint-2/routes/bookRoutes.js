@@ -1,5 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/bookController');
+const {isGuest, isLoggedIn} = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.get('/new', controller.new);
 router.post('/', controller.create);
 
 //GET /books/:id: send details of textbook product indentified by id
-router.get('/:id', controller.show);
+router.get('/:id',controller.show);
 
 
 router.post('/search', controller.search);

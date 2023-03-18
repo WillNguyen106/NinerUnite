@@ -1,4 +1,5 @@
-const model = require('../models/book')
+const model = require('../models/book');
+const user = require('../models/user');
 
 // Function that find all books
 exports.index = (req, res, next)=>{
@@ -13,7 +14,7 @@ exports.new = (req,res)=>{
 
 exports.create = (req,res, next)=>{
     let book = new model(req.body);
-    //book.user = req.session.user.id;
+    book.user = req.session.user.id;
     book.save()
     .then(book =>res.redirect('/books'))
     .catch(err => {
@@ -28,17 +29,21 @@ exports.create = (req,res, next)=>{
 // Function that show detail book
 exports.show = (req,res, next)=>{
     let id = req.params.id;
+    let selectUserId = req.session.user.id;
+    let userIdArray = [];
+    
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
         let err = new Error('Invalid story id');
         err.status = 400;
         return next(err);
     }
-    
     model.findById(id)// Promise
     .then(book=>{
         if(book){
-            return res.render('./textbook/show',{book});
+            userIdArray.push(selectUserId);
+            console.log(userIdArray);
+            return res.render('./textbook/bookDetail',{book, users:userIdArray,selectUserId:book.user});
         }else{
             //Error handler
             let err = new Error('Cannot find a story with id ' + id);
