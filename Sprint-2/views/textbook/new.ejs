@@ -46,7 +46,7 @@
 
 
 <div class="container  my-5">
-    <form action='/books' method='POST'>
+    <form action='/books' method='POST' enctype="multipart/form-data">
 
         <div class="row mb-3">
             <div class="col-md-1">
@@ -109,7 +109,7 @@
                 <label for="image" class="form-label fw-bold">Image:</label>
             </div>
             <div class="col-md-11">
-                <input class="form-control" type="file" id="image" name="image">
+                <input class="form-control" type="file" id="image" name="img">
             </div>
         </div>
             

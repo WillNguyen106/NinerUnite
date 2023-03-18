@@ -13,8 +13,34 @@ exports.new = (req,res)=>{
 };
 
 exports.create = (req,res, next)=>{
+    
+    //for image file
+    console.log(req.body);
+    //const imageFile = req.body.img; //get the image file
+    //console.log(imageFile);
+    //console.log(imageFile.file);
+    console.log(req.body.files);
+    console.log(req.files.image);
+    console.log(req.file);
+    const contentType = imageFile.mimetype
+ 
+    //check if the file has the correct extension png, jpg, or jpeg
+    if((imageFile.mimetype == 'image/jpeg') || (imageFile.mimetype == 'image/jpg') || (imageFile.mimetype == 'image/png' || imageFile.mimetype == 'image/gif')){
+        
+            if(err){
+                next(err);
+            }else {
+                req.flash('error', 'Your image has to be jpeg or png or jpg!');
+            } 
+    } else{
+        req.flash('error', 'Your image has to be jpeg or png or jpg!');
+    }
+    
     let book = new model(req.body);
+    let img = {data: imageFile.data, contentType: imageFile.mimetype} ;
+    book.img = img;
     book.user = req.session.user.id;
+    console.log(book);
     book.save()
     .then(book =>res.redirect('/books'))
     .catch(err => {
