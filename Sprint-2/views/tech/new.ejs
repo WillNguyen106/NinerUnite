@@ -1,3 +1,63 @@
+<%- include('../partials/header.ejs', {cs: 'new_technology' })%>
 
-This is tech new Post\
-new tech post
+    <!--Beginning of page -->
+
+    <h2 class="text-center mt-5">NEW POST</h2>
+
+    <!-- Receiving the Request -->
+    <div class="justify-content-center m-5">
+        <form class="rounded form m-5 p-5" action='/books' method='POST'>
+            <table>
+                <tr>
+                    <!-- Change to textbook here -->
+                    <td>
+                        <p><b>Type:</b></p>
+                    </td>
+                    <td><button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tech
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/NinerUnite/Sprint-2/views/textbook/new.ejs">Textbooks
+                                Store</a>
+                            <a class="dropdown-item" href="/NinerUnite/Sprint-2/views/tech/new.ejs">Technology Store</a>
+                            <a class="dropdown-item" href="#">Dorm Posting</a>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Rest of form -->
+                <tr>
+                    <td><label for="name" class="fw-bold">Name:</label></td>
+                    <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
+                            name="name" placeholder="Ex: MacBook Pro 13&quot;"></td>
+                </tr>
+                <tr>
+                    <td><label for="description" class="fw-bold">Description:</label></td>
+                    <td><textarea class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
+                            name="description" placeholder="Ex: This is a pretty good laptop."></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="condition" class="fw-bold">Condition:</label></td>
+                    <td><textarea class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
+                            name="condition" placeholder="Ex: Good"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="price" class="fw-bold">Price:</label></td>
+                    <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="price"
+                            name="price" placeholder="Ex: 300"></input></td>
+                </tr>
+                <!-- Add an image -->
+                <tr>
+                    <td class="fw-bold">Image:</td>
+                    <td><input class="p-2" type="file" id="file" name="filename"></td>
+                </tr>
+            </table><br><br>
+            <!-- <input class="btn position-absolute bottom-0 end-0 text-end bg-success green text-white border-0 green_hover" type="submit" value="Submit"> -->
+            <div class="text-end">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <!-- End of page -->
+
+    <%- include('../partials/footer.ejs')%>
