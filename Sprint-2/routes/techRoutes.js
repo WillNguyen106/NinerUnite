@@ -16,10 +16,10 @@ router.get('/', controller.index);
 //GET /books/newtextbook: send HTML form for creating a new textbook to sell
 router.get('/new', controller.new);
 
-//POST /books: Post a new tech item for selling
+//POST /techs: Post a new tech item for selling
 router.post('/', fileUpload, controller.create);
 
-//GET /books/:id: send details of textbook product indentified by id
+//GET /techs/:id: send details of textbook product indentified by id
 router.get('/:id', controller.show);
 
 
@@ -31,13 +31,13 @@ router.get('/:id', controller.show);
 //     *Method: GET and PUT
 // */
 
-//GET /books/:id/edit: send HTML form for editing an existing textbook post
+//GET /techs/:id/edit: send HTML form for editing an existing tech post
 router.get('/:id/edit', controller.edit);
 
-//PUT /books/:id: update the textbook post identified by id
+//PUT /techs/:id: update the tech post identified by id
 router.put('/:id', fileUpload, controller.update);
 
-//DELETE /books/:id: delete textbook identified by id
+//DELETE /techs/:id: delete tech identified by id
 router.delete('/:id', controller.delete);
 
 

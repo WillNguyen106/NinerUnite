@@ -10,14 +10,15 @@
 
             <table class="table">
                 <tr>
-                    <th scope="col">Tech Brand</th>
+                    <th scope="col">Tech Name/Brand</th>
 
                 </tr>
 
             <tbody>
             <%techs.forEach(tech=>{%>
                 <tr>
-                    <td><a href="/books/<%=tech.id%>"><p><%= tech.title %></p></a></td>
+                    <!--brand counts for tech items name and brand-->
+                    <td class="select listItem"><a href="/techs/<%=tech.id%>"><p><%=tech.brand %></p></a></td>
                 </tr>
             <% }); %>
 

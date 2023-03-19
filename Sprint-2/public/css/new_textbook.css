@@ -16,6 +16,10 @@
     background-color: rgb(245, 245, 245);
 }
 
+.inputBox {
+    background-color: white;
+}
+
 .green_hover:hover {
     background-color: #026342;
 }
