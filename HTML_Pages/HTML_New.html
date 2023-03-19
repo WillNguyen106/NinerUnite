@@ -62,12 +62,12 @@
 
     <!--Beginning of page -->
 
-    <h2 class="text-center mt-5">Sell Books</h2>
+    <h2 class="text-center mt-5">NEW POST</h2>
 
     <!-- Receiving the Textbook -->
-    <div class="justify-content-center m-5">
+    <div class="container my-5">
         <form class="rounded form m-5 p-5" action='/books' method='POST'>
-            <table>
+            <table class="container w-75">
                 <!-- Change to technology here -->
                 <td>
                     <p><b>Type:</b></p>
@@ -86,28 +86,28 @@
                 <!-- Rest of form -->
                 <tr>
                     <td><label for="title" class="fw-bold">Title:</label></td>
-                    <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
+                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
                             name="title" placeholder="Ex: Computer Organization and Design RISC-V Edition"></td>
                 </tr>
                 <tr>
                     <td><label for="author" class="fw-bold">Author:</label></td>
-                    <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="author"
+                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="author"
                             name="author" placeholder="Ex: David Patterson, John Hennessy"></td>
                 </tr>
                 <tr>
                     <td><label for="isbn" class="fw-bold">ISBN:</label></td>
-                    <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="isbn"
+                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="isbn"
                             name="isbn" placeholder="Ex: 9780128122761"></td>
                 </tr>
                 <tr>
                     <td><label for="condition" class="fw-bold">Condition:</label></td>
-                    <td><textarea class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
+                    <td><textarea class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
                             name="condition" placeholder="Ex: Pages 120-136 are missing, my dog ate them."></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="price" class="fw-bold">Price:</label></td>
-                    <td><input class="align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="price"
+                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="price"
                             name="price" placeholder="Ex: 1,2,50,100"></input></td>
                 </tr>
                 <!-- Add an image -->
