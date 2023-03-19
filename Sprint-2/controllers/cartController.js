@@ -1,11 +1,49 @@
 const Cart = require('../models/cart');
-
-
-
-exports.showcart = (req, res) => {
-    Cart.find()
-    .then(items => {
-        res.render('./cart/list', {items});
+const Book = require('../models/book');
+const Tech = require('../models/tech');
+// exports.getBooks = (items, req, res, next) => {
+//     let bookResults = [];
+//     let bookFilter = items.filter(item => item.category === 'book');
+//     bookFilter.forEach(item => {
+//         let books = [];
+//         Book.findById(item.bookId)
+//         .then(book => { 
+//             books.push(book);
+//             bookResults = books;
+//         })
+//             .catch(err => next(err));
+//         });
+//         return bookResults;
+        
+// }
+// exports.getTechs = (items, req, res, next) => {
+//     let techs = [];
+//     let bookFilter = items.filter(item => item.category === 'tech');
+//     let techFilter = items.filter(item => item.category === 'tech');
+//     techFilter.forEach(item => {
+//         Tech.findById(item.techId)
+//         .then(tech => {
+//             techs.push(tech);
+        
+//         })
+//         .catch(err => next(err));
+//     })
+//     return techs;
+    
+// }
+exports.showcart = (req, res, next) => {
+    Promise.all([Cart.find({techId: null}).populate('bookId'), Cart.find({bookId: null}).populate('techId')])
+    .then(results => {
+        const[books, techs] = results;
+        let empty = true;
+        if(books.length > 0 || techs.length > 0){
+            empty = false;
+        }
+        console.log("Books here");
+        console.log(books);
+        console.log("Techs here");
+        console.log(techs);
+        res.render('./cart/list', {books, techs, empty});
     })
     .catch(err => next(err));
    
@@ -17,12 +55,13 @@ exports.addBook = (req, res) => {
     let item = new Cart();
     item.userId = req.session.user.id;
     item.bookId = id;
+    item.techId = null;
     item.category = "book"
     item.save()
     .then(item => {
         console.log(item);
         req.flash('success', 'You have successfully add an book item to the cart!');
-        
+        res.redirect('http://localhost:8084/books');
     })
     .catch(err => {
         if(err.name === 'ValidationError'){
@@ -37,13 +76,14 @@ exports.addTech = (req, res) => {
     let id = req.params.id;
     let item = new Cart();
     item.userId = req.session.user.id;
-    item.bookId = id;
+    item.techId = id;
+    item.bookId = null;
     item.category = "tech"
     item.save()
     .then(item => {
         console.log(item);
         req.flash('success', 'You have successfully add an tech item to the cart!');
-        
+        res.redirect('http://localhost:8084/techs');
     })
     .catch(err => {
         if(err.name === 'ValidationError'){
