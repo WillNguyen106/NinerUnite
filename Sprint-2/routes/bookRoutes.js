@@ -1,6 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/bookController');
-const {isGuest, isLoggedIn} = require('../middlewares/auth');
+const {fileUpload} = require('../middlewares/fileUpload');
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.get('/', controller.index);
 router.get('/new', controller.new);
 
 //POST /books: Post a new textbook for selling
-router.post('/', controller.create);
+router.post('/',fileUpload, controller.create);
 
 //GET /books/:id: send details of textbook product indentified by id
 router.get('/:id',controller.show);
@@ -35,10 +35,11 @@ router.post('/search', controller.search);
 router.get('/:id/edit', controller.edit);
 
 //PUT /books/:id: update the textbook post identified by id
-router.put('/:id', controller.update);
+router.put('/:id',fileUpload, controller.update);
 
 //DELETE /books/:id: delete textbook identified by id
 router.delete('/:id', controller.delete);
 
 
 module.exports = router;
+

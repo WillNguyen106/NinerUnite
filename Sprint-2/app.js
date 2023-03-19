@@ -7,6 +7,7 @@ Initialize Framework
 const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
+const path = require('path');
 
 
 /* Initialize for user login and sign up tasks
@@ -50,7 +51,7 @@ mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
 .catch(err => console.log(err.message));
 
 // Mount middleware
-app.use(express.static('public'));// for access files stored in public folder inclusing css and images
+app.use(express.static(path.join(__dirname,'public')));// for access files stored in public folder inclusing css and images
 // app.use(express.static('images'));
 app.use(express.urlencoded({extended:true}));
 app.use(morgan('tiny'));// for catching time and method when routing to a specific page
