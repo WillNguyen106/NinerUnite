@@ -12,6 +12,10 @@
     font-family: 'Bebas Neue', cursive;
 } */
 
+.form {
+    background-color: rgb(245, 245, 245);
+}
+
 .green_hover:hover {
     background-color: #026342;
 }
