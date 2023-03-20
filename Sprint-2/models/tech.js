@@ -12,10 +12,7 @@ const techSchema = new Schema({
             minLength: [3, 'condition should have at least 3 character']},
     price: {type: Number, required: [true, 'price is required'], 
             minLength: [1, 'price should not be 0']},
-    img:    {
-                data: Buffer,
-                contentType: String
-            },
+    image: {type: String, path:'/image/techImages/'}  
 }, {timestamps:true});
 
 

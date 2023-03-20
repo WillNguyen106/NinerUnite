@@ -4,7 +4,7 @@
     <div class="container p-3">
         <h1>Cart List</h1>
         <br>
-        <%if(items.length){ %>
+        <%if(books.length){ %>
 
             <table class="table">
                 <tr>
@@ -12,27 +12,41 @@
                 </tr>
 
             <tbody>
-            <%items.forEach(item=>{%>
-                <%if(item.category === "book"){ %>
+            <%books.forEach(book=>{%>
+                
                 <tr>
-                    <td><img src="data:image/<%=item_bookId.img.contentType%>;base64,
-                        <%=item_bookId.img.data.toString('base64')%>"></td>
-                    <td><a href="/books/<%=item_bookId.id%>"><p><%= item_bookId.title %></p></a></td>
+                    <td><img src="<%= book.bookId.image%>"></td>
+                    <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
                 </tr>
-                <% } %>
-                <% if(item.category === "tech"){ %>
-                    <tr>
-                        <td><img src="<%= item.techId.image%>"></td>
-                        <td><a href="/techs/<%=item_techId.id%>"><p><%= item_techId.title %></p></a></td>
-                    </tr>
-                <% } %>
         
             <% }) %>
 
             </tbody>
             </table>
             
-        <%} else {%>
+        <%}%>
+        <%if(techs.length){ %>
+
+            <table class="table">
+                <tr>
+                    <th scope="col">Tech Title</th>
+                </tr>
+
+            <tbody>
+            <%techs.forEach(tech=>{%>
+                
+                <tr>
+                    <td><img src="<%= tech.techId.image%>"></td>
+                    <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td>
+                </tr>
+        
+            <% }) %>
+
+            </tbody>
+            </table>
+            
+        <%} %>
+        <%if(empty){%>
             <h2>There are no items to display</h2>
         <%} %>
     </div>

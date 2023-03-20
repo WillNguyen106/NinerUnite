@@ -1,3 +1,181 @@
+<%- include('../partials/header.ejs', {cs: 'new_technology' })%>
 
-This is tech new Post\
-new tech post
+    <!--Beginning of page -->
+
+    <!-- <h2 class="text-center mt-5">NEW POST</h2> -->
+
+    <!-- Receiving the Textbook -->
+    <!-- <div class="container my-5">
+        <form class="rounded form m-5 p-5" action='/books' method='POST'>
+            <table class="container w-75">
+                <tr> -->
+                    <!-- Change to textbook here -->
+                    <!-- <td>
+                        <p><b>Type:</b></p>
+                    </td>
+                    <td><button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tech
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="/NinerUnite/Sprint-2/views/textbook/new.ejs">Textbooks Store</a>
+                            <a class="dropdown-item" href="/NinerUnite/Sprint-2/views/tech/new.ejs">Technology Store</a>
+                            <a class="dropdown-item" href="#">Dorm Posting</a>
+                        </div>
+                    </td>
+                </tr> -->
+                <!-- Rest of form -->
+                <!-- <tr>
+                    <td><label for="name" class="fw-bold">Name:</label></td>
+                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
+                            name="name" placeholder="Ex: MacBook Pro 13&quot;"></td>
+                </tr>
+                <tr>
+                    <td><label for="description" class="fw-bold">Description:</label></td>
+                    <td><textarea class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
+                            name="description" placeholder="Ex: This is a pretty good laptop."></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="condition" class="fw-bold">Condition:</label></td>
+                    <td><textarea class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
+                            name="condition" placeholder="Ex: Good"></textarea></td>
+                </tr>
+                <tr>
+                    <td><label for="price" class="fw-bold">Price:</label></td>
+                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="price"
+                            name="price" placeholder="Ex: 300"></input></td>
+                </tr> -->
+                <!-- Add an image -->
+                <!-- <tr>
+                    <td class="fw-bold">Image:</td>
+                    <td><input class="p-2" type="file" id="file" name="filename"></td>
+                </tr>
+            </table><br><br> -->
+            <!-- <input class="btn position-absolute bottom-0 end-0 text-end bg-success green text-white border-0 green_hover" type="submit" value="Submit"> -->
+            <!-- <div class="text-end">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+        </form>
+    </div> -->
+    <!-- End of page -->
+
+
+<!--Responsive tech form-->
+<!--Beginning of page-->
+<h2 class="text-center mt-5">NEW TECH</h2>
+
+<div class="container my-5">
+
+    <form class="rounded form m-3 p-3" action='/techs' method='POST'>
+        <!--horizontal center by using bootstrap's grid alignment for rows-->
+        <div class="row justify-content-center">
+
+            <!--Dropdown Section-->
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="type" class="form-label fw-bold">Type:</label>
+                </div>
+                <div class="col-md-10">
+                    <div class="dropdown">
+                        <!--dropdown toggle-->
+                        <button class="btn btn-success dropdown-toggle" type="button"
+                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</button>
+
+                         <!--dropdown options-->
+                         <!--Technology is active because that is the current page-->
+                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="/books/new">Textbook/Book</a></li>
+                            <li><a class="dropdown-item active" href="/techs/new" aria-current="true">Technology</a></li>
+                            <li><a class="dropdown-item" href="#">Dorm Posting</a></li>
+                         </ul>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--Rest of the form-->
+
+            <!--Each input section is contained in a row-->
+            <!--One col is for the label and the other col is for the input box-->
+
+             <!--Name/Brand Section-->
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                     <label for="brand" class="form-label fw-bold">Name/Brand:</label>
+                </div>
+                <div class="col-md-10">
+                    <input class="form-control inputBox text-dark border-0" type="text" id="brand" name="brand"
+                        placeholder="Ex: Apple MacBook Pro13&quot;, Bose Headphones" required>
+                </div>
+            </div>
+
+
+
+            <!--Description Section-->
+            <!--must have more than 10 characters according to model-->
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="description" class="form-label fw-bold">Description:</label>
+                </div>
+                <div class="col-md-10">
+                    <textarea class="form-control inputBox text-dark border-0" type="text" id="description" name="description"
+                        placeholder="Ex: Specs about the piece of technology" minlength="10" required></textarea>
+                </div>
+
+            </div>
+
+            <!--Condition Section-->
+            <div class="row mb-4 w-75">
+                <div class="col-lg-2 col-form-label">
+                    <label for="condition" class="form-label fw-bold">Condition:</label>
+                </div>
+                <div class="col-lg-10">
+                    <textarea class="form-control inputBox text-dark border-0" id="condition" name="condition"
+                        placeholder="Ex: Burrito Juice Damage to Keyboard, Cracked Screen" required></textarea>
+                </div>
+
+            </div>
+
+            <!--Price Section-->
+            <div class="row mb-4 w-75">
+
+                <div class="col-md-2 col-form-label">
+                    <label for="price" class="form-label fw-bold">Price:</label>
+                </div>
+
+                <div class="col-md-10">
+                    <input class="form-control inputBox text-dark border-0" type="text" id="price" name="price"
+                        placeholder="Ex: 300, 250" required></input>
+                </div>
+
+            </div>
+
+            <!--Image Section-->
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="image" class="form-label fw-bold">Image:</label>
+                </div>
+                <div class="col-md-10">
+                    <!--currently accepts any type of image, but this could change-->
+                    <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                </div>
+            </div>
+
+
+
+            <!--Submit Button-->
+            <div class="text-center">
+                <input class="btn btn-success btn-lg" type="submit" value="Submit">
+            </div>
+
+        </div>
+
+
+    </form>
+
+
+</div>
+
+    <%- include('../partials/footer.ejs')%>

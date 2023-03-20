@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs', {cs: 'bookDescriptionStyles'})%>
+<main>
+
+   <div class="container mt-5 mainContainer">
+       <div class="row">
+
+           <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
+               <div class="border">
+                   <img class=" img-fluid w-75 imageCenter" src="<%=tech.image%>" alt="">
+               </div>
+
+           </div>
+           <div class="col-lg-6  d-flex justify-content-center">
+               <div class="p-3 m-3 bg-light text-wrap ">
+                   <h2 class="bookTitle"><%= tech.brand%></h2>
+
+                    <hr>
+                        <p>Posted <%=tech.createdAt%></p>
+                        <p>Description: <%=tech.description%></p>
+                        <p>Condition: <%=tech.condition%></p>
+                        <p>Price: $<%=tech.price%></p>
+               </div>
+           </div>
+
+       </div>
+   </div>
+
+</main>
+
+<%- include('../partials/footer.ejs')%>
