@@ -73,7 +73,7 @@ exports.delete = (req, res, next) => {
     .then(cart => {
         console.log(cart);
         req.flash('success', 'You have successfully delete an item from the cart!');
-        redirect('/cart');
+        res.redirect('/cart');
     })
     .catch(err => {
         if(err.name == 'ValidationError'){
