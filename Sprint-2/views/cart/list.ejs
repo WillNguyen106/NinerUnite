@@ -15,7 +15,7 @@
             <%books.forEach(book=>{%>
                 
                 <tr>
-                    <td><img src="<%= book.bookId.image%>"></td>
+                    <td><img src="images/bookImages/<%= book.bookId.image%>"></td>
                     <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
                 </tr>
         
