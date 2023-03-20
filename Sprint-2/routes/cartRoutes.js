@@ -13,6 +13,6 @@ router.post('/add/:id/book', isLoggedIn, cartController.addBook)
 //add a tech item to the cart by its id: /cart/add/:id/tech
 router.post('/add/:id/tech', isLoggedIn, cartController.addTech)
 //delete an item from the cart by its id /cart/delete/:id
-router.delete('/:id', isLoggedIn, cartController.delete);
+router.delete('/delete/:id', isLoggedIn, cartController.delete);
 
 module.exports = router;

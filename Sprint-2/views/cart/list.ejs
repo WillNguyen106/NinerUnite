@@ -15,8 +15,11 @@
             <%books.forEach(book=>{%>
                 
                 <tr>
-                    <td><img src="images/bookImages/<%= book.bookId.image%>"></td>
+                    <td><img src=""></td>
                     <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
+                    <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                        
+                    </button>
                 </tr>
         
             <% }) %>
@@ -36,7 +39,7 @@
             <%techs.forEach(tech=>{%>
                 
                 <tr>
-                    <td><img src="<%= tech.techId.image%>"></td>
+                    <td><img src=""></td>
                     <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td>
                 </tr>
         

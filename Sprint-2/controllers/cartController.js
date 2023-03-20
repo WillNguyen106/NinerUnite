@@ -10,10 +10,9 @@ exports.showcart = (req, res, next) => {
         if(books.length > 0 || techs.length > 0){
             empty = false;
         }
-        console.log("Books here");
-        console.log(books);
-        console.log("Techs here");
-        console.log(techs);
+        // console.log("Books here");
+        // console.log("Techs here");
+    
         res.render('./cart/list', {books, techs, empty});
     })
     .catch(err => next(err));
@@ -68,11 +67,13 @@ exports.addTech = (req, res, next) => {
 //delete an item from the cart by its id /cart/delete/:id
 exports.delete = (req, res, next) => {
     let id = req.params.id;
+    console.log("here in delete");
     //delete from connections collection
     Cart.findByIdAndDelete(id, {useFindAndModify: false})
     .then(cart => {
         console.log(cart);
         req.flash('success', 'You have successfully delete an item from the cart!');
+        redirect('/cart');
     })
     .catch(err => {
         if(err.name == 'ValidationError'){
