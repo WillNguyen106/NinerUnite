@@ -61,7 +61,7 @@ exports.addBook = (req, res) => {
     .then(item => {
         console.log(item);
         req.flash('success', 'You have successfully add an book item to the cart!');
-        res.redirect('http://localhost:8084/books');
+        res.redirect('/books');
     })
     .catch(err => {
         if(err.name === 'ValidationError'){

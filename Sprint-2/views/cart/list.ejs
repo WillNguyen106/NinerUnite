@@ -15,7 +15,6 @@
             <%books.forEach(book=>{%>
                 
                 <tr>
-                    <td><img src="<%= book.bookId.image%>"></td>
                     <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
                 </tr>
         
@@ -24,6 +23,8 @@
             </tbody>
             </table>
             
+        <%}else{%>
+            <p> There is no item to display</p>
         <%}%>
         <%if(techs.length){ %>
 
@@ -36,7 +37,6 @@
             <%techs.forEach(tech=>{%>
                 
                 <tr>
-                    <td><img src="<%= tech.techId.image%>"></td>
                     <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td>
                 </tr>
         
