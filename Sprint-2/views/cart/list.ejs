@@ -15,7 +15,13 @@
             <%books.forEach(book=>{%>
                 
                 <tr>
+                    <td><img src=""></td>
                     <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
+                    <form>
+                        <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                    </form>
+                        
+                    </button>
                 </tr>
         
             <% }) %>
@@ -23,8 +29,6 @@
             </tbody>
             </table>
             
-        <%}else{%>
-            <p> There is no item to display</p>
         <%}%>
         <%if(techs.length){ %>
 
@@ -37,6 +41,7 @@
             <%techs.forEach(tech=>{%>
                 
                 <tr>
+                    <td><img src=""></td>
                     <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td>
                 </tr>
         
