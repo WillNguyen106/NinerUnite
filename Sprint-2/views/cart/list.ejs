@@ -22,8 +22,7 @@
                 <% } %>
                 <% if(item.category === "tech"){ %>
                     <tr>
-                        <td><img src="data:image/<%=item_techId.img.contentType%>;base64,
-                            <%=item_techId.img.data.toString('base64')%>"></td>
+                        <td><img src="<%= item.techId.image%>"></td>
                         <td><a href="/techs/<%=item_techId.id%>"><p><%= item_techId.title %></p></a></td>
                     </tr>
                 <% } %>
