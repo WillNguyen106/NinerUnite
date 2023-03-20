@@ -21,7 +21,9 @@ exports.create = (req,res, next)=>{
     }
     
     book.save()
-    .then(book =>res.redirect('/books'))
+    .then(book =>{res.redirect('/books');
+        console.log(book);
+    })
     .catch(err => {
         if(err.name === 'ValidationError'){
             err.status = 400;
@@ -34,7 +36,6 @@ exports.show = (req,res, next)=>{
     let id = req.params.id;
     let selectUserId = req.session.user.id;
     let userIdArray = [];
-    
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
         let err = new Error('Invalid story id');

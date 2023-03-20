@@ -72,7 +72,7 @@
 
 <div class="container my-5">
 
-    <form class="rounded form m-3 p-3" action='/books' method='POST'>
+    <form class="rounded form m-3 p-3" action='/books' enctype="multipart/form-data" method='POST'>
         <!--horizontal center by using bootstrap's grid alignment for rows-->
         <div class="row justify-content-center">
 
@@ -90,8 +90,8 @@
                          <!--dropdown options-->
                          <!--textbook/book is active since that is the current page-->
                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item active" href="/books/new" aria-current="true">Textbook/Book</a></li>
-                            <li><a class="dropdown-item" href="/techs/new">Technology</a></li>
+                            <!-- <li><a class="dropdown-item active" href="/books/new" aria-current="true">Textbook/Book</a></li>
+                            <li><a class="dropdown-item" href="/techs/new">Technology</a></li> -->
                             <li><a class="dropdown-item" href="#">Dorm Posting</a></li>
                          </ul>
 
@@ -171,7 +171,7 @@
                 </div>
                 <div class="col-md-10">
                     <!--currently accepts any type of image, but this could change-->
-                    <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                    <input class="form-control" type="file" id="image" name="image">
                 </div>
             </div>
 
