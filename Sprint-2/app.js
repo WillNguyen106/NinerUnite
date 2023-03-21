@@ -78,16 +78,20 @@ app.use((req, res, next) => {
     next();
 })
 
+
 // Handler for the landing page path
 app.use('/', mainRoutes);
-
 // Handler for the textbook products path
 app.use('/books', textbookRoutes);
 // Handler for the all user path including login and signup
 app.use('/users', userRoutes);
 // Handler for the cart path
 app.use('/cart', cartRoutes);
+// Handler for the tech products path
 app.use('/techs',techRoutes);
+
+
+
 //app.use('/domiciles', domicileRoutes);
 
 app.use((req,res,next)=>{

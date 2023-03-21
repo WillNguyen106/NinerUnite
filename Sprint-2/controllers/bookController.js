@@ -1,8 +1,8 @@
-const model = require('../models/book');
+const modelBook = require('../models/book');
 
 // Function that find all books
 exports.index = (req, res, next)=>{
-    model.find()
+    modelBook.find()
     .then(books => res.render('./textbook/books', {books}))
     .catch(err => next(err));
 }
@@ -12,7 +12,7 @@ exports.new = (req,res)=>{
 };
 
 exports.create = (req,res, next)=>{
-    let book = new model(req.body);
+    let book = new modelBook(req.body);
     book.user = req.session.user.id;
 
     if(req.file){
@@ -20,9 +20,7 @@ exports.create = (req,res, next)=>{
     }
     
     book.save()
-    .then(book =>{res.redirect('/books');
-        console.log(book);
-    })
+    .then(results =>res.redirect('/books'))
     .catch(err => {
         if(err.name === 'ValidationError'){
             err.status = 400;
@@ -41,9 +39,8 @@ exports.show = (req,res, next)=>{
         err.status = 400;
         return next(err);
     }
-    model.findById(id)// Promise
+    modelBook.findById(id)// Promise
     .then(book=>{
-        console.log(book);
         if(book){
             userIdArray.push(selectUserId);
             return res.render('./textbook/bookDetail',{book, users:userIdArray,selectUserId:book.user});
@@ -61,7 +58,7 @@ exports.show = (req,res, next)=>{
 exports.search = (req,res,next)=>{
     let search = req.body.search;// req.body is an object
     
-    model.find()
+    modelBook.find()
     .then(books=>{
         let results = [];
         if(search){
@@ -98,7 +95,7 @@ exports.edit = (req,res, next)=>{
         return next(err);
     }
 
-    model.findById(id)
+    modelBook.findById(id)
     .then(book => {
         if(book){
             res.render('./textbook/edit', {book})
@@ -128,9 +125,9 @@ exports.update = (req,res, next)=>{
         console.log(req.file);
     }
     
-    model.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
-    .then(book =>{
-        if(book){
+    modelBook.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
+    .then(result =>{
+        if(result){
             res.redirect('/books/' + id);
         }else{
             let err = new Error('Cannot find a story with id ' + id);
@@ -157,9 +154,9 @@ exports.delete = (req,res, next)=>{
         return next(err);
     }
 
-    model.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(book => {
-        if(book){
+    modelBook.findByIdAndDelete(id, {useFindAndModify: false})
+    .then(result => {
+        if(result){
             return res.redirect('/books')
         }else{
             let err = new Error('Cannot find a story with id ' + id);

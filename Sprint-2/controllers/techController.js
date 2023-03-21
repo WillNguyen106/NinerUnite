@@ -1,22 +1,27 @@
-const tech = require('../models/tech');
-const model = require('../models/tech')
+const modelTech = require('../models/tech');
 
 // Function that find all techs
-exports.index = (req,res,next)=>{
-    model.find()
+exports.index = (req, res, next)=>{
+    modelTech.find()
     .then(techs => res.render('./tech/techs',{techs}))
-    .catch(err=> next(err));
+    .catch(err => next(err));
 };
 
-// Function that create new post and save new post
+// Function that create new tech post and save new post
 exports.new = (req,res)=>{
     res.render('./tech/new');
 };
 
 exports.create = (req,res,next)=>{
-    let tech = new model(req.body);
+    let tech = new modelTech(req.body);
+    tech.user = req.session.user.id;
+
+    if(req.file){
+        tech.image = '/images/techImages/' + req.file.filename;
+    }
+
     tech.save()
-    .then(tech => res.redirect('/techs'))
+    .then(result =>res.redirect('/techs'))
     .catch(err => {
         if(err.name === 'ValidationError'){
             err.status = 400;
@@ -25,9 +30,11 @@ exports.create = (req,res,next)=>{
     })
 };
 
-// Function that show detail book
+// Function that show detail tech
 exports.show = (req,res,next)=>{
     let id = req.params.id;
+    let selectUserId = req.session.user.id;
+    let userIdArray = [];
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
         let err = new Error('Invalid story id');
@@ -35,10 +42,11 @@ exports.show = (req,res,next)=>{
         return next(err);
     }
     
-    model.findById(id)// Promise
+    modelTech.findById(id)// Promise
     .then(tech=>{
         if(tech){
-            return res.render('./tech/show',{tech});
+            userIdArray.push(selectUserId)
+            return res.render('./tech/show',{tech, users:userIdArray, selectUserId:tech.user});
         }else{
             //Error handler
             let err = new Error('Cannot find a story with id ' + id);
@@ -48,9 +56,6 @@ exports.show = (req,res,next)=>{
     })
     .catch(err=>next(err));
 }
-
-// TODO: Function that allow to search tech.
-
 
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{
@@ -62,7 +67,7 @@ exports.edit = (req,res, next)=>{
         return next(err);
     }
 
-    model.findById(id)
+    modelTech.findById(id)
     .then(tech => {
         if(tech){
             res.render('./tech/edit', {tech})
@@ -85,11 +90,15 @@ exports.update = (req,res, next)=>{
         err.status = 400;
         return next(err);
     }
+
+    if(req.file){
+        tech.image = '/images/techImages/' + req.file.filename;
+    }
     
-    model.findByIdAndUpdate(id, tech,{useFindAndModify: false, runValidators:true})
-    .then(tech =>{
-        if(tech){
-            res.redirect('/books/' + id);
+    modelTech.findByIdAndUpdate(id, tech,{useFindAndModify: false, runValidators:true})
+    .then(result =>{
+        if(result){
+            res.redirect('/techs/' + id);
         }else{
             let err = new Error('Cannot find a story with id ' + id);
             err.status = 404;
@@ -115,10 +124,10 @@ exports.delete = (req,res, next)=>{
         return next(err);
     }
 
-    model.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(tech => {
-        if(tech){
-            return res.redirect('/books')
+    modelTech.findByIdAndDelete(id, {useFindAndModify: false})
+    .then(result => {
+        if(result){
+            return res.redirect('/techs')
         }else{
             let err = new Error('Cannot find a story with id ' + id);
             err.status = 404;

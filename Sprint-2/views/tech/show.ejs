@@ -13,12 +13,49 @@
            <div class="col-lg-6  d-flex justify-content-center">
                <div class="p-3 m-3 bg-light text-wrap ">
                    <h2 class="bookTitle"><%= tech.brand%></h2>
-
-                    <hr>
-                        <p>Posted <%=tech.createdAt%></p>
-                        <p>Description: <%=tech.description%></p>
-                        <p>Condition: <%=tech.condition%></p>
-                        <p>Price: $<%=tech.price%></p>
+                   <%users.forEach(user=>{ %>
+                    <%if(user.includes(selectUserId)){ %>
+                            <form>
+                                <button class="btn btn-success" type="submit" formmethod="GET" formaction="/techs/<%= tech.id %>/edit"><i class="fas fa-edit"></i></button>
+                                <!-- Button trigger modal for delete message -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                
+                                <!-- Modal for delete message -->
+                                <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteMessageLabel"><%= tech.title %></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        Are you sure you want to delete this item?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                        <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/techs/<%= tech.id %>?_method=DELETE">Yes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                    <%}%>
+                <%});%>
+                   <hr>
+                    <p>Posted <%=tech.createdAt%></p>
+                    <p>Description: <%=tech.description%></p>
+                    <p>Condition: <%=tech.condition%></p>
+                    <p>Price: $<%=tech.price%></p>
+                <%users.forEach(user=>{%>
+                    <%if(!user.includes(selectUserId)){%>
+                        <!-- add to cart button -->
+                        <form class="text-end">
+                            <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= tech.id %>/book">Add To Cart</button>
+                        </form>
+                    <%}%>
+                <%})%>
                </div>
            </div>
 
