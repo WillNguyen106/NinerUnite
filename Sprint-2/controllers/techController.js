@@ -57,6 +57,8 @@ exports.show = (req,res,next)=>{
     .catch(err=>next(err));
 }
 
+// TODO: search function for tech product post
+
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
