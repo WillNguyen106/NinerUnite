@@ -22,46 +22,71 @@ exports.showcart = (req, res, next) => {
 //add a book to the cart by its id: /cart/add/:id/book
 exports.addBook = (req, res, next) => {
     let id = req.params.id;
-    let item = new Cart();
-    item.userId = req.session.user.id;
-    item.bookId = id;
+    //check if the book item in the cart
+    Cart.find()
+    .then(items => {
+        let filter = items.filter(item=> item.bookId == id);
+        if(filter.length != 0){
+            console.log(filter);
+            req.flash('error', 'Your selected book item is already in the cart!');
+            res.redirect("/cart");
+        }else{
+            let item = new Cart();
+            item.userId = req.session.user.id;
+            item.bookId = id;
 
-    item.techId = null;
-    item.category = "book"
-    item.save()
-    .then(item => {
-        req.flash('success', 'You have successfully add an book item to the cart!');
-        console.log(req.hostname);
-        return res.redirect('/books');
+            item.techId = null;
+            item.category = "book"
+            item.save()
+            .then(item => {
+                req.flash('success', 'You have successfully add an book item to the cart!');
+                return res.redirect('/books');
+            })
+            .catch(err => {
+                if(err.name === 'ValidationError'){
+                    err.status = 400;
+                }
+                next(err);
     })
-    .catch(err => {
-        if(err.name === 'ValidationError'){
-            err.status = 400;
         }
-        next(err);
     })
+    .catch(err => next(err))
+    
     
 };
 //add a book to the cart by its id: /cart/add/:id/book
 exports.addTech = (req, res, next) => {
     let id = req.params.id;
-    let item = new Cart();
-    item.userId = req.session.user.id;
-    item.techId = id;
-    item.bookId = null;
-    item.category = "tech"
-    item.save()
-    .then(item => {
-        console.log(item);
-        req.flash('success', 'You have successfully add an tech item to the cart!');
-        return res.redirect('/books');
-    })
-    .catch(err => {
-        if(err.name === 'ValidationError'){
-            err.status = 400;
+    //check if the book item in the cart
+    Cart.find()
+    .then(items => {
+        let filter = items.filter(item=> item.techId == id);
+        if(filter.length != 0){
+            console.log(filter);
+            req.flash('error', 'Your selected tech item is already in the cart!');
+            res.redirect("/cart");
+        }else{
+            let item = new Cart();
+            item.userId = req.session.user.id;
+            item.techId = id;
+            item.bookId = null;
+            item.category = "tech"
+            item.save()
+            .then(item => {
+                console.log(item);
+                req.flash('success', 'You have successfully add an tech item to the cart!');
+                return res.redirect('/techs');
+            })
+            .catch(err => {
+                if(err.name === 'ValidationError'){
+                    err.status = 400;
+                }
+                next(err);
+            })
         }
-        next(err);
     })
+    .catch(err => next(err))
+    
     
 };
 //delete an item from the cart by its id /cart/delete/:id
