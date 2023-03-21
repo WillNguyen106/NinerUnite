@@ -41,20 +41,23 @@
                                         </div>
                                     </div>
                                 </form>
-                        <%}else{%>
-                    
-                            <!--add to cart button-->
-                            <form>
-                                <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= book.id %>/book">Add To Cart</button>
-                            </form>
                         <%}%>
                     <%});%>
-                    <hr>
+                        <hr>
                         <p>Posted <%=book.createdAt%></p>
                         <p>Author: <%=book.author%></p>
                         <p>ISBN: <%=book.isbn%></p>
                         <p>Condition: <%=book.condition%></p>
                         <p>Price: $<%=book.price%></p>
+                    <%users.forEach(user=>{%>
+                        <%if(!user.includes(selectUserId)){%>
+                            <!-- add to cart button -->
+                            <form class="text-end">
+                                <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= book.id %>/book">Add To Cart</button>
+                            </form>
+                        <%}%>
+                    <%})%>
+                       
                </div>
            </div>
 

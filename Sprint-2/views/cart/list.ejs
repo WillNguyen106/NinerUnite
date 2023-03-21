@@ -10,9 +10,9 @@
                 <!--different headers for the cart table-->
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col"></th>
                     <th scope="col">Book Title</th>
                     <th scope="col">Price</th>
+                    <th scope="col me-5"></th>
                 </tr>
                 
 
@@ -21,18 +21,18 @@
             <%books.forEach(book=>{%>
                 
                 <tr>
-                    <!--delete button-->
-                    <td>
-                        <form>
-                            <button type="submit" class="btn btn-danger" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
-                        </form>
-                    </td>
                     <!--image section-->
                     <td><img src=""></td>
                     <!--book title-->
                     <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
                     <!--book price-->
                     <td><p>$<%= book.bookId.price%></p></td>
+                     <!--delete button-->
+                     <td>
+                        <form>
+                            <button type="submit" class="btn btn-danger" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                        </form>
+                    </td>
                         
                 </tr>
         

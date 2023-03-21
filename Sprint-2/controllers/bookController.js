@@ -1,5 +1,4 @@
 const model = require('../models/book');
-const user = require('../models/user');
 
 // Function that find all books
 exports.index = (req, res, next)=>{
