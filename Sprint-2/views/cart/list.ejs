@@ -5,6 +5,7 @@
     <div class="container p-3">
         <h1>Cart List</h1>
         <br>
+        <!--if cart contains at least 1 book or at least 1 tech item, then populate table-->
         <%if(books.length || techs.length){ %>
 
             <table class="table">
@@ -26,10 +27,39 @@
             <%books.forEach(book=>{%>
                 
                 <tr class="selectRow">
-                    <!--delete button-->
+                    <!--remove/delete button-->
                     <td>
                         <form>
-                            <button type="submit" class="btn btn-danger btn-sm" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeBookFromCart">
+                                <i class="fa fa-trash"></i>
+                            </button>
+
+
+                            <!--confirmation modal-->
+                            <div class="modal fade" id="removeBookFromCart" tabindex="-1" 
+                            aria-hidden="true" aria-labelledby="removeBookFromCartLabel">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!--header of the modal-->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="remove message label"><%=book.bookId.title%></h5>
+                                        </div>
+                                        <!--body content of the modal-->
+                                        <div class="modal-body">
+                                            Are you sure you want to remove this item from your cart?
+                                        </div>
+                                        <!--footer of the modal-->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE">
+                                                Yes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </form>
                     </td>
                     <!--image section-->
@@ -52,7 +82,35 @@
                     <!--delete button-->
                     <td>
                         <form>
-                            <button type="submit" class="btn btn-danger btn-sm" formmethod="POST" formaction="/cart/delete/<%=tech.id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeTechFromCart"><i class="fa fa-trash"></i></button>
+
+
+
+                            <!--confirmation modal-->
+                            <div class="modal fade" id="removeTechFromCart" tabindex="-1" 
+                            aria-hidden="true" aria-labelledby="removeTechFromCartLabel">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!--header of the modal-->
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="remove message label"><%=tech.techId.brand%></h5>
+                                        </div>
+                                        <!--body content of the modal-->
+                                        <div class="modal-body">
+                                            Are you sure you want to remove this item from your cart?
+                                        </div>
+                                        <!--footer of the modal-->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                            <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%=tech.id%>?_method=DELETE">
+                                                Yes
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </form>
                     </td>
                     <!--where image should go-->
