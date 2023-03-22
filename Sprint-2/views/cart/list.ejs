@@ -12,7 +12,8 @@
                 <tr>
                     <th scope="col"></th>
                     <th scope="col"></th>
-                    <th scope="col">Book Title</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Category</th>
                     <th scope="col">Price</th>
                     <!-- <th scope="col"><%= books.length %></th> -->
                 </tr>
@@ -20,6 +21,8 @@
 
 
             <tbody>
+
+            <!--fill table with book items in the cart-->
             <%books.forEach(book=>{%>
                 
                 <tr class="selectRow">
@@ -33,9 +36,33 @@
                     <td><img src=""></td>
                     <!--book title-->
                     <td><a class="productName" href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
+                    <!--display the category-->
+                    <td><p><%= book.category%></p></td>
                     <!--book price-->
                     <td><p>$<%= book.bookId.price%></p></td>
                         
+                </tr>
+        
+            <% }) %>
+
+            <!--fill table with tech items in the cart-->
+            <%techs.forEach(tech=>{%>
+                
+                <tr class="selectRow">
+                    <!--delete button-->
+                    <td>
+                        <form>
+                            <button type="submit" class="btn btn-danger btn-sm" formmethod="POST" formaction="/cart/delete/<%=tech.id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                        </form>
+                    </td>
+                    <!--where image should go-->
+                    <td><img src=""></td>
+                    <!-- <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td> -->
+                    <td><a class="productName" href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.brand %></p></a></td>
+                    <!--display the category-->
+                    <td><p><%= tech.category%></p></td>
+                    <!--price of tech item-->
+                    <td><p>$<%= tech.techId.price%></p></td>
                 </tr>
         
             <% }) %>
@@ -44,31 +71,7 @@
             </table>
             
         <%}%>
-        <%if(techs.length){ %>
-
-            <table class="table">
-
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col">Tech Title</th>
-                        <th scope="col">Price</th>
-                    </tr>
-
-            <tbody>
-            <%techs.forEach(tech=>{%>
-                
-                <tr>
-                    <td><img src=""></td>
-                    <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td>
-                </tr>
-        
-            <% }) %>
-
-            </tbody>
-            </table>
-            
-        <%} %>
+        <!--if the cart is empty-->
         <%if(empty){%>
             <h2>There are no items to display</h2>
         <%} %>
