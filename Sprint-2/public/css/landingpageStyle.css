@@ -14,8 +14,9 @@ footer {
     width: 100%;
 }
 
+/* this is the image behind the search bar on the homepage */
 .index {
-    background-image: url(../images/image3.jpg);
+    background-image: url(../images/other/image3.jpg);
 }
 
 .navbar-color {
