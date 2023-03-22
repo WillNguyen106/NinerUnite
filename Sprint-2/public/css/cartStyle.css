@@ -1,0 +1,15 @@
+.selectRow:hover {
+    background-color: rgba(0, 0, 168, 0.05);
+    
+}
+
+.selectRow, td, a {
+    text-decoration: none;
+    color: black;
+}
+
+/*name of product underlines when selected*/
+.productName:hover {
+    text-decoration: underline;
+
+}
