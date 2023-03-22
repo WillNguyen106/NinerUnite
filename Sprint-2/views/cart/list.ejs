@@ -1,60 +1,69 @@
-<%- include('../partials/header.ejs', {cs: 'homepage'})%>
+<%- include('../partials/header.ejs', {cs: 'cartStyle'})%>
 
 
     <div class="container p-3">
         <h1>Cart List</h1>
         <br>
-        <%if(books.length){ %>
+        <%if(books.length || techs.length){ %>
+
             <table class="table">
-                <!--different headers for the cart table-->
+                <!--different headers for the cart-->
                 <tr>
+                    <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col">Book Title</th>
                     <th scope="col">Price</th>
-                    <th scope="col me-5"></th>
+                    <!-- <th scope="col"><%= books.length %></th> -->
                 </tr>
                 
+
+
             <tbody>
             <%books.forEach(book=>{%>
                 
-                <tr>
+                <tr class="selectRow">
+                    <!--delete button-->
+                    <td>
+                        <form>
+                            <button type="submit" class="btn btn-danger btn-sm" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"><i class="fa fa-trash"></i></button>
+                        </form>
+                    </td>
                     <!--image section-->
                     <td><img src=""></td>
                     <!--book title-->
-                    <td><a href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
+                    <td><a class="productName" href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
                     <!--book price-->
                     <td><p>$<%= book.bookId.price%></p></td>
-                     <!--delete button-->
-                     <td>
-                        <form>
-                            <button type="submit" class="btn btn-danger" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE"></i><i class="fa fa-trash"></i></button>
-                        </form>
-                    </td>
                         
                 </tr>
         
             <% }) %>
+
             </tbody>
             </table>
             
         <%}%>
         <%if(techs.length){ %>
+
             <table class="table">
+
                     <tr>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col">Tech Title</th>
                         <th scope="col">Price</th>
                     </tr>
+
             <tbody>
             <%techs.forEach(tech=>{%>
                 
                 <tr>
                     <td><img src=""></td>
-                    <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.brand %></p></a></td>
+                    <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td>
                 </tr>
         
             <% }) %>
+
             </tbody>
             </table>
             
