@@ -8,13 +8,13 @@
         <h1 class="fs-1 py-5 text-white mt-5 mb-5">Hello, <%- user.firstName%>!</h1>
 
         <!-- Search bar -->
-        <div class="container justify-content-center my-5 w-50">
+        <div class="container justify-content-center my-5">
             <form action="/books/search" method="POST" class="d-flex justify-content-center p-3">
                 <!-- <input class="mb-2 bg-light text-dark w-75" type="text"
             placeholder="Search books authors, ID, ISBN, or title!" 
             name="search"> -->
 
-                <input class="form-control me-2 border-dark " type="text"
+                <input class="form-control me-2 border-dark w-50" type="text"
                     placeholder="Search books by authors, ID, ISBN, or title!" name="search">
                 <button class="btn green text-white border-0 green_hover" type="submit">Submit</button>
             </form>

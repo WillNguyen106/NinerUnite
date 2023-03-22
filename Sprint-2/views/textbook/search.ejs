@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs', {cs: 'homepage'})%>
+<%- include('../partials/header.ejs', {cs: 'searchStyle'})%>
 <div class="container p-3">
     <h1>Search Results</h1>
     <br>
@@ -14,10 +14,10 @@
             </thead>
             <tbody>
             <%results.forEach(book=>{%>
-                <tr>
-                    <td><a href="/books/<%=book.id%>"><%=book.title%></a></td>
+                <tr class="selectRow">
+                    <td class="productName"><a href="/books/<%=book.id%>"><%=book.title%></a></td>
                     <td><%=book.author%></td>
-                    <td><%=book.price%></td>
+                    <td>$<%=book.price%></td>
                 </tr>
             <%});%>
             </tbody>
