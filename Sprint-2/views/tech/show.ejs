@@ -52,7 +52,7 @@
                     <%if(!user.includes(selectUserId)){%>
                         <!-- add to cart button -->
                         <form class="text-end">
-                            <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= tech.id %>/book">Add To Cart</button>
+                            <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= tech.id %>/tech">Add To Cart</button>
                         </form>
                     <%}%>
                 <%})%>
