@@ -37,6 +37,11 @@ footer {
     color: white;
 }
 
+.nav-bar-btn-color:active {
+    background-color: #b9af88;
+    color: white;
+}
+
 /* .nav-bar-btn-color:active {
     background-color: orange;
     color: white;
