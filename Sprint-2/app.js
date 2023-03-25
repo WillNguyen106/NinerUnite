@@ -29,13 +29,14 @@ const textbookRoutes = require('./routes/bookRoutes');
 const mainRoutes = require('./routes/mainRoutes');//for main routes to the landing page
 const userRoutes = require('./routes/userRoutes');//for user routes to login, sign up pages
 const cartRoutes = require('./routes/cartRoutes');//for cart routes to the cart of items
+const searchRoutes = require('./routes/searchRoutes');
 // Create app
 const app = express();
 
 // Configure app
 let port = 8084;
 let host = 'localhost';
-let url = 'mongodb://localhost:27017/NinerUnite';//for NinerUnite DB in mongoose
+let url = 'mongodb+srv://willnguyen123:demo123@cluster0.n3clj8n.mongodb.net/NinerUnite?retryWrites=true&w=majority';//for NinerUnite DB in mongoose
 
 // Initialize template engine
 app.set('view engine','ejs');
@@ -63,7 +64,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {maxAge: 60*60*1000},//set lifetime for the cookie 
-    store: new MongoStore({mongoUrl: 'mongodb://localhost:27017/NinerUnite'})
+    store: new MongoStore({mongoUrl: 'mongodb+srv://willnguyen123:demo123@cluster0.n3clj8n.mongodb.net/NinerUnite?retryWrites=true&w=majority'})
 }));
 
 app.use(flash());// user temperary flash message after session
@@ -89,6 +90,8 @@ app.use('/users', userRoutes);
 app.use('/cart', cartRoutes);
 // Handler for the tech products path
 app.use('/techs',techRoutes);
+// Handler for the search path
+app.use('/search',searchRoutes);
 
 
 

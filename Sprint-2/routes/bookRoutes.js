@@ -1,12 +1,12 @@
 const express = require('express');
-const controller = require('../controllers/bookController');
+const controllerBook = require('../controllers/bookController');
 const {fileUploadBook} = require('../middlewares/fileUploadBook');
 
 
 const router = express.Router();
 
 //GET /textbooks: send all textbooks products to the user
-router.get('/', controller.index);
+router.get('/', controllerBook.index);
 
 /*
     *Allow users to create a new textbook post
@@ -15,16 +15,16 @@ router.get('/', controller.index);
 */
 
 //GET /books/newtextbook: send HTML form for creating a new textbook to sell
-router.get('/new', controller.new);
+router.get('/new', controllerBook.new);
 
 //POST /books: Post a new textbook for selling
-router.post('/',fileUploadBook, controller.create);
+router.post('/',fileUploadBook, controllerBook.create);
 
 //GET /books/:id: send details of textbook product indentified by id
-router.get('/:id',controller.show);
+router.get('/:id',controllerBook.show);
 
 
-router.post('/search', controller.search);
+router.post('/search', controllerBook.search);
 
 // /*
 //     *Allow users to edit their textbook post
@@ -33,13 +33,13 @@ router.post('/search', controller.search);
 // */
 
 //GET /books/:id/edit: send HTML form for editing an existing textbook post
-router.get('/:id/edit', controller.edit);
+router.get('/:id/edit', controllerBook.edit);
 
 //PUT /books/:id: update the textbook post identified by id
-router.put('/:id',fileUploadBook, controller.update);
+router.put('/:id',fileUploadBook, controllerBook.update);
 
 //DELETE /books/:id: delete textbook identified by id
-router.delete('/:id', controller.delete);
+router.delete('/:id', controllerBook.delete);
 
 
 module.exports = router;

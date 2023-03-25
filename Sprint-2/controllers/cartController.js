@@ -62,7 +62,7 @@ exports.addTech = (req, res, next) => {
     .then(items => {
         let filter = items.filter(item=> item.techId == id);
         if(filter.length != 0){
-            console.log(filter);
+            // console.log(filter);
             req.flash('error', 'Your selected tech item is already in the cart!');
             res.redirect("/cart");
         }else{
@@ -73,7 +73,7 @@ exports.addTech = (req, res, next) => {
             item.category = "tech"
             item.save()
             .then(item => {
-                console.log(item);
+                // console.log(item);
                 req.flash('success', 'You have successfully add an tech item to the cart!');
                 return res.redirect('/techs');
             })
@@ -96,7 +96,7 @@ exports.delete = (req, res, next) => {
     //delete from connections collection
     Cart.findByIdAndDelete(id, {useFindAndModify: false})
     .then(cart => {
-        console.log(cart);
+        // console.log(cart);
         req.flash('success', 'You have successfully delete an item from the cart!');
         res.redirect('/cart');
     })

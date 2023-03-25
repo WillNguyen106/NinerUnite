@@ -58,6 +58,25 @@ exports.show = (req,res,next)=>{
 }
 
 // TODO: search function for tech product post
+exports.search = (req,res,next)=>{
+    let search = req.body.search;
+
+    modelTech.find()
+    .then(techs=>{
+        let results = [];
+        if(search){
+            let brand = techs.filter((tech)=>tech.brand.toLowerCase().includes(search.toLowerCase()));
+        
+
+            if(brand.length > 0){
+                results = brand;
+            }
+        }
+        res.render('./searchs/search',{techs, results, searched:true});
+
+    })
+    .catch(err=>next(err));
+}
 
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{

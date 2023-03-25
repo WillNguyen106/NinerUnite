@@ -28,6 +28,39 @@ exports.create = (req,res, next)=>{
         next(err);
     })
 };
+
+// Function that allow to search book.
+exports.search = (req,res,next)=>{
+    let search = req.body.search;// req.body is an object
+    
+    modelBook.find()
+    .then(books=>{
+        console.log(books);
+        let results = [];
+        if(search){
+            let author = books.filter((book)=>book.author.toLowerCase().includes(search.toLowerCase()));
+            let title = books.filter((book)=>book.title.toLowerCase().includes(search.toLowerCase()));
+            let ISBN = books.filter((book)=>book.isbn.includes(search));
+
+            if(author.length > 0){
+                results =  author;
+            }
+
+            if(title.length > 0){
+                results = title;
+            }
+
+            if(ISBN.length > 0){
+                results = ISBN;
+            }
+            
+        }
+        res.render('./textbook/search',{books, results, searched:true});
+    })
+    .catch(err=>next(err));
+    
+    
+}
 // Function that show detail book
 exports.show = (req,res, next)=>{
     let id = req.params.id;
@@ -54,36 +87,7 @@ exports.show = (req,res, next)=>{
     .catch(err=>next(err));
 };
 
-// Function that allow to search book.
-exports.search = (req,res,next)=>{
-    let search = req.body.search;// req.body is an object
-    
-    modelBook.find()
-    .then(books=>{
-        let results = [];
-        if(search){
-            let author = books.filter((book)=>book.author.toLowerCase().includes(search.toLowerCase()));
-            let title = books.filter((book)=>book.title.toLowerCase().includes(search.toLowerCase()));
-            let ISBN = books.filter((book)=>book.isbn.includes(search));
 
-            if(author.length > 0){
-                results =  author;
-            }
-
-            if(title.length > 0){
-                results = title;
-            }
-
-            if(ISBN.length > 0){
-                results = ISBN;
-            }
-        }
-        res.render('./textbook/search',{books, results, searched:true});
-    })
-    .catch(err=>next(err));
-    
-    
-}
 
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{

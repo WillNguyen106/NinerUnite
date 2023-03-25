@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs', {cs: 'searchStyle'})%>
+<h1>Search results for "<%= searchTerm %>"</h1>
+
+<% if (books.length === 0) { %>
+  <p>No books found.</p>
+<% } else { %>
+  <ul>
+    <% books.forEach((book) => { %>
+      <li><%= book.title %> by <%= book.author %></li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../partials/footer.ejs')%>

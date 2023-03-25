@@ -23,7 +23,7 @@ router.post('/', fileUploadTech, controllerTech.create);
 router.get('/:id', controllerTech.show);
 
 
-// //router.post('/search', controller.search);
+router.post('/search', controllerTech.search);
 
 // // /*
 // //     *Allow users to edit their textbook post
