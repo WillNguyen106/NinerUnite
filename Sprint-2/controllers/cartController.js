@@ -3,7 +3,9 @@ const Book = require('../models/book');
 const Tech = require('../models/tech');
 
 exports.showcart = (req, res, next) => {
-    Promise.all([Cart.find({category: "book"}).populate('bookId'), Cart.find({bookId: null}).populate('techId')])
+    const user = req.session.user;
+    console.log(user);
+    Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
     .then(results => {
         const[books, techs] = results;
         let empty = true;
@@ -22,10 +24,11 @@ exports.showcart = (req, res, next) => {
 //add a book to the cart by its id: /cart/add/:id/book
 exports.addBook = (req, res, next) => {
     let id = req.params.id;
+    const user = req.session.user;
     //check if the book item in the cart
     Cart.find()
     .then(items => {
-        let filter = items.filter(item=> item.bookId == id);
+        let filter = items.filter(item=> item.bookId == id && item.userId == user.id);
         if(filter.length != 0){
             console.log(filter);
             req.flash('error', 'Your selected book item is already in the cart!');
@@ -57,10 +60,11 @@ exports.addBook = (req, res, next) => {
 //add a book to the cart by its id: /cart/add/:id/book
 exports.addTech = (req, res, next) => {
     let id = req.params.id;
+    const user = req.session.user;
     //check if the book item in the cart
     Cart.find()
     .then(items => {
-        let filter = items.filter(item=> item.techId == id);
+        let filter = items.filter(item=> item.techId == id && item.userId == user.id);
         if(filter.length != 0){
             // console.log(filter);
             req.flash('error', 'Your selected tech item is already in the cart!');

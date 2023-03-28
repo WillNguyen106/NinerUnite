@@ -5,6 +5,8 @@
     <div class="container p-3">
         <h1>Cart List</h1>
         <br>
+        
+
         <!--if cart contains at least 1 book or at least 1 tech item, then populate table-->
         <%if(books.length || techs.length){ %>
 
@@ -72,7 +74,7 @@
                     <td><p>$<%= book.bookId.price%></p></td>
                         
                 </tr>
-        
+                
             <% }) %>
 
             <!--fill table with tech items in the cart-->
@@ -122,13 +124,14 @@
                     <!--price of tech item-->
                     <td><p>$<%= tech.techId.price%></p></td>
                 </tr>
-        
+                
             <% }) %>
 
             </tbody>
             </table>
             
         <%}%>
+        
         <!--if the cart is empty-->
         <%if(empty){%>
             <h2>There are no items to display</h2>
