@@ -83,15 +83,20 @@
         </nav>
 
     </header>
+
+    <!--this displays error messages-->
     <%if(errorMessages.length> 0) {
         errorMessages.forEach(message => {%>
-        <div class="error" style="background-color: yellow">
+
+        <div class="alert alert-warning mb-0" role="alert"> 
             <%= message%>
         </div>
         <%}); }%>
-            <%if(successMessages.length> 0) {
-                successMessages.forEach(message => {%>
-                <div class="success" style="background-color: green">
-                    <%= message%>
-                </div>
-                <%}); }%>
+    <%if(successMessages.length> 0) {
+        successMessages.forEach(message => {%>
+
+
+        <div class="alert alert-success mb-0" role="alert"> 
+            <%= message%>
+        </div>
+    <%}); }%>

@@ -15,7 +15,7 @@
 }
 
 
-section {
+/* section {
     
     width: 100%;
     height: 100%;
@@ -33,7 +33,10 @@ section {
     justify-content: center;
     align-self: center;
     padding-left: 5rem;
-}
+} */
+
+
+/* submit button styles*/
 
 button[class="btn btn-primary btn-lg btn-block"] {
     background-color: #928403;

@@ -1,137 +1,212 @@
 <%- include('../partials/header.ejs', {cs: 'cartStyle'})%>
 
-    <!--this comment is a test for gitIgnore-->
+<!--this comment is a test for gitIgnore-->
 
-    <div class="container p-3">
-        <h1>Cart List</h1>
-        <br>
+<div class="container p-3">
+  <h1>Cart List</h1>
+  <br>
+
+  <!--if cart contains at least 1 book or at least 1 tech item, then populate table-->
+  <%if(books.length || techs.length){ %>
+
+  <!--div that contains the list of cart list and total box-->
+  <div class="row">
+    <div class=" col-md-7">
+      <!--this table is the cart list-->
+      <table class="table w-100">
+        <!--different headers for the cart-->
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Price</th>
+                <!-- <th scope="col"><%= books.length %></th> -->
+              </tr>
+        </thead>
+
+        <tbody>
+          <!--fill table with book items in the cart-->
+          <%books.forEach(book=>{%>
+
+          <tr class="selectRow">
+            <!--remove/delete button-->
+            <td>
+              <form>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#removeBookFromCart"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+
+                <!--confirmation modal-->
+                <div
+                  class="modal fade"
+                  id="removeBookFromCart"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  aria-labelledby="removeBookFromCartLabel"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!--header of the modal-->
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="remove message label">
+                          <%=book.bookId.title%>
+                        </h5>
+                      </div>
+                      <!--body content of the modal-->
+                      <div class="modal-body">
+                        Are you sure you want to remove this item from your
+                        cart?
+                      </div>
+                      <!--footer of the modal-->
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          No
+                        </button>
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          formmethod="POST"
+                          formaction="/cart/delete/<%= book._id%>?_method=DELETE"
+                        >
+                          Yes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </td>
+            <!--image section-->
+            <td><img src="" /></td>
+            <!--book title-->
+            <td>
+              <a class="productName" href="/books/<%=book.bookId.id%>"
+                ><p><%= book.bookId.title %></p></a
+              >
+            </td>
+            <!--display the category-->
+            <td><p><%= book.category%></p></td>
+            <!--book price-->
+            <td><p>$<%= book.bookId.price%></p></td>
+          </tr>
+
+          <% }) %>
+
+          <!--fill table with tech items in the cart-->
+          <%techs.forEach(tech=>{%>
+
+          <tr class="selectRow">
+            <!--delete button-->
+            <td>
+              <form>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#removeTechFromCart"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+
+                <!--confirmation modal-->
+                <div
+                  class="modal fade"
+                  id="removeTechFromCart"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  aria-labelledby="removeTechFromCartLabel"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <!--header of the modal-->
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="remove message label">
+                          <%=tech.techId.brand%>
+                        </h5>
+                      </div>
+                      <!--body content of the modal-->
+                      <div class="modal-body">
+                        Are you sure you want to remove this item from your
+                        cart?
+                      </div>
+                      <!--footer of the modal-->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">
+                          No
+                        </button>
+                        <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%=tech.id%>?_method=DELETE">
+                          Yes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </td>
+            <!--where image should go-->
+            <td><img src="" /></td>
+            <!-- <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td> -->
+            <td>
+              <a class="productName" href="/techs/<%=tech.techId.id%>"
+                ><p><%= tech.techId.brand %></p></a
+              >
+            </td>
+            <!--display the category-->
+            <td><p><%= tech.category%></p></td>
+            <!--price of tech item-->
+            <td><p>$<%= tech.techId.price%></p></td>
+          </tr>
+
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-5">
+
+        <!--this is the total box area-->
+
+        <div class="card">
+            <div class="card-header py-3">
+                <h5>Total</h5>
+            </div>
+
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        Products:
+                        <span>0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                        <div>
+                            <strong>Total amount:</strong>
+                            <strong>
+                              <p class="mb-0">(including Taxes)</p>
+                            </strong>
+                        </div>
+                        <span><strong>$0.00</strong></span>
+
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
         
-
-        <!--if cart contains at least 1 book or at least 1 tech item, then populate table-->
-        <%if(books.length || techs.length){ %>
-
-            <div class="container d-flex">
-            <table class="table">
-                <!--different headers for the cart-->
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Product Category</th>
-                    <th scope="col">Price</th>
-                    <!-- <th scope="col"><%= books.length %></th> -->
-                </tr>
-                
-
-
-            <tbody>
-
-            <!--fill table with book items in the cart-->
-            <%books.forEach(book=>{%>
-                
-                <tr class="selectRow">
-                    <!--remove/delete button-->
-                    <td>
-                        <form>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeBookFromCart">
-                                <i class="fa fa-trash"></i>
-                            </button>
-
-
-                            <!--confirmation modal-->
-                            <div class="modal fade" id="removeBookFromCart" tabindex="-1" 
-                            aria-hidden="true" aria-labelledby="removeBookFromCartLabel">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <!--header of the modal-->
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="remove message label"><%=book.bookId.title%></h5>
-                                        </div>
-                                        <!--body content of the modal-->
-                                        <div class="modal-body">
-                                            Are you sure you want to remove this item from your cart?
-                                        </div>
-                                        <!--footer of the modal-->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                            <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%= book._id%>?_method=DELETE">
-                                                Yes
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </form>
-                    </td>
-                    <!--image section-->
-                    <td><img src=""></td>
-                    <!--book title-->
-                    <td><a class="productName" href="/books/<%=book.bookId.id%>"><p><%= book.bookId.title %></p></a></td>
-                    <!--display the category-->
-                    <td><p><%= book.category%></p></td>
-                    <!--book price-->
-                    <td><p>$<%= book.bookId.price%></p></td>
-                        
-                </tr>
-                
-            <% }) %>
-
-            <!--fill table with tech items in the cart-->
-            <%techs.forEach(tech=>{%>
-                
-                <tr class="selectRow">
-                    <!--delete button-->
-                    <td>
-                        <form>
-                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeTechFromCart"><i class="fa fa-trash"></i></button>
-
-
-
-                            <!--confirmation modal-->
-                            <div class="modal fade" id="removeTechFromCart" tabindex="-1" 
-                            aria-hidden="true" aria-labelledby="removeTechFromCartLabel">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <!--header of the modal-->
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="remove message label"><%=tech.techId.brand%></h5>
-                                        </div>
-                                        <!--body content of the modal-->
-                                        <div class="modal-body">
-                                            Are you sure you want to remove this item from your cart?
-                                        </div>
-                                        <!--footer of the modal-->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                            <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%=tech.id%>?_method=DELETE">
-                                                Yes
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </form>
-                    </td>
-                    <!--where image should go-->
-                    <td><img src=""></td>
-                    <!-- <td><a href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.title %></p></a></td> -->
-                    <td><a class="productName" href="/techs/<%=tech.techId.id%>"><p><%= tech.techId.brand %></p></a></td>
-                    <!--display the category-->
-                    <td><p><%= tech.category%></p></td>
-                    <!--price of tech item-->
-                    <td><p>$<%= tech.techId.price%></p></td>
-                </tr>
-                
-            <% }) %>
-
-            </tbody>
-    
-            </table>
-            <section class="h-100 gradient-custom">
+                <!--this section is the total box-->
+                <!-- <div class="h-100 gradient-custom">
         
                 <div class="row d-flex justify-content-end my-4">  
                   <div class="col-md-5 update">
@@ -163,15 +238,17 @@
                   </div>
                 </div>
               
-            </section>
-        </div>
-            
-        <%}%>
-        
-        <!--if the cart is empty-->
-        <%if(empty){%>
-            <h2>There are no items to display</h2>
-        <%} %>
+                </div> -->
+
+
     </div>
+  </div>
+
+  <%}%>
+  <!--if the cart is empty-->
+  <%if(empty){%>
+  <h2>There are no items to display</h2>
+  <%} %>
+</div>
 
 <%- include('../partials/footer.ejs')%>
