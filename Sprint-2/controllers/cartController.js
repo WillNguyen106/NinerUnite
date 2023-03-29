@@ -1,21 +1,32 @@
 const Cart = require('../models/cart');
 const Book = require('../models/book');
 const Tech = require('../models/tech');
+const tech = require('../models/tech');
 
 exports.showcart = (req, res, next) => {
     const user = req.session.user;
+    let totalBookPrice = 0;
+    let totalTechPrice = 0;
     console.log(user);
     Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
     .then(results => {
-        const[books, techs] = results;
+        const[books,techs] = results;
+        books.forEach(book=>{
+            totalBookPrice += parseFloat(book.bookId.price);
+        });
+
+        techs.forEach(tech=>{
+            totalBookPrice += parseFloat(tech.techId.price);
+        });
+        console.log(totalBookPrice);
+
         let empty = true;
         if(books.length > 0 || techs.length > 0){
             empty = false;
         }
         // console.log("Books here");
         // console.log("Techs here");
-    
-        res.render('./cart/list', {books, techs, empty});
+        res.render('./cart/list', {books, techs, empty, totalBookPrice, totalTechPrice});
     })
     .catch(err => next(err));
    
@@ -30,7 +41,7 @@ exports.addBook = (req, res, next) => {
     .then(items => {
         let filter = items.filter(item=> item.bookId == id && item.userId == user.id);
         if(filter.length != 0){
-            console.log(filter);
+            // console.log(filter);
             req.flash('error', 'Your selected book item is already in the cart!');
             res.redirect("/cart");
         }else{

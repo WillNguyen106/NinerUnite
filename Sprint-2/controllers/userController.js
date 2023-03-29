@@ -1,16 +1,17 @@
-const modelBooks = require('../models/book');
 const User = require('../models/user');
+const modelBook = require('../models/book');
 
 
 
-exports.index = (req, res, next) => {
-    // console.log(req.flash());
+exports.index = (req, res,next) => {
+    console.log(req.flash());
     // res.render('./user/index');
-    //comment
-
-    modelBooks.find()
-    .then(books => res.render('./user/index', {books}))
-    .catch(err => next(err));
+    modelBook.find()
+    .then(books=>{
+        console.log(books);
+        res.render('./user/index',{books})
+    })
+    .catch(err=>next(err))
 };
 
 //routes to login page
