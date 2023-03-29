@@ -3,9 +3,15 @@ const modelBook = require('../models/book');
 
 
 
-exports.index = (req, res) => {
+exports.index = (req, res,next) => {
     console.log(req.flash());
-    res.render('./user/index');
+    // res.render('./user/index');
+    modelBook.find()
+    .then(books=>{
+        console.log(books);
+        res.render('./user/index',{books})
+    })
+    .catch(err=>next(err))
 };
 
 //routes to login page
