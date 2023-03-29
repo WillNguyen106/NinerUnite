@@ -3,9 +3,10 @@ const User = require('../models/user');
 
 
 
-exports.index = (req, res) => {
+exports.index = (req, res, next) => {
     // console.log(req.flash());
     // res.render('./user/index');
+    //comment
 
     modelBooks.find()
     .then(books => res.render('./user/index', {books}))
