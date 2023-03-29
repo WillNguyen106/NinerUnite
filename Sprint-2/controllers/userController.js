@@ -1,11 +1,15 @@
-
+const modelBooks = require('../models/book');
 const User = require('../models/user');
 
 
 
 exports.index = (req, res) => {
-    console.log(req.flash());
-    res.render('./user/index');
+    // console.log(req.flash());
+    // res.render('./user/index');
+
+    modelBooks.find()
+    .then(books => res.render('./user/index', {books}))
+    .catch(err => next(err));
 };
 
 //routes to login page
