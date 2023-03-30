@@ -12,12 +12,18 @@ exports.new = (req,res)=>{
 };
 
 exports.create = (req,res, next)=>{
-    let book = new modelBook(req.body);
+    let book = new modelBook({
+        title: req.body.title,
+        condition: req.body.condition,
+        isbn: req.body.isbn,
+        author: req.body.author,
+        price: req.body.price,
+        image:{
+            data: req.file.buffer,
+            contentType: req.file.minetype,
+        }
+    });
     book.user = req.session.user.id;
-
-    if(req.file){
-        book.image = '/images/bookImages/' + req.file.filename;
-    }
     
     book.save()
     .then(results =>res.redirect('/books'))
@@ -31,9 +37,9 @@ exports.create = (req,res, next)=>{
 
 // Function that allow to search book.
 exports.search = (req,res,next)=>{
-    let search = req.body.search;// req.body is an object
+    let search = req.query.search;// req.body is an object
     
-    modelBook.find()
+    modelBook.find({search})
     .then(books=>{
         console.log(books);
         let results = [];
@@ -74,6 +80,7 @@ exports.show = (req,res, next)=>{
     }
     modelBook.findById(id)// Promise
     .then(book=>{
+        console.log(book);
         if(book){
             userIdArray.push(selectUserId);
             return res.render('./textbook/bookDetail',{book, users:userIdArray,selectUserId:book.user});
@@ -115,6 +122,7 @@ exports.edit = (req,res, next)=>{
 // Function that update new post
 exports.update = (req,res, next)=>{
     let book = req.body;
+    console.log(book);
     let id = req.params.id;
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
@@ -122,13 +130,14 @@ exports.update = (req,res, next)=>{
         err.status = 400;
         return next(err);
     }
-
-    if (req.file) {
-        // Update the event object with the new image filename
-        book.image = '/images/bookImages/' + req.file.filename;
-        console.log(req.file);
-    }
     
+    if(req.file){
+        book.image = {
+            data: req.file.buffer,
+            contentType: req.file.minetype,
+        }
+    }
+
     modelBook.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
     .then(result =>{
         if(result){

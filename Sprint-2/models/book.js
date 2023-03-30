@@ -14,7 +14,7 @@ const bookSchema = new Schema({
             minLength: [3, 'author should have at least 8 character']},
     price: {type: String, required: [true, 'price is required'], 
             minLength: [1, 'price should not be 0']},
-    image: {type: String, path:'/images/bookImages/'}  
+    image: {data: Buffer, contentType: String}  
 }, {timestamps:true});
 
 
