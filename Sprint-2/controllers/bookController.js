@@ -12,17 +12,26 @@ exports.new = (req,res)=>{
 };
 
 exports.create = (req,res, next)=>{
-    let book = new modelBook({
-        title: req.body.title,
-        condition: req.body.condition,
-        isbn: req.body.isbn,
-        author: req.body.author,
-        price: req.body.price,
-        image:{
+    let book = new modelBook(req.body);
+
+    if(req.file){
+        book.image = {
             data: req.file.buffer,
             contentType: req.file.minetype,
         }
-    });
+    };
+    
+    // let book = new modelBook({
+    //     title: req.body.title,
+    //     condition: req.body.condition,
+    //     isbn: req.body.isbn,
+    //     author: req.body.author,
+    //     price: req.body.price,
+    //     image:{
+    //         data: req.file.buffer,
+    //         contentType: req.file.minetype,
+    //     }
+    // });
     book.user = req.session.user.id;
     
     book.save()

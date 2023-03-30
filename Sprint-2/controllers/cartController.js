@@ -12,11 +12,15 @@ exports.showcart = (req, res, next) => {
     .then(results => {
         const[books,techs] = results;
         books.forEach(book=>{
-            totalBookPrice += parseFloat(book.bookId.price);
+            if(book){
+                totalBookPrice += parseFloat(book.bookId.price);
+            }
         });
 
         techs.forEach(tech=>{
-            totalBookPrice += parseFloat(tech.techId.price);
+            if(tech){
+                totalBookPrice += parseFloat(tech.techId.price);
+            }
         });
         console.log(totalBookPrice);
 

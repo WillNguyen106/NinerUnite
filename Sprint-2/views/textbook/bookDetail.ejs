@@ -6,8 +6,13 @@
 
            <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
                <div class="border">
-                   <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image.contentType%>;base64,
-                                                                <%=book.image.data.toString('base64')%>" alt="">
+                    <%if(book.image.data && book.image.contentType){%>
+                        <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image.contentType%>;base64,
+                                                                        <%=book.image.data.toString('base64')%>" alt="">
+                    <%} else{%>
+                        <!--TODO: modify this line-->
+                        <p>nothing to display</p>
+                    <%}%>
                </div>
 
            </div>
