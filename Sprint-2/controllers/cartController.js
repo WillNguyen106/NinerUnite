@@ -13,7 +13,7 @@ exports.showcart = (req, res, next) => {
         const[books,techs] = results;
         if(books.length > 0){
             books.forEach(book=>{
-                if(book.bookId && book.bookId.price != null){
+                if(book.bookId.id && book.bookId.price != null){
                     totalBookPrice += parseFloat(book.bookId.price);
                 }
                 
@@ -24,7 +24,7 @@ exports.showcart = (req, res, next) => {
 
         if(techs.length > 0){
             techs.forEach(tech=>{
-                if(tech.techId && tech.techId.price != null){
+                if(tech.techId.id && tech.techId.price != null){
                     totalBookPrice += parseFloat(tech.techId.price);
                 }
                 
