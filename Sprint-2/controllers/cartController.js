@@ -11,18 +11,27 @@ exports.showcart = (req, res, next) => {
     Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
     .then(results => {
         const[books,techs] = results;
-        books.forEach(book=>{
-            if(book){
-                totalBookPrice += parseFloat(book.bookId.price);
-            }
-        });
+        if(books.length > 0){
+            books.forEach(book=>{
+                if(book.bookId && book.bookId.price != null){
+                    totalBookPrice += parseFloat(book.bookId.price);
+                }
+                
+            });
+        }else{
+            totalBookPrice = 0;
+        }
 
-        techs.forEach(tech=>{
-            if(tech){
-                totalBookPrice += parseFloat(tech.techId.price);
-            }
-        });
-        console.log(totalBookPrice);
+        if(techs.length > 0){
+            techs.forEach(tech=>{
+                if(tech.techId && tech.techId.price != null){
+                    totalBookPrice += parseFloat(tech.techId.price);
+                }
+                
+            });
+        }else{
+            totalBookPrice = 0;
+        }
 
         let empty = true;
         if(books.length > 0 || techs.length > 0){

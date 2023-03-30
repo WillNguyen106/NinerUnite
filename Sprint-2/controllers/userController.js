@@ -8,7 +8,6 @@ exports.index = (req, res,next) => {
     // res.render('./user/index');
     modelBook.find()
     .then(books=>{
-        console.log(books);
         res.render('./user/index',{books})
     })
     .catch(err=>next(err))

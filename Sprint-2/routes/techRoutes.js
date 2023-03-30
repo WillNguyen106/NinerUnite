@@ -1,6 +1,6 @@
 const express = require('express');
 const controllerTech = require('../controllers/techController');
-const {fileUploadTech} = require('../middlewares/fileUploadTech');
+const {fileUpload} = require('../middlewares/fileUpload');
 
 const router = express.Router();
 
@@ -17,13 +17,12 @@ router.get('/', controllerTech.index);
 router.get('/new', controllerTech.new);
 
 // //POST /techs: Post a new tech item for selling
-router.post('/', fileUploadTech, controllerTech.create);
+router.post('/', fileUpload, controllerTech.create);
+
+router.get('/search', controllerTech.search);
 
 //GET /techs/:id: send details of tech product indentified by id
 router.get('/:id', controllerTech.show);
-
-
-router.post('/search', controllerTech.search);
 
 // // /*
 // //     *Allow users to edit their textbook post
@@ -35,7 +34,7 @@ router.post('/search', controllerTech.search);
 router.get('/:id/edit', controllerTech.edit);
 
 //PUT /techs/:id: update the tech post identified by id
-router.put('/:id', fileUploadTech, controllerTech.update);
+router.put('/:id', fileUpload, controllerTech.update);
 
 //DELETE /techs/:id: delete tech identified by id
 router.delete('/:id', controllerTech.delete);

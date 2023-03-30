@@ -46,31 +46,31 @@ exports.create = (req,res, next)=>{
 
 // Function that allow to search book.
 exports.search = (req,res,next)=>{
-    let search = req.query.search;// req.body is an object
     
-    modelBook.find({search})
+    let q = req.query.q;// req.body is an object
+    
+    modelBook.find({q}).exec()
     .then(books=>{
-        console.log(books);
         let results = [];
-        if(search){
-            let author = books.filter((book)=>book.author.toLowerCase().includes(search.toLowerCase()));
-            let title = books.filter((book)=>book.title.toLowerCase().includes(search.toLowerCase()));
-            let ISBN = books.filter((book)=>book.isbn.includes(search));
+        if(q){
+            let author = books.filter((book)=>book.author.toLowerCase().includes(q.toLowerCase()));
+            let title = books.filter((book)=>book.title.toLowerCase().includes(q.toLowerCase()));
+            let ISBN = books.filter((book)=>book.isbn.includes(q));
 
-            if(author.length > 0){
-                results =  author;
-            }
-
-            if(title.length > 0){
-                results = title;
-            }
-
-            if(ISBN.length > 0){
-                results = ISBN;
-            }
+            ISBN.forEach(book => {
+                results.push(book);
+            });
+            
+            author.forEach(book => {
+                results.push(book);
+            });
+    
+            title.forEach(book => {
+                results.push(book);
+            });
             
         }
-        res.render('./textbook/search',{books, results, searched:true});
+        res.render('./textbook/searchBook',{books, results, searched:true});
     })
     .catch(err=>next(err));
     
@@ -80,19 +80,20 @@ exports.search = (req,res,next)=>{
 exports.show = (req,res, next)=>{
     let id = req.params.id;
     let selectUserId = req.session.user.id;
+    console.log(selectUserId);
     let userIdArray = [];
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid book id');
         err.status = 400;
         return next(err);
     }
     modelBook.findById(id)// Promise
     .then(book=>{
-        console.log(book);
         if(book){
+            console.log(book.user);
             userIdArray.push(selectUserId);
-            return res.render('./textbook/bookDetail',{book, users:userIdArray,selectUserId:book.user});
+            return res.render('./textbook/show',{book, users:userIdArray,selectUserId:book.user});
         }else{
             //Error handler
             let err = new Error('Cannot find a story with id ' + id);

@@ -1,3 +1,4 @@
+const tech = require('../models/tech');
 const modelTech = require('../models/tech');
 
 // Function that find all techs
@@ -14,11 +15,14 @@ exports.new = (req,res)=>{
 
 exports.create = (req,res,next)=>{
     let tech = new modelTech(req.body);
+    if(req.file){
+        tech.image = {
+            data: req.file.buffer,
+            contentType: req.file.minetype,
+        }
+    };
     tech.user = req.session.user.id;
 
-    if(req.file){
-        tech.image = '/images/techImages/' + req.file.filename;
-    }
 
     tech.save()
     .then(result =>res.redirect('/techs'))
@@ -29,6 +33,26 @@ exports.create = (req,res,next)=>{
         next(err);
     })
 };
+
+// TODO: search function for tech product post
+exports.search = (req,res,next)=>{
+    let p = req.query.p;// req.body is an object
+    
+    modelTech.find({p}).exec()
+    .then(techs=>{
+        let results = [];
+        if(p){
+            let brand = techs.filter((tech)=>tech.brand.toLowerCase().includes(p.toLowerCase()));            
+
+            brand.forEach(tech => {
+                results.push(tech);
+            });
+        }
+        res.render('./tech/searchTech',{techs, results, searched:true});
+    })
+    .catch(err=>next(err));
+}
+
 
 // Function that show detail tech
 exports.show = (req,res,next)=>{
@@ -57,26 +81,6 @@ exports.show = (req,res,next)=>{
     .catch(err=>next(err));
 }
 
-// TODO: search function for tech product post
-exports.search = (req,res,next)=>{
-    let search = req.body.search;
-
-    modelTech.find()
-    .then(techs=>{
-        let results = [];
-        if(search){
-            let brand = techs.filter((tech)=>tech.brand.toLowerCase().includes(search.toLowerCase()));
-        
-
-            if(brand.length > 0){
-                results = brand;
-            }
-        }
-        res.render('./searchs/search',{techs, results, searched:true});
-
-    })
-    .catch(err=>next(err));
-}
 
 // Function that allow to edit post
 exports.edit = (req,res, next)=>{
@@ -113,8 +117,11 @@ exports.update = (req,res, next)=>{
     }
 
     if(req.file){
-        tech.image = '/images/techImages/' + req.file.filename;
-    }
+        tech.image = {
+            data: req.file.buffer,
+            contentType: req.file.minetype,
+        }
+    };
     
     modelTech.findByIdAndUpdate(id, tech,{useFindAndModify: false, runValidators:true})
     .then(result =>{

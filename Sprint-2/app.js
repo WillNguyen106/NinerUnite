@@ -29,7 +29,6 @@ const textbookRoutes = require('./routes/bookRoutes');
 const mainRoutes = require('./routes/mainRoutes');//for main routes to the landing page
 const userRoutes = require('./routes/userRoutes');//for user routes to login, sign up pages
 const cartRoutes = require('./routes/cartRoutes');//for cart routes to the cart of items
-const searchRoutes = require('./routes/searchRoutes');
 // Create app
 const app = express();
 
@@ -90,8 +89,6 @@ app.use('/users', userRoutes);
 app.use('/cart', cartRoutes);
 // Handler for the tech products path
 app.use('/techs',techRoutes);
-// Handler for the search path
-app.use('/search',searchRoutes);
 
 
 

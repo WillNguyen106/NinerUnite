@@ -1,15 +1,7 @@
-const path = require('path');
 const multer  = require('multer');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './public/images/techImages')
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
+const storage = multer.memoryStorage();
+
 
 const fileFilter = (req, file, cb) => {
   const mimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
@@ -27,7 +19,7 @@ const upload = multer({
   fileFilter: fileFilter
 }).single('image');
 
-exports.fileUploadTech = (req, res, next) => {
+exports.fileUpload = (req, res, next) => {
     upload(req, res, err => {
         if (err) {
             err.status = 400;

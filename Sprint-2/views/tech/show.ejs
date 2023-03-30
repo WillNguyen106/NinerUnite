@@ -6,7 +6,13 @@
 
            <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
                <div class="border">
-                   <img class=" img-fluid w-75 imageCenter" src="<%=tech.image%>" alt="">
+                <%if(tech.image.data){%>
+                    <img class=" img-fluid w-75 imageCenter" src="data:<%=tech.image.contentType%>;base64,
+                                                                    <%=tech.image.data.toString('base64')%>" alt="">
+                <%} else{%>
+                    <!--TODO: modify this line-->
+                    <p>nothing to display</p>
+                <%}%>
                </div>
 
            </div>

@@ -196,8 +196,13 @@
                               <p class="mb-0">(including Taxes)</p>
                             </strong>
                         </div>
-                        <span><strong>$<%=Math.round((totalBookPrice + totalTechPrice)*100)/100%></strong></span>
+                        <%if(totalBookPrice){%>
+                          <span><strong>$<%=Math.round((totalBookPrice)*100)/100%></strong></span>
+                        <%} else if(totalTechPrice){%>
+                          <span><strong>$<%=Math.round((totalTechPrice)*100)/100%></strong></span>
+                        <%}%>
 
+                        
                     </li>
                 </ul>
 

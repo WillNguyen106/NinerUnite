@@ -1,6 +1,6 @@
 const express = require('express');
 const controllerBook = require('../controllers/bookController');
-const {fileUploadBook} = require('../middlewares/fileUploadBook');
+const {fileUpload} = require('../middlewares/fileUpload');
 
 
 const router = express.Router();
@@ -18,13 +18,12 @@ router.get('/', controllerBook.index);
 router.get('/new', controllerBook.new);
 
 //POST /books: Post a new textbook for selling
-router.post('/',fileUploadBook, controllerBook.create);
+router.post('/',fileUpload, controllerBook.create);
+
+router.get('/search', controllerBook.search);
 
 //GET /books/:id: send details of textbook product indentified by id
 router.get('/:id',controllerBook.show);
-
-
-router.post('/search', controllerBook.search);
 
 // /*
 //     *Allow users to edit their textbook post
@@ -36,7 +35,7 @@ router.post('/search', controllerBook.search);
 router.get('/:id/edit', controllerBook.edit);
 
 //PUT /books/:id: update the textbook post identified by id
-router.put('/:id',fileUploadBook, controllerBook.update);
+router.put('/:id',fileUpload, controllerBook.update);
 
 //DELETE /books/:id: delete textbook identified by id
 router.delete('/:id', controllerBook.delete);

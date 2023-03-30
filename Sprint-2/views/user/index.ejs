@@ -9,15 +9,30 @@
 
         <!-- Search bar -->
         <div class="container justify-content-center my-5">
+            
+            
             <form action="/books/search" method="get" class="d-flex justify-content-center p-3">
                 <!-- <input class="mb-2 bg-light text-dark w-75" type="text"
             placeholder="Search books authors, ID, ISBN, or title!" 
             name="search"> -->
 
                 <input class="form-control me-2 border-dark w-50" type="text"
-                    placeholder="Search books or techs!!!" name="search">
+                    placeholder="Search by author, title or ISBN..." name="q">
                 <button class="btn green text-white border-0 green_hover" type="submit">Submit</button>
             </form>
+
+            <form action="/techs/search" method="get" class="d-flex justify-content-center p-3">
+                <!-- <input class="mb-2 bg-light text-dark w-75" type="text"
+            placeholder="Search books authors, ID, ISBN, or title!" 
+            name="search"> -->
+
+                <input class="form-control me-2 border-dark w-50" type="text"
+                    placeholder="Search by brand..." name="p">
+                <button class="btn green text-white border-0 green_hover" type="submit">Submit</button>
+            </form>
+        
+        
+        
         </div>
     </div>
 

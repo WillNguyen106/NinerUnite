@@ -12,7 +12,7 @@ const bookSchema = new Schema({
             minLength: [3, 'ispn should have at least 3 character']},
     author : {type: String, required: [true, 'Author is required'], 
             minLength: [3, 'author should have at least 8 character']},
-    price: {type: String, required: [true, 'price is required'], 
+    price: {type: Number, required: [true, 'price is required'], 
             minLength: [1, 'price should not be 0']},
     image: {data: Buffer, contentType: String}  
 }, {timestamps:true});
