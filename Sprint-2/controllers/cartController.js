@@ -39,6 +39,8 @@ exports.showcart = (req, res, next) => {
         }
         // console.log("Books here");
         // console.log("Techs here");
+        //to list.ejs, we are returning books and techs arrays, empty boolean
+        //total price of all books and total price of all tech items
         res.render('./cart/list', {books, techs, empty, totalBookPrice, totalTechPrice});
     })
     .catch(err => next(err));
@@ -137,3 +139,7 @@ exports.delete = (req, res, next) => {
     
 
 };
+
+//TODO: update the cart from things that have been deleted
+//try to create a function that loops through the results of the promise
+//and checks if price value of an item is null, if it is, it should delete it
