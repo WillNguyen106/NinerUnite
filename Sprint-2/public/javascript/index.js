@@ -23,6 +23,7 @@ $(document).ready(function (){
             $("#searchInput").attr("name", "p");
         }
         else { 
+            $("#searchInput").attr("placeholder", "Select what you want to search by!");
             $("#searchForm").attr("action", "#");
             $("#searchForm").attr("method", "#");
             

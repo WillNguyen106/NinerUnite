@@ -11,34 +11,52 @@ exports.showcart = (req, res, next) => {
     Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
     .then(results => {
         const[books,techs] = results;
+
+        console.log("Book items in cart");
+        console.log(books);
+        console.log("Tech items in cart");
+        console.log(techs);
+
+        //calculate the total book price for each book, if the book exists
         if(books.length > 0){
-            books.forEach(book=>{
-                if(book.bookId.id && book.bookId.price != null){
+
+            books.forEach(book => {
+
+                //if it is null, that means it has been deleted
+                if(book.bookId != null){
                     totalBookPrice += parseFloat(book.bookId.price);
                 }
-                
+
             });
+
         }else{
             totalBookPrice = 0;
         }
 
+        //calculate the total tech price for each tech item, if the tech item exists
         if(techs.length > 0){
-            techs.forEach(tech=>{
-                if(tech.techId.id && tech.techId.price != null){
-                    totalBookPrice += parseFloat(tech.techId.price);
+
+            techs.forEach(tech => {
+
+                //if it is null, that means it has been deleted
+                if(tech.techId != null){
+                    totalTechPrice += parseFloat(tech.techId.price);
                 }
-                
+
             });
+
         }else{
-            totalBookPrice = 0;
+            totalTechPrice = 0;
         }
+
+        console.log("Book Price: " + totalBookPrice);
+        console.log("Tech Price " + totalTechPrice);
 
         let empty = true;
         if(books.length > 0 || techs.length > 0){
             empty = false;
         }
-        // console.log("Books here");
-        // console.log("Techs here");
+
         //to list.ejs, we are returning books and techs arrays, empty boolean
         //total price of all books and total price of all tech items
         res.render('./cart/list', {books, techs, empty, totalBookPrice, totalTechPrice});

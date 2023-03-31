@@ -30,6 +30,8 @@
           <!--fill table with book items in the cart-->
           <%books.forEach(book=>{%>
 
+          <!--if both are null at the same time, it means the item does not exist anymore-->
+          <%if (book.bookId != null){ %>
           <tr class="selectRow">
             <!--remove/delete button-->
             <td>
@@ -100,12 +102,91 @@
             <!--book price-->
             <td><p>$<%= book.bookId.price%></p></td>
           </tr>
+          <% } else { %>
+
+            <tr class="selectRow">
+              <!--remove/delete button-->
+              <td>
+                <form>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#removeBookFromCart"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+  
+                  <!--confirmation modal-->
+                  <div
+                    class="modal fade"
+                    id="removeBookFromCart"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    aria-labelledby="removeBookFromCartLabel"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <!--header of the modal-->
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="remove message label">
+
+                          </h5>
+                        </div>
+                        <!--body content of the modal-->
+                        <div class="modal-body">
+                          Are you sure you want to remove this item from your
+                          cart?
+                        </div>
+                        <!--footer of the modal-->
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            No
+                          </button>
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            formmethod="POST"
+                            formaction="/cart/delete/<%= book._id%>?_method=DELETE"
+                          >
+                            Yes
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </td>
+              <!--this is where the image should be-->
+              <td>
+                
+              </td>
+              <!--this is where the name of the item should be-->
+              <td>
+                 This item no longer exists
+              </td>
+              <!--this is where the category should be-->
+              <td>
+                book
+              </td>
+              <!--this is where the price should be-->
+              <td>
+                price
+              </td>
+            </tr>
+
+          <% } %>
 
           <% }) %>
 
           <!--fill table with tech items in the cart-->
           <%techs.forEach(tech=>{%>
 
+          <%if (tech.techId != null){ %>
           <tr class="selectRow">
             <!--delete button-->
             <td>
@@ -168,6 +249,79 @@
             <td><p>$<%= tech.techId.price%></p></td>
           </tr>
 
+          <% } else { %>
+
+            <tr class="selectRow">
+              <!--delete button-->
+              <td>
+                <form>
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm"
+                    data-bs-toggle="modal"
+                    data-bs-target="#removeTechFromCart"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+  
+                  <!--confirmation modal-->
+                  <div
+                    class="modal fade"
+                    id="removeTechFromCart"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    aria-labelledby="removeTechFromCartLabel"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <!--header of the modal-->
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="remove message label">
+
+                          </h5>
+                        </div>
+                        <!--body content of the modal-->
+                        <div class="modal-body">
+                          Are you sure you want to remove this item from your
+                          cart?
+                        </div>
+                        <!--footer of the modal-->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">
+                            No
+                          </button>
+                          <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/cart/delete/<%=tech.id%>?_method=DELETE">
+                            Yes
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </td>
+
+              <!--this is where the image should be-->
+              <td>
+                
+              </td>
+              <!--this is where the name of the item should be-->
+              <td>
+                 This item no longer exists
+              </td>
+              <!--this is where the category should be-->
+              <td>
+                tech
+              </td>
+              <!--this is where the price should be-->
+              <td>
+                price
+              </td>
+
+
+            </tr>
+
+          <% } %>
+
           <% }) %>
         </tbody>
       </table>
@@ -196,11 +350,7 @@
                               <p class="mb-0">(including Taxes)</p>
                             </strong>
                         </div>
-                        <%if(totalBookPrice){%>
-                          <span><strong>$<%=Math.round((totalBookPrice)*100)/100%></strong></span>
-                        <%} else if(totalTechPrice){%>
-                          <span><strong>$<%=Math.round((totalTechPrice)*100)/100%></strong></span>
-                        <%}%>
+                          <span><strong>$<%=Math.round((totalBookPrice + totalTechPrice)*100)/100%></strong></span>
                         <!-- <span><strong>$<%#=Math.round((totalTechPrice+ totalBookPrice)*100)/100%></strong></span> -->
 
                         
