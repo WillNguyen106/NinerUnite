@@ -30,7 +30,7 @@
           <!--fill table with book items in the cart-->
           <%books.forEach(book=>{%>
 
-          <!--if both are null at the same time, it means the item does not exist anymore-->
+          <!--if bookId is null, that means it doesn't exist anymore-->
           <%if (book.bookId != null){ %>
           <tr class="selectRow">
             <!--remove/delete button-->
@@ -104,6 +104,7 @@
           </tr>
           <% } else { %>
 
+            <!--if the book no longer exists, the option there will be is to delete from cart-->
             <tr class="selectRow">
               <!--remove/delete button-->
               <td>
@@ -186,6 +187,7 @@
           <!--fill table with tech items in the cart-->
           <%techs.forEach(tech=>{%>
 
+          <!--if techId is null, that means it no longer exists-->
           <%if (tech.techId != null){ %>
           <tr class="selectRow">
             <!--delete button-->
@@ -251,6 +253,7 @@
 
           <% } else { %>
 
+            <!--if tech item no longer exists, that means all you can do is delete from cart-->
             <tr class="selectRow">
               <!--delete button-->
               <td>
@@ -350,7 +353,7 @@
                               <p class="mb-0">(including Taxes)</p>
                             </strong>
                         </div>
-                          <span><strong>$<%=Math.round((totalBookPrice + totalTechPrice)*100)/100%></strong></span>
+                          <span><strong>$<%=totalCost %></strong></span>
                         <!-- <span><strong>$<%#=Math.round((totalTechPrice+ totalBookPrice)*100)/100%></strong></span> -->
 
                         
