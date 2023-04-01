@@ -10,24 +10,23 @@ function test1(){
 }
 test1();
 
+function test2(){
+    const books = searchBook('Robin Kunde');
+    books.forEach(book=>{
+        test('Author should be Robin Kunde',()=>{
+            expect(book.author).toContain('Robin Kunde');
+        });
+    })
+}
+test2();
 
-// test('Author should be Robin Kunde',()=>{
-//     expect(searchBook('Robin Kunde')).toContain('Robin Kunde');
-// });
 
-
-// test('ISBN should be 978-056-9874-2',()=>{
-//     expect(searchBook('978-056-9874-2')).toContain('978-056-9874-2');
-// });
-
-// test('Title should be python',()=>{
-//     expect(searchBook('python')).toContain('python')
-// });
-
-// test('Author should be James Kunde',()=>{
-//     expect(searchBook('James Kunde')).toContain('James Kunde');
-// });
-
-// test('ISBN should be 978-056-9874-2',()=>{
-//     expect(searchBook('978-123-4567-2')).toContain('978-123-4567-2');
-// });
+function test3(){
+    const books = searchBook('978-056-9874-2');
+    books.forEach(book=>{
+        test('ISBN should be 978-056-9874-2',()=>{
+            expect(book.ISBN).toContain('978-056-9874-2');
+        });
+    })
+}
+test3();
