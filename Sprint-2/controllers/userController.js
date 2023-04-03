@@ -5,7 +5,6 @@ const modelBook = require('../models/book');
 
 exports.index = (req, res,next) => {
     console.log(req.flash());
-    // res.render('./user/index');
     // this will retrieve the number of books currently in the database
     // to display on the front page
     modelBook.find()
@@ -102,7 +101,3 @@ exports.logout = (req, res, next) => {
         }
     });
 } ;
-
-exports.test =(req,res)=>{
-    res.render('./textbook/search');
-};

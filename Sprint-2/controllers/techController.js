@@ -61,7 +61,7 @@ exports.show = (req,res,next)=>{
     let userIdArray = [];
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid tech id');
         err.status = 400;
         return next(err);
     }
@@ -73,7 +73,7 @@ exports.show = (req,res,next)=>{
             return res.render('./tech/show',{tech, users:userIdArray, selectUserId:tech.user});
         }else{
             //Error handler
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a tech with id ' + id);
             err.status = 404;
             next(err);
         }
@@ -87,7 +87,7 @@ exports.edit = (req,res, next)=>{
     let id = req.params.id;
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid tech id');
         err.status = 400;
         return next(err);
     }
@@ -97,7 +97,7 @@ exports.edit = (req,res, next)=>{
         if(tech){
             res.render('./tech/edit', {tech})
         } else {
-            let err = new Error('Cannot find a story with id ' + id)
+            let err = new Error('Cannot find a tech with id ' + id)
             err.status = 404;
             next(err);
         }
@@ -111,7 +111,7 @@ exports.update = (req,res, next)=>{
     let id = req.params.id;
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid tech id');
         err.status = 400;
         return next(err);
     }
@@ -128,7 +128,7 @@ exports.update = (req,res, next)=>{
         if(result){
             res.redirect('/techs/' + id);
         }else{
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a tech with id ' + id);
             err.status = 404;
             next(err);
         }
@@ -147,7 +147,7 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid tech id');
         err.status = 400;
         return next(err);
     }
@@ -157,7 +157,7 @@ exports.delete = (req,res, next)=>{
         if(result){
             return res.redirect('/techs')
         }else{
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a tech with id ' + id);
             err.status = 404;
             next(err);
         }

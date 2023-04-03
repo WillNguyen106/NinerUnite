@@ -1,6 +1,7 @@
 const express = require('express');
 const controllerBook = require('../controllers/bookController');
 const {fileUpload} = require('../middlewares/fileUpload');
+const {isLoggedIn} = require('../middlewares/auth');
 
 
 const router = express.Router();
@@ -15,10 +16,10 @@ router.get('/', controllerBook.index);
 */
 
 //GET /books/newtextbook: send HTML form for creating a new textbook to sell
-router.get('/new', controllerBook.new);
+router.get('/new',isLoggedIn, controllerBook.new);
 
 //POST /books: Post a new textbook for selling
-router.post('/',fileUpload, controllerBook.create);
+router.post('/',isLoggedIn,fileUpload, controllerBook.create);
 
 router.get('/search', controllerBook.search);
 
@@ -42,5 +43,3 @@ router.delete('/:id', controllerBook.delete);
 
 
 module.exports = router;
-
-// This is a test comment for github

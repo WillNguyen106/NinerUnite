@@ -20,18 +20,6 @@ exports.create = (req,res, next)=>{
             contentType: req.file.minetype,
         }
     };
-    
-    // let book = new modelBook({
-    //     title: req.body.title,
-    //     condition: req.body.condition,
-    //     isbn: req.body.isbn,
-    //     author: req.body.author,
-    //     price: req.body.price,
-    //     image:{
-    //         data: req.file.buffer,
-    //         contentType: req.file.minetype,
-    //     }
-    // });
     book.user = req.session.user.id;
     
     book.save()
@@ -91,12 +79,12 @@ exports.show = (req,res, next)=>{
     modelBook.findById(id)// Promise
     .then(book=>{
         if(book){
-            console.log(book.user);
+            console.log(book)
             userIdArray.push(selectUserId);
             return res.render('./textbook/show',{book, users:userIdArray,selectUserId:book.user});
         }else{
             //Error handler
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a book with id ' + id);
             err.status = 404;
             next(err);
         }
@@ -111,7 +99,7 @@ exports.edit = (req,res, next)=>{
     let id = req.params.id;
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid book id');
         err.status = 400;
         return next(err);
     }
@@ -121,7 +109,7 @@ exports.edit = (req,res, next)=>{
         if(book){
             res.render('./textbook/edit', {book})
         } else {
-            let err = new Error('Cannot find a story with id ' + id)
+            let err = new Error('Cannot find a book with id ' + id)
             err.status = 404;
             next(err);
         }
@@ -136,7 +124,7 @@ exports.update = (req,res, next)=>{
     let id = req.params.id;
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid book id');
         err.status = 400;
         return next(err);
     }
@@ -153,7 +141,7 @@ exports.update = (req,res, next)=>{
         if(result){
             res.redirect('/books/' + id);
         }else{
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a book with id ' + id);
             err.status = 404;
             next(err);
         }
@@ -172,7 +160,7 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid story id');
+        let err = new Error('Invalid book id');
         err.status = 400;
         return next(err);
     }
@@ -182,7 +170,7 @@ exports.delete = (req,res, next)=>{
         if(result){
             return res.redirect('/books')
         }else{
-            let err = new Error('Cannot find a story with id ' + id);
+            let err = new Error('Cannot find a book with id ' + id);
             err.status = 404;
             next(err);
         }

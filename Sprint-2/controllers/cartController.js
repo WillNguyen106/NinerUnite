@@ -1,7 +1,4 @@
 const Cart = require('../models/cart');
-const Book = require('../models/book');
-const Tech = require('../models/tech');
-const tech = require('../models/tech');
 
 exports.showcart = (req, res, next) => {
     const user = req.session.user;
