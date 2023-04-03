@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs', {cs: 'listStyle'})%>
+
+    <div class="container p-3">
+        <h1>Tech List</h1>
+        <br>
+        <%if(techs.length){ %>
+
+            <table class="table">
+                <tr>
+                    <th scope="col">Tech Name/Brand</th>
+
+                </tr>
+
+            <tbody>
+            <%techs.forEach(tech=>{%>
+                <tr>
+                    <!--brand counts for tech items name and brand-->
+                    <td class="select listItem"><a href="/techs/<%=tech.id%>"><p><%=tech.brand%></p></a></td>
+                </tr>
+            <% }); %>
+
+            </tbody>
+            </table>
+            
+            <%} else {%>
+            <h2>There are no products to display</h2>
+        <%} %>
+    </div>
+
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,63 @@
+<%- include('./partials/header.ejs', {cs: 'defaultstyle'})%>
+	
+
+<!--content area-->
+<main>
+
+    <!--section 1-->
+            <div class=" container-fluid p-3 text-center text-md-start">
+                <div class="row">
+        
+                    <!--
+                        col-md changes rows into columns by a certain screensize, d-flex and flex-column work to
+                        present <h1> and <p> as columns and justify-content-center centers everything in space
+                    -->
+                    <div class="col-md-6 p-2 d-flex flex-column justify-content-center">
+                        <div class="">
+                            <h1 class="px-3">By Niners, For Niners</h1>
+                            <p class="px-3">NinerUnite is the best peer-to-peer marketplace for UNC Charlotte students.</p>
+                            <a class="btn nav-bar-btn-color m-3 " href="/users/signup" id="signup">Get Started Today</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2 d-flex justify-content-center">
+                    <!--img-fluid makes the images responsive by dynamically adjusting with parent-->
+                        <img class="w-75 img-fluid" src="/images/other/image2.jpg" alt="group_of_students_with_books">
+                    </div>
+                    
+                </div>
+            </div>
+        
+            <!--section 2-->
+            <div class="bg-secondary container-fluid text-white p-3 text-center">
+                <div class="row text-center">
+                    <div class="col-md-6 d-flex justify-content-center">
+                    <img class="w-75 img-fluid d-none d-sm-block" src="/images/other/image1.jpg" alt="group_of_students_with_books">
+                    </div>
+                    <div class="col-md-6 p-2 d-flex flex-column justify-content-center text-wrap">
+                        <h1 class="px-3">About Us</h1>
+                        <p class="px-5">NinerUnite is all about give UNC Charlotte students a place to sell their textbooks, technology, or other items old or new.
+                            As current students, we understand how difficult it can be to get rid of old materials we no longer use, so we aim to create a safe marketplace between fellow Niners.
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+    
+            <!--section 3-->
+            <div class="container-fluid p-5">
+    
+    
+                <div class="text-center">
+                    <h1>Already a member?</h1>
+                    <a class="btn nav-bar-btn-color m-3 " href="/users/login" id="login">Login</a>
+                </div>
+    
+            </div>
+    
+    </main>
+
+    <%- include('./partials/footer.ejs')%>
+
+    
+
+
