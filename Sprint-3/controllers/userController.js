@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const modelBook = require('../models/book');
+const modelTech = require('../models/tech');
+//const modelDomicile = require('../models/book');
 
 
 
@@ -35,6 +37,7 @@ exports.newUser =  (req, res, next) => {
         if(user.email){
             user.email = user.email.toLowerCase();
         }
+        user.profileId = user._id;
         user.save()
         .then(() => res.redirect('/users/login'))//route to login page
         .catch(err => {
@@ -88,7 +91,16 @@ exports.process =  (req, res, next) => {
     .catch(err => next(err));
 }; 
 exports.profile =  (req, res) => {
-    res.render('./user/profile');//route to signup page
+    let id = req.session.user.id;
+    Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    .then(results => {
+        const[profile, books,techs] = results;
+        let postNum = books.length + techs.length;
+       
+        res.render('./user/profile', {profile, books,techs, postNum});
+    })
+    .catch(err => next(err));
+   
 }; 
 // for logout functionality
 exports.logout = (req, res, next) => { 
