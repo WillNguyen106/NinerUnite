@@ -70,8 +70,17 @@ app.use(flash());// user temperary flash message after session
 
 //store the user session infor in the local storage
 app.use((req, res, next) => {
-    
+    //req.session.user has the following:
+    /*
+        {
+        id: 'the userID',
+        firstName: 'firstName',
+        lastName: 'lastName'
+        }
+    */
+
     res.locals.user = req.session.user || null;
+    console.log(req.session);
     // every messages created by programmer are store in 2 arrray successMessages and erroMessages
     res.locals.successMessages = req.flash('success'); 
     res.locals.errorMessages = req.flash('error');

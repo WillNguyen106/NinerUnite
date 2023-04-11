@@ -5,24 +5,50 @@
         <br>
         <%if(books.length){ %>
 
-            <table class="table">
-                <tr>
-                    <th scope="col">Book Title</th>
-                </tr>
+            <div class="row">
+                <div class="col-md-3 border">
+                    <div class="container">
 
-            <tbody>
-            <%books.forEach(book=>{%>
-                <tr>
-                    <td class="select listItem">
-                        <a  href="/books/<%=book.id%>"><p><%= book.title %></p></a>
-                    </td>
-                </tr>
-            <% }); %>
+                    </div>
 
-            </tbody>
-            </table>
+                </div>
+
+                <div class="col-md-9">
+
+
+                    <table class="table border">
+                        <tr>
+                            <th scope="col">Book Title</th>
+                            <th scope="col">Book Author</th>
+                            <th scope="col">Price</th>
+                        </tr>
+        
+                    <tbody>
+                    <%books.forEach(book=>{%>
+                        <tr class="select listItem">
+                            <td class="">
+                                <a  href="/books/<%=book.id%>"><p><%= book.title %></p></a>
+                            </td>
+                            <td>
+                                <p><%= book.author %></p>
+                            </td>
+                            <td>
+                                <p>$<%= book.price %></p>
+                            </td>
+                        </tr>
+                    <% }); %>
+        
+                    </tbody>
+                    </table>
+
+                </div>
+
+            </div>
             
-            <%} else {%>
+
+            
+            
+        <%} else {%>
             <h2>There are no books to display</h2>
         <%} %>
     </div>
