@@ -106,7 +106,7 @@ exports.process =  (req, res, next) => {
     })
     .catch(err => next(err));
 }; 
-exports.profile =  (req, res) => {
+exports.profile =  (req, res, next) => {
     let id = req.session.user.id;
     Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
@@ -118,6 +118,28 @@ exports.profile =  (req, res) => {
     .catch(err => next(err));
    
 }; 
+//update my profile
+exports.updateProfile = (req, res, next) => {
+    let profile = req.body;
+    let id = req.session.user.id; 
+    User.findByIdAndUpdate(id, profile,{useFindAndModify: false, runValidators:true})
+    .then(result =>{
+        if(result){
+            res.redirect('/users/profile');
+        }else{
+            let err = new Error('Cannot find a book with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+        
+    })
+    .catch(err => {
+        if(err.name = 'ValidationError'){
+            err.status = 400;
+            next(err);
+        }
+    });
+}
 // for logout functionality
 exports.logout = (req, res, next) => { 
 
