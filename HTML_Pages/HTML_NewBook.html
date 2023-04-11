@@ -10,7 +10,7 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!--personal stylesheet-->
     <link href="../Sprint-2/public/css/landingpageStyle.css" rel="stylesheet">
-    <link href="../Sprint-2/public/css/new_technology.css" rel="stylesheet">
+    <link href="../Sprint-2/public/css/new_textbook.css" rel="stylesheet">
     <!--font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!--font for brand name-->
@@ -18,16 +18,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>NinerUnite</title>
 </head>
 
 <body>
+
     <!--header-->
     <header>
-        <nav class="navbar navbar-expand-md green">
-            <a class="navbar-brand brand-padding brand-font text-white fs-2 ps-3" href="#">NinerUnite</a>
 
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navBarHB">
+        <nav class="navbar navbar-expand-md navbar-color p-3 border-bottom  border-secondary">
+            <a class="navbar-brand  brand-font fs-2 text-white" href="/">NinerUnite</a>
+
+            <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#navBarHB">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!--ms-auto adds margin to the start of the nav items, p-2 adds padding, gap-2 adds a gap between the buttons-->
@@ -35,20 +38,66 @@
 
                 <!--d-grid makes the buttons block buttons, this can only be seen when in collapsable menu, otherwise they are in a small size-->
 
-                <ul class="navbar-nav ms-auto gap-2">
+                <ul class="navbar-nav ms-auto gap-3">
                     <%if(!user) {%>
                         <li class="nav-item  d-grid ">
-                            <a class="btn yellow" href='/users/signup' id="signup">Sign Up</a>
+                            <a class="btn nav-bar-btn-color" href='/users/signup' id="signup">Sign Up</a>
                         </li>
                         <li class="nav-item d-grid">
-                            <a class="btn yellow" href='/users/login' id="login">Login</a>
+                            <a class="btn nav-bar-btn-color" href='/users/login' id="login">Login</a>
                         </li>
                         <%} else {%>
                             <li class="nav-item  d-grid ">
-                                <a class="btn yellow" href='/users/profile' id="signup">Profile</a>
+                                <a class="btn nav-bar-btn-color" href='/users/index' id="index">Dashboard</a>
+                            </li>
+                            <li class="nav-item dropdown d-grid">
+                                
+                                <a class="btn nav-bar-btn-color dropdown-toggle" href='#' data-bs-toggle="dropdown" aria-expanded="false">Lists</a>
+
+                                <!-- options available via dropdown-->
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href='/books' id="browseBooks">Book List</a></li>
+                                    <li><a class="dropdown-item" href='/techs' id="browseTech">Tech List</a></li>  
+                                    <li><a class="dropdown-item" href='#' id="browseDomiciles">Domicile List</a></li>  
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown d-grid">
+                                <a class="btn nav-bar-btn-color dropdown-toggle" href='#' data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">Posts</a>
+
+                                <!--main dropdown menu-->
+                                <ul class="dropdown-menu">
+                                    <!--submenu for types of new posts-->
+                                    <li>
+                                        <div class="dropend">
+
+                                            <a class="dropdown-item dropdown-toggle" href='#' data-bs-toggle="dropdown">New Post</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href='/books/new' id="browseBooks">New Book Post</a></li>
+                                                <li><a class="dropdown-item" href='/techs/new' id="browseTech">New Tech Post</a></li>  
+                                                <li><a class="dropdown-item" href='#' id="browseDomiciles">New Domicile Post</a></li>  
+                                            </ul>
+
+                                        </div>
+                                       
+                                    
+                                    </li> 
+
+                                    <!--my posts button-->
+                                    <li><a class="dropdown-item" href='#' id="myPosts">My Posts</a></li>  
+                                </ul>
+                            </li>
+                            <li class="nav-item  d-grid ">
+                                <a class="btn nav-bar-btn-color" href='/users/profile' id="signup"><i class="fa solid fa-user"></i></a>
+                            </li>
+                            <li class="nav-item d-grid ">
+                                <a class="btn nav-bar-btn-color position-relative" href="/cart" id="cart">
+                                    My Cart
+                                    <!--this shows-->
+                                    <!-- <span class="rounded-pill position-absolute top-0 start-100 translate-middle badge bg-danger">2</span> -->
+                                </a>
                             </li>
                             <li class="nav-item d-grid">
-                                <a class="btn yellow" href='/users/logout' id="login">Logout</a>
+                                <a class="btn nav-bar-btn-color" href='/users/logout' id="login">Logout</a>
                             </li>
                             <%}%>
                 </ul>
@@ -60,69 +109,131 @@
 
     </header>
 
-    <!--Beginning of page -->
+    <!--Beginning of page-->
+    <h2 class="text-center mt-5">NEW BOOK</h2>
 
-    <h2 class="text-center mt-5">NEW POST</h2>
-
-    <!-- Receiving the Textbook -->
     <div class="container my-5">
-        <form class="rounded form m-5 p-5" action='/books' method='POST'>
-            <table class="container w-75">
-                <!-- Change to technology here -->
-                <td>
-                    <p><b>Type:</b></p>
-                </td>
-                <td><button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Book
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/NinerUnite/Sprint-2/views/textbook/new.ejs">Textbooks Store</a>
-                        <a class="dropdown-item" href="/NinerUnite/Sprint-2/views/tech/new.ejs">Technology Store</a>
-                        <a class="dropdown-item" href="#">Dorm Posting</a>
+
+        <form class="rounded form m-3 p-3" action='/books' enctype="multipart/form-data" method='POST'>
+            <!--horizontal center by using bootstrap's grid alignment for rows-->
+            <div class="row justify-content-center">
+
+                <!--Dropdown Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="type" class="form-label fw-bold">Type:</label>
                     </div>
-                </td>
-                </tr>
-                <!-- Rest of form -->
-                <tr>
-                    <td><label for="title" class="fw-bold">Title:</label></td>
-                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="title"
-                            name="title" placeholder="Ex: Computer Organization and Design RISC-V Edition"></td>
-                </tr>
-                <tr>
-                    <td><label for="author" class="fw-bold">Author:</label></td>
-                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="author"
-                            name="author" placeholder="Ex: David Patterson, John Hennessy"></td>
-                </tr>
-                <tr>
-                    <td><label for="isbn" class="fw-bold">ISBN:</label></td>
-                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="isbn"
-                            name="isbn" placeholder="Ex: 9780128122761"></td>
-                </tr>
-                <tr>
-                    <td><label for="condition" class="fw-bold">Condition:</label></td>
-                    <td><textarea class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" id="condition"
-                            name="condition" placeholder="Ex: Pages 120-136 are missing, my dog ate them."></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="price" class="fw-bold">Price:</label></td>
-                    <td><input class="rounded align-middle p-3 mb-2 bg-light text-dark border-0 w-100" type="text" id="price"
-                            name="price" placeholder="Ex: 1,2,50,100"></input></td>
-                </tr>
-                <!-- Add an image -->
-                <tr>
-                    <td class="fw-bold">Image:</td>
-                    <td><input class="p-2" type="file" id="file" name="filename"></td>
-                </tr>
-            </table><br><br>
-            <!-- <input class="btn position-absolute bottom-0 end-0 text-end bg-success green text-white border-0 green_hover" type="submit" value="Submit"> -->
-            <div class="text-end">
-                <input class="btn btn-success" type="submit" value="Submit">
+                    <div class="col-md-10">
+                        <div class="dropdown">
+                            <!--dropdown toggle-->
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Options</button>
+
+                            <!--dropdown options-->
+                            <!--textbook/book is active since that is the current page-->
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item active" href="/books/new"
+                                        aria-current="true">Textbook/Book</a></li>
+                                <li><a class="dropdown-item" href="/techs/new">Technology</a></li>
+                                <li><a class="dropdown-item" href="/domicile/new">Dormicile</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Each input section is contained in a row-->
+                <!--One col is for the label and the other col is for the input box-->
+                <!--Title Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="title" class="form-label fw-bold">Title:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="title" name="title"
+                            placeholder="Ex: Computer Organization and Design RISC-V Edition" required>
+                    </div>
+                </div>
+
+                <!--Author Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="author" class="form-label fw-bold">Author:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="author" name="author"
+                            placeholder="Ex: David Patterson, John Hennessy" required>
+                    </div>
+
+                </div>
+
+
+                <!--ISBN Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="isbn" class="form-label fw-bold">ISBN:</label>
+                    </div>
+                    <div class="col-md-10 col-form-label">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="isbn" name="isbn"
+                            placeholder="Ex: 9780128122761" required>
+                    </div>
+                </div>
+
+
+                <!--Condition Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-lg-2 col-form-label">
+                        <label for="condition" class="form-label fw-bold">Condition:</label>
+                    </div>
+                    <div class="col-lg-10">
+                        <textarea class="form-control inputBox text-dark border-0" id="condition" name="condition"
+                            placeholder="Ex: Pages 120-136 are missing, my dog ate them." required></textarea>
+                    </div>
+
+                </div>
+
+                <!--Price Section-->
+                <div class="row mb-4 w-75">
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="price" class="form-label fw-bold">Price:</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="price" name="price"
+                            placeholder="Ex: 1,2,50,100" required></input>
+                    </div>
+
+                </div>
+
+                <!--Image Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="image" class="form-label fw-bold">Image:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <!--currently accepts any type of image, but this could change-->
+                        <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                    </div>
+                </div>
+
+
+
+                <!--Submit Button-->
+                <div class="text-center">
+                    <input class="btn btn-success btn-lg" type="submit" value="Submit">
+                </div>
+
             </div>
+
+
         </form>
+
+
     </div>
     <!-- End of page -->
+
 
     <footer>
         <div class="text-center p-4 text-white footerStyle">
@@ -131,17 +242,9 @@
             </small>
         </div>
     </footer>
-    <!-- bootstrap javascript and popper -->
-    <!-- popper is a tooltip positioner-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+<!-- bootstrap javascript and popper -->
+<!-- popper is a tooltip positioner-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
-</html>
-
-<!-- <footer><small>Copyright &copy; NinerUnite Company</small></footer>
-
-</body>
-
-</html> -->
+</html> 
