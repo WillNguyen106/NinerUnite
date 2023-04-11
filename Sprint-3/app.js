@@ -23,7 +23,7 @@ Initialize routes
  2. tech produtcs
  3. textbook
 */
-//const domicileRoutes = require('./routes/domicileRoutes');
+const domicileRoutes = require('./routes/domicileRoutes');
 const techRoutes = require('./routes/techRoutes');
 const textbookRoutes = require('./routes/bookRoutes');
 const mainRoutes = require('./routes/mainRoutes');//for main routes to the landing page
@@ -98,6 +98,8 @@ app.use('/users', userRoutes);
 app.use('/cart', cartRoutes);
 // Handler for the tech products path
 app.use('/techs',techRoutes);
+// Handler for the domicle products path
+app.use('/domiciles',domicileRoutes);
 
 
 
