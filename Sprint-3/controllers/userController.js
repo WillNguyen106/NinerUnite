@@ -71,6 +71,22 @@ exports.process =  (req, res, next) => {
             user.comparePassword(password)
             .then(result => {
                 if(result) {
+                    //when the user is logged in, store the items in their cart
+                    //into req.session.user
+                    //retreiving the cart items by using the method used in the
+                    //showCart method in cartController
+
+                    // let numOfCartItems = 0;
+                    // Promise.all([Cart.find({category: "book", userId: user._id}).populate('bookId'), Cart.find({category: "tech", userId: user._id}).populate('techId')])
+                    // .then(results => {
+                    //     const[books,techs] = results;
+                    //     numOfCartItems = books.length + techs.length;
+                    // })
+                    // .catch(err => next(err));
+
+
+                    //console.log("numOfCartItems: " + numOfCartItems);
+
                     req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName};// store user._id and firstName and lastName in the session 
                     // console.log(req.session.user);
                     req.flash('success', 'You have successfully logged in!');

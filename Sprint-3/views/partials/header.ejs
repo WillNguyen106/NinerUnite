@@ -38,7 +38,7 @@
 
                 <!--d-grid makes the buttons block buttons, this can only be seen when in collapsable menu, otherwise they are in a small size-->
 
-                <ul class="navbar-nav ms-auto gap-2">
+                <ul class="navbar-nav ms-auto gap-3">
                     <%if(!user) {%>
                         <li class="nav-item  d-grid ">
                             <a class="btn nav-bar-btn-color" href='/users/signup' id="signup">Sign Up</a>
@@ -50,7 +50,7 @@
                             <li class="nav-item  d-grid ">
                                 <a class="btn nav-bar-btn-color" href='/users/index' id="index">Dashboard</a>
                             </li>
-                            <li class="nav-item  dropdown d-grid">
+                            <li class="nav-item dropdown d-grid">
                                 
                                 <a class="btn nav-bar-btn-color dropdown-toggle" href='#' data-bs-toggle="dropdown" aria-expanded="false">Lists</a>
 
@@ -58,10 +58,33 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href='/books' id="browseBooks">Book List</a></li>
                                     <li><a class="dropdown-item" href='/techs' id="browseTech">Tech List</a></li>  
+                                    <li><a class="dropdown-item" href='#' id="browseDomiciles">Domicile List</a></li>  
                                 </ul>
                             </li>
-                            <li class="nav-item  d-grid ">
-                                <a class="btn nav-bar-btn-color" href='/books/new' id="newPost">New Post</a>
+                            <li class="nav-item dropdown d-grid">
+                                <a class="btn nav-bar-btn-color dropdown-toggle" href='#' data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">Posts</a>
+
+                                <!--main dropdown menu-->
+                                <ul class="dropdown-menu">
+                                    <!--submenu for types of new posts-->
+                                    <li>
+                                        <div class="dropend">
+
+                                            <a class="dropdown-item dropdown-toggle" href='#' data-bs-toggle="dropdown">New Post</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href='/books/new' id="browseBooks">New Book Post</a></li>
+                                                <li><a class="dropdown-item" href='/techs/new' id="browseTech">New Tech Post</a></li>  
+                                                <li><a class="dropdown-item" href='#' id="browseDomiciles">New Domicile Post</a></li>  
+                                            </ul>
+
+                                        </div>
+                                       
+                                    
+                                    </li> 
+
+                                    <!--my posts button-->
+                                    <li><a class="dropdown-item" href='#' id="myPosts">My Posts</a></li>  
+                                </ul>
                             </li>
                             <li class="nav-item  d-grid ">
                                 <a class="btn nav-bar-btn-color" href='/users/profile' id="signup"><i class="fa solid fa-user"></i></a>
@@ -69,7 +92,8 @@
                             <li class="nav-item d-grid ">
                                 <a class="btn nav-bar-btn-color position-relative" href="/cart" id="cart">
                                     My Cart
-                                    <!-- <span class="rounded-pill position-absolute top-0 start-100 translate-middle badge bg-danger">4</span> -->
+                                    <!--this shows-->
+                                    <!-- <span class="rounded-pill position-absolute top-0 start-100 translate-middle badge bg-danger">2</span> -->
                                 </a>
                             </li>
                             <li class="nav-item d-grid">
