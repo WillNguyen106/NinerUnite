@@ -1,5 +1,122 @@
-<%- include('../partials/header.ejs', {cs: 'homepage'})%>
+<%- include('../partials/header.ejs', {cs: 'homepage' })%>
+    <!----------------------------------------------------------------------------------------------------------------------- THIS PAGE IS INCOMPLETED -->
+    <h2 class="text-center mt-5">Edit Dorm Post</h2>
+
+    <!-- Receiving the Tech -->
+    <div class="container my-5">
+
+        <form action="/domicile/<%= domicile.id%>?_method=PUT" enctype="multipart/form-data" method='POST'>
+            <!--horizontal center by using bootstrap's grid alignment for rows-->
+            <div class="row justify-content-center">
+                <!--Title Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="title" class="form-label fw-bold">Title:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="title" name="title"
+                            placeholder="Ex: Dorm Near Campus" required>
+                    </div>
+                </div>
+
+                <!--Address Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="address" class="form-label fw-bold">Address:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="address" name="address"
+                            placeholder="Ex: 9551 University Terrace Dr, Charlotte, NC 28262" required>
+                    </div>
+                </div>
 
 
+                <!--Description Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="description" class="form-label fw-bold">Description:</label>
+                    </div>
+                    <div class="col-lg-10">
+                        <textarea class="form-control inputBox text-dark border-0" id="description" name="description"
+                            placeholder="Ex: Apartment is on the top floor and right next to Terrace road."
+                            required></textarea>
+                    </div>
+                </div>
+
+
+                <!--Type Section-->
+                <!--This may need to be chanced-->
+                <div class="row mb-4 w-75">
+                    <div class="col-lg-2 col-form-label">
+                        <label for="type" class="form-label fw-bold">Type:</label>
+                    </div>
+                    <div class="col-md-10 col-form-label">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="type" name="type"
+                            placeholder="Ex: Apartment" required>
+                    </div>
+                </div>
+
+                <!--Payment Plan Section-->
+                <div class="row mb-4 w-75">
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="payment" class="form-label fw-bold">Payment:</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
+                            placeholder="Ex: 1000 monthly" required></input>
+                    </div>
+
+                </div>
+
+                <!--Image Section-->
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="image" class="form-label fw-bold">Image:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <!--currently accepts any type of image, but this could change-->
+                        <input class="form-control" type="file" id="image" name="image" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Button trigger modal for save message -->
+                <div class="text-center">
+
+                    <!--Cancel form-->
+                    <button class="btn btn-danger btn-lg text-end m-1" type="submit" formmethod="GET"
+                        formaction="/techs/<%= tech.id %>">Cancel</button>
+                    <button type="button" class="btn btn-success btn-lg text-end m-1" data-bs-toggle="modal"
+                        data-bs-target="#SaveMessage">
+                        Submit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal for save message -->
+            <div class="modal fade" id="SaveMessage" tabindex="-1" aria-labelledby="SaveMessageLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="DeleteMessageLabel">
+                                <%= tech.brand %>
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Cancel"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to save?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <%- include('../partials/footer.ejs')%>

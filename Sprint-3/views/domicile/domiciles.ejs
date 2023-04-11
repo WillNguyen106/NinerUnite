@@ -1,5 +1,30 @@
 <%- include('../partials/header.ejs', {cs: 'listStyle'})%>
 
+<div class="container p-3">
+    <h1>Domicile List</h1>
+    <br>
+    <%if(domicile.length){ %>
 
+        <table class="table">
+            <tr>
+                <th scope="col">Domicile Title</th>
+            </tr>
+
+        <tbody>
+        <%domicile.forEach(domicile=>{%>
+            <tr>
+                <td class="select listItem">
+                    <a  href="/domicile/<%=domicile.id%>"><p><%= domicile.title %></p></a>
+                </td>
+            </tr>
+        <% }); %>
+
+        </tbody>
+        </table>
+        
+        <%} else {%>
+        <h2>There are no domiciles to display</h2>
+    <%} %>
+</div>
 
 <%- include('../partials/footer.ejs')%>

@@ -1,5 +1,30 @@
 <%- include('../partials/header.ejs', {cs: 'searchStyle'})%>
 
-
+<div class="container p-3">
+    <h1>Search Results</h1>
+    <br>
+    <div>
+        <%if(results && results.length > 0) {%>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Dorm</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%results.forEach(domicile=>{%>
+                <tr class="selectRow">
+                    <td class="domicileName"><a href="/domiciles/<%=domicile.id%>"><%=domicile.brand%></a></td>
+                    <td>$<%=domicile.price%></td>
+                </tr>
+            <%});%>
+            </tbody>
+        </table>
+        <%}else if(searched){%>
+            <p>No results found.</p>
+        <%}%>
+    </div>
+</div>
 
 <%- include('../partials/footer.ejs')%>
