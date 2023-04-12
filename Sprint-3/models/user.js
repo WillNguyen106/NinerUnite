@@ -10,7 +10,7 @@ const userSchema = new Schema({
     password:{type: String, required: [true, 'cannot be empty']},
     profileId : {type:Schema.Types.ObjectId},
     biograph: {type: String}, 
-    phoneNum: {type: String},  
+    phoneNum: {type: String}, 
     image: {data: Buffer, contentType: String}  
 });
 
