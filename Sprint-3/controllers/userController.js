@@ -113,9 +113,21 @@ exports.process =  (req, res, next) => {
     })
     .catch(err => next(err));
 };
-
+//for the owner of the profile
 exports.profile =  (req, res, next) => {
     let id = req.session.user.id;
+    Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    .then(results => {
+        const[profile, books,techs] = results;
+        let postNum = books.length + techs.length;
+       
+        res.render('./user/profile', {profile, books,techs, postNum});
+    })
+    .catch(err => next(err));
+};
+//for the guest visits other profile
+exports.visitProfile =  (req, res, next) => {
+    let id = req.params.id;
     Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
