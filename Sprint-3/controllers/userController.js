@@ -127,7 +127,7 @@ exports.updateProfile = (req, res, next) => {
         if(result){
             res.redirect('/users/profile');
         }else{
-            let err = new Error('Cannot find a book with id ' + id);
+            let err = new Error('Cannot find a User with id ' + id);
             err.status = 404;
             next(err);
         }
