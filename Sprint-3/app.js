@@ -78,9 +78,8 @@ app.use((req, res, next) => {
         lastName: 'lastName'
         }
     */
-
     res.locals.user = req.session.user || null;
-    console.log(req.session);
+    // console.log(req.session);
     // every messages created by programmer are store in 2 arrray successMessages and erroMessages
     res.locals.successMessages = req.flash('success'); 
     res.locals.errorMessages = req.flash('error');

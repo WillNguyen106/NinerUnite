@@ -92,8 +92,11 @@
                             <li class="nav-item d-grid ">
                                 <a class="btn nav-bar-btn-color position-relative" href="/cart" id="cart">
                                     My Cart
-                                    <!--this shows-->
-                                    <span class="rounded-pill position-absolute top-0 start-100 translate-middle badge bg-danger">2</span>
+                                    <%if(user.ItemsCount > 0){%>
+                                        <!--this shows-->
+                                        <span class="rounded-pill position-absolute top-0 start-100 translate-middle badge bg-danger"><%=user.ItemsCount%></span>
+                                    <%}%>
+                                    
                                 </a>
                             </li>
                             <li class="nav-item d-grid">

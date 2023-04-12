@@ -1,3 +1,4 @@
+const { appendFile } = require('fs');
 const mongoose = require('mongoose');// for mongo db
 mongoose.set('strictQuery', true);
 mongoose.set('strictPopulate',false);
@@ -9,6 +10,7 @@ const cartSchema = new Schema({
     techId : {type:Schema.Types.ObjectId, ref: 'Tech'},
     category:{type: String, required: [true, 'category is required']},
 }, {timestamps:true});
+
 
 
 

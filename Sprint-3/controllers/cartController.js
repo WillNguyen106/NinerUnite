@@ -4,21 +4,21 @@ exports.showcart = (req, res, next) => {
     const user = req.session.user;
     let totalBookPrice = 0;
     let totalTechPrice = 0;
-    console.log(user);
+    // console.log(user);
     Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
     .then(results => {
         const[books,techs] = results;
 
-        console.log("Book items in cart");
-        console.log(books);
-        console.log("Tech items in cart");
-        console.log(techs);
+        // console.log("Book items in cart");
+        // console.log(books);
+        // console.log("Tech items in cart");
+        // console.log(techs);
 
         let totalCost = totalPriceOfItems(books, techs);
 
 
-        console.log("Book Price: " + totalBookPrice);
-        console.log("Tech Price " + totalTechPrice);
+        // console.log("Book Price: " + totalBookPrice);
+        // console.log("Tech Price " + totalTechPrice);
 
         let empty = true;
         if(books.length > 0 || techs.length > 0){
@@ -73,7 +73,7 @@ function totalPriceOfItems (bookArr, techArr) {
 
             let roundedTotal = Math.round((totalBookPrice + totalTechPrice) * 100) / 100;
 
-            return roundedTotal;
+    return roundedTotal;
 
 }
 
@@ -93,12 +93,15 @@ exports.addBook = (req, res, next) => {
             let item = new Cart();
             item.userId = req.session.user.id;
             item.bookId = id;
+            item.docModel = 'Book';
 
             item.techId = null;
             item.category = "book"
             item.save()
             .then(item => {
                 req.flash('success', 'You have successfully add an book item to the cart!');
+                // Update Item count after successfully
+                req.session.user.ItemsCount += 1;
                 return res.redirect('/books');
             })
             .catch(err => {
@@ -135,6 +138,8 @@ exports.addTech = (req, res, next) => {
             .then(item => {
                 // console.log(item);
                 req.flash('success', 'You have successfully add an tech item to the cart!');
+                // Update Item count after successfully
+                req.session.user.ItemsCount += 1;
                 return res.redirect('/techs');
             })
             .catch(err => {
@@ -158,7 +163,10 @@ exports.delete = (req, res, next) => {
     .then(cart => {
         // console.log(cart);
         req.flash('success', 'You have successfully delete an item from the cart!');
+        // Update Item count after successfully
+        req.session.user.ItemsCount -= 1;
         res.redirect('/cart');
+        
     })
     .catch(err => {
         if(err.name == 'ValidationError'){

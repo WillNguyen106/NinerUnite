@@ -1,6 +1,8 @@
 const User = require('../models/user');
 const modelBook = require('../models/book');
 const modelTech = require('../models/tech');
+const modelCart = require('../models/cart');
+
 //const modelDomicile = require('../models/book');
 
 
@@ -54,9 +56,20 @@ exports.newUser =  (req, res, next) => {
     }
     
 }; 
-//check in and login into as user enter the account credentials
+//check in and login into as user enter the account credential
 exports.process =  (req, res, next) => {  
-    
+    //when the user is logged in, store the items in their cart
+                    //into req.session.user
+                    //retrieving the cart items by using the method used in the
+                    //showCart method in cartController
+
+                   
+
+                    //console.log("numOfCartItems: " + numOfCartItems);
+    /*
+    In the seession, it will store user id, user name, and user cart list.
+    We need to get all the items in the cart and store it in the user session
+    */
     //authenticate user login request
     let email = req.body.email;
     if(email){
@@ -71,31 +84,25 @@ exports.process =  (req, res, next) => {
             user.comparePassword(password)
             .then(result => {
                 if(result) {
-                    //when the user is logged in, store the items in their cart
-                    //into req.session.user
-                    //retreiving the cart items by using the method used in the
-                    //showCart method in cartController
-
-                    // let numOfCartItems = 0;
-                    // Promise.all([Cart.find({category: "book", userId: user._id}).populate('bookId'), Cart.find({category: "tech", userId: user._id}).populate('techId')])
-                    // .then(results => {
-                    //     const[books,techs] = results;
-                    //     numOfCartItems = books.length + techs.length;
-                    // })
-                    // .catch(err => next(err));
-
-
-                    //console.log("numOfCartItems: " + numOfCartItems);
-
-                    req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName};// store user._id and firstName and lastName in the session 
-                    // console.log(req.session.user);
-                    req.flash('success', 'You have successfully logged in!');
-                    res.redirect('./index');
+                    let numOfCartItems = 0;
+                    Promise.all([modelCart.find({category: "book", userId: user._id}).populate('bookId'), modelCart.find({category:"tech", userId: user._id}).populate("tech")])
+                    .then(results => {
+                        const [books,techs] = results;
+                        console.log(books);
+                        numOfCartItems = books.length + techs.length;
+                        console.log(numOfCartItems);
+                        req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName, ItemsCount: numOfCartItems};// store user._id and firstName and lastName in the session 
+                        // console.log(req.session.user);
+                        req.flash('success', 'You have successfully logged in!');
+                        res.redirect('./index');
+                    })
+                    .catch(err=>next(err));
                 }else{
                     //console.log('Wrong password!');
                     req.flash('error', 'Wrong password!')
                     res.redirect('./login');
                 }
+
             })
             .catch(err => next(err));
         } else {
@@ -105,7 +112,8 @@ exports.process =  (req, res, next) => {
         }
     })
     .catch(err => next(err));
-}; 
+};
+
 exports.profile =  (req, res, next) => {
     let id = req.session.user.id;
     Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
@@ -116,8 +124,8 @@ exports.profile =  (req, res, next) => {
         res.render('./user/profile', {profile, books,techs, postNum});
     })
     .catch(err => next(err));
-   
 }; 
+
 //update my profile
 exports.updateProfile = (req, res, next) => {
     let profile = req.body;
@@ -140,6 +148,7 @@ exports.updateProfile = (req, res, next) => {
         }
     });
 }
+
 // for logout functionality
 exports.logout = (req, res, next) => { 
 
