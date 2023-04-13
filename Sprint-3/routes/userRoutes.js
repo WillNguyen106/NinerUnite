@@ -24,6 +24,8 @@ router.post('/', isGuest, userController.newUser);
 
 //GET /users/profile: get the logged in user profile
 router.get('/profile', isLoggedIn, userController.profile);
+//GET /users/visitprofile: get a member's profile
+router.get('/profile/:id', isLoggedIn, userController.visitProfile);
 
 //get the logout page
 

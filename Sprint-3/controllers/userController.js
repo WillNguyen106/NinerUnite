@@ -91,7 +91,8 @@ exports.process =  (req, res, next) => {
                         console.log(books);
                         numOfCartItems = books.length + techs.length;
                         console.log(numOfCartItems);
-                        req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName, ItemsCount: numOfCartItems};// store user._id and firstName and lastName in the session 
+                        req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName,
+                             ItemsCount: numOfCartItems};// store user._id and firstName and lastName in the session 
                         // console.log(req.session.user);
                         req.flash('success', 'You have successfully logged in!');
                         res.redirect('./index');
@@ -116,11 +117,12 @@ exports.process =  (req, res, next) => {
 //for the owner of the profile
 exports.profile =  (req, res, next) => {
     let id = req.session.user.id;
-    Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.findOne({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
-       
+       console.log(postNum);
+       console.log(profile);
         res.render('./user/profile', {profile, books,techs, postNum});
     })
     .catch(err => next(err));
@@ -128,7 +130,7 @@ exports.profile =  (req, res, next) => {
 //for the guest visits other profile
 exports.visitProfile =  (req, res, next) => {
     let id = req.params.id;
-    Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.findOne({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
@@ -162,8 +164,16 @@ exports.updateProfile = (req, res, next) => {
 }
 
 exports.myPosts = (req, res, next) => {
+    let id = req.session.user.id;
+    Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    .then(results => {
+        const[profile, books,techs] = results;
+        let postNum = books.length + techs.length;
+       console.log(postNum);
+        res.render('./user/myPosts', {profile, books,techs, postNum});
+    })
+    .catch(err => next(err));
 
-    res.render('./user/myPosts');
 
 };
 

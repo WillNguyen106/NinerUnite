@@ -10,26 +10,28 @@
                 <td class="align-top ps-4">
                     <!-- Secondary Table for Account Information -->
                     <table class="table">
+                        <%if(profile) {%>
                         <tr>
                             <th>First Name:</th>
-                            <td><%- user.firstName%></td>
+                            <td><%= profile.firstName%></td>
                         </tr>
                         <tr>
                             <th>Last Name:</th>
-                            <td><%- user.lastName%></td>
+                            <td><%= profile.lastName%></td>
                         </tr>
                         <tr>
                             <th>Email:</th>
-                            <td><%- user.email%></td>
+                            <td><%= profile.email%></td>
                         </tr>
                         <tr>
                             <th>Phone:</th>
-                            <td><%- user.phone%></td>
+                            <td><%= profile.phoneNum%></td>
                         </tr>
                         <tr>
-                            <th>About Me:</th>
+                            <th>About Me: <%- profile.biograph%></th>
                             <td>You have not told us anything yet!</td>
                         </tr>
+                        <%}%>
                     </table>
                 </td>
             </tr>
