@@ -1,11 +1,47 @@
-<%- include('../partials/header.ejs', {cs: 'defaultstyle'})%>
-  
-    
-    <div class="container p-3">
-        <h3>This is profile page</h3> 
-        <h4>Our team includes: .......</h4>
-        <p>Welcome to NinerUnite Website. Sell more used books to free your home space.</p>
-        
+<%- include('../partials/header.ejs', {cs: 'defaultstyle' })%>
+
+    <!-- Primary Table for All Elements -->
+    <div class="container flex-row w-50 text-center">
+        <h3 class="fs-1 py-5 mb-5">My Profile</h3>
+        <table>
+            <tr>
+                <td><img class="img-fluid border border-secondary border-3" width="400" height="400"
+                        src="/images/other/profiledefault.png" alt="Default image for profile"></td>
+                <td class="align-top ps-4">
+                    <!-- Secondary Table for Account Information -->
+                    <table class="table">
+                        <tr>
+                            <th>First Name:</th>
+                            <td><%- user.firstName%></td>
+                        </tr>
+                        <tr>
+                            <th>Last Name:</th>
+                            <td><%- user.lastName%></td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td><%- user.email%></td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td><%- user.phone%></td>
+                        </tr>
+                        <tr>
+                            <th>About Me:</th>
+                            <td>You have not told us anything yet!</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="pt-4"><!-- Buttons to Change Account Details -->
+                    <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
+                    <button class="btn btn-danger btn-lg text-end m-1" type="submit">Delete</button>
+                </td>
+            </tr>
+        </table>
     </div>
+
+
 
     <%- include('../partials/footer.ejs')%>
