@@ -161,6 +161,12 @@ exports.updateProfile = (req, res, next) => {
     });
 }
 
+exports.myPosts = (req, res, next) => {
+
+    res.render('./user/myPosts');
+
+};
+
 // for logout functionality
 exports.logout = (req, res, next) => { 
 

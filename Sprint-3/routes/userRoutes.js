@@ -29,4 +29,7 @@ router.get('/profile', isLoggedIn, userController.profile);
 
 router.get('/logout', isLoggedIn, userController.logout);
 
+//GET ./user/myPosts : get the myPosts page
+router.get('/myPosts', isLoggedIn, userController.myPosts);
+
 module.exports = router;
