@@ -11,6 +11,7 @@ exports.new = (req,res)=>{
     res.render('./textbook/new');
 };
 
+// Function that save a new book post
 exports.create = (req,res, next)=>{
     let book = new modelBook(req.body);
 
@@ -64,11 +65,11 @@ exports.search = (req,res,next)=>{
     
     
 }
+
 // Function that show detail book
 exports.show = (req,res, next)=>{
     let id = req.params.id;
     let selectUserId = req.session.user.id;
-    console.log(selectUserId);
     let userIdArray = [];
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
@@ -79,7 +80,6 @@ exports.show = (req,res, next)=>{
     modelBook.findById(id)// Promise
     .then(book=>{
         if(book){
-            console.log(book)
             userIdArray.push(selectUserId);
             return res.render('./textbook/show',{book, users:userIdArray,selectUserId:book.user});
         }else{

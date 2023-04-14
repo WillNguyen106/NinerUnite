@@ -88,18 +88,14 @@ exports.process =  (req, res, next) => {
                     Promise.all([modelCart.find({category: "book", userId: user._id}).populate('bookId'), modelCart.find({category:"tech", userId: user._id}).populate("tech")])
                     .then(results => {
                         const [books,techs] = results;
-                        console.log(books);
                         numOfCartItems = books.length + techs.length;
-                        console.log(numOfCartItems);
                         req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName,
                              ItemsCount: numOfCartItems};// store user._id and firstName and lastName in the session 
-                        // console.log(req.session.user);
                         req.flash('success', 'You have successfully logged in!');
                         res.redirect('./index');
                     })
                     .catch(err=>next(err));
                 }else{
-                    //console.log('Wrong password!');
                     req.flash('error', 'Wrong password!')
                     res.redirect('./login');
                 }
@@ -121,8 +117,8 @@ exports.profile =  (req, res, next) => {
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
-       console.log(postNum);
-       console.log(profile);
+    //    console.log(postNum);
+    //    console.log(profile);
         res.render('./user/profile', {profile, books,techs, postNum});
     })
     .catch(err => next(err));
@@ -169,7 +165,7 @@ exports.myPosts = (req, res, next) => {
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
-       console.log(postNum);
+    //    console.log(postNum);
         res.render('./user/myPosts', {profile, books,techs, postNum});
     })
     .catch(err => next(err));
