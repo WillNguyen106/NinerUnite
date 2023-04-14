@@ -1,15 +1,184 @@
-<%- include('../partials/header.ejs', {cs: 'defaultstyle'})%>
+<%- include('../partials/header.ejs', {cs: 'listStyle'})%>
 
 <div class="container p-3">
 
     <h1>My Posts</h1>
-    <%if(books.length) {%>
-        <%books.forEach(book => {%>
-            <p><%= book.author %></p>
-            <p><%= book.price %></p>
-            <p><%= book.condition %></p>
-        <%})%>
-    <%}%>
+
+    <!--tabs for the different types of lists-->
+
+    <!--the tabs control which information is currently being displayed-->
+    <!--book list is always displayed first-->
+    <ul class="nav nav-tabs" id="tabList" role="tabList">
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active"
+             id="bookListTab" 
+             data-bs-toggle="tab" 
+             data-bs-target="#bookListPane" 
+             type="button" 
+             role="tab" 
+             aria-controls="bookListPane" 
+             aria-selected="true"
+            >Books
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link"
+             id="techListTab" 
+             data-bs-toggle="tab" 
+             data-bs-target="#techListPane" 
+             type="button" 
+             role="tab" 
+             aria-controls="techListPane" 
+             aria-selected="false"
+            >Tech
+            </button>
+        </li>
+
+    </ul>
+
+    <!--this tab content area holds all of the lists that will be displayed-->
+    <div class="tab-content" id="myTabContent">
+        <!--all books posted by user-->
+        <div class="tab-pane fade show active" id="bookListPane" role="tabpanel" aria-labelledby="bookListTab" tabindex="0">
+
+            <%if(books.length) {%>
+                <table class="table border">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Book Author</th>
+                        <th scope="col">Price</th>
+                    </tr>
+        
+        
+                    <tbody>
+                <%books.forEach(book => {%>
+        
+                    
+                    <tr class="select listItem">
+                        <td>
+                            <form class="w-50">
+                                <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id %>/edit"><i class="fas fa-edit"></i></button>
+                                <!-- Button trigger modal for delete message -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                
+                                <!-- Modal for delete message -->
+                                <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteMessageLabel"><%= book.title %></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        Are you sure you want to delete this item?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                        <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= book.id %>?_method=DELETE">Yes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <a  href="/books/<%=book.id%>"><p><%= book.title %></p></a>
+                        </td>
+                        <td>
+                            <p><%= book.author %></p>
+                        </td>
+                        <td>
+                            <p>$<%= book.price %></p>
+                        </td>
+                    </tr>
+                <%})%>
+        
+            </tbody>
+            </table>
+            <%} else {%>
+        
+                <h2>There are no books to display</h2>
+        
+            <%} %>
+
+        </div>
+
+        <!--all tech posted by the user-->
+        <div class="tab-pane fade" id="techListPane" role="tabpanel" aria-labelledby="techListTab" tabindex="0">
+            
+            <%if(techs.length){ %>
+
+                <table class="table">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Tech Name/Brand</th>
+                        <th scope="col">Price</th>
+    
+                    </tr>
+    
+                <tbody>
+                <%techs.forEach(tech=>{%>
+                    <tr class="select listItem">
+                        <td>
+                        <form>
+                            <button class="btn btn-success" type="submit" formmethod="GET" formaction="/techs/<%= tech.id %>/edit"><i class="fas fa-edit"></i></button>
+                            <!-- Button trigger modal for delete message -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            
+                            <!-- Modal for delete message -->
+                            <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="DeleteMessageLabel"><%= tech.brand %></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    Are you sure you want to delete this item?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/techs/<%= tech.id %>?_method=DELETE">Yes</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                        </td>
+
+                        <!--brand counts for tech items name and brand-->
+                        <td >
+                            <a href="/techs/<%=tech.id%>"><p><%=tech.brand%></p></a>
+                        </td>
+                        <td>
+                            <p>$<%=tech.price %></p>
+                        </td>
+                    </tr>
+    
+                <% }); %>
+    
+                </tbody>
+                </table>
+                
+                <%} else {%>
+                <h2>There are no products to display</h2>
+            <%} %>
+
+
+
+        </div>
+
+    </div>
+
+    
+    
 
 </div>
 

@@ -22,6 +22,13 @@ $(document).ready(function (){
             //the name needs to be changed to p to search for tech properly
             $("#searchInput").attr("name", "p");
         }
+        else if (selectValue = "dom"){
+            $("#searchInput").attr("placeholder", "Search for domiciles...");
+            $("#searchForm").attr("action", "/domiciles/search");
+            $("#searchForm").attr("method", "get");
+            //the name needs to be changed to p to search for tech properly
+            $("#searchInput").attr("name", "d");
+        }
         else { 
             $("#searchInput").attr("placeholder", "Select what you want to search by!");
             $("#searchForm").attr("action", "#");
