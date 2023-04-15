@@ -39,12 +39,12 @@
     </ul>
 
     <!--this tab content area holds all of the lists that will be displayed-->
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content m-3" id="myTabContent">
         <!--all books posted by user-->
         <div class="tab-pane fade show active" id="bookListPane" role="tabpanel" aria-labelledby="bookListTab" tabindex="0">
 
             <%if(books.length) {%>
-                <table class="table border">
+                <table class="table border text-break">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Book Title</th>
@@ -113,7 +113,7 @@
             
             <%if(techs.length){ %>
 
-                <table class="table">
+                <table class="table border text-break">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Tech Name/Brand</th>
