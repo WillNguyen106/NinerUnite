@@ -124,8 +124,18 @@ exports.profile =  (req, res, next) => {
 };
 //for access the edit profile page
 exports.edit =  (req, res, next) => {
-    
-    res.render('./user/editProfile');
+    let id = req.params.id;
+    User.findById(id)
+    .then(profile => {
+        if(profile){
+            res.render('./user/editProfile', {profile})
+        } else {
+            let err = new Error('Cannot find a User with id ' + id)
+            err.status = 404;
+            next(err);
+        }
+    })    
+    .catch(err => next(err));
     
 };
 
