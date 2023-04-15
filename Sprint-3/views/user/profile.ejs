@@ -31,15 +31,23 @@
                             <th>About Me: <%- profile.biograph%></th>
                             <td>You have not told us anything yet!</td>
                         </tr>
+                        <tr>
+                            <th>Number of posts:</th>
+                            <td><%- postNum%> posts</td>
+                        </tr>
                         <%}%>
                     </table>
                 </td>
             </tr>
             <tr>
-                <td class="pt-4"><!-- Buttons to Change Account Details -->
-                    <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
-                    <button class="btn btn-danger btn-lg text-end m-1" type="submit">Delete</button>
-                </td>
+                <%if(user.id == profile._id){%>
+                <form>
+                    <td class="pt-4"><!-- Buttons to Change Account Details -->
+                        <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
+                        <!-- <button class="btn btn-danger btn-lg text-end m-1" type="submit">Delete</button> -->
+                    </td>
+                </form>
+                <%}%>
             </tr>
         </table>
     </div>

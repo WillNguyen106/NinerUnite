@@ -111,7 +111,7 @@ exports.process =  (req, res, next) => {
 };
 //for the owner of the profile
 exports.profile =  (req, res, next) => {
-    let id = req.session.user.id;
+    let id = req.params.id;
     Promise.all([User.findOne({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
@@ -122,27 +122,22 @@ exports.profile =  (req, res, next) => {
     })
     .catch(err => next(err));
 };
-//for the guest visits other profile
-exports.visitProfile =  (req, res, next) => {
-    let id = req.params.id;
-    Promise.all([User.findOne({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
-    .then(results => {
-        const[profile, books,techs] = results;
-        let postNum = books.length + techs.length;
-       
-        res.render('./user/profile', {profile, books,techs, postNum});
-    })
-    .catch(err => next(err));
-}; 
+
 
 //update my profile
 exports.updateProfile = (req, res, next) => {
     let profile = req.body;
+    if(req.file){
+        profile.image = {
+            data: req.file.buffer,
+            contentType: req.file.minetype,
+        }
+    }
     let id = req.session.user.id; 
     User.findByIdAndUpdate(id, profile,{useFindAndModify: false, runValidators:true})
     .then(result =>{
         if(result){
-            res.redirect('/users/profile');
+            res.redirect('/users/profile/' + id);
         }else{
             let err = new Error('Cannot find a User with id ' + id);
             err.status = 404;

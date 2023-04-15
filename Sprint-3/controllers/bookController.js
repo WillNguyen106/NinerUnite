@@ -120,7 +120,7 @@ exports.edit = (req,res, next)=>{
 // Function that update new post
 exports.update = (req,res, next)=>{
     let book = req.body;
-    console.log(book);
+    //console.log(book);
     let id = req.params.id;
     
     if(!id.match(/^[0-9a-fA-F]{24}$/)){
