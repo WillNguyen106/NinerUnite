@@ -113,7 +113,7 @@ exports.process =  (req, res, next) => {
 //for the owner of the profile
 exports.profile =  (req, res, next) => {
     let id = req.session.user.id;
-    Promise.all([User.findOne({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.findOne({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
@@ -126,7 +126,7 @@ exports.profile =  (req, res, next) => {
 //for the guest visits other profile
 exports.visitProfile =  (req, res, next) => {
     let id = req.params.id;
-    Promise.all([User.findOne({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.findOne({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
@@ -161,7 +161,7 @@ exports.updateProfile = (req, res, next) => {
 
 exports.myPosts = (req, res, next) => {
     let id = req.session.user.id;
-    Promise.all([User.find({profileId: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.find({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
     .then(results => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
