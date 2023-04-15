@@ -28,6 +28,9 @@ router.get('/profile/:id', isLoggedIn, userController.profile);
 //GET /users/:id/edit: send HTML form for editing an existing profile
 router.get('/:id/edit', userController.edit);
 
+//PUT /users/:id: update the profile identified by id...
+router.put('/:id',fileUpload, userController.updateProfile);
+
 //get the logout page
 router.get('/logout', isLoggedIn, userController.logout);
 
