@@ -56,7 +56,7 @@
                      <%}%>
                  <%});%>
                      <hr>
-                     <p>Posted <%=book.createdAt%></p>
+                     <p>Posted <%=book.createdAt%> by <%=book.user.firstName + ' ' + book.user.lastName%></p>
                      <p>Author: <%=book.author%></p>
                      <p>ISBN: <%=book.isbn%></p>
                      <p>Condition: <%=book.condition%></p>

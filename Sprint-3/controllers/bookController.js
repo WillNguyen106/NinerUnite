@@ -73,7 +73,7 @@ exports.show = (req,res, next)=>{
     let selectUserId = req.session.user.id;
     let userIdArray = [];
     
-    modelBook.findById(id)// Promise
+    modelBook.findById(id).populate('user','firstName lastName')// Promise
     .then(book=>{
         if(book){
             userIdArray.push(selectUserId);
