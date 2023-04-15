@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="/javascript/flashMessage.js"></script>
     <title>NinerUnite</title>
 </head>
 
@@ -116,7 +117,7 @@
     <%if(errorMessages.length> 0) {
         errorMessages.forEach(message => {%>
 
-        <div class="alert alert-warning mb-0" role="alert"> 
+        <div class="errorMessage alert alert-warning mb-0" role="alert"> 
             <%= message%>
         </div>
         <%}); }%>
@@ -124,7 +125,7 @@
         successMessages.forEach(message => {%>
 
 
-        <div class="alert alert-success mb-0" role="alert"> 
+        <div class="successMessage alert alert-success mb-0" role="alert"> 
             <%= message%>
         </div>
     <%}); }%>

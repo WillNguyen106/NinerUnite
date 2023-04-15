@@ -85,12 +85,7 @@ exports.show = (req,res, next)=>{
     let id = req.params.id;
     let selectUserId = req.session.user.id;
     let userIdArray = [];
-    
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid domicile id');
-        err.status = 400;
-        return next(err);
-    }
+
     modelDomicile.findById(id)// Promise
     .then(domicile=>{
         if(domicile){
@@ -110,12 +105,6 @@ exports.show = (req,res, next)=>{
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
     
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid domicile id');
-        err.status = 400;
-        return next(err);
-    }
-
     modelDomicile.findById(id)
     .then(domicile => {
         if(domicile){
@@ -133,12 +122,6 @@ exports.edit = (req,res, next)=>{
 exports.update = (req,res, next)=>{
     let domicile = req.body;
     let id = req.params.id;
-    
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid domicile id');
-        err.status = 400;
-        return next(err);
-    }
     
     if(req.file){
         domicile.image = {
@@ -169,12 +152,6 @@ exports.update = (req,res, next)=>{
 // Function that delete post
 exports.delete = (req,res, next)=>{
     let id = req.params.id;
-
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid domicile id');
-        err.status = 400;
-        return next(err);
-    }
 
     modelBook.findByIdAndDelete(id, {useFindAndModify: false})
     .then(result => {

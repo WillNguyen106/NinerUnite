@@ -2,6 +2,7 @@ const express = require('express');
 const controllerTech = require('../controllers/techController');
 const {fileUpload} = require('../middlewares/fileUpload');
 const {isLoggedIn} = require('../middlewares/auth');
+const {validateId} = require('../middlewares/validator');
 
 const router = express.Router();
 
@@ -20,10 +21,10 @@ router.get('/new',isLoggedIn, controllerTech.new);
 // //POST /techs: Post a new tech item for selling
 router.post('/',isLoggedIn, fileUpload, controllerTech.create);
 
-router.get('/search', controllerTech.search);
+router.get('/search',isLoggedIn, controllerTech.search);
 
 //GET /techs/:id: send details of tech product indentified by id
-router.get('/:id', controllerTech.show);
+router.get('/:id',validateId, controllerTech.show);
 
 /*
     *Allow users to edit their tech post
@@ -32,13 +33,13 @@ router.get('/:id', controllerTech.show);
 */
 
 //GET /techs/:id/edit: send HTML form for editing an existing tech post
-router.get('/:id/edit', controllerTech.edit);
+router.get('/:id/edit',validateId,isLoggedIn,controllerTech.edit);
 
 //PUT /techs/:id: update the tech post identified by id
-router.put('/:id', fileUpload, controllerTech.update);
+router.put('/:id',validateId,isLoggedIn,fileUpload, controllerTech.update);
 
 //DELETE /techs/:id: delete tech identified by id
-router.delete('/:id', controllerTech.delete);
+router.delete('/:id',validateId,isLoggedIn,controllerTech.delete);
 
 
 module.exports = router;

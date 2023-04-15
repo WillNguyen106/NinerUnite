@@ -1,4 +1,6 @@
+const book = require('../models/book');
 const modelBook = require('../models/book');
+const {DateTime} = require("luxon");
 
 // Function that find all books
 exports.index = (req, res, next)=>{
@@ -14,14 +16,13 @@ exports.new = (req,res)=>{
 // Function that save a new book post
 exports.create = (req,res, next)=>{
     let book = new modelBook(req.body);
-
+    book.user = req.session.user.id;
     if(req.file){
         book.image = {
             data: req.file.buffer,
             contentType: req.file.minetype,
         }
     };
-    book.user = req.session.user.id;
     
     book.save()
     .then(results =>res.redirect('/books'))
@@ -72,11 +73,6 @@ exports.show = (req,res, next)=>{
     let selectUserId = req.session.user.id;
     let userIdArray = [];
     
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid book id');
-        err.status = 400;
-        return next(err);
-    }
     modelBook.findById(id)// Promise
     .then(book=>{
         if(book){
@@ -98,36 +94,16 @@ exports.show = (req,res, next)=>{
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
     
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid book id');
-        err.status = 400;
-        return next(err);
-    }
-
     modelBook.findById(id)
-    .then(book => {
-        if(book){
-            res.render('./textbook/edit', {book})
-        } else {
-            let err = new Error('Cannot find a book with id ' + id)
-            err.status = 404;
-            next(err);
-        }
+    .then(book => {res.render('./textbook/edit', {book})
     })    
     .catch(err => next(err));
 };
 
 // Function that update new post
 exports.update = (req,res, next)=>{
-    let book = req.body;
-    //console.log(book);
     let id = req.params.id;
-    
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid book id');
-        err.status = 400;
-        return next(err);
-    }
+    let book = req.body;
     
     if(req.file){
         book.image = {
@@ -137,15 +113,7 @@ exports.update = (req,res, next)=>{
     }
 
     modelBook.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
-    .then(result =>{
-        if(result){
-            res.redirect('/books/' + id);
-        }else{
-            let err = new Error('Cannot find a book with id ' + id);
-            err.status = 404;
-            next(err);
-        }
-        
+    .then(book =>{res.redirect('/books/' + id);
     })
     .catch(err => {
         if(err.name = 'ValidationError'){
@@ -158,23 +126,9 @@ exports.update = (req,res, next)=>{
 // Function that delete post
 exports.delete = (req,res, next)=>{
     let id = req.params.id;
-
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid book id');
-        err.status = 400;
-        return next(err);
-    }
-
+    
     modelBook.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(result => {
-        if(result){
-            return res.redirect('/books')
-        }else{
-            let err = new Error('Cannot find a book with id ' + id);
-            err.status = 404;
-            next(err);
-        }
-       
+    .then(book => {res.redirect('/books');
     })
     .catch(err=>next(err));
 };
