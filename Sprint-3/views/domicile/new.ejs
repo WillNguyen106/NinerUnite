@@ -25,7 +25,8 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="/books/new">Textbook/Book</a></li>
                                 <li><a class="dropdown-item" href="/techs/new">Technology</a></li>
-                                <li><a class="dropdown-item active" href="/domiciles/new" aria-current="true">Dormicile</a></li>
+                                <li><a class="dropdown-item active" href="/domiciles/new"
+                                        aria-current="true">Dormicile</a></li>
                             </ul>
 
                         </div>
@@ -65,23 +66,76 @@
                     </div>
                     <div class="col-lg-10">
                         <textarea class="form-control inputBox text-dark border-0" id="description" name="description"
-                            placeholder="Ex: Apartment is on the top floor and right next to Terrace road." required></textarea>
+                            placeholder="Ex: Apartment is on the top floor and right next to Terrace road."
+                            required></textarea>
                     </div>
                 </div>
 
-
-                <!--Type Section-->
-                <!--This may need to be chanced-->
+                <!--DropDown Group-->
+                <!--DropDown Toggle 1: Type-->
                 <div class="row mb-4 w-75">
-                    <div class="col-lg-2 col-form-label">
-                        <label for="type" class="form-label fw-bold">Type:</label>
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="type" class="form-label fw-bold">Household Type:</label>
                     </div>
-                    <div class="col-md-10 col-form-label">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="type"
-                            name="type"
-                            placeholder="Ex: Apartment" required>
+
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Options</button>
+                            <!--dropdown options-->
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" value="dorm">Dorm</a></li>
+                                <li><a class="dropdown-item" value="apartment">Apartment</a></li>
+                                <li><a class="dropdown-item" value="townhouse">Townhouse</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--End DropDown 1 Section-->
+
+                    <!--DropDown Toggle 2: Bed-->
+                    <div class="col-md-2 col-form-label">
+                        <label for="type" class="form-label fw-bold">Bedrooms:</label>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Amount</button>
+                            <!--dropdown options-->
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" value="1">1</a></li>
+                                <li><a class="dropdown-item" value="2">2</a></li>
+                                <li><a class="dropdown-item" value="3">3</a></li>
+                                <li><a class="dropdown-item" value="4">4</a></li>
+                                <li><a class="dropdown-item" value="5">5</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--End DropDown 2 Section-->
+
+                    <!--DropDown Toggle 3: Baths-->
+                    <div class="col-md-2 col-form-label">
+                        <label for="type" class="form-label fw-bold">Bathrooms:</label>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Amount</button>
+                            <!--dropdown options-->
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" value="1">1</a></li>
+                                <li><a class="dropdown-item" value="2">2</a></li>
+                                <li><a class="dropdown-item" value="3">3</a></li>
+                                <li><a class="dropdown-item" value="4">4</a></li>
+                                <li><a class="dropdown-item" value="5">5</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                <!--End DropDown 3 Section-->
+                <!--End of DropDown Group-->
 
                 <!--Payment Plan Section-->
                 <div class="row mb-4 w-75">
@@ -93,6 +147,34 @@
                     <div class="col-md-10">
                         <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
                             placeholder="Ex: 1000 monthly" required></input>
+                    </div>
+
+                </div>
+
+                <!--Phone Plan Section-->
+                <div class="row mb-4 w-75">
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="payment" class="form-label fw-bold">Phone:</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
+                            placeholder="Optional"></input>
+                    </div>
+
+                </div>
+
+                <!--Email Plan Section-->
+                <div class="row mb-4 w-75">
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="payment" class="form-label fw-bold">Email:</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
+                            placeholder="Optional"></input>
                     </div>
 
                 </div>
