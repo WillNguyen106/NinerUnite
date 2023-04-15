@@ -2,8 +2,59 @@
 
     <!-- Primary Table for All Elements -->
     <div class="container flex-row w-50 text-center">
-        <h3 class="fs-1 py-5 mb-5">Edit My Profile</h3>
-        <p><%- profile.firstName%></p>
+        <form action="#" enctype="multipart/form-data" method='POST'></form>
+        <h3 class="fs-1 py-5 mb-5">My Profile</h3>
+        <table>
+            <tr>
+                <td><img class="img-fluid border border-secondary border-3" width="400" height="400"
+                        src="/images/other/profiledefault.png" alt="Default image for profile"></td>
+                <td class="align-top ps-4">
+                    <!-- Secondary Table for Account Information -->
+                    <table class="table">
+                        <tr>
+                            <th>First Name:</th>
+                            <td>
+                                <input class="form-control inputBox text-dark border-0" type="text" id="firstName"
+                                    name="firstName" value="<%= profile.firstName%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Last Name:</th>
+                            <td>
+                                <input class="form-control inputBox text-dark border-0" type="text" id="lastName"
+                                    name="lastName" value="<%= profile.lastName%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>
+                                <input class="form-control inputBox text-dark border-0" type="text" id="email"
+                                    name="email" value="<%= profile.email%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>
+                                <input class="form-control inputBox text-dark border-0" type="text" id="firstName"
+                                    name="firstName" value="<%= profile.phoneNum%>">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>About Me: <textarea class="form-control inputBox text-dark border-0" type="text"
+                                    id="about" name="about" value="<%- profile.biograph%>" minlength="10"
+                                    required></textarea></th>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="pt-4"><!-- Buttons to Change Account Details -->
+                    <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
+                    <button class="btn btn-danger btn-lg text-end m-1" type="submit">Delete</button>
+                </td>
+            </tr>
+        </table>
+        </form>
     </div>
 
 
