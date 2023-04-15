@@ -2,6 +2,7 @@ const express = require('express');
 const userController = require('../controllers/userController');
 const {isGuest, isLoggedIn} = require('../middlewares/auth');// for validating guest or register user
 const {logInLimiter} = require('../middlewares/rateLimiters');// limiting login failure  5 times
+const {fileUpload} = require('../middlewares/fileUpload');
 
 
 
