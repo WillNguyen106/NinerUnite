@@ -122,6 +122,12 @@ exports.profile =  (req, res, next) => {
     })
     .catch(err => next(err));
 };
+//for access the edit profile page
+exports.edit =  (req, res, next) => {
+    
+    res.render('./user/editProfile');
+    
+};
 
 
 //update my profile
