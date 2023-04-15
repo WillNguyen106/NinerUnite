@@ -39,7 +39,6 @@ exports.newUser =  (req, res, next) => {
         if(user.email){
             user.email = user.email.toLowerCase();
         }
-        user.profileId = user._id;
         user.save()
         .then(() => res.redirect('/users/login'))//route to login page
         .catch(err => {
