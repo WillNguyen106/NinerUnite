@@ -25,9 +25,10 @@ router.post('/', isGuest, userController.newUser);
 //GET /users/profile/:id get a member profile
 router.get('/profile/:id', isLoggedIn, userController.profile);
 
+//GET /users/:id/edit: send HTML form for editing an existing profile
+router.get('/:id/edit', userController.edit);
 
 //get the logout page
-
 router.get('/logout', isLoggedIn, userController.logout);
 
 //GET ./user/myPosts : get the myPosts page
