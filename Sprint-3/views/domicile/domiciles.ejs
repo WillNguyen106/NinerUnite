@@ -1,26 +1,35 @@
 <%- include('../partials/header.ejs', {cs: 'listStyle'})%>
 
-<div class="container p-3">
+<div class="container p-3 ">
     <h1>Domicile List</h1>
     <br>
     <%if(domiciles.length){ %>
-
-        <table class="table">
-            <tr>
-                <th scope="col">Domicile Title</th>
-            </tr>
-
-        <tbody>
         <%domiciles.forEach(domicile=>{%>
-            <tr>
-                <td class="select listItem">
-                    <a  href="/domiciles/<%=domicile.id%>"><p><%= domicile.title %></p></a>
-                </td>
-            </tr>
+          
+                <!--cards-->
+                <a class="cardStyle" href="/domiciles/<%=domicile.id%>">
+                    <div class="card mb-3 bg-light">
+                        <div class="row ">
+                        <!--image section-->
+                        <div class="col-md-4 bg-primary">
+
+                        </div>
+                        <!--domicile information-->
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title"><%= domicile.title %></h3>
+                                <p class="card-text"><%= domicile.address %></p>
+                                <p class="card-text"><%= domicile.description %></p>
+                                <p class="card-text">Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
+                                <p class="card-text">$<%= domicile.payment %></p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </a> 
         <% }); %>
 
-        </tbody>
-        </table>
+
         
         <%} else {%>
         <h2>There are no domiciles to display</h2>
