@@ -17,15 +17,22 @@ exports.new = (req,res)=>{
 exports.create = (req,res, next)=>{
     let book = new modelBook(req.body);
     book.user = req.session.user.id;
-    if(req.file){
-        book.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
-    };
+    
+    // Upload multiple images into array object of image in the book schema
+    // if req.files is exist, we need a forEach loop to push each image object into the array object of image field 
+    if (req.files && req.files.length > 0) {
+        req.files.forEach(file => {
+            book.image.push({
+            data: file.buffer,
+            contentType: file.mimetype
+            });
+        });
+    }
     
     book.save()
-    .then(results =>res.redirect('/books'))
+    .then(results =>{
+        // console.log(results)
+        res.redirect('/books')})
     .catch(err => {
         if(err.name === 'ValidationError'){
             err.status = 400;
@@ -73,7 +80,9 @@ exports.show = (req,res, next)=>{
     
     modelBook.findById(id).populate('user','firstName lastName')// Promise
     .then(book=>{
-        if(book){return res.render('./textbook/show',{book});
+        if(book){
+            // console.log(book.image.length);
+            return res.render('./textbook/show',{book});
         }else{
             //Error handler
             let err = new Error('Cannot find a book with id ' + id);
@@ -101,12 +110,18 @@ exports.update = (req,res, next)=>{
     let id = req.params.id;
     let book = req.body;
     
-    if(req.file){
-        book.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
+    if (req.files && req.files.length > 0) {
+        // Initialize variable book.image first
+        book.image = book.image || [];
+        req.files.forEach(file => {
+            book.image.push({
+            data: file.buffer,
+            contentType: file.mimetype
+            });
+        });
     }
+
+    // console.log(book);
 
     modelBook.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
     .then(book =>{res.redirect('/books/' + id);

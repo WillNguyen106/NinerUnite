@@ -1,7 +1,7 @@
 const express = require('express');
 const controllerDomicile = require('../controllers/domicileController');
 const {fileUpload} = require('../middlewares/fileUpload');
-const {isLoggedIn} = require('../middlewares/auth');
+const {isLoggedIn, isUserDomicilePost} = require('../middlewares/auth');
 const {validateId} = require('../middlewares/validator');
 
 const router = express.Router();
@@ -34,13 +34,13 @@ router.get('/:id',validateId,controllerDomicile.show);
 // */
 
 //GET /domiciles/:id/edit: send HTML form for editing an existing domicile post
-router.get('/:id/edit',validateId,isLoggedIn, controllerDomicile.edit);
+router.get('/:id/edit',validateId,isLoggedIn,isUserDomicilePost,controllerDomicile.edit);
 
 //PUT /domiciles/:id: update the domicile post identified by id
-router.put('/:id',validateId,isLoggedIn,fileUpload, controllerDomicile.update);
+router.put('/:id',validateId,isLoggedIn,fileUpload,isUserDomicilePost,controllerDomicile.update);
 
 //DELETE /domiciles/:id: delete domicile identified by id
-router.delete('/:id',validateId,isLoggedIn, controllerDomicile.delete);
+router.delete('/:id',validateId,isLoggedIn,isUserDomicilePost,controllerDomicile.delete);
 
 
 

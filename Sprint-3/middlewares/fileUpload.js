@@ -3,10 +3,10 @@ const multer  = require('multer');
 const storage = multer.memoryStorage();
 
 
-const fileFilter = (req, file, cb) => {
+const fileFilter = (req, files, cb) => {
   const mimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
-
-  if(mimeTypes.includes(file.mimetype)){
+  
+  if(mimeTypes.includes(files.mimetype)){
     return cb(null,true);
   } else {
     cb(new Error('Invalid file type. Only jpeg, jpg, png and gif image files are allowed.'));
@@ -17,17 +17,19 @@ const upload = multer({
   storage: storage,
   limits:{fileSize: 2*1024*1024},
   fileFilter: fileFilter
-}).single('image');
+}).array('image',3);
 
 exports.fileUpload = (req, res, next) => {
-    upload(req, res, err => {
-        if (err) {
-            err.status = 400;
-            next(err);
-          } else {
-            next();
-          }
-            
-    });
+  upload(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      // A multer error occurred
+      err.status = 400;
+    }
+    if (err) {
+      // Other errors occurred
+      return next(err);
+    }
+    next();
+  });
 }
 

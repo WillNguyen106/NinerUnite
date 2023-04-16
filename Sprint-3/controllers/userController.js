@@ -8,7 +8,6 @@ const modelCart = require('../models/cart');
 
 
 exports.index = (req, res,next) => {
-    console.log(req.flash());
     // this will retrieve the number of books currently in the database
     // to display on the front page
     modelBook.find()
@@ -20,7 +19,6 @@ exports.index = (req, res,next) => {
 
 //routes to login page
 exports.login = (req, res) => {
-    console.log(req.flash());
     res.render('./user/login');//route to login page
 };
 exports.signup =  (req, res) => {
@@ -30,9 +28,10 @@ exports.signup =  (req, res) => {
 exports.newUser =  (req, res, next) => {  
     // console.log(req.body);
     if(req.body.password != req.body.cfpassword){
-        console.log('Your password is not being matched!');
         req.flash('error', 'Your passwords do not match!');
-        return res.redirect('/users/signup');//route to signup page
+        req.session.save((err)=>{
+            return res.redirect('/users/signup');//route to signup page
+        });
     }else {
         let user = new User(req.body);
    
@@ -44,11 +43,17 @@ exports.newUser =  (req, res, next) => {
         .catch(err => {
             if(err.name === 'ValidationError'){
                 req.flash('error', err.message);
-                return res.redirect('/users/signup');
+                req.session.save((err)=>{
+                    return res.redirect('/users/signup');
+                });
+                
             }
             if(err.code === 11000){
                 req.flash('error', 'Email address has been used');
-                return res.redirect('/users/signup');//route to signup page
+                req.session.save((err)=>{
+                    return res.redirect('/users/signup');//route to signup page
+                });
+                
             }
             next(err);
         });
@@ -91,12 +96,16 @@ exports.process =  (req, res, next) => {
                         req.session.user = {id: user._id, firstName: user.firstName, lastName: user.lastName,
                              ItemsCount: numOfCartItems};// store user._id and firstName and lastName in the session 
                         req.flash('success', 'You have successfully logged in!');
-                        res.redirect('./index');
+                        req.session.save((err)=>{
+                            res.redirect('./index');
+                        });
+                        
                     })
                     .catch(err=>next(err));
                 }else{
                     req.flash('error', 'Wrong password!')
-                    res.redirect('./login');
+                    return res.redirect('./login');
+                   
                 }
 
             })
@@ -104,7 +113,7 @@ exports.process =  (req, res, next) => {
         } else {
             //console.log("Wrong email address!");
             req.flash('error', 'Wrong email address!')
-            res.redirect('./login');
+            return res.redirect('./login');
         }
     })
     .catch(err => next(err));

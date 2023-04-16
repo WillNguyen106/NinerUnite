@@ -6,7 +6,9 @@
 
            <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
                <div class="border">
-                    <%if(book.image.data){%>
+                    <%if(book.image.length > 0){%>
+                        
+                        
 
                         <!--carousel for showing multiple images-->
 
@@ -14,10 +16,23 @@
                             <!--this is where the images will be-->
                             <!--each carousel item is where an item can be placed-->
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image.contentType%>;base64,
-                                    <%=book.image.data.toString('base64')%>" alt="">
-                                </div>
+                                <%book.image.forEach(image=>{%>
+                                    <%if(image.data){%>
+                                        <div class="carousel-item active">
+                                            <img class=" img-fluid w-75 imageCenter" src="data:<%=image.contentType%>;base64,
+                                                <%=image.data.toString('base64')%>" alt="">
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                          </button>
+                                          <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                          </button>
+                                    <%}%>
+                                <%})%>
+                                
                                 <!--add more images below-->
                                 <!-- <div class="carousel-item">
 
@@ -25,14 +40,6 @@
                             </div>
                             <!--carousel buttons-->
                             <!--background colors of buttons are blue because it is hard to see-->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                              </button>
-                              <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                              </button>
                         </div>
                     <%} else{%>
                         <!--TODO: modify this line-->

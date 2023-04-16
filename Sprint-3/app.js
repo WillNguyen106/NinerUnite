@@ -101,9 +101,6 @@ app.use('/techs',techRoutes);
 app.use('/domiciles',domicileRoutes);
 
 
-
-//app.use('/domiciles', domicileRoutes);
-
 app.use((req,res,next)=>{
     let err = new Error("The server cannot locate " + req.url);
     err.status = 404;

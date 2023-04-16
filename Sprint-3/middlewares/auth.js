@@ -1,7 +1,6 @@
 const Book = require('../models/book');
 const Tech = require('../models/tech');
 const Domicile = require('../models/domicile');
-const domicile = require('../models/domicile');
 
 //check if user is a guest
 exports.isGuest = (req, res, next) => {
