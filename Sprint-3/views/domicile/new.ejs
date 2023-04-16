@@ -5,7 +5,7 @@
 
     <div class="container my-5">
 
-        <form class="rounded form m-3 p-3" action='/books' enctype="multipart/form-data" method='POST'>
+        <form class="rounded form m-3 p-3" action='/domiciles' enctype="multipart/form-data" method='POST'>
             <!--horizontal center by using bootstrap's grid alignment for rows-->
             <div class="row justify-content-center">
 
@@ -71,8 +71,8 @@
                     </div>
                 </div>
 
-                <!--DropDown Group-->
-                <!--DropDown Toggle 1: Type-->
+                <!--Select menu option-->
+                <!--Menu option 1: Type-->
                 <div class="row mb-4 w-75">
 
                     <div class="col-md-2 col-form-label">
@@ -80,62 +80,46 @@
                     </div>
 
                     <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Options</button>
-                            <!--dropdown options-->
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" value="dorm">Dorm</a></li>
-                                <li><a class="dropdown-item" value="apartment">Apartment</a></li>
-                                <li><a class="dropdown-item" value="townhouse">Townhouse</a></li>
-                            </ul>
-                        </div>
+                        <select class="form-select" name="type" aria-label="--Select--" required>
+                            <option selected value="">--Select--</option>
+                            <option value="dorm">Dorm</option>
+                            <option value="aprtment">Apartment</option>
+                            <option value="townhouse">Townhouse</option>
+                        </select>
                     </div>
-                    <!--End DropDown 1 Section-->
-
-                    <!--DropDown Toggle 2: Bed-->
+                    <!--Select menu option-->
+                    <!--Menu option 2: Bed-->
                     <div class="col-md-2 col-form-label">
-                        <label for="type" class="form-label fw-bold">Bedrooms:</label>
+                        <label for="bed" class="form-label fw-bold">Bedrooms:</label>
                     </div>
 
                     <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Amount</button>
-                            <!--dropdown options-->
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" value="1">1</a></li>
-                                <li><a class="dropdown-item" value="2">2</a></li>
-                                <li><a class="dropdown-item" value="3">3</a></li>
-                                <li><a class="dropdown-item" value="4">4</a></li>
-                                <li><a class="dropdown-item" value="5">5</a></li>
-                            </ul>
-                        </div>
+                        <select class="form-select" name="bed" aria-label="--Select--" required>
+                            <option selected value="">--Select--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
                     </div>
-                    <!--End DropDown 2 Section-->
-
-                    <!--DropDown Toggle 3: Baths-->
+                    <!--Select menu option-->
+                    <!--Menu option 3: Bath-->
                     <div class="col-md-2 col-form-label">
-                        <label for="type" class="form-label fw-bold">Bathrooms:</label>
+                        <label for="bath" class="form-label fw-bold">Bathrooms:</label>
                     </div>
 
                     <div class="col-md-2">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Amount</button>
-                            <!--dropdown options-->
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" value="1">1</a></li>
-                                <li><a class="dropdown-item" value="2">2</a></li>
-                                <li><a class="dropdown-item" value="3">3</a></li>
-                                <li><a class="dropdown-item" value="4">4</a></li>
-                                <li><a class="dropdown-item" value="5">5</a></li>
-                            </ul>
-                        </div>
+                        <select class="form-select" name="bath" aria-label="--Select--" required>
+                            <option selected value="">--Select--</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2.5</option>
+                            <option value="3">3</option>
+                        </select>
                     </div>
                 </div>
-                <!--End DropDown 3 Section-->
-                <!--End of DropDown Group-->
+                <!--End select menu option 3 Section-->
+                <!--End of select menu option Section-->
 
                 <!--Payment Plan Section-->
                 <div class="row mb-4 w-75">
@@ -155,11 +139,11 @@
                 <div class="row mb-4 w-75">
 
                     <div class="col-md-2 col-form-label">
-                        <label for="payment" class="form-label fw-bold">Phone:</label>
+                        <label for="phone" class="form-label fw-bold">Phone:</label>
                     </div>
 
                     <div class="col-md-10">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
+                        <input class="form-control inputBox text-dark border-0" type="text" id="phone" name="phone"
                             placeholder="Optional"></input>
                     </div>
 
@@ -169,11 +153,11 @@
                 <div class="row mb-4 w-75">
 
                     <div class="col-md-2 col-form-label">
-                        <label for="payment" class="form-label fw-bold">Email:</label>
+                        <label for="email" class="form-label fw-bold">Email:</label>
                     </div>
 
                     <div class="col-md-10">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
+                        <input class="form-control inputBox text-dark border-0" type="text" id="email" name="email"
                             placeholder="Optional"></input>
                     </div>
 

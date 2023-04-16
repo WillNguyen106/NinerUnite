@@ -19,8 +19,7 @@
            <div class="col-lg-6  d-inline-flex justify-content-center">
                <div class="p-3 m-3 d-inline-flex bg-light text-wrap flex-column">
                    <h2 class="bookTitle"><%= tech.brand%></h2>
-                   <%users.forEach(user=>{ %>
-                    <%if(user.includes(selectUserId)){ %>
+                    <%if(user.id == tech.user._id){ %>
                             <form>
                                 <button class="btn btn-success" type="submit" formmethod="GET" formaction="/techs/<%= tech.id %>/edit"><i class="fas fa-edit"></i></button>
                                 <!-- Button trigger modal for delete message -->
@@ -48,20 +47,17 @@
                                 </div>
                             </form>
                     <%}%>
-                <%});%>
                    <hr>
-                    <p>Posted <%=tech.createdAt%></p>
+                    <p>Posted <%=tech.createdAt%> by <%=tech.user.firstName + ' ' + tech.user.lastName%></p>
                     <p>Description: <%=tech.description%></p>
                     <p>Condition: <%=tech.condition%></p>
                     <p>Price: $<%=tech.price%></p>
-                <%users.forEach(user=>{%>
-                    <%if(!user.includes(selectUserId)){%>
+                    <%if(user.id != tech.user._id){%>
                         <!-- add to cart button -->
                         <form class="text-end">
                             <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= tech.id %>/tech">Add To Cart</button>
                         </form>
                     <%}%>
-                <%})%>
                </div>
            </div>
 

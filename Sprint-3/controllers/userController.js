@@ -84,7 +84,7 @@ exports.process =  (req, res, next) => {
             .then(result => {
                 if(result) {
                     let numOfCartItems = 0;
-                    Promise.all([modelCart.find({category: "book", userId: user._id}).populate('bookId'), modelCart.find({category:"tech", userId: user._id}).populate("tech")])
+                    Promise.all([modelCart.find({category: "book", userId: user._id}).populate('bookId'), modelCart.find({category:"tech", userId: user._id}).populate("techId")])
                     .then(results => {
                         const [books,techs] = results;
                         numOfCartItems = books.length + techs.length;

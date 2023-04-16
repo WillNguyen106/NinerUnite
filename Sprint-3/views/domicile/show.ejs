@@ -1,5 +1,20 @@
 <%- include('../partials/header.ejs', {cs: 'bookDescriptionStyles'})%>
-
-
+    <%if(user.id == domicile.user._id){%>
+        <!--TODO: Display edit and delete button-->
+    <%}%>
+    <!--TODO: Image-->
+    <p>Posted <%=domicile.createdAt%> by <%=domicile.user.firstName + ' ' + domicile.user.lastName%></p>
+                <p>Title: <%=domicile.title%></p>
+                <p>Address: <%=domicile.address%></p>
+                <p>Description: <%=domicile.description%></p>
+                <p>Type: <%=domicile.type%></p>
+                <p>Bedrooms: <%=domicile.bed%></p>
+                <p>Bathrooms: <%=domicile.bed%></p>
+                <p>Payment: <%=domicile.bed%></p>
+                <p>Phone: <%=domicile.phone%></p>
+                <p>Email: <%=domicile.email%></p>
+    <%if(user.id != domicile.user._id){%>
+        <!--TODO: Display add to cart button-->
+    <%}%>
 
 <%- include('../partials/footer.ejs')%>

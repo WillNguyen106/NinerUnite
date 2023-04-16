@@ -1,7 +1,7 @@
 const express = require('express');
 const controllerBook = require('../controllers/bookController');
 const {fileUpload} = require('../middlewares/fileUpload');
-const {isLoggedIn, isUserPost} = require('../middlewares/auth');
+const {isLoggedIn, isUserBookPost} = require('../middlewares/auth');
 const {validateId} = require('../middlewares/validator');
 
 
@@ -34,13 +34,13 @@ router.get('/:id',validateId, controllerBook.show);
 // */
 
 //GET /books/:id/edit: send HTML form for editing an existing textbook post
-router.get('/:id/edit',validateId,isLoggedIn,isUserPost,controllerBook.edit);
+router.get('/:id/edit',validateId,isLoggedIn,isUserBookPost,controllerBook.edit);
 
 //PUT /books/:id: update the textbook post identified by id
-router.put('/:id',validateId,isLoggedIn,isUserPost,fileUpload, controllerBook.update);
+router.put('/:id',validateId,isLoggedIn,isUserBookPost,fileUpload, controllerBook.update);
 
 //DELETE /books/:id: delete textbook identified by id
-router.delete('/:id',validateId,isLoggedIn,isUserPost,controllerBook.delete);
+router.delete('/:id',validateId,isLoggedIn,isUserBookPost,controllerBook.delete);
 
 
 module.exports = router;

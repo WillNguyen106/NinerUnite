@@ -11,10 +11,10 @@
             </tr>
 
         <tbody>
-        <%domicile.forEach(domicile=>{%>
+        <%domiciles.forEach(domicile=>{%>
             <tr>
                 <td class="select listItem">
-                    <a  href="/domicile/<%=domicile.id%>"><p><%= domicile.title %></p></a>
+                    <a  href="/domiciles/<%=domicile.id%>"><p><%= domicile.title %></p></a>
                 </td>
             </tr>
         <% }); %>

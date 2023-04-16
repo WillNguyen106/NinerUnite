@@ -25,53 +25,49 @@
                 <h2 class="bookTitle"><%= book.title%></h2>
                 <!--if the current user is viewing a product that is their own
                 then they have the option to edit or delete-->
-                <%users.forEach(user=>{ %>
-                     <%if(user.includes(selectUserId)){ %>
-                             <form>
-                                 <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id %>/edit"><i class="fas fa-edit"></i></button>
-                                 <!-- Button trigger modal for delete message -->
-                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
-                                     <i class="fa fa-trash"></i>
-                                 </button>
-                                 
-                                 <!-- Modal for delete message -->
-                                 <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
-                                     <div class="modal-dialog">
-                                     <div class="modal-content">
-                                         <div class="modal-header">
-                                         <h5 class="modal-title" id="DeleteMessageLabel"><%= book.title %></h5>
-                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
-                                         </div>
-                                         <div class="modal-body">
-                                         Are you sure you want to delete this item?
-                                         </div>
-                                         <div class="modal-footer">
-                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                         <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= book.id %>?_method=DELETE">Yes</button>
-                                         </div>
-                                     </div>
-                                     </div>
-                                 </div>
-                             </form>
-                     <%}%>
-                 <%});%>
-                     <hr>
-                     <p>Posted <%=book.createdAt%> by <%=book.user.firstName + ' ' + book.user.lastName%></p>
-                     <p>Author: <%=book.author%></p>
-                     <p>ISBN: <%=book.isbn%></p>
-                     <p>Condition: <%=book.condition%></p>
-                     <p>Price: $<%=book.price%></p>
-                 <%users.forEach(user=>{%>
-                    <!--if the current user is viewing a post that is not their own,
-                         add to cart button is available-->
-                     <%if(!user.includes(selectUserId)){%>
-                         <!-- add to cart button -->
-                         <form class="text-end">
-                             <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= book.id %>/book">Add To Cart</button>
-                         </form>
-                     <%}%>
-                 <%})%>
-                    
+                <%if(user.id == book.user._id){%>
+                    <form>
+                        <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id %>/edit"><i class="fas fa-edit"></i></button>
+                        <!-- Button trigger modal for delete message -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        
+                        <!-- Modal for delete message -->
+                        <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteMessageLabel"><%= book.title %></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                </div>
+                                <div class="modal-body">
+                                Are you sure you want to delete this item?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= book.id %>?_method=DELETE">Yes</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                <%}%>
+                
+                <hr>
+                <p>Posted <%=book.createdAt%> by <%=book.user.firstName + ' ' + book.user.lastName%></p>
+                <p>Author: <%=book.author%></p>
+                <p>ISBN: <%=book.isbn%></p>
+                <p>Condition: <%=book.condition%></p>
+                <p>Price: $<%=book.price%></p>
+                <!--if the current user is viewing a post that is not their own,
+                    add to cart button is available-->
+                    <!-- add to cart button -->
+                <%if(user.id != book.user._id){%>
+                    <form class="text-end">
+                        <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= book.id %>/book">Add To Cart</button>
+                    </form>
+                <%}%> 
                 </div>
 
                </div>

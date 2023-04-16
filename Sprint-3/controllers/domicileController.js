@@ -83,14 +83,11 @@ exports.search = (req,res,next)=>{
 // Function that show detail book
 exports.show = (req,res, next)=>{
     let id = req.params.id;
-    let selectUserId = req.session.user.id;
-    let userIdArray = [];
-
-    modelDomicile.findById(id)// Promise
+    
+    modelDomicile.findById(id).populate('user','firstName lastName')// Promise
     .then(domicile=>{
         if(domicile){
-            userIdArray.push(selectUserId);
-            return res.render('./domicile/show',{domicile, users:userIdArray,selectUserId:domicile.user});
+            return res.render('./domicile/show',{domicile});
         }else{
             //Error handler
             let err = new Error('Cannot find a domicile with id ' + id);

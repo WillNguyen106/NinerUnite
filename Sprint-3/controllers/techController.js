@@ -1,4 +1,3 @@
-const tech = require('../models/tech');
 const modelTech = require('../models/tech');
 
 // Function that find all techs
@@ -15,15 +14,15 @@ exports.new = (req,res)=>{
 
 exports.create = (req,res,next)=>{
     let tech = new modelTech(req.body);
+    tech.user = req.session.user.id;
+    
     if(req.file){
         tech.image = {
             data: req.file.buffer,
             contentType: req.file.minetype,
         }
     };
-    tech.user = req.session.user.id;
-
-
+    
     tech.save()
     .then(result =>res.redirect('/techs'))
     .catch(err => {
@@ -34,7 +33,7 @@ exports.create = (req,res,next)=>{
     })
 };
 
-// TODO: search function for tech product post
+// Search function for tech product post
 exports.search = (req,res,next)=>{
     let p = req.query.p;// req.body is an object
     
@@ -57,20 +56,10 @@ exports.search = (req,res,next)=>{
 // Function that show detail tech
 exports.show = (req,res,next)=>{
     let id = req.params.id;
-    let selectUserId = req.session.user.id;
-    let userIdArray = [];
     
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid tech id');
-        err.status = 400;
-        return next(err);
-    }
-    
-    modelTech.findById(id)// Promise
+    modelTech.findById(id).populate('user','firstName lastName')// Promise
     .then(tech=>{
-        if(tech){
-            userIdArray.push(selectUserId)
-            return res.render('./tech/show',{tech, users:userIdArray, selectUserId:tech.user});
+        if(tech){return res.render('./tech/show',{tech});
         }else{
             //Error handler
             let err = new Error('Cannot find a tech with id ' + id);
@@ -86,21 +75,8 @@ exports.show = (req,res,next)=>{
 exports.edit = (req,res, next)=>{
     let id = req.params.id;
     
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid tech id');
-        err.status = 400;
-        return next(err);
-    }
-
     modelTech.findById(id)
-    .then(tech => {
-        if(tech){
-            res.render('./tech/edit', {tech})
-        } else {
-            let err = new Error('Cannot find a tech with id ' + id)
-            err.status = 404;
-            next(err);
-        }
+    .then(tech => {res.render('./tech/edit', {tech});
     })    
     .catch(err => next(err));
 };
@@ -109,12 +85,6 @@ exports.edit = (req,res, next)=>{
 exports.update = (req,res, next)=>{
     let tech = req.body;
     let id = req.params.id;
-    
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid tech id');
-        err.status = 400;
-        return next(err);
-    }
 
     if(req.file){
         tech.image = {
@@ -124,15 +94,7 @@ exports.update = (req,res, next)=>{
     };
     
     modelTech.findByIdAndUpdate(id, tech,{useFindAndModify: false, runValidators:true})
-    .then(result =>{
-        if(result){
-            res.redirect('/techs/' + id);
-        }else{
-            let err = new Error('Cannot find a tech with id ' + id);
-            err.status = 404;
-            next(err);
-        }
-        
+    .then(tech =>{res.redirect('/techs/' + id);
     })
     .catch(err => {
         if(err.name = 'ValidationError'){
@@ -146,22 +108,8 @@ exports.update = (req,res, next)=>{
 exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
-    if(!id.match(/^[0-9a-fA-F]{24}$/)){
-        let err = new Error('Invalid tech id');
-        err.status = 400;
-        return next(err);
-    }
-
     modelTech.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(result => {
-        if(result){
-            return res.redirect('/techs')
-        }else{
-            let err = new Error('Cannot find a tech with id ' + id);
-            err.status = 404;
-            next(err);
-        }
-       
+    .then(tech => {return res.redirect('/techs')
     })
     .catch(err=>next(err));
 };

@@ -70,14 +70,10 @@ exports.search = (req,res,next)=>{
 // Function that show detail book
 exports.show = (req,res, next)=>{
     let id = req.params.id;
-    let selectUserId = req.session.user.id;
-    let userIdArray = [];
     
     modelBook.findById(id).populate('user','firstName lastName')// Promise
     .then(book=>{
-        if(book){
-            userIdArray.push(selectUserId);
-            return res.render('./textbook/show',{book, users:userIdArray,selectUserId:book.user});
+        if(book){return res.render('./textbook/show',{book});
         }else{
             //Error handler
             let err = new Error('Cannot find a book with id ' + id);

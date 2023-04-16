@@ -1,4 +1,7 @@
 const Book = require('../models/book');
+const Tech = require('../models/tech');
+const Domicile = require('../models/domicile');
+const domicile = require('../models/domicile');
 
 //check if user is a guest
 exports.isGuest = (req, res, next) => {
@@ -24,9 +27,10 @@ exports.isLoggedIn = (req, res, next) => {
     }
 };
 
-// check if the user is author of the story
-exports.isUserPost = (req,res,next)=>{
+// check if the user is the author of the post
+exports.isUserBookPost = (req,res,next)=>{
     let id = req.params.id;
+
     Book.findById(id)
     .then(book=>{
         if(book){
@@ -45,5 +49,52 @@ exports.isUserPost = (req,res,next)=>{
     })
     .catch(err=>next(err));
 };
+
+exports.isUserTechPost = (req,res,next)=>{
+    let id = req.params.id;
+
+    Tech.findById(id)
+    .then(tech=>{
+        if(tech){
+            if(tech.user == req.session.user.id){
+                return next();
+            }else{
+                let err = new Error('Unauthorized to access the resource');
+                err.status = 401;
+                return next(err);
+            }
+        }else{
+            let err = new Error('Cannot find an event with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err=>next(err));
+};
+
+exports.isUserDomicilePost = (req,res,next)=>{
+    let id = req.params.id;
+
+    Domicile.findById(id)
+    .then(domicile=>{
+        if(domicile){
+            if(domicile.user == req.session.user.id){
+                return next();
+            }else{
+                let err = new Error('Unauthorized to access the resource');
+                err.status = 401;
+                return next(err);
+            }
+        }else{
+            let err = new Error('Cannot find an event with id ' + id);
+            err.status = 404;
+            next(err);
+        }
+    })
+    .catch(err=>next(err));
+};
+
+
+
 
 
