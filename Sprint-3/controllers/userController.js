@@ -117,7 +117,7 @@ exports.profile =  (req, res, next) => {
         const[profile, books,techs] = results;
         let postNum = books.length + techs.length;
     //    console.log(postNum);
-    //    console.log(profile);
+        //console.log(profile);
         res.render('./user/profile', {profile, books,techs, postNum});
     })
     .catch(err => next(err));
