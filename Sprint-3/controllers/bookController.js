@@ -29,7 +29,6 @@ exports.create = (req,res, next)=>{
     
     book.save()
     .then(results =>{
-        // console.log(results)
         res.redirect('/books')})
     .catch(err => {
         if(err.name === 'ValidationError'){
@@ -48,21 +47,31 @@ exports.search = (req,res,next)=>{
     .then(books=>{
         let results = [];
         if(q){
-            let author = books.filter((book)=>book.author.toLowerCase().includes(q.toLowerCase()));
-            let title = books.filter((book)=>book.title.toLowerCase().includes(q.toLowerCase()));
-            let ISBN = books.filter((book)=>book.isbn.includes(q));
+            books.forEach(book=>{
+                if(book.author.toLowerCase().includes(q.toLowerCase())
+                    || book.title.toLowerCase().includes(q.toLowerCase())
+                    || book.isbn.includes(q))
+                    {
+                        results.push(book);
+                    }
+            });
 
-            ISBN.forEach(book => {
-                results.push(book);
-            });
+
+            // let author = books.filter((book)=>book.author.toLowerCase().includes(q.toLowerCase()));
+            // let title = books.filter((book)=>book.title.toLowerCase().includes(q.toLowerCase()));
+            // let ISBN = books.filter((book)=>book.isbn.includes(q));
+
+            // ISBN.forEach(book => {
+            //     results.push(book);
+            // });
             
-            author.forEach(book => {
-                results.push(book);
-            });
+            // author.forEach(book => {
+            //     results.push(book);
+            // });
     
-            title.forEach(book => {
-                results.push(book);
-            });
+            // title.forEach(book => {
+            //     results.push(book);
+            // });
             
         }
         res.render('./textbook/searchBook',{books, results, searched:true});
@@ -118,8 +127,6 @@ exports.update = (req,res, next)=>{
             });
         });
     }
-
-    // console.log(book);
 
     modelBook.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
     .then(book =>{res.redirect('/books/' + id);

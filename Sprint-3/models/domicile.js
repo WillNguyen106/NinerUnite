@@ -16,7 +16,7 @@ const domicileSchema = new Schema({
         minLength: [1, 'payment should not be 0']},
     phone:{type:String},
     email:{type: String},
-    image: {data: Buffer, contentType: String},
+    image: [{data: Buffer, contentType: String}],
 }, {timestamps:true});
 
 // address:  street, city, state, zipcode

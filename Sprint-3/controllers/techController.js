@@ -1,4 +1,5 @@
 const modelTech = require('../models/tech');
+const {DateTime} = require("luxon");
 
 // Function that find all techs
 exports.index = (req, res, next)=>{
@@ -16,11 +17,13 @@ exports.create = (req,res,next)=>{
     let tech = new modelTech(req.body);
     tech.user = req.session.user.id;
     
-    if(req.file){
-        tech.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
+    if(req.files && req.files.length > 0){
+        req.files.forEach(file=>{
+            tech.image.push({
+                data: file.buffer,
+                contentType: file.mimetype,
+            });
+        });
     };
     
     tech.save()
@@ -41,10 +44,12 @@ exports.search = (req,res,next)=>{
     .then(techs=>{
         let results = [];
         if(p){
-            let brand = techs.filter((tech)=>tech.brand.toLowerCase().includes(p.toLowerCase()));            
-
-            brand.forEach(tech => {
-                results.push(tech);
+            techs.forEach(tech=>{
+                if(tech.brand.toLowerCase().includes(p.toLowerCase())
+                    || tech.price.toString().includes(p))
+                    {
+                        results.push(tech);
+                    }
             });
         }
         res.render('./tech/searchTech',{techs, results, searched:true});
@@ -57,9 +62,11 @@ exports.search = (req,res,next)=>{
 exports.show = (req,res,next)=>{
     let id = req.params.id;
     
-    modelTech.findById(id).populate('user','firstName lastName')// Promise
+    modelTech.findById(id).populate('user','firstName lastName').lean()// Promise
     .then(tech=>{
-        if(tech){return res.render('./tech/show',{tech});
+        if(tech){
+            tech.createdAt = DateTime.fromJSDate(tech.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
+            return res.render('./tech/show',{id,tech});
         }else{
             //Error handler
             let err = new Error('Cannot find a tech with id ' + id);
@@ -86,11 +93,14 @@ exports.update = (req,res, next)=>{
     let tech = req.body;
     let id = req.params.id;
 
-    if(req.file){
-        tech.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
+    if(req.files && req.files.length > 0){
+        tech.image = tech.image || [];
+        req.files.forEach(file=>{
+            tech.image.push({
+                data: file.buffer,
+                contentType: file.mimetype,
+            });
+        });
     };
     
     modelTech.findByIdAndUpdate(id, tech,{useFindAndModify: false, runValidators:true})

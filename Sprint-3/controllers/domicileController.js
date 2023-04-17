@@ -1,4 +1,5 @@
 const modelDomicile = require("../models/domicile");
+const {DateTime} = require("luxon");
 
 // Function that find all domiciles
 exports.index = (req,res,next)=>{
@@ -18,11 +19,13 @@ exports.create = (req,res, next)=>{
     domicile.user = req.session.user.id;
     
     // Image upload
-    if(req.file){
-        domicile.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
+    if(req.files && req.files.length > 0){
+        req.files.forEach(file=>{
+            domicile.image.push({
+                data: file.buffer,
+                contentType: file.mimetype,
+            });
+        });
     };
     
     domicile.save()
@@ -43,39 +46,17 @@ exports.search = (req,res,next)=>{
     .then(domiciles=>{
         let results = [];
         if(d){
-            let title = domiciles.filter((domicile)=>domicile.title.toLowerCase().includes(d.toLowerCase()));
-            let type = domiciles.filter((domicile)=>domicile.type.toLowerCase().includes(d.toLowerCase()));
-            let address = domiciles.filter((domicile)=>domicile.address.toLowerCase().includes(d.toLowerCase()));
-            let payment = domiciles.filter((domicile)=>domicile.payment.toLowerCase().includes(d.toLowerCase()));
-            let bed = domiciles.filter((domicile)=>domicile.bed.toString().includes(d));
-            let bath = domiciles.filter((domicile)=>domicile.bath.toString().includes(d));
-
-            title.forEach(domicile => {
-                results.push(domicile);
-            });
-            
-            bed.forEach(domicile => {
-                results.push(domicile);
-            });
-    
-            bath.forEach(domicile => {
-                results.push(domicile);
-            });
-            
-            type.forEach(domicile => {
-                results.push(domicile);
-            });
-            
-            address.forEach(domicile => {
-                results.push(domicile);
-            });
-            
-            payment.forEach(domicile => {
-                results.push(domicile);
-            });
-
-            console.log(results);
-            
+            domiciles.forEach(domicile=>{
+                if(domicile.title.toLowerCase().includes(d.toLowerCase()) 
+                    || domicile.type.toLowerCase().includes(d.toLowerCase())
+                    || domicile.address.toLowerCase().includes(d.toLowerCase()) 
+                    || domicile.payment.toLowerCase().includes(d.toLowerCase())
+                    || domicile.bed.toString().includes(d) 
+                    || domicile.bath.toString().includes(d))
+                    {
+                        results.push(domicile);
+                    }
+            })
         }
         res.render('./domicile/searchDomicile',{domiciles, results, searched:true});
     })
@@ -86,10 +67,11 @@ exports.search = (req,res,next)=>{
 exports.show = (req,res, next)=>{
     let id = req.params.id;
     
-    modelDomicile.findById(id).populate('user','firstName lastName')// Promise
+    modelDomicile.findById(id).populate('user','firstName lastName').lean()// Promise
     .then(domicile=>{
         if(domicile){
-            return res.render('./domicile/show',{domicile});
+            domicile.createdAt = DateTime.fromJSDate(domicile.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
+            return res.render('./domicile/show',{id, domicile});
         }else{
             //Error handler
             let err = new Error('Cannot find a domicile with id ' + id);
@@ -122,11 +104,14 @@ exports.update = (req,res, next)=>{
     let domicile = req.body;
     let id = req.params.id;
     
-    if(req.file){
-        domicile.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
+    if(req.files && req.files.length > 0){
+        domicile.image = domicile.image || [];
+        req.files.forEach(file=>{
+            domicile.image.push({
+                data: file.buffer,
+                contentType: file.mimetype,
+            });
+        });
     }
 
     modelDomicile.findByIdAndUpdate(id, domicile,{useFindAndModify: false, runValidators:true})
