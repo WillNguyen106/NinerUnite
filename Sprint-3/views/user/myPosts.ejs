@@ -59,7 +59,7 @@
                     
                     <tr class="select listItem">
                         <td>
-                            <form class="">
+                            <form>
                                 <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id %>/edit"><i class="fas fa-edit"></i></button>
                                 <!-- Button trigger modal for delete message -->
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
@@ -128,16 +128,16 @@
                         <form>
                             <button class="btn btn-success" type="submit" formmethod="GET" formaction="/techs/<%= tech.id %>/edit"><i class="fas fa-edit"></i></button>
                             <!-- Button trigger modal for delete message -->
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage2">
                                 <i class="fa fa-trash"></i>
                             </button>
                             
                             <!-- Modal for delete message -->
-                            <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                            <div class="modal fade" id="DeleteMessage2" tabindex="-1" aria-labelledby="DeleteMessageLabel2" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="DeleteMessageLabel"><%= tech.brand %></h5>
+                                    <h5 class="modal-title" id="DeleteMessageLabel2"><%= tech.brand %></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
                                     </div>
                                     <div class="modal-body">
