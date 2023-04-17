@@ -62,7 +62,7 @@
                 then they have the option to edit or delete-->
                 <%if(user.id == book.user._id){%>
                     <form>
-                        <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id %>/edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= id %>/edit"><i class="fas fa-edit"></i></button>
                         <!-- Button trigger modal for delete message -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
                             <i class="fa fa-trash"></i>
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= book.id %>?_method=DELETE">Yes</button>
+                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= id %>?_method=DELETE">Yes</button>
                                 </div>
                             </div>
                             </div>

@@ -1,4 +1,3 @@
-const book = require('../models/book');
 const modelBook = require('../models/book');
 const {DateTime} = require("luxon");
 
@@ -17,7 +16,6 @@ exports.new = (req,res)=>{
 exports.create = (req,res, next)=>{
     let book = new modelBook(req.body);
     book.user = req.session.user.id;
-    
     // Upload multiple images into array object of image in the book schema
     // if req.files is exist, we need a forEach loop to push each image object into the array object of image field 
     if (req.files && req.files.length > 0) {
@@ -78,11 +76,11 @@ exports.search = (req,res,next)=>{
 exports.show = (req,res, next)=>{
     let id = req.params.id;
     
-    modelBook.findById(id).populate('user','firstName lastName')// Promise
+    modelBook.findById(id).populate('user','firstName lastName').lean()// Promise
     .then(book=>{
         if(book){
-            // console.log(book.image.length);
-            return res.render('./textbook/show',{book});
+            book.createdAt = DateTime.fromJSDate(book.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
+            return res.render('./textbook/show',{id,book});
         }else{
             //Error handler
             let err = new Error('Cannot find a book with id ' + id);
