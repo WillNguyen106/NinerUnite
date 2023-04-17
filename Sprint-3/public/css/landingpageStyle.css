@@ -17,6 +17,14 @@ footer {
 /* this is the image behind the search bar on the homepage */
 .index {
     background-image: url(../images/other/image3.jpg);
+    background-size: cover;
+}
+
+/* when the width of the screen is greater than 768px, make the searchSelect 25% width*/
+@media (min-width: 768px) {
+    #searchSelect {
+        width: 25%;
+    }
 }
 
 .navbar-color {
