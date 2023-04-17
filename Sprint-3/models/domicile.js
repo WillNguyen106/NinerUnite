@@ -19,6 +19,8 @@ const domicileSchema = new Schema({
     image: {data: Buffer, contentType: String},
 }, {timestamps:true});
 
-
+// address:  street, city, state, zipcode
+// 1234 Candy Rush, Charlotte
+// 1st case: same number and street, different city
 
 module.exports = mongoose.model('Domicile', domicileSchema);

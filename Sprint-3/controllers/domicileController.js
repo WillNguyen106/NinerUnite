@@ -44,11 +44,11 @@ exports.search = (req,res,next)=>{
         let results = [];
         if(d){
             let title = domiciles.filter((domicile)=>domicile.title.toLowerCase().includes(d.toLowerCase()));
-            let bed = domiciles.filter((domicile)=>domicile.bed.toLowerCase().includes(d.toLowerCase()));
-            let bath = domiciles.filter((domicile)=>domicile.bath.toLowerCase().includes(d.toLowerCase()));
             let type = domiciles.filter((domicile)=>domicile.type.toLowerCase().includes(d.toLowerCase()));
-            let location = domiciles.filter((domicile)=>domicile.location.toLowerCase().includes(d.toLowerCase()));
-            let price = domiciles.filter((domicile)=>domicile.price.includes(d));
+            let address = domiciles.filter((domicile)=>domicile.address.toLowerCase().includes(d.toLowerCase()));
+            let payment = domiciles.filter((domicile)=>domicile.payment.toLowerCase().includes(d.toLowerCase()));
+            let bed = domiciles.filter((domicile)=>domicile.bed.toString().includes(d));
+            let bath = domiciles.filter((domicile)=>domicile.bath.toString().includes(d));
 
             title.forEach(domicile => {
                 results.push(domicile);
@@ -66,13 +66,15 @@ exports.search = (req,res,next)=>{
                 results.push(domicile);
             });
             
-            location.forEach(domicile => {
+            address.forEach(domicile => {
                 results.push(domicile);
             });
             
-            price.forEach(domicile => {
+            payment.forEach(domicile => {
                 results.push(domicile);
             });
+
+            console.log(results);
             
         }
         res.render('./domicile/searchDomicile',{domiciles, results, searched:true});
