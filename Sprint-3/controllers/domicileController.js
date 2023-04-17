@@ -39,7 +39,7 @@ exports.create = (req,res, next)=>{
 exports.search = (req,res,next)=>{
     let d = req.query.d;// req.body is an object
     
-    modelBook.find({d}).exec()
+    modelDomicile.find({d}).exec()
     .then(domiciles=>{
         let results = [];
         if(d){
