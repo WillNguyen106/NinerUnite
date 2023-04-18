@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const modelBook = require('../models/book');
 const modelTech = require('../models/tech');
+const modelDomicile = require("../models/domicile");
 const modelCart = require('../models/cart');
 
 //const modelDomicile = require('../models/book');
@@ -181,12 +182,12 @@ exports.updateProfile = (req, res, next) => {
 
 exports.myPosts = (req, res, next) => {
     let id = req.session.user.id;
-    Promise.all([User.find({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.find({_id: id}), modelBook.find({user: id}), modelTech.find({user: id}), modelDomicile.find({user: id})])
     .then(results => {
-        const[profile, books,techs] = results;
-        let postNum = books.length + techs.length;
+        const[profile, books, techs, domiciles] = results;
+        let postNum = books.length + techs.length + domiciles.length;
     //    console.log(postNum);
-        res.render('./user/myPosts', {profile, books,techs, postNum});
+        res.render('./user/myPosts', {profile, books,techs, domiciles, postNum});
     })
     .catch(err => next(err));
 

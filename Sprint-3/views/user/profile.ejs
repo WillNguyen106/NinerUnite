@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs', {cs: 'defaultstyle' })%>
+<%- include('../partials/header.ejs', {cs: 'profileStyles' })%>
 
     <!-- Primary Table for All Elements -->
     <div class="container flex-row w-50 text-center">
@@ -8,7 +8,7 @@
             <div class="col-md-6">
 
                 <% if (profile.image.data) { %>
-                    <img class=" img-fluid mb-3" max-height="400" src="data:<%=profile.image.contentType%>;base64,
+                    <img class=" img-fluid mb-3 profileImage" src="data:<%=profile.image.contentType%>;base64,
                     <%=profile.image.data.toString('base64')%>" alt="">
                 <%} else { %>
                     <img class="img-fluid border mb-3" src="/images/other/profiledefault.png"> 
