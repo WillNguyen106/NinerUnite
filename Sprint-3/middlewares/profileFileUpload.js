@@ -17,7 +17,7 @@ const upload = multer({
   storage: storage,
   limits:{fileSize: 2*1024*1024},
   fileFilter: fileFilter
-}).single('image',3);
+}).single('image');
 
 exports.profileFileUpload = (req, res, next) => {
   upload(req, res, (err) => {

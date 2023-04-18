@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-md-6">
 
-                    <% if (profile.image.data) { %>
-                        <img class=" img-fluid mb-3" max-height="400" src="data:<%=profile.image.contentType%>;base64,
-                        <%=profile.image.data.toString('base64')%>" alt="">
-                    <%} else { %>
-                        <img class="img-fluid border mb-3" src="/images/other/profiledefault.png"> 
-                    <% } %>
+                <% if (profile.image.data) { %>
+                    <img class=" img-fluid mb-3" max-height="400" src="data:<%=profile.image.contentType%>;base64,
+                    <%=profile.image.data.toString('base64')%>" alt="">
+                <%} else { %>
+                    <img class="img-fluid border mb-3" src="/images/other/profiledefault.png"> 
+                <% } %>
                     
 
             </div>
@@ -43,8 +43,8 @@
                                 </tr>
                                 <tr>
                                     <th>About Me: </th>
-                                    <% if(profile.biograph.length > 0){ %>
-                                        <td><%- profile.biograph%></td>
+                                    <% if(profile.biograph){ %>
+                                        <td><%= profile.biograph%></td>
         
                                     <%} else {%>
                                         <td>You have not told us anything yet!</td>
