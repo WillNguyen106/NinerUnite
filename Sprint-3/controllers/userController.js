@@ -137,7 +137,6 @@ exports.edit =  (req, res, next) => {
     User.findById(id)
     .then(profile => {
         if(profile){
-            req.flash('success', 'Successfully uploaded the profile');
             res.render('./user/editProfile', {profile})
         } else {
             let err = new Error('Cannot find a User with id ' + id)
@@ -163,6 +162,7 @@ exports.updateProfile = (req, res, next) => {
     User.findByIdAndUpdate(id, profile,{useFindAndModify: false, runValidators:true})
     .then(result =>{
         if(result){
+            req.flash('success', 'Successfully uploaded the profile');
             res.redirect('/users/profile/' + id);
         }else{
             let err = new Error('Cannot find a User with id ' + id);
