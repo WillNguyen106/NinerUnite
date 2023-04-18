@@ -144,7 +144,7 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
     
     modelBook.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(book => {res.redirect('/books');
+    .then(book => {res.redirect('/users/myPosts');
     })
     .catch(err=>next(err));
 };

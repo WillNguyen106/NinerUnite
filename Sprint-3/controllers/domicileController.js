@@ -1,3 +1,4 @@
+const domicile = require("../models/domicile");
 const modelDomicile = require("../models/domicile");
 const {DateTime} = require("luxon");
 
@@ -138,15 +139,8 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
     modelBook.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(result => {
-        if(result){
-            return res.redirect('/domiciles')
-        }else{
-            let err = new Error('Cannot find a domiciles with id ' + id);
-            err.status = 404;
-            next(err);
-        }
-       
+    .then(domicile => {
+        return res.redirect('/users/myPosts');
     })
     .catch(err=>next(err));
 };

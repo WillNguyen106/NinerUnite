@@ -119,7 +119,7 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
     modelTech.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(tech => {return res.redirect('/techs')
+    .then(tech => {return res.redirect('/users/myPosts');
     })
     .catch(err=>next(err));
 };
