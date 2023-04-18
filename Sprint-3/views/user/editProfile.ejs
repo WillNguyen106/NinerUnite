@@ -6,8 +6,18 @@
         <h3 class="fs-1 py-5 mb-5">My Profile</h3>
         <table>
             <tr>
-                <td><img class="img-fluid border border-secondary border-3" width="400" height="400"
-                        src="/images/other/profiledefault.png" alt="Default image for profile"></td>
+                <td>
+
+
+                        <% if (profile.image.data) { %>
+                            <img class=" img-fluid mb-3" src="data:<%=profile.image.contentType%>;base64,
+                            <%=profile.image.data.toString('base64')%>" alt="">
+                        <%} else { %>
+                            <!-- <img class="img-fluid border mb-3" src="/images/other/profiledefault.png">  -->
+                            <img class="img-fluid border border-secondary border-3" width="400" height="400"
+                            src="/images/other/profiledefault.png" alt="Default image for profile">
+                        <% } %>
+                </td>
                 <td class="align-top ps-4">
                     <!-- Secondary Table for Account Information -->
                     <table class="table">
@@ -41,8 +51,8 @@
                         <tr>
                             <th>About Me</th>
                             <td><textarea class="form-control inputBox text-dark border-1" type="text"
-                                id="about" name="biograph" value="<%- profile.biograph%>" minlength="10"
-                                required></textarea></td>
+                                id="about" name="biograph"  minlength="10"
+                                required><%= profile.biograph%></textarea></td>
                             </th>
                         </tr>
                         <tr>
@@ -54,6 +64,7 @@
             </tr>
             <tr>
                 <td class="pt-4"><!-- Buttons to Change Account Details -->
+                    <a class="btn btn-danger btn-lg text-end m-1" href="javascript:history.back()">Cancel</a>
                     <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
                 </td>
             </tr>
