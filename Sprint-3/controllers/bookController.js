@@ -1,18 +1,24 @@
 const modelBook = require('../models/book');
 const {DateTime} = require("luxon");
+// const {filterBooks} = require('../public/javascript/filterSelector');
 
 // Function that find all books
 exports.index = (req, res, next)=>{
     let results =[];
+    // console.log(req.body.test);
     modelBook.find()
     .then(books => {
-        books.filter(book=>{
-            if(book.price > 100){
-                results.push(book);
-                console.log(results);
-            }
-        })
-        res.render('./textbook/books', {books});
+        // console.log(filterBooks);
+        // if(books.price >= 1 && books.price <= 20){
+            results = books.filter(book=>{
+                return (book.price >= 1 && book.price <= 20
+                    || book.price > 20 && book.price <= 50
+                    || book.price > 50 && book.price <= 100
+                    || book.price > 100)
+            })
+        // }
+        console.log(results);
+        res.render('./textbook/books', {books, results});
     })
     .catch(err => next(err));
 }
