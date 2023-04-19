@@ -9,6 +9,21 @@
         <div class="row justify-content-center">
 
             <div class="row mb-4 w-75">
+                <span id="subjectValue"  hidden aria-hidden="true"><%=book.subject%></span>
+                <div class="col-md-2 col-form-label">
+                    <label for="subject" class="form-label fw-bold">Subject: </label>
+                </div>
+                <div class="col-md-10">
+                    <select id="subjectList" class="form-select" name="subject" aria-label="--Select a Subject--" required>
+                        <option selected value="">--Select a Subject--</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-4 w-75">
                 <div class="col-md-2 col-form-label">
                     <label for="title" class="form-label fw-bold">Title:</label>
                 </div>
@@ -81,6 +96,7 @@
             <!--Cancel form-->
             <!-- <button class="btn btn-danger btn-lg text-end m-1" type="submit" formmethod="GET" formaction="/books/<%= book.id %>">Cancel</button> -->
             <a class="btn btn-danger btn-lg text-end m-1" href="javascript:history.back()">Cancel</a>
+            <!--Submit form button-->
             <button type="button" class="btn btn-success btn-lg text-end m-1" data-bs-toggle="modal" data-bs-target="#SaveMessage">
                 Submit
             </button>
@@ -113,4 +129,5 @@
     </form>
 
 </div>
+<script src="/javascript/bookEdit.js"></script>
     <%- include('../partials/footer.ejs')%>
