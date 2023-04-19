@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
     user : {type:Schema.Types.ObjectId, ref: 'User'},
+    subject:{type:String,required:[true,'subject is required']},
     title:{type: String, required: [true, 'title is required']},
     condition: {type: String, required: [true, 'condition is required'], 
             minLength: [3, 'condition should have at least 3 character']},

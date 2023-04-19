@@ -3,8 +3,17 @@ const {DateTime} = require("luxon");
 
 // Function that find all books
 exports.index = (req, res, next)=>{
+    let results =[];
     modelBook.find()
-    .then(books => res.render('./textbook/books', {books}))
+    .then(books => {
+        books.filter(book=>{
+            if(book.price > 100){
+                results.push(book);
+                console.log(results);
+            }
+        })
+        res.render('./textbook/books', {books});
+    })
     .catch(err => next(err));
 }
 // Function that create new book post and save new post
