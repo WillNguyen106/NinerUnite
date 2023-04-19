@@ -25,3 +25,7 @@
     border-color: #005035;
     border-width: 2px;
 }
+
+.thumbnailImg {
+    object-fit: fill;
+}

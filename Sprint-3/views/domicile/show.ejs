@@ -45,22 +45,51 @@
                  </div>
              <%} else{%>
                  <!--TODO: modify this line-->
-                 <p class="p-5">No Image</p>
+                 <img class="img-fluid" src="/images/other/noImageAvailable.png"> 
              <%}%>
         </div>
      </div>
     <p>Posted <%=domicile.createdAt%> by <%=domicile.user.firstName + ' ' + domicile.user.lastName%></p>
-                <p>Title: <%=domicile.title%></p>
+                <h3><%=domicile.title%></h3>
+                <!--if the user is the owner of the post, they are able to edit and delete the post from show page-->
+                <%if(user.id == domicile.user._id){%>
+                    <form>
+                        <button class="btn btn-success" type="submit" formmethod="GET" formaction="/domiciles/<%= id %>/edit"><i class="fas fa-edit"></i></button>
+                        <!-- Button trigger modal for delete message -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        
+                        <!-- Modal for delete message -->
+                        <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteMessageLabel"><%= domicile.title %></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                </div>
+                                <div class="modal-body">
+                                Are you sure you want to delete this post?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/domiciles/<%= id %>?_method=DELETE">Yes</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                <%}%>
+                <hr>
                 <p>Address: <%=domicile.address%></p>
                 <p>Description: <%=domicile.description%></p>
                 <p>Type: <%=domicile.type%></p>
                 <p>Bedrooms: <%=domicile.bed%></p>
-                <p>Bathrooms: <%=domicile.bed%></p>
-                <p>Payment: <%=domicile.bed%></p>
+                <p>Bathrooms: <%=domicile.bath%></p>
+                <p>Payment: <%=domicile.payment%></p>
                 <p>Phone: <%=domicile.phone%></p>
                 <p>Email: <%=domicile.email%></p>
-    <%#if(user.id != domicile.user._id){%>
-        <!--TODO: Display add to cart button-->
-    <%#}%>
+ 
+                <!--no add to cart button necessary for domicile posts-->
 
 <%- include('../partials/footer.ejs')%>

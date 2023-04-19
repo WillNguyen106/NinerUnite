@@ -1,11 +1,10 @@
 <%- include('../partials/header.ejs', {cs: 'homepage' })%>
     <!----------------------------------------------------------------------------------------------------------------------- THIS PAGE IS INCOMPLETED -->
-    <h2 class="text-center mt-5">Edit Dorm Post</h2>
+    <h2 class="text-center mt-5">Edit Domicile Post</h2>
 
-    <!-- Receiving the Tech -->
     <div class="container my-5">
 
-        <form action="/domicile/<%= domicile.id%>?_method=PUT" enctype="multipart/form-data" method='POST'>
+        <form action="/domiciles/<%= domicile.id%>?_method=PUT" enctype="multipart/form-data" method='POST'>
             <!--horizontal center by using bootstrap's grid alignment for rows-->
             <div class="row justify-content-center">
                 <!--Title Section-->
@@ -14,8 +13,8 @@
                         <label for="title" class="form-label fw-bold">Title:</label>
                     </div>
                     <div class="col-md-10">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="title" name="title"
-                            placeholder="Ex: Dorm Near Campus" required>
+                        <input class="form-control inputBox text-dark bg-light border-0" type="text" id="title" name="title"
+                            placeholder="Ex: Dorm Near Campus" value="<%= domicile.title %>" required>
                     </div>
                 </div>
 
@@ -25,8 +24,8 @@
                         <label for="address" class="form-label fw-bold">Address:</label>
                     </div>
                     <div class="col-md-10">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="address" name="address"
-                            placeholder="Ex: 9551 University Terrace Dr, Charlotte, NC 28262" required>
+                        <input class="form-control inputBox text-dark bg-light border-0" type="text" id="address" name="address"
+                            placeholder="Ex: 9551 University Terrace Dr, Charlotte, NC 28262" value="<%= domicile.address %>" required>
                     </div>
                 </div>
 
@@ -37,26 +36,69 @@
                         <label for="description" class="form-label fw-bold">Description:</label>
                     </div>
                     <div class="col-lg-10">
-                        <textarea class="form-control inputBox text-dark border-0" id="description" name="description"
+                        <textarea class="form-control inputBox text-dark bg-light border-0" id="description" name="description"
                             placeholder="Ex: Apartment is on the top floor and right next to Terrace road."
-                            required></textarea>
+                            required><%= domicile.description %></textarea>
                     </div>
                 </div>
 
 
                 <!--Type Section-->
                 <!--This may need to be chanced-->
-                <div class="row mb-4 w-75">
+                <!--Select menu option-->
+                <!--Menu option 1: Type-->
+                <div class="row mb-4 w-75 text-break">
+
                     <div class="col-lg-2 col-form-label">
-                        <label for="type" class="form-label fw-bold">Type:</label>
+                        <label for="type" class="form-label fw-bold">Household Type:</label>
                     </div>
-                    <div class="col-md-10 col-form-label">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="type" name="type"
-                            placeholder="Ex: Apartment" required>
+
+                    <div class="col-lg-2">
+                        <span id="typeListValue" hidden><%= domicile.type%></span>
+                        <select id="typeList" class="form-select" name="type" aria-label="--Select--" required>
+                            <option value="">--Select--</option>
+                            <option value="dorm">Dorm</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="townhouse">Townhouse</option>
+                        </select>
+                    </div>
+                    <!--Select menu option-->
+                    <!--Menu option 2: Bed-->
+                    <div class="col-lg-2 col-form-label">
+                        <label for="bed" class="form-label fw-bold">Bed(s):</label>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <span id="bedListValue" hidden><%= domicile.bed%></span>
+                        <select id="bedList" class="form-select" name="bed" aria-label="--Select--" required>
+                            <option value="">--Select--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <!--Select menu option-->
+                    <!--Menu option 3: Bath-->
+                    <div class="col-lg-2 col-form-label">
+                        <label for="bath" class="form-label fw-bold">Bath(s):</label>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <span id="bathListValue" hidden><%= domicile.bath%></span>
+                        <select id="bathList" class="form-select" name="bath" aria-label="--Select--"  required>
+                            <option value="">--Select--</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="2">2.5</option>
+                            <option value="3">3</option>
+                        </select>
                     </div>
                 </div>
 
-                <!--Payment Plan Section-->
+
+                <!--Payment Section !!!!!!!!!-->
                 <div class="row mb-4 w-75">
 
                     <div class="col-md-2 col-form-label">
@@ -64,8 +106,37 @@
                     </div>
 
                     <div class="col-md-10">
-                        <input class="form-control inputBox text-dark border-0" type="text" id="payment" name="payment"
-                            placeholder="Ex: 1000 monthly" required>
+                        <input class="form-control inputBox text-dark bg-light border-0" type="text" id="payment" name="payment"
+                            placeholder="Ex: 1000 monthly" value="<%= domicile.payment %>" required>
+
+                    </div>
+
+                </div>
+
+                <!--Phone Plan Section-->
+                <div class="row mb-4 w-75">
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="phone" class="form-label fw-bold">Phone:</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark bg-light border-0" type="text" id="phone" name="phone"
+                            placeholder="Optional" value="<%= domicile.phone %>">
+                    </div>
+
+                </div>
+
+                <!--Email Section-->
+                <div class="row mb-4 w-75">
+
+                    <div class="col-md-2 col-form-label">
+                        <label for="email" class="form-label fw-bold">Email:</label>
+                    </div>
+
+                    <div class="col-md-10">
+                        <input class="form-control inputBox text-dark bg-light border-0" type="text" id="email" name="email"
+                            placeholder="Optional" value="<%= domicile.email %>" >
                     </div>
 
                 </div>
@@ -77,20 +148,21 @@
                     </div>
                     <div class="col-md-10">
                         <!--currently accepts any type of image, but this could change-->
-                        <input class="form-control" type="file" id="image" name="image" accept="image/*" multiple>
+                        <input class="form-control" type="file" id="image" name="image" accept="image/*" value="<%= domicile.image %>" multiple>
                     </div>
                 </div>
 
                 <!-- Button trigger modal for save message -->
                 <div class="text-center">
 
-                    <!--Cancel form-->
-                    <button class="btn btn-danger btn-lg text-end m-1" type="submit" formmethod="GET"
-                        formaction="/techs/<%= tech.id %>">Cancel</button>
-                    <button type="button" class="btn btn-success btn-lg text-end m-1" data-bs-toggle="modal"
+            <!--Cancel form-->
+            <button class="btn btn-danger btn-lg text-end m-1" type="submit" formmethod="GET"
+                        formaction="/domiciles/<%= domicile.id %>">Cancel</button>
+            <!--Submit new changes-->
+            <button type="button" class="btn btn-success btn-lg text-end m-1" data-bs-toggle="modal"
                         data-bs-target="#SaveMessage">
                         Submit
-                    </button>
+            </button>
                 </div>
             </div>
 
@@ -100,8 +172,8 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="DeleteMessageLabel">
-                                <%= tech.brand %>
+                            <h5 class="modal-title" id="SaveMessageLabel">
+                                <%= domicile.title %>
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Cancel"></button>
@@ -118,5 +190,6 @@
             </div>
         </form>
     </div>
+    <script src="/javascript/domicileEdit.js"></script>
 
     <%- include('../partials/footer.ejs')%>
