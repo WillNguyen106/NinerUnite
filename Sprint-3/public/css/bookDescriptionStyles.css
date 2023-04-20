@@ -18,3 +18,24 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.imageBox {
+
+    width: 75%;
+}
+
+.imageInBox{
+    width: 100%;
+    /* height: 50%; */
+    object-fit: cover;
+}
+
+/* .slideArea {
+    max-height: 500px;
+} */
+
+/* img{
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+} */

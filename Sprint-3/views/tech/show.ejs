@@ -49,8 +49,8 @@
                </div>
 
            </div>
-           <div class="col-lg-6  d-inline-flex justify-content-center">
-               <div class="p-3 m-3 d-inline-flex bg-light text-wrap flex-column">
+           <div class="col-lg-6 justify-content-center">
+               <div class="p-3 m-3 bg-light d-inline-flex text-wrap flex-column">
                    <h2 class="bookTitle"><%= tech.brand%></h2>
                     <%if(user.id == tech.user._id){ %>
                             <form>
@@ -81,7 +81,7 @@
                             </form>
                     <%}%>
                    <hr>
-                    <p>Posted <%=tech.createdAt%> by <%=tech.user.firstName + ' ' + tech.user.lastName%></p>
+                    <p>Posted <%=tech.createdAt%> by <a href="/users/profile/<%=tech.user._id%>"><%=tech.user.firstName + ' ' + tech.user.lastName%></a></p>
                     <p>Description: <%=tech.description%></p>
                     <p>Condition: <%=tech.condition%></p>
                     <p>Price: $<%=tech.price%></p>

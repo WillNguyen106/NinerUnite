@@ -53,7 +53,7 @@
             </div>
             <!-- This is the div for all the title elements -->
             <div class="ps-4">
-                <p>Posted <%=domicile.createdAt%> by <%=domicile.user.firstName + ' ' + domicile.user.lastName%>
+                <p>Posted <%=domicile.createdAt%> by <a href="/users/profile/<%=domicile.user._id%>"><%=domicile.user.firstName + ' ' + domicile.user.lastName%></a>
                 </p>
                 <h3>
                     <%=domicile.title%>
