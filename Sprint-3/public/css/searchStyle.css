@@ -16,4 +16,10 @@
 
 }
 
+.cardStyle :hover {
+    text-decoration: none;
+    border-color: #005035;
+    border-width: 2px;
+}
+
 
