@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #005035;
+
+    padding: 30px 10px;
+}
+
+.card {
+    max-width: 1000px;
+    color: black;
+    border-radius: 20 px;
+}
+
+.col-md-3 {
+    margin-top: 8.77em;
+    max-width: 500px;
+    padding-right: 5rem;
+    padding-left: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.column5 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+}
+
+p {
+    margin: 0px;
+}
+
+.px-4 {
+    padding-top: 1.5rem!important;
+    padding-bottom: 1.5rem!important;
+}
+
+.container .h8 {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: start;
+}
+
+.btn.btn-primary {
+    width: 70%;
+    margin: 20px;
+    height: 70px;
+    background-color: #928403;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    border: none;
+    transition: 0.5s;
+    background-size: 200% auto;
+
+}
+
+
+input.form-control:hover {
+    border-color: #cebb16;
+}
+
+
+
+
+
+
+.btn.btn.btn-primary:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn.btn.btn-primary.cancel:hover {
+    background-color: red;
+}
+
+.btn.btn.btn-primary.pay:hover {
+    background-color: #18721d;
+}
+
+
+
+.btn.btn-primary:hover .fas.fa-arrow-right {
+    transform: translate(15px);
+    transition: transform 0.2s ease-in;
+}
+
+.form-control {
+    color: #252525;
+    background-color: #fff;
+    border: 2px solid transparent;
+    height: 60px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #0C4160;
+    border: 2px solid #2d4dda;
+    box-shadow: none;
+}
+
+.text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
