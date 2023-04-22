@@ -1,20 +1,13 @@
 const book = require('../models/book');
 const modelBook = require('../models/book');
-<<<<<<< Updated upstream
 const modelCart = require('../models/cart');
 const {DateTime} = require("luxon");
 // const {filterBooks} = require('../public/javascript/filterSelector');
-=======
-const {DateTime} = require("luxon");
->>>>>>> Stashed changes
 
 // Function that find all books
 exports.index = (req, res, next)=>{
     let results =[];
-<<<<<<< HEAD
     
-=======
->>>>>>> 0e5de8cd1a919395dcbd53cdc565802c13d6f5f4
     modelBook.find()
     .then(books => {
         results = books.filter(book=>book.price >= 1 && book.price <= 20);
@@ -32,7 +25,6 @@ exports.new = (req,res)=>{
 exports.create = (req,res, next)=>{
     let book = new modelBook(req.body);
     book.user = req.session.user.id;
-<<<<<<< Updated upstream
     // Upload multiple images into array object of image in the book schema
     // if req.files is exist, we need a forEach loop to push each image object into the array object of image field 
     if (req.files && req.files.length > 0) {
@@ -43,14 +35,6 @@ exports.create = (req,res, next)=>{
             });
         });
     }
-=======
-    if(req.file){
-        book.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
-    };
->>>>>>> Stashed changes
     
     book.save()
     .then(results =>{
@@ -111,11 +95,7 @@ exports.search = (req,res,next)=>{
 exports.show = (req,res, next)=>{
     let id = req.params.id;
     
-<<<<<<< Updated upstream
     modelBook.findById(id).populate('user','firstName lastName').lean()// Promise
-=======
-    modelBook.findById(id)// Promise
->>>>>>> Stashed changes
     .then(book=>{
         if(book){
             book.createdAt = DateTime.fromJSDate(book.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
@@ -147,7 +127,6 @@ exports.update = (req,res, next)=>{
     let id = req.params.id;
     let book = req.body;
     
-<<<<<<< Updated upstream
     if (req.files && req.files.length > 0) {
         // Initialize variable book.image first
         book.image = book.image || [];
@@ -157,13 +136,6 @@ exports.update = (req,res, next)=>{
             contentType: file.mimetype
             });
         });
-=======
-    if(req.file){
-        book.image = {
-            data: req.file.buffer,
-            contentType: req.file.minetype,
-        }
->>>>>>> Stashed changes
     }
 
     modelBook.findByIdAndUpdate(id, book,{useFindAndModify: false, runValidators:true})
@@ -182,7 +154,6 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
     
     modelBook.findByIdAndDelete(id, {useFindAndModify: false})
-<<<<<<< Updated upstream
     .then(tech => {
         //delete from cart collection
         modelCart.deleteMany({bookId: id})
@@ -194,9 +165,6 @@ exports.delete = (req,res, next)=>{
             next(err)}
         );    
     
-=======
-    .then(book => {res.redirect('/books');
->>>>>>> Stashed changes
     })
     .catch(err=>next(err));
 };
