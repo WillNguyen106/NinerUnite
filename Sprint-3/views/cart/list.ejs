@@ -10,7 +10,7 @@
   <%if(books.length || techs.length){ %>
 
   <!--div that contains the list of cart list and total box-->
-  <div class="row gx-4">
+  <div class="row gx-4 mb-3">
     <div class=" col-md-8">
       <!--this table is the cart list-->
       <table class="table border text-break">
@@ -364,6 +364,14 @@
 
         </div>
     </div>
+  </div>
+
+  <!--checkout button-->
+  <div class="row">
+    <div class="col d-flex justify-content-end">
+      <a class="btn btn-success" href="/cart/checkout">Checkout</a>
+    </div>
+
   </div>
 
   <%}%>

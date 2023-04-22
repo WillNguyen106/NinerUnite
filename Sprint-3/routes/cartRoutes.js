@@ -14,5 +14,7 @@ router.post('/add/:id/book', isLoggedIn, cartController.addBook)
 router.post('/add/:id/tech', isLoggedIn, cartController.addTech)
 //delete an item from the cart by its id /cart/delete/:id
 router.delete('/delete/:id', isLoggedIn, cartController.delete);
+//navigate to cart checkout: /cart/checkout
+router.get('/checkout', isLoggedIn, cartController.checkout);
 
 module.exports = router;

@@ -22,4 +22,9 @@
     border-width: 2px;
 }
 
-
+/*changes select box width to 20% once the screen is at least 768px in width*/
+@media (min-width: 768px) {
+    #searchSelect {
+        width: 20%;
+    }
+}
