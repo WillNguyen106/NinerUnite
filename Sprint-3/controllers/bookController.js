@@ -40,7 +40,7 @@ exports.create = (req,res, next)=>{
     
     book.save()
     .then(results =>{
-        req.flash('success', "Successfully post a new book!")
+        req.flash('success', "Successfully post a new book item!")
         res.redirect('/books')})
     .catch(err => {
         if(err.name === 'ValidationError'){

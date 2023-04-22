@@ -28,7 +28,9 @@ exports.create = (req,res,next)=>{
     };
     
     tech.save()
-    .then(result =>res.redirect('/techs'))
+    .then(result =>
+        {   req.flash('success', "Successfully post a new book item!");
+            res.redirect('/techs')})
     .catch(err => {
         if(err.name === 'ValidationError'){
             err.status = 400;
