@@ -1,7 +1,11 @@
 const express = require('express');
 const controllerTech = require('../controllers/techController');
 const {fileUpload} = require('../middlewares/fileUpload');
+<<<<<<< Updated upstream
 const {isLoggedIn, isUserTechPost} = require('../middlewares/auth');
+=======
+const {isLoggedIn} = require('../middlewares/auth');
+>>>>>>> Stashed changes
 const {validateId} = require('../middlewares/validator');
 
 const router = express.Router();
@@ -33,6 +37,7 @@ router.get('/:id',validateId, controllerTech.show);
 */
 
 //GET /techs/:id/edit: send HTML form for editing an existing tech post
+<<<<<<< Updated upstream
 router.get('/:id/edit',validateId,isLoggedIn,isUserTechPost,controllerTech.edit);
 
 //PUT /techs/:id: update the tech post identified by id
@@ -40,6 +45,15 @@ router.put('/:id',validateId,isLoggedIn,isUserTechPost,fileUpload, controllerTec
 
 //DELETE /techs/:id: delete tech identified by id
 router.delete('/:id',validateId,isLoggedIn,isUserTechPost,controllerTech.delete);
+=======
+router.get('/:id/edit',validateId,isLoggedIn,controllerTech.edit);
+
+//PUT /techs/:id: update the tech post identified by id
+router.put('/:id',validateId,isLoggedIn,fileUpload, controllerTech.update);
+
+//DELETE /techs/:id: delete tech identified by id
+router.delete('/:id',validateId,isLoggedIn,controllerTech.delete);
+>>>>>>> Stashed changes
 
 
 module.exports = router;

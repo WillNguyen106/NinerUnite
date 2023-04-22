@@ -1,7 +1,10 @@
 const Book = require('../models/book');
+<<<<<<< Updated upstream
 const Tech = require('../models/tech');
 const Domicile = require('../models/domicile');
 const User = require('../models/user');
+=======
+>>>>>>> Stashed changes
 
 //check if user is a guest
 exports.isGuest = (req, res, next) => {
@@ -27,10 +30,16 @@ exports.isLoggedIn = (req, res, next) => {
     }
 };
 
+<<<<<<< Updated upstream
 // check if the user is the author of the post
 exports.isUserBookPost = (req,res,next)=>{
     let id = req.params.id;
 
+=======
+// check if the user is author of the story
+exports.isUserPost = (req,res,next)=>{
+    let id = req.params.id;
+>>>>>>> Stashed changes
     Book.findById(id)
     .then(book=>{
         if(book){
@@ -42,6 +51,7 @@ exports.isUserBookPost = (req,res,next)=>{
                 return next(err);
             }
         }else{
+<<<<<<< Updated upstream
             let err = new Error('Cannot find a book with id ' + id);
             err.status = 404;
             next(err);
@@ -108,6 +118,9 @@ exports.isProfileOwner = (req,res,next)=>{
             }
         }else{
             let err = new Error('Cannot find the user with id ' + id);
+=======
+            let err = new Error('Cannot find an event with id ' + id);
+>>>>>>> Stashed changes
             err.status = 404;
             next(err);
         }
@@ -116,6 +129,9 @@ exports.isProfileOwner = (req,res,next)=>{
 };
 
 
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes

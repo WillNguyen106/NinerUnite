@@ -67,8 +67,15 @@ exports.search = (req,res,next)=>{
 // Function that show detail book
 exports.show = (req,res, next)=>{
     let id = req.params.id;
+<<<<<<< Updated upstream
     
     modelDomicile.findById(id).populate('user','firstName lastName').lean()// Promise
+=======
+    let selectUserId = req.session.user.id;
+    let userIdArray = [];
+
+    modelDomicile.findById(id)// Promise
+>>>>>>> Stashed changes
     .then(domicile=>{
         if(domicile){
             domicile.createdAt = DateTime.fromJSDate(domicile.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
@@ -105,6 +112,7 @@ exports.update = (req,res, next)=>{
     let domicile = req.body;
     let id = req.params.id;
     
+<<<<<<< Updated upstream
     if(req.files && req.files.length > 0){
         domicile.image = domicile.image || [];
         req.files.forEach(file=>{
@@ -113,6 +121,13 @@ exports.update = (req,res, next)=>{
                 contentType: file.mimetype,
             });
         });
+=======
+    if(req.file){
+        domicile.image = {
+            data: req.file.buffer,
+            contentType: req.file.minetype,
+        }
+>>>>>>> Stashed changes
     }
 
     modelDomicile.findByIdAndUpdate(id, domicile,{useFindAndModify: false, runValidators:true})
