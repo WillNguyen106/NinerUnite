@@ -8,18 +8,7 @@ exports.showcart = (req, res, next) => {
     Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
     .then(results => {
         const[books,techs] = results;
-
-        // console.log("Book items in cart");
-        // console.log(books);
-        // console.log("Tech items in cart");
-        // console.log(techs);
-
         let totalCost = totalPriceOfItems(books, techs);
-
-
-        // console.log("Book Price: " + totalBookPrice);
-        // console.log("Tech Price " + totalTechPrice);
-
         let empty = true;
         if(books.length > 0 || techs.length > 0){
             empty = false;
@@ -188,6 +177,24 @@ exports.delete = (req, res, next) => {
 
 };
 
-//TODO: update the cart from things that have been deleted
-//try to create a function that loops through the results of the promise
-//and checks if price value of an item is null, if it is, it should delete it
+exports.checkout = (req, res, next) => {
+    //get user session information
+    const user = req.session.user;
+
+    //find all of the user's cart information to display in payment page
+    Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
+    .then(results => {
+        const[books,techs] = results;
+        let totalCost = totalPriceOfItems(books, techs);
+        let empty = true;
+        if(books.length > 0 || techs.length > 0){
+            empty = false;
+        }
+
+        //to payment.ejs, we are returning books and techs arrays, empty boolean
+        //total price of all books and total price of all tech items
+        res.render('./cart/payment', {books, techs, empty, totalCost});
+    })
+    .catch(err => next(err));
+
+};

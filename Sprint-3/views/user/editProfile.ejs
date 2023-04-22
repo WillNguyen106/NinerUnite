@@ -1,72 +1,79 @@
 <%- include('../partials/header.ejs', {cs: 'defaultstyle' })%>
 
     <!-- Primary Table for All Elements -->
-    <div class="container flex-row w-50 text-center">
+    <div class="container w-50 text-center">
         <form action="/users/<%= profile.id%>?_method=PUT" enctype="multipart/form-data" method='POST'>
         <h3 class="fs-1 py-5 mb-5">My Profile</h3>
-        <table>
-            <tr>
-                <td>
-                        <% if (profile.image.data) { %>
-                            <img class=" img-fluid mb-3" src="data:<%=profile.image.contentType%>;base64,
-                            <%=profile.image.data.toString('base64')%>" alt="">
-                        <%} else { %>
-                            <!-- <img class="img-fluid border mb-3" src="/images/other/profiledefault.png">  -->
-                            <img class="img-fluid border border-secondary border-3" width="400" height="400"
-                            src="/images/other/profiledefault.png" alt="Default image for profile">
-                        <% } %>
-                </td>
-                <td class="align-top ps-4">
-                    <!-- Secondary Table for Account Information -->
-                    <table class="table">
-                        <tr>
-                            <th>First Name:</th>
-                            <td>
-                                <input class="form-control inputBox text-dark border-1" type="text" id="firstName"
-                                    name="firstName" value="<%= profile.firstName%>">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Last Name:</th>
-                            <td>
-                                <input class="form-control inputBox text-dark border-1" type="text" id="lastName"
-                                    name="lastName" value="<%= profile.lastName%>">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Email:</th>
-                            <td>
-                                <%=profile.email%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Phone:</th>
-                            <td>
-                                <input class="form-control inputBox text-dark border-1" type="text" id="firstName"
-                                    name="phoneNum" value="<%= profile.phoneNum%>">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>About Me</th>
-                            <td><textarea class="form-control inputBox text-dark border-1" type="text"
-                                id="about" name="biograph"  minlength="10"
-                                required><%= profile.biograph%></textarea></td>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Image:</th>
-                            <td><input class="form-control" type="file" id="image" name="image" accept="image/*"></td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td class="pt-4"><!-- Buttons to Change Account Details -->
-                    <a class="btn btn-danger btn-lg text-end m-1" href="javascript:history.back()">Cancel</a>
-                    <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
-                </td>
-            </tr>
-        </table>
+
+        <!--profile picture and info section-->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <% if (profile.image.data) { %>
+                    <img class=" img-fluid mb-3" src="data:<%=profile.image.contentType%>;base64,
+                    <%=profile.image.data.toString('base64')%>" alt="">
+                <%} else { %>
+                    <!-- <img class="img-fluid border mb-3" src="/images/other/profiledefault.png">  -->
+                    <img class="img-fluid border border-secondary border-3" width="400" height="400"
+                    src="/images/other/profiledefault.png" alt="Default image for profile">
+                <% } %>
+            </div>
+            <div class="col-md-6">
+
+                <table class="table text-break">
+                    <tr>
+                        <th>First Name:</th>
+                        <td>
+                            <input class="form-control inputBox text-dark border-1" type="text" id="firstName"
+                                name="firstName" value="<%= profile.firstName%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Last Name:</th>
+                        <td>
+                            <input class="form-control inputBox text-dark border-1" type="text" id="lastName"
+                                name="lastName" value="<%= profile.lastName%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>
+                            <%=profile.email%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Phone:</th>
+                        <td>
+                            <input class="form-control inputBox text-dark border-1" type="text" id="firstName"
+                                name="phoneNum" value="<%= profile.phoneNum%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>About Me</th>
+                        <td><textarea class="form-control inputBox text-dark border-1" type="text"
+                            id="about" name="biograph"  minlength="10"
+                            required><%= profile.biograph%></textarea></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Image:</th>
+                        <td><input class="form-control" type="file" id="image" name="image" accept="image/*"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+        <!--buttons section-->
+        <div class="row mb-3">
+            <div class="col">
+                <a class="btn btn-danger btn-lg text-end m-1" href="javascript:history.back()">Cancel</a>
+                <button class="btn btn-secondary btn-lg text-end m-1" type="submit">Update</button>
+            </div>
+        </div>
+
+
+
+     
         </form>
     </div>
 

@@ -88,7 +88,7 @@ exports.search = (req,res,next)=>{
             // });
             
         }
-        res.render('./textbook/searchBook',{books, results, searched:true});
+        res.render('./textbook/searchBook',{books, results, q, searched:true});
     })
     .catch(err=>next(err));
     

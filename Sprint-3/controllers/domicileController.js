@@ -59,7 +59,7 @@ exports.search = (req,res,next)=>{
                     }
             })
         }
-        res.render('./domicile/searchDomicile',{domiciles, results, searched:true});
+        res.render('./domicile/searchDomicile',{domiciles, results, d, searched:true});
     })
     .catch(err=>next(err));
 }
