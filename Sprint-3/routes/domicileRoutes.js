@@ -42,25 +42,6 @@ router.put('/:id',validateId,isLoggedIn,fileUpload,isUserDomicilePost,controller
 //DELETE /domiciles/:id: delete domicile identified by id
 router.delete('/:id',validateId,isLoggedIn,isUserDomicilePost,controllerDomicile.delete);
 
-
-<<<<<<< HEAD
-=======
-
-
-// this is a test
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 4922cb4f4ccbd58e34022679b8f719a1d551f03e
 module.exports = router;
 
 
