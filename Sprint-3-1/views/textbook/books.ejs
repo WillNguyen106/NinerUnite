@@ -1,0 +1,140 @@
+<%- include('../partials/header.ejs', {cs: 'listStyle'})%>
+
+    <div class="container p-3">
+        <h1>Book List</h1>
+        <br>
+        <%if(books.length){ %>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="container border text-break sticky-top p-3">
+
+                        <h1>Filters</h1>
+
+                        <!--accordion to minimize the filtering options-->
+
+                        <div class="accordion" id="filterAccordion">
+                            <!--accordion item #1: price filter options-->
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button 
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#priceFilter"
+                                    aria-expanded="false"
+                                    aria-controls="priceFilter"
+                                    >
+                                        Price
+                                    </button>
+
+                                </h3>
+                                <div
+                                    id="priceFilter"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#filterAccordion"
+                                >
+                                    <form action="/books" method="get">
+                                        <div class="accordion-body">
+                                            
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="q" type="checkbox" value="1-20" id="priceOption1">
+                                                <label class="form-check-label" for="priceOption1">
+                                                    $1 - $20
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="q" type="checkbox" value="20-50" id="priceOption2">
+                                                <label class="form-check-label" for="priceOption2">
+                                                    $20 - $50
+                                                </label>
+                                            </div> 
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="q" type="checkbox" value="50-100" id="priceOption3">
+                                                <label class="form-check-label" for="priceOption3">
+                                                    $50 - $100
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="q" type="checkbox" value="100+" id="priceOption4">
+                                                <label class="form-check-label" for="priceOption4">
+                                                    > $100
+                                                </label>
+                                            </div>
+
+                                            <input class="btn btn-success btn-lg" type="submit" value="Submit">
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <!--future accordion items-->
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-9">
+
+
+                    <table class="table border text-break">
+                        <tr>
+                            <th scope="col">Book Title</th>
+                            <th scope="col">Book Author</th>
+                            <th scope="col">Price</th>
+                        </tr>
+        
+                    <tbody>
+                    <%if(results.length > 0){%>
+                        <%results.forEach(result=>{%>
+                            <tr class="select listItem">
+                                <td class="">
+                                    <a  href="/books/<%=result.id%>"><p><%= result.title %></p></a>
+                                </td>
+                                <td>
+                                    <p><%= result.author %></p>
+                                </td>
+                                <td>
+                                    <p>$<%= result.price %></p>
+                                </td>
+                            </tr>
+                        <%})%>
+                    <%}else{%>
+                        <%books.forEach(book=>{%>
+                            <tr class="select listItem">
+                                <td class="">
+                                    <a  href="/books/<%=book.id%>"><p><%= book.title %></p></a>
+                                </td>
+                                <td>
+                                    <p><%= book.author %></p>
+                                </td>
+                                <td>
+                                    <p>$<%= book.price %></p>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <%}%>
+        
+                    </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            
+
+            
+            
+        <%} else {%>
+            <h2>There are no books to display</h2>
+        <%} %>
+    </div>
+    <script src="/javascript/filterSelector.js"></script>
+<%- include('../partials/footer.ejs')%>

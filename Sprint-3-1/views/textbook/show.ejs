@@ -1,0 +1,139 @@
+<%- include('../partials/header.ejs', {cs: 'bookDescriptionStyles'})%>
+<main>
+
+   <div class="container mt-5 mainContainer">
+       <div class="row">
+
+           <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
+               
+                    <%if(book.image.length > 0){%>
+                        <div class="border slideArea">
+                        
+
+                        <!--carousel for showing multiple images with clickable gallery-->
+                        <!--referenced: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp-->
+
+                        <div id="imageCarousel" data-bs-interval="false" class="carousel slide border">
+                            <!--this is where the images will be-->
+                            <!--each carousel item is where an item can be placed-->
+                            <div class="carousel-inner">
+                                <!--the first image in the image array will have the active class-->
+                                <!--every other image in the array will not-->
+                                <%for (let i = 0; i < book.image.length; i++){ %>
+                                    <%if(book.image[i].data && i == 0){%>
+                                        <div id="image<%=i%>" class="carousel-item active">
+                                            <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image[i].contentType%>;base64,
+                                                <%=book.image[i].data.toString('base64')%>" alt="">
+                                        </div>
+                                    <%} else if (book.image[i].data){%>
+                                        <div id="image<%=i%>" class="carousel-item">
+                                            <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image[i].contentType%>;base64,
+                                                <%=book.image[i].data.toString('base64')%>" alt="">
+                                        </div>
+                                    <% } %>
+
+                                <%}%>
+                                
+                            </div>
+                            <!--carousel buttons-->
+                            <!--background colors of buttons are blue because it is hard to see-->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                        </div>
+                        <!--thumbnail images-->
+                        <div class="row rowBox">
+                            <% for (let i = 0; i < book.image.length; i++){ %>
+
+                                <div class="col imageBox">
+                                        <a>
+                                            <button class="link" id="button<%=i%>"><%=i%></button>
+                                        </a>
+                                        
+                                        <!-- <img class=" img-fluid imageInBox" src="data:<%=book.image[i].contentType%>;base64,
+                                        <%=book.image[i].data.toString('base64')%>" alt=""> -->
+                                </div>
+
+
+                            <% } %>
+
+                        </div>
+                        </div>
+                    <%} else{%>
+                        <div>
+                        <!--TODO: modify this line-->
+                            <img class="img-fluid" src="/images/other/noImageAvailable.png"> 
+                        </div>
+                    <%}%>
+            </div>
+           <!--center content inside col-->
+           <div class="col-lg-6 d-inline-flex justify-content-center">
+               <div>
+                <!--inline puts child nodes of a parent node next to each other, only taking up the space they need-->
+               <!--with display inline flex, the width of the parent container is dependent on children-->
+               <div class="p-3 m-3 d-inline-flex bg-light text-wrap flex-column">
+                <h2 class="bookTitle"><%= book.title%></h2>
+                <!--if the current user is viewing a product that is their own
+                then they have the option to edit or delete-->
+                <%if(user.id == book.user._id){%>
+                    <form>
+                        <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= id %>/edit"><i class="fas fa-edit"></i></button>
+                        <!-- Button trigger modal for delete message -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        
+                        <!-- Modal for delete message -->
+                        <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="DeleteMessageLabel"><%= book.title %></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                </div>
+                                <div class="modal-body">
+                                Are you sure you want to delete this item?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= id %>?_method=DELETE">Yes</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
+                <%}%>
+                
+                <hr>
+                <p>Posted <%=book.createdAt%> by <a href="/users/profile/<%=book.user._id%>"><%=book.user.firstName + ' ' + book.user.lastName%></a></p>
+                <p>Subject: <%=book.subject%></p>
+                <p>Author: <%=book.author%></p>
+                <p>ISBN: <%=book.isbn%></p>
+                <p>Condition: <%=book.condition%></p>
+                <p>Price: $<%=book.price%></p>
+                <!--if the current user is viewing a post that is not their own,
+                    add to cart button is available-->
+                    <!-- add to cart button -->
+                <%if(user.id != book.user._id){%>
+                    <form class="text-end">
+                        <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= id %>/book">Add To Cart</button>
+                    </form>
+                <%}%> 
+                </div>
+
+               </div>
+
+           </div>
+
+       </div>
+   </div>
+
+</main>
+<script src="/javascript/bookSlideshow.js"></script>
+
+<%- include('../partials/footer.ejs')%>

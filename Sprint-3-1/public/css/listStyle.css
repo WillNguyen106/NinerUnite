@@ -1,0 +1,31 @@
+/* opacity is from 0-1.0, with 0 being the lowest and 1 being normal*/
+.select:hover {
+    background-color: rgba(0, 0, 168, 0.05);
+    
+}
+
+
+.listItem, a:link {
+    text-decoration: none;
+
+}
+
+.listItem, a :hover{
+    text-decoration: underline;
+}
+
+
+.listItem, a, p {
+    color: black;
+    text-decoration: none;
+}
+
+.cardStyle :hover {
+    text-decoration: none;
+    border-color: #005035;
+    border-width: 2px;
+}
+
+.thumbnailImg {
+    object-fit: fill;
+}

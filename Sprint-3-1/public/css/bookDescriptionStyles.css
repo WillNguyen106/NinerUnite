@@ -1,0 +1,41 @@
+/* .my-col {
+    max-width: 80%;
+} */
+
+.bookTitle {
+    font-style: italic;
+}
+
+.book-info {
+    max-width: 60%;
+}
+/* .mainContainer {
+    max-width: 80%;
+} */
+
+.imageCenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageBox {
+
+    width: 75%;
+}
+
+.imageInBox{
+    width: 100%;
+    /* height: 50%; */
+    object-fit: cover;
+}
+
+/* .slideArea {
+    max-height: 500px;
+} */
+
+/* img{
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+} */

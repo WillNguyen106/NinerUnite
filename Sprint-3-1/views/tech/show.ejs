@@ -1,0 +1,102 @@
+<%- include('../partials/header.ejs', {cs: 'bookDescriptionStyles'})%>
+<main>
+
+   <div class="container mt-5 mainContainer">
+    <div class="row">
+
+        <div class="col-lg-6 p-3 d-flex align-items-center justify-content-center">
+            <div class="border">
+                 <%if(tech.image.length > 0){%>
+                    <!--carousel for showing multiple images-->
+
+                    <div id="imageCarousel" data-bs-interval="false" class="carousel slide">
+                         <!--this is where the images will be-->
+                         <!--each carousel item is where an item can be placed-->
+                         <div class="carousel-inner">
+                             <!--the first image in the image array will have the active class-->
+                             <!--every other image in the array will not-->
+                             <%for (let i = 0; i < tech.image.length; i++){ %>
+                                 <%if(tech.image[i].data && i == 0){%>
+                                     <div class="carousel-item active">
+                                         <img class=" img-fluid w-75 imageCenter" src="data:<%=tech.image[i].contentType%>;base64,
+                                             <%=tech.image[i].data.toString('base64')%>" alt="">
+                                     </div>
+                                 <%} else if (tech.image[i].data){%>
+                                     <div class="carousel-item">
+                                         <img class=" img-fluid w-75 imageCenter" src="data:<%=tech.image[i].contentType%>;base64,
+                                             <%=tech.image[i].data.toString('base64')%>" alt="">
+                                     </div>
+                                 <% } %>
+
+                             <%}%>
+                             
+                         </div>
+                         <!--carousel buttons-->
+                         <!--background colors of buttons are blue because it is hard to see-->
+                         <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                             <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+                             <span class="visually-hidden">Previous</span>
+                           </button>
+                           <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                             <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+                             <span class="visually-hidden">Next</span>
+                           </button>
+                     </div>
+                <%} else{%>
+                    <!--TODO: modify this line-->
+                    <img class="img-fluid" src="/images/other/noImageAvailable.png"> 
+                <%}%>
+               </div>
+
+           </div>
+           <div class="col-lg-6 justify-content-center">
+               <div class="p-3 m-3 bg-light d-inline-flex text-wrap flex-column">
+                   <h2 class="bookTitle"><%= tech.brand%></h2>
+                    <%if(user.id == tech.user._id){ %>
+                            <form>
+                                <button class="btn btn-success" type="submit" formmethod="GET" formaction="/techs/<%= id %>/edit"><i class="fas fa-edit"></i></button>
+                                <!-- Button trigger modal for delete message -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                
+                                <!-- Modal for delete message -->
+                                <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteMessageLabel"><%= tech.brand %></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        Are you sure you want to delete this item?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                        <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/techs/<%= id %>?_method=DELETE">Yes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                    <%}%>
+                   <hr>
+                    <p>Posted <%=tech.createdAt%> by <a href="/users/profile/<%=tech.user._id%>"><%=tech.user.firstName + ' ' + tech.user.lastName%></a></p>
+                    <p>Description: <%=tech.description%></p>
+                    <p>Condition: <%=tech.condition%></p>
+                    <p>Price: $<%=tech.price%></p>
+                    <%if(user.id != tech.user._id){%>
+                        <!-- add to cart button -->
+                        <form class="text-end">
+                            <button class="btn btn-primary" type="submit" formmethod="POST" formaction="/cart/add/<%= id %>/tech">Add To Cart</button>
+                        </form>
+                    <%}%>
+               </div>
+           </div>
+
+       </div>
+   </div>
+
+</main>
+
+<%- include('../partials/footer.ejs')%>

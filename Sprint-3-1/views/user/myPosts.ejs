@@ -1,0 +1,250 @@
+<%- include('../partials/header.ejs', {cs: 'listStyle'})%>
+
+<div class="container p-3">
+
+    <h1>My Posts</h1>
+
+    <!--tabs for the different types of lists-->
+
+    <!--the tabs control which information is currently being displayed-->
+    <!--book list is always displayed first-->
+    <ul class="nav nav-tabs" id="tabList" role="tabList">
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active"
+             id="bookListTab" 
+             data-bs-toggle="tab" 
+             data-bs-target="#bookListPane" 
+             type="button" 
+             role="tab" 
+             aria-controls="bookListPane" 
+             aria-selected="true"
+            >Books
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link"
+             id="techListTab" 
+             data-bs-toggle="tab" 
+             data-bs-target="#techListPane" 
+             type="button" 
+             role="tab" 
+             aria-controls="techListPane" 
+             aria-selected="false"
+            >Tech
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link"
+             id="domicileListTab" 
+             data-bs-toggle="tab" 
+             data-bs-target="#domicileListPane" 
+             type="button" 
+             role="tab" 
+             aria-controls="domicileListPane" 
+             aria-selected="false"
+            >Domiciles
+            </button>
+        </li>
+
+    </ul>
+
+    <!--this tab content area holds all of the lists that will be displayed-->
+    <div class="tab-content m-3" id="myTabContent">
+        <!--all books posted by user-->
+        <div class="tab-pane fade show active" id="bookListPane" role="tabpanel" aria-labelledby="bookListTab" tabindex="0">
+
+            <%if(books.length) {%>
+                <table class="table border text-break">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Book Title</th>
+                        <th scope="col">Book Author</th>
+                        <th scope="col">Price</th>
+                    </tr>
+        
+        
+                    <tbody>
+                <%books.forEach(book => {%>
+        
+                    
+                    <tr class="select listItem">
+                        <td>
+                            <form>
+                                <button class="btn btn-success" type="submit" formmethod="GET" formaction="/books/<%= book.id %>/edit"><i class="fas fa-edit"></i></button>
+                                <!-- Button trigger modal for delete message -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                
+                                <!-- Modal for delete message -->
+                                <div class="modal fade" id="DeleteMessage" tabindex="-1" aria-labelledby="DeleteMessageLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="DeleteMessageLabel"><%= book.title %></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        Are you sure you want to delete this item?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                        <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/books/<%= book.id %>?_method=DELETE">Yes</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <a  href="/books/<%=book.id%>"><p><%= book.title %></p></a>
+                        </td>
+                        <td>
+                            <p><%= book.author %></p>
+                        </td>
+                        <td>
+                            <p>$<%= book.price %></p>
+                        </td>
+                    </tr>
+                <%})%>
+        
+            </tbody>
+            </table>
+            <%} else {%>
+        
+                <h2>There are no books to display</h2>
+        
+            <%} %>
+
+        </div>
+
+        <!--all tech posted by the user-->
+        <div class="tab-pane fade" id="techListPane" role="tabpanel" aria-labelledby="techListTab" tabindex="0">
+            
+            <%if(techs.length){ %>
+
+                <table class="table border text-break">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Tech Name/Brand</th>
+                        <th scope="col">Price</th>
+    
+                    </tr>
+    
+                <tbody>
+                <%techs.forEach(tech=>{%>
+                    <tr class="select listItem">
+                        <td>
+                        <form>
+                            <button class="btn btn-success" type="submit" formmethod="GET" formaction="/techs/<%= tech.id %>/edit"><i class="fas fa-edit"></i></button>
+                            <!-- Button trigger modal for delete message -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#DeleteMessage2">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            
+                            <!-- Modal for delete message -->
+                            <div class="modal fade" id="DeleteMessage2" tabindex="-1" aria-labelledby="DeleteMessageLabel2" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="DeleteMessageLabel2"><%= tech.brand %></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="No"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                    Are you sure you want to delete this item?
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                    <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/techs/<%= tech.id %>?_method=DELETE">Yes</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                        </td>
+
+                        <!--brand counts for tech items name and brand-->
+                        <td >
+                            <a href="/techs/<%=tech.id%>"><p><%=tech.brand%></p></a>
+                        </td>
+                        <td>
+                            <p>$<%=tech.price %></p>
+                        </td>
+                    </tr>
+    
+                <% }); %>
+    
+                </tbody>
+                </table>
+                
+                <%} else {%>
+                <h2>There are no products to display</h2>
+            <%} %>
+
+
+
+        </div>
+
+        <!--all domiciles posted by user-->
+
+        <div class="tab-pane fade" id="domicileListPane" role="tabpanel" aria-labelledby="domicileListTab" tabindex="0">
+        
+
+            <%if(domiciles.length){ %>
+                <!--cards-->
+                <%domiciles.forEach(domicile=>{%>
+                  
+                        <div class="cardStyle">
+        
+                            <a href="/domiciles/<%=domicile.id%>">
+                                <div class="card mb-3 bg-light">
+                                    <div class="row ">
+                                    <!--image section-->
+                                    <div class="col-md-4 text-center">
+                                        <!--if there is at least one image in image array, the one at index[0]-->
+                                        <!--will be displayed-->
+                                        <% if(domicile.image.length > 0){%>
+                                            <img id="thumbnailImg" class="img-fluid" src="data:<%=domicile.image[0].contentType%>;base64,
+                                            <%=domicile.image[0].data.toString('base64')%>"> 
+                                        <!--if there is no image provided, default no image is provided-->
+                                        <%} else { %>
+                                        <img class="img-fluid" src="/images/other/noImageAvailable.png"> 
+                                        <%} %>
+                                    </div>
+                                    <!--domicile information-->
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h3 class="card-title"><%= domicile.title %></h3>
+                                            <p class="card-text"><%= domicile.address %></p>
+                                            <p class="card-text"><%= domicile.description %></p>
+                                            <p class="card-text">Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
+                                            <p class="card-text">$<%= domicile.payment %></p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </a> 
+        
+                        </div>
+        
+                <% }); %>
+        
+        
+                
+                <%} else {%>
+                <h2>There are no domiciles to display</h2>
+            <%} %>
+
+        </div>
+
+    </div>
+
+    
+    
+
+</div>
+
+<%- include('../partials/footer.ejs')%>

@@ -1,0 +1,30 @@
+/* opacity is from 0-1.0, with 0 being the lowest and 1 being normal*/
+
+.selectRow:hover {
+    background-color: rgba(0, 0, 168, 0.05);
+    
+}
+
+.selectRow, td, a {
+    text-decoration: none;
+    color: black;
+}
+
+/*name of product underlines when selected*/
+.productName:hover {
+    text-decoration: underline;
+
+}
+
+.cardStyle :hover {
+    text-decoration: none;
+    border-color: #005035;
+    border-width: 2px;
+}
+
+/*changes select box width to 20% once the screen is at least 768px in width*/
+@media (min-width: 768px) {
+    #searchSelect {
+        width: 20%;
+    }
+}

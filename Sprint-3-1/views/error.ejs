@@ -1,0 +1,8 @@
+<%- include('./partials/header.ejs', {cs: 'defaultstyle'})%>
+  
+    <div class="container text-center p-5">
+        <h3><%= error.status%> Error</h3> 
+        <p><%= error.message%></p>
+    </div>
+
+    <%- include('./partials/footer.ejs')%>

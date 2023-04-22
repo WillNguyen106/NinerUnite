@@ -1,0 +1,54 @@
+<%- include('../partials/header.ejs', {cs: 'searchStyle'})%>
+<div class="container p-3">
+    <!-- Search bar -->
+    <div class="container d-flex flex-md-row flex-column w-100 my-5">
+
+
+        <!--search selector-->
+        <select class="form-select" id="searchSelect">
+            <option>Select</option>
+            <option value="book">Textbook/Book</option>
+            <option value="tech">Technology</option>
+            <option value="dom">Domicile</option>
+        </select>
+
+        <!--search input box and button-->
+        <!--action and method are changed dynamically by index script-->
+        <form id="searchForm" class="input-group" action="#" method="#">
+            <input id="searchInput" class="form-control" type="text"
+                placeholder="Select what you want to search by!" name="none">
+
+            <button class="btn btn-success green text-white border-0 green_hover" id="searchButton"
+                type="submit">Search</button>
+        </form>
+
+    </div>
+    <hr>
+    <h1>Search Results for "<%=p%>"</h1>
+    <br>
+    <div>
+        <%if(results && results.length > 0) {%>
+        <table class="table border text-break">
+            <thead>
+                <tr>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%results.forEach(tech=>{%>
+                <tr class="selectRow">
+                    <td class="productName"><a href="/techs/<%=tech.id%>"><%=tech.brand%></a></td>
+                    <td>$<%=tech.price%></td>
+                </tr>
+            <%});%>
+            </tbody>
+        </table>
+        <%}else if(searched){%>
+            <p>No results found.</p>
+        <%}%>
+    </div>
+</div>
+
+<script src="/javascript/searchBarFunctionality.js"></script>
+<%- include('../partials/footer.ejs')%>
