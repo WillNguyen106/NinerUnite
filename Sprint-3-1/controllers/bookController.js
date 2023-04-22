@@ -10,7 +10,7 @@ exports.index = (req, res, next)=>{
     
     modelBook.find()
     .then(books => {
-        results = books.filter(book=>book.price >= 1 && book.price <= 20);
+        // results = books.filter(book=>book.price >= 1 && book.price <= 20);
         console.log(results);
         res.render('./textbook/books', {books, results});
     })

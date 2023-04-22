@@ -6,6 +6,5 @@ $(document).ready(function (){
 
     //set the list value to the value the book object has saved
     $("#subjectList").val(subjectSelectValue);
-
-
+    console.log(subjectSelectValue);
 });
