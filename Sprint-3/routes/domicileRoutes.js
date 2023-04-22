@@ -43,6 +43,24 @@ router.put('/:id',validateId,isLoggedIn,fileUpload,isUserDomicilePost,controller
 router.delete('/:id',validateId,isLoggedIn,isUserDomicilePost,controllerDomicile.delete);
 
 
+<<<<<<< HEAD
+=======
+
+
+// this is a test
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 4922cb4f4ccbd58e34022679b8f719a1d551f03e
 module.exports = router;
 
 
