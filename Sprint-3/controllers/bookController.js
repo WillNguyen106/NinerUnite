@@ -5,7 +5,6 @@ const {DateTime} = require("luxon");
 // Function that find all books
 exports.index = (req, res, next)=>{
     let results =[];
-    // console.log(req.body.test);
     modelBook.find()
     .then(books => {
         // console.log(filterBooks);
