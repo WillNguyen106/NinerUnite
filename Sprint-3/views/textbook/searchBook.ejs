@@ -1,6 +1,30 @@
 <%- include('../partials/header.ejs', {cs: 'searchStyle'})%>
 <div class="container p-3">
-    <h1>Search Results</h1>
+    <!-- Search bar -->
+    <div class="container d-flex flex-md-row flex-column w-100 my-5">
+
+
+        <!--search selector-->
+        <select class="form-select" id="searchSelect">
+            <option>Select</option>
+            <option value="book">Textbook/Book</option>
+            <option value="tech">Technology</option>
+            <option value="dom">Domicile</option>
+        </select>
+
+        <!--search input box and button-->
+        <!--action and method are changed dynamically by index script-->
+        <form id="searchForm" class="input-group" action="#" method="#">
+            <input id="searchInput" class="form-control" type="text"
+                placeholder="Select what you want to search by!" name="none">
+
+            <button class="btn btn-success green text-white border-0 green_hover" id="searchButton"
+                type="submit">Search</button>
+        </form>
+
+    </div>
+    <hr>
+    <h1>Search Results for "<%=q%>"</h1>
     <br>
     <div>
         <%if(results && results.length > 0) {%>
@@ -28,5 +52,5 @@
     </div>
 </div>
 
-
+<script src="/javascript/searchBarFunctionality.js"></script>
 <%- include('../partials/footer.ejs')%>

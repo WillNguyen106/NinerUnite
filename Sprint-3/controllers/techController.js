@@ -52,7 +52,7 @@ exports.search = (req,res,next)=>{
                     }
             });
         }
-        res.render('./tech/searchTech',{techs, results, searched:true});
+        res.render('./tech/searchTech',{techs, results, p, searched:true});
     })
     .catch(err=>next(err));
 }

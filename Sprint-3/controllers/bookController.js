@@ -5,7 +5,10 @@ const {DateTime} = require("luxon");
 // Function that find all books
 exports.index = (req, res, next)=>{
     let results =[];
+<<<<<<< HEAD
     
+=======
+>>>>>>> 0e5de8cd1a919395dcbd53cdc565802c13d6f5f4
     modelBook.find()
     .then(books => {
         results = books.filter(book=>book.price >= 1 && book.price <= 20);
@@ -81,7 +84,7 @@ exports.search = (req,res,next)=>{
             // });
             
         }
-        res.render('./textbook/searchBook',{books, results, searched:true});
+        res.render('./textbook/searchBook',{books, results, q, searched:true});
     })
     .catch(err=>next(err));
     
