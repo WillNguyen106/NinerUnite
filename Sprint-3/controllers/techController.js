@@ -1,4 +1,5 @@
 const modelTech = require('../models/tech');
+const modelCart = require('../models/cart');
 const {DateTime} = require("luxon");
 
 // Function that find all techs
@@ -119,7 +120,17 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
     modelTech.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(tech => {return res.redirect('/users/myPosts');
+    .then(tech => {
+        //delete from cart collection
+        modelCart.deleteMany({techId: id})
+        .then(()=> {return res.redirect('/users/myPosts');})
+        .catch(err => {
+            if(err.name == 'ValidationError'){
+                err.status = 400;
+            }
+            next(err)}
+        );    
+    
     })
     .catch(err=>next(err));
 };

@@ -1,4 +1,5 @@
 const modelBook = require('../models/book');
+const modelCart = require('../models/cart');
 const {DateTime} = require("luxon");
 // const {filterBooks} = require('../public/javascript/filterSelector');
 
@@ -43,6 +44,7 @@ exports.create = (req,res, next)=>{
     
     book.save()
     .then(results =>{
+        req.flash('success', "Successfully post a new book!")
         res.redirect('/books')})
     .catch(err => {
         if(err.name === 'ValidationError'){
@@ -158,7 +160,17 @@ exports.delete = (req,res, next)=>{
     let id = req.params.id;
     
     modelBook.findByIdAndDelete(id, {useFindAndModify: false})
-    .then(book => {res.redirect('/users/myPosts');
+    .then(tech => {
+        //delete from cart collection
+        modelCart.deleteMany({bookId: id})
+        .then(()=> {return res.redirect('/users/myPosts');})
+        .catch(err => {
+            if(err.name == 'ValidationError'){
+                err.status = 400;
+            }
+            next(err)}
+        );    
+    
     })
     .catch(err=>next(err));
 };

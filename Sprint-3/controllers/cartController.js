@@ -16,6 +16,7 @@ exports.showcart = (req, res, next) => {
 
         //to list.ejs, we are returning books and techs arrays, empty boolean
         //total price of all books and total price of all tech items
+        
         res.render('./cart/list', {books, techs, empty, totalCost});
     })
     .catch(err => next(err));
