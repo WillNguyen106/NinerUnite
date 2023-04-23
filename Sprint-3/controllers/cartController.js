@@ -199,3 +199,31 @@ exports.checkout = (req, res, next) => {
     .catch(err => next(err));
 
 };
+exports.transaction = (req, res, next) => {
+    //get user session information
+    const user = req.session.user;
+
+    //find all of the user's cart information to display in payment page
+    Promise.all([Cart.find({category: "book", userId: user.id}).populate('bookId'), Cart.find({category: "tech", userId: user.id}).populate('techId')])
+    .then(results => {
+        const[books,techs] = results;
+        let totalCost = totalPriceOfItems(books, techs);
+        let empty = true;
+        if(books.length > 0 || techs.length > 0){
+            empty = false;
+        }
+
+        //to payment.ejs, we are returning books and techs arrays, empty boolean
+        //total price of all books and total price of all tech items
+        //delete all items in the cart after payment
+        Cart.deleteMany({userId: user.id})
+        .then(results => {
+            req.session.user.ItemsCount = 0;
+            res.render('./cart/completeTransaction')
+        
+        })
+        .catch(err=>next(err));
+    })
+    .catch(err => next(err));
+
+};

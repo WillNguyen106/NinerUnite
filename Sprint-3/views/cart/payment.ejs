@@ -55,14 +55,17 @@
             
                 </div>
                 <div class="column5">
-                    <a class="btn btn-primary mb-3 cancel" href="javascript:history.back()">
-                        <span class="ps-3">Cancel</span>
-                        <span class="fas fa-arrow-right"></span>
-                    </a>
-                    <div class="btn btn-primary mb-3 pay">
-                        <span class="ps-3">Pay $<%=totalCost%></span>
-                        <span class="fas fa-arrow-right"></span>
-                    </div>
+                    <form>
+                        <a class="btn btn-primary mb-3 cancel" href="javascript:history.back()">
+                            <a href="/cart/transaction"><span class="ps-3">Cancel</span></a>
+                            <a><span class="fas fa-arrow-right"></span></a>
+                        </a>
+                        <div class="btn btn-primary mb-3 pay">
+                            <a href="/cart/transaction"><span class="ps-3">Pay $<%=totalCost%></span></a>
+                            <span class="fas fa-arrow-right"></span>
+                        </div>
+                    </form>
+                    
                     
                 </div>
                     
