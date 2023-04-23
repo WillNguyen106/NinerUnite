@@ -3,75 +3,107 @@
 <div class="paymentBody">
 
     <div class="row gx-4">
-        <div class="d-flex flex-row">
-        <div class="container p-0">
-            <div class="px-4">
-                <p class="h8 py-3">Payment Details</p>
-    
-            </div>
-            
-            <div class="card px-4">
-                <div class="row gx-3">
-                    <div class="col-12">
-                        <div class="d-flex flex-column">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label form-control mb-3" for="flexRadioDefault1">
-                                  Debit/Credit Card
-                                </label>
+        
+        <div class="col-md-9">
+
+            <div class="container p-0">
+                <div class="px-4">
+                    <p class="h8 py-3">Payment Details</p>
+        
+                </div>
+                
+                <div class="card px-4">
+                    <div class="row gx-3">
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label form-control mb-3 border" for="flexRadioDefault1">
+                                      Debit/Credit Card
+                                    </label>
+                                </div>
+                                
                             </div>
-                            
                         </div>
+                        
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <p class="text mb-1">Name</p>
+                                <input class="form-control mb-3 border" type="text" placeholder="Name" required>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <p class="text mb-1">Card Number</p>
+                                <input class="form-control mb-3 border" type="text" placeholder="1234 5678 435678" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex flex-column">
+                                <p class="text mb-1">Expiration Date</p>
+                                <input class="form-control mb-3 border" type="text" placeholder="MM/YYYY" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex flex-column">
+                                <p class="text mb-1">CVV/CVC</p>
+                                <input class="form-control mb-3 pt-2 border" type="password" placeholder="***" required maxlength="3">
+                            </div>
+                        </div>
+                        
+                    </div>
+            
+                </div>
+                <div class="column5">
+                    <a class="btn btn-primary mb-3 cancel" href="javascript:history.back()">
+                        <span class="ps-3">Cancel</span>
+                        <span class="fas fa-arrow-right"></span>
+                    </a>
+                    <div class="btn btn-primary mb-3 pay">
+                        <span class="ps-3">Pay $<%=totalCost%></span>
+                        <span class="fas fa-arrow-right"></span>
                     </div>
                     
-                    <div class="col-12">
-                        <div class="d-flex flex-column">
-                            <p class="text mb-1">Name</p>
-                            <input class="form-control mb-3" type="text" placeholder="Name">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-flex flex-column">
-                            <p class="text mb-1">Card Number</p>
-                            <input class="form-control mb-3" type="text" placeholder="1234 5678 435678">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex flex-column">
-                            <p class="text mb-1">Expiration Date</p>
-                            <input class="form-control mb-3" type="text" placeholder="MM/YYYY">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="d-flex flex-column">
-                            <p class="text mb-1">CVV/CVC</p>
-                            <input class="form-control mb-3 pt-2 " type="password" placeholder="***">
-                        </div>
-                    </div>
+                </div>
                     
-                </div>
-        
-            </div>
-            <div class="column5">
-                <div class="btn btn-primary mb-3 cancel">
-                    <span class="ps-3">Cancel</span>
-                    <span class="fas fa-arrow-right"></span>
-                </div>
-                <div class="btn btn-primary mb-3 pay">
-                    <span class="ps-3">Pay $...</span>
-                    <span class="fas fa-arrow-right"></span>
-                </div>
-                
-            </div>
                 
             
-        
-            
                 
+                    
+            </div>
+
         </div>
         
             <div class="col-md-3">
-                <div class="card sticky-top">
+
+                <!--product list-->
+                <table class="table border overflow-auto">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% books.forEach (book => {%>
+                            <tr>
+                                <td><%=book.bookId.title%></td>
+                                <td>$<%=book.bookId.price%></td>
+                            </tr>
+                        <% }) %>
+
+                        <% techs.forEach (tech => {%>
+                            <tr>
+                                <td><%=tech.techId.brand%></td>
+                                <td>$<%=tech.techId.price%></td>
+                            </tr>
+                        <% }) %>
+
+                    </tbody>
+                </table>
+
+                <!--summary box-->
+                <div class="card sticky-top mb-2">
                     <div class="card-header py-3">
                         <h5>Summary</h5>
                     </div>
@@ -82,7 +114,7 @@
                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                 Products:
                                 <!--this is calculate the number of items currently in the cart-->
-                                s
+                                <span><%=books.length + techs.length%></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                 <div>
@@ -91,6 +123,7 @@
                                     <p class="mb-0">(including Taxes)</p>
                                     </strong>
                                 </div>
+                                    <span><strong>$<%=totalCost%></strong></span>
     
         
                             
@@ -101,13 +134,11 @@
             
         
                 </div>
+
             </div>
             
         
-        
-        
-        
-    </div>
+    
     </div>
 
 </div>

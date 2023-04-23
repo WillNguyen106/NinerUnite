@@ -27,8 +27,8 @@
 .col-md-3 {
     margin-top: 8.77em;
     max-width: 500px;
-    padding-right: 5rem;
-    padding-left: 2rem;
+    /* padding-right: 5rem;
+    padding-left: 2rem; */
     padding-bottom: 1.5rem;
 }
 
@@ -83,9 +83,7 @@ input.form-control:hover {
 
 
 
-
-
-
+/* button styles*/
 .btn.btn.btn-primary:hover {
     background-position: right center;
     color: #fff;
@@ -101,7 +99,7 @@ input.form-control:hover {
 }
 
 
-
+/* arrow animation on button*/
 .btn.btn-primary:hover .fas.fa-arrow-right {
     transform: translate(15px);
     transition: transform 0.2s ease-in;
