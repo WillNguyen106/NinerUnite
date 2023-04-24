@@ -1,19 +1,19 @@
-<%- include('../partials/header.ejs', {cs: 'defaultstyle' })%>
+<%- include('../partials/header.ejs', {cs: 'profileStyles' })%>
 
     <!-- Primary Table for All Elements -->
     <div class="container w-50 text-center">
         <form action="/users/<%= profile.id%>?_method=PUT" enctype="multipart/form-data" method='POST'>
-        <h3 class="fs-1 py-5 mb-5">My Profile</h3>
+        <h3 class="fs-1 py-5 mb-4">My Profile</h3>
 
         <!--profile picture and info section-->
         <div class="row mb-3">
             <div class="col-md-6">
                 <% if (profile.image.data) { %>
-                    <img class=" img-fluid mb-3" src="data:<%=profile.image.contentType%>;base64,
+                    <img class=" mb-3" src="data:<%=profile.image.contentType%>;base64,
                     <%=profile.image.data.toString('base64')%>" alt="">
                 <%} else { %>
                     <!-- <img class="img-fluid border mb-3" src="/images/other/profiledefault.png">  -->
-                    <img class="img-fluid border border-secondary border-3" width="400" height="400"
+                    <img class="border border-secondary border-3" width="400" height="400"
                     src="/images/other/profiledefault.png" alt="Default image for profile">
                 <% } %>
             </div>

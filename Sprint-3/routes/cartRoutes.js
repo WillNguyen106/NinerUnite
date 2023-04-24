@@ -17,6 +17,6 @@ router.delete('/delete/:id', isLoggedIn, cartController.delete);
 //navigate to cart checkout: /cart/checkout
 router.get('/checkout', isLoggedIn, cartController.checkout);
 //navigate to cart complete transaction /cart/transaction
-router.get('/transaction', isLoggedIn, cartController.transaction);
+router.post('/transaction', isLoggedIn, cartController.transaction);
 
 module.exports = router;

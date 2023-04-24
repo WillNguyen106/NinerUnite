@@ -8,7 +8,7 @@
 
         <!--search selector-->
         <select class="form-select" id="searchSelect">
-            <option>Select</option>
+            <option value="select">Select</option>
             <option value="book">Textbook/Book</option>
             <option value="tech">Technology</option>
             <option value="dom">Domicile</option>
@@ -21,12 +21,12 @@
                 placeholder="Select what you want to search by!" name="none">
 
             <button class="btn btn-success green text-white border-0 green_hover" id="searchButton"
-                type="submit">Search</button>
+                type="submit" disabled>Search</button>
         </form>
 
     </div>
     <hr>
-    <h1>Search Results for "<%=d%>"</h1>
+    <h2>Search Results for "<%=d%>"</h2>
     <br>
     <div>
         <%if(results && results.length > 0) {%>

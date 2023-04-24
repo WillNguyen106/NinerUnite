@@ -30,6 +30,7 @@
     /* padding-right: 5rem;
     padding-left: 2rem; */
     padding-bottom: 1.5rem;
+    
 }
 
 .column5 {
@@ -37,6 +38,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 1000px;
+
 }
 
 
@@ -115,10 +118,10 @@ input.form-control:hover {
 }
 
 .form-control:focus {
-    color: white;
-    background-color: #0C4160;
+    /* color: white; */
+    /* background-color: #0C4160; */
     border: 2px solid #2d4dda;
-    box-shadow: none;
+    /* box-shadow: none; */
 }
 
 .text {

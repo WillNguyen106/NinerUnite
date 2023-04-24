@@ -2,16 +2,25 @@
 
     <!-- Primary Table for All Elements -->
     <div class="container flex-row w-50 text-center">
-        <h3 class="fs-1 py-5 mb-5">My Profile</h3>
+        <%if(user.id == profile._id){%>
+        <h3 class="fs-1 py-5 mb-4">My Profile</h3>
+        <% } else { %>
+            <h3 class="fs-1 py-5 mb-4"> Profile</h3>
+        <% } %>
 
         <div class="row">
             <div class="col-md-6">
 
                 <% if (profile.image.data) { %>
-                    <img class=" img-fluid mb-3 profileImage" src="data:<%=profile.image.contentType%>;base64,
-                    <%=profile.image.data.toString('base64')%>" alt="">
+                    <div class="container">
+
+                        <img class="border" src="data:<%=profile.image.contentType%>;base64,
+                        <%=profile.image.data.toString('base64')%>" alt="">
+
+                    </div>
+
                 <%} else { %>
-                    <img class="img-fluid border mb-3" src="/images/other/profiledefault.png"> 
+                    <img class="border mb-3" src="/images/other/profiledefault.png"> 
                 <% } %>
                     
 
@@ -19,58 +28,54 @@
 
             <div class="col-md-6">
 
-                <table>
-                    <tr>
-                        <td class="align-top ps-4">
-                            <!-- Secondary Table for Account Information -->
-                            <table class="table text-break">
-                                <%if(profile) {%>
-                                <tr>
-                                    <th>First Name:</th>
-                                    <td><%= profile.firstName%></td>
-                                </tr>
-                                <tr>
-                                    <th>Last Name:</th>
-                                    <td><%= profile.lastName%></td>
-                                </tr>
-                                <tr>
-                                    <th>Email:</th>
-                                    <td><%= profile.email%></td>
-                                </tr>
-                                <tr>
-                                    <th>Phone:</th>
-                                    <td><%= profile.phoneNum%></td>
-                                </tr>
-                                <tr>
-                                    <th>About Me: </th>
-                                    <% if(profile.biograph){ %>
-                                        <td><%= profile.biograph%></td>
-        
-                                    <%} else {%>
-                                        <td>You have not told us anything yet!</td>
-                                    <%} %>
-                                </tr>
-                                <tr>
-                                    <th>Number of posts:</th>
-                                    <td><%- postNum%> posts</td>
-                                </tr>
-                                <%}%>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <%if(user.id == profile._id){%>
-                        <form>
-                            <td class="pt-4"><!-- Buttons to Change Account Details -->
-                                <button class="btn btn-secondary btn-lg text-end m-1" type="submit" formmethod="GET" formaction="/users/<%= profile.id %>/edit">Update</button>
-                                <!-- <button class="btn btn-danger btn-lg text-end m-1" type="submit">Delete</button> -->
-                            </td>
-                        </form>
-                        <%}%>
-                    </tr>
-                </table>
+                <!-- Secondary Table for Account Information -->
+                <div class="container shadow mb-3 rounded-4 p-3 text-wrap">
+                    <p><b>About Me:</b>
+                        <hr>
+                        <% if(profile.biograph){ %>
+                            <%= profile.biograph%>
+                        <%} else {%>
+                            You have not told us anything yet!
+                        <%} %>
+                    </p>
+
+                </div>
+
+                <!-- <div class="d-inline-flex flex-column text-wrap mb-3 justify-content-center">
+                    <div class="container shadow p-3 mb-4 rounded-4 w-100">
+                        <p><b>About Me:</b>
+                            <hr>
+                            <% if(profile.biograph){ %>
+                                <%= profile.biograph%>
+                            <%} else {%>
+                                You have not told us anything yet!
+                            <%} %>
+                        </p>
+                    </div> -->
+                    <div class="container shadow p-3 mb-3 rounded-4 text-wrap">
+                        <p><b>First Name:</b> <%= profile.firstName%></p>
+                        <p><b>Last Name:</b> <%= profile.lastName%></p>
+                        <p><b>Email:</b> <%= profile.email%></p>
+                        <p><b>Phone:</b> <%= profile.phoneNum%></p>
+                        <p><b>Number of posts:</b> <%- postNum%> posts</p>
+                    </div>
+
+                </div>
 
             </div>
+
+        </div>
+
+        <div class="row text-center">
+        <!--update button-->
+        <%if(user.id == profile._id){%>
+            <form>
+                <td class="pt-4"><!-- Buttons to Change Account Details -->
+                    <button class="btn btn-secondary btn-lg text-end m-3" type="submit" formmethod="GET" formaction="/users/<%= profile.id %>/edit">Update</button>
+                    <!-- <button class="btn btn-danger btn-lg text-end m-1" type="submit">Delete</button> -->
+                </td>
+            </form>
+        <%}%>
 
         </div>
 

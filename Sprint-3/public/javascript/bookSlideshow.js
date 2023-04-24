@@ -2,7 +2,6 @@ $(document).ready(function (){
 
     const imageCarousel = $("#imageCarousel");
 
-  
     //slid.bs.carousel occurs after the carousel has gone to the next slide
     //slide.bs.carousel occurs as soon as the button is clicked
 

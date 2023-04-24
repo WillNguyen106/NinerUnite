@@ -13,7 +13,7 @@
                         <!--carousel for showing multiple images with clickable gallery-->
                         <!--referenced: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp-->
 
-                        <div id="imageCarousel" data-bs-interval="false" class="carousel slide border">
+                        <div id="imageCarousel" data-bs-interval="false" class="carousel slide">
                             <!--this is where the images will be-->
                             <!--each carousel item is where an item can be placed-->
                             <div class="carousel-inner">
@@ -47,22 +47,19 @@
                               </button>
                         </div>
                         <!--thumbnail images-->
-                        <div class="row rowBox">
+                        <!-- <div class="row d-flex">
                             <% for (let i = 0; i < book.image.length; i++){ %>
 
-                                <div class="col imageBox">
-                                        <a>
-                                            <button class="link" id="button<%=i%>"><%=i%></button>
-                                        </a>
-                                        
-                                        <!-- <img class=" img-fluid imageInBox" src="data:<%=book.image[i].contentType%>;base64,
-                                        <%=book.image[i].data.toString('base64')%>" alt=""> -->
+                                <div class="col d-flex">
+
+                                        <button class="link" id="button<%=i%>"><%=i%></button>
+
                                 </div>
 
 
                             <% } %>
 
-                        </div>
+                        </div> -->
                         </div>
                     <%} else{%>
                         <div>

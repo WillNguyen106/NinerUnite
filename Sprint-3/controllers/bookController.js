@@ -20,7 +20,7 @@ exports.index = (req, res, next)=>{
     modelBook.find()
     .then(books => {
         if(filterBooks && filterOptions[filterBooks]){
-            results = books.filter(priceRange[filterBooks]);
+            results = books.filter(filterOptions[filterBooks]);
         }
         res.render('./textbook/books', {books, results,filterBooks});
     })
