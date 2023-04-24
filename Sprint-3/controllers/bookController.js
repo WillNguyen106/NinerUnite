@@ -7,7 +7,7 @@ const {DateTime} = require("luxon");
 exports.index = (req, res, next)=>{
     const filterBooks = req.query.filterBooks; 
     let results = [];
-    const priceRange ={
+    const filterOptions ={
         '1-20' : book=>book.price >=1 && book.price <= 20,
         '20-50' : book=>book.price > 20 && book.price <= 50,
         '50-100' : book=>book.price > 50 && book.price <= 100,
@@ -16,18 +16,12 @@ exports.index = (req, res, next)=>{
         'computer-science': book=>book.subject.toLowerCase().split(' ').join('-').includes(filterBooks.toLowerCase()),
         'marketing': book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()),
     }
-   
-    // console.log(typeof(filterBooks));
+    
     modelBook.find()
     .then(books => {
-        if(filterBooks && priceRange[filterBooks]){
+        if(filterBooks && filterOptions[filterBooks]){
             results = books.filter(priceRange[filterBooks]);
-            console.log(results);
         }
-        // if(filterBooks === 'accounting'){
-        //     results = books.filter(book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()));
-        //     console.log(results);
-        // }
         res.render('./textbook/books', {books, results,filterBooks});
     })
     .catch(err => next(err));
