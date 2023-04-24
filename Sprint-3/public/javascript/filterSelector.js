@@ -1,16 +1,8 @@
-const checkBoxes = document.querySelectorAll("input[type=checkbox]");
-
-checkBoxes.forEach(checkBox => {
-    checkBox.addEventListener('click', filterBooks)
-});
-
-function filterBooks(){
-    const selectedPriceOptions = [];
-    checkBoxes.forEach(checkBox=>{
-        if(checkBox.checked){
-            selectedPriceOptions.push(checkBox.value);
-        }
+const clearFilter = document.querySelector('#clearFilter');
+const filterSelectors = document.querySelectorAll('input[name="filterBooks"]');
+clearFilter.addEventListener('click',()=>{
+    filterSelectors.forEach((radioButton)=>{
+        radioButton.checked = false;
     })
-    console.log(selectedPriceOptions);
-}
+})
 

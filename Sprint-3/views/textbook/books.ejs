@@ -9,9 +9,16 @@
                 <div class="col-md-3">
                     <form action="/books" method="get">
                         <div class="container border text-break sticky-top p-3">
-
-                            <h1>Filters</h1>
-                            <a class="btn btn-secondary my-2" href='/books'>Clear Filters</a>
+                            <div class="row">
+                                <div class="col">
+                                    <h1>Filters</h1>
+                                </div>
+                                <div class="col">
+                                    <input class="btn btn-success my-2" type="submit" value="Clear Filter">
+                                </div>
+                            </div>
+                            
+                           
 
                             <!--accordion to minimize the filtering options-->
 
@@ -113,31 +120,41 @@
                                             <div class="accordion-body">
                                                 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="accounting" id="subjectOption1">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="accounting" id="subjectOption1"
+                                                    <%if (filterBooks && filterBooks.includes('accounting')) {%>
+                                                        checked
+                                                    <%}%>>
                                                     <label class="form-check-label" for="subjectOption1">
                                                         Accounting
                                                     </label>
                                                 </div>
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="computer-science" id="subjectOption2">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="computer-science" id="subjectOption2"
+                                                    <%if (filterBooks && filterBooks.includes('computer-science')) {%>
+                                                        checked
+                                                    <%}%>>
                                                     <label class="form-check-label" for="subjectOption2">
                                                         Computer Science
                                                     </label>
                                                 </div> 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="marketing" id="subjectOption3">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="marketing" id="subjectOption3"
+                                                    <%if (filterBooks && filterBooks.includes('marketing')) {%>
+                                                        checked
+                                                    <%}%>>
                                                     <label class="form-check-label" for="subjectOption3">
                                                         Marketing
                                                     </label>
                                                 </div>
 
-
                                             </div>
+                                            
                                     </div>
-
+                                  
                                 </div>
+                                <input class="btn btn-success my-2" type="submit" value="Submit">
                             </div>
                             <input class="btn btn-success my-2" type="submit" value="Submit">
                         </div>
@@ -192,10 +209,6 @@
                 </div>
 
             </div>
-            
-
-            
-            
         <%} else {%>
             <h2>There are no books to display</h2>
         <%} %>

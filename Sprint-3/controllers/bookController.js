@@ -5,7 +5,7 @@ const {DateTime} = require("luxon");
 
 // Function that find all books
 exports.index = (req, res, next)=>{
-    const filterBooks = req.query.filterBooks; 
+    const filterBooks = req.query.filterBooks;
     let results = [];
     const filterOptions ={
         '1-20' : book=>book.price >=1 && book.price <= 20,
@@ -76,24 +76,6 @@ exports.search = (req,res,next)=>{
                         results.push(book);
                     }
             });
-
-
-            // let author = books.filter((book)=>book.author.toLowerCase().includes(q.toLowerCase()));
-            // let title = books.filter((book)=>book.title.toLowerCase().includes(q.toLowerCase()));
-            // let ISBN = books.filter((book)=>book.isbn.includes(q));
-
-            // ISBN.forEach(book => {
-            //     results.push(book);
-            // });
-            
-            // author.forEach(book => {
-            //     results.push(book);
-            // });
-    
-            // title.forEach(book => {
-            //     results.push(book);
-            // });
-            
         }
         res.render('./textbook/searchBook',{books, results, q, searched:true});
     })
@@ -180,5 +162,9 @@ exports.delete = (req,res, next)=>{
     .catch(err=>next(err));
 };
 
+// Function filterBooks
+function filterItems(filterBooks){
+
+}
 
 
