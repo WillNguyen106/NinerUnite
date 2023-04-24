@@ -26,26 +26,20 @@ exports.index = (req, res, next)=>{
         // }
         
         if(filterBooks){
-            switch (filterBooks) {
-                case '1-20':
-                  results = books.filter(book => book.price >= 1 && book.price <= 20);
-                  break;
-                case '20-50':
-                  results = books.filter(book => book.price > 20 && book.price <= 50);
-                  break;
-                case '50-100':
-                  results = books.filter(book => book.price > 50 && book.price <= 100);
-                  break;
-                case '1-20,20-50':
-                  results = books.filter(book => book.price >= 1 && book.price <= 50);
-                  break;
-                case '1-20,20-50,50-100':
-                  results = books.filter(book => book.price >= 1 && book.price <= 100);
-                  break;
-                default:
-                  results = books;
-                break;
+            if(filterBooks === '1-20'){
+                results = books.filter(book=>book.price >=1 && book.price <= 20);
+            }else if(filterBooks === '20-50'){
+                results = books.filter(book=>book.price > 20 && book.price <= 50);
+            }else if(filterBooks === '50-100'){
+                results = books.filter(book=>book.price > 50 && book.price <= 100);
+            }else if(filterBooks === '1-20','20-50'){
+                results = books.filter(book=>book.price >= 1 && book.price <= 50);
+            }else if(filterBooks === '1-20','20-50','50-100'){
+                results = books.filter(book=>book.price >= 1 && book.price <= 100);
             }
+            console.log(results);
+        } else {
+            results = books;
         }
         res.render('./textbook/books', {books, results,filterBooks});
     })
