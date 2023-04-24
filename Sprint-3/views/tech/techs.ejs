@@ -5,29 +5,155 @@
         <br>
         <%if(techs.length){ %>
 
-            <table class="table border text-break">
-                <tr>
-                    <th scope="col">Tech Name/Brand</th>
-                    <th scope="col">Price</th>
+            <div class="row">
+                <!--filter section of page-->
+                <div class="col-md-3">
+                    <div class="container border text-break sticky-top p-3">
 
-                </tr>
+                        <h1>Filters</h1>
 
-            <tbody>
-            <%techs.forEach(tech=>{%>
-                <tr class="select listItem">
-                    <!--brand counts for tech items name and brand-->
-                    <td >
-                        <a href="/techs/<%=tech.id%>"><p><%=tech.brand%></p></a>
-                    </td>
-                    <td>
-                        <p>$<%=tech.price %></p>
-                    </td>
-                </tr>
+                        <!--accordion to minimize the filtering options-->
 
-            <% }); %>
+                        <div class="accordion" id="filterAccordion">
+                            <!--accordion item #1: price filter options-->
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button 
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#priceFilter"
+                                    aria-expanded="false"
+                                    aria-controls="priceFilter"
+                                    >
+                                    Price
+                                    </button>
 
-            </tbody>
-            </table>
+                                </h3>
+                                <div
+                                    id="priceFilter"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#filterAccordion"
+                                >
+                                        <div class="accordion-body">
+                                            
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1-100" id="priceOption1">
+                                                <label class="form-check-label" for="priceOption1">
+                                                    $1 - $100
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="100-300" id="priceOption2">
+                                                <label class="form-check-label" for="priceOption2">
+                                                    $100 - $300
+                                                </label>
+                                            </div> 
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="300-600" id="priceOption3">
+                                                <label class="form-check-label" for="priceOption3">
+                                                    $300 - $600
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="600+" id="priceOption4">
+                                                <label class="form-check-label" for="priceOption4">
+                                                    > $600
+                                                </label>
+                                            </div>
+
+                                            <input class="btn btn-success my-2" type="submit" value="Submit">
+
+                                        </div>
+                                </div>
+
+                            </div>
+
+                            <!--accordion item #2: brand filter options-->
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button
+                                    class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#brandFilter"
+                                    aria-expanded="false"
+                                    aria-controls="brandFilter"
+                                    >
+                                    Brand
+                                    </button>
+
+                                </h3>
+                                <div
+                                    id="brandFilter"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#filterAccordion"
+                                >
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="brandOption1">
+                                        <label class="form-check-label" for="brandOption1">
+                                            Samsung
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="brandOption2">
+                                        <label class="form-check-label" for="brandOption2">
+                                            Apple
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--future accordion items go below-->
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <!--tech list section of page-->
+                <div class="col-md-9">
+                    <table class="table border text-break">
+                        <tr>
+                            <th scope="col">Tech Name/Brand</th>
+                            <th scope="col">Price</th>
+        
+                        </tr>
+        
+                    <tbody>
+                    <%techs.forEach(tech=>{%>
+                        <tr class="select listItem">
+                            <!--brand counts for tech items name and brand-->
+                            <td >
+                                <a href="/techs/<%=tech.id%>"><p><%=tech.brand%></p></a>
+                            </td>
+                            <td>
+                                <p>$<%=tech.price %></p>
+                            </td>
+                        </tr>
+        
+                    <% }); %>
+        
+                    </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+
             
             <%} else {%>
             <h2>There are no products to display</h2>
