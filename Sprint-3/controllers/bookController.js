@@ -2,45 +2,32 @@ const book = require('../models/book');
 const modelBook = require('../models/book');
 const modelCart = require('../models/cart');
 const {DateTime} = require("luxon");
-// const {filterBooks} = require('../public/javascript/filterSelector');
 
 // Function that find all books
 exports.index = (req, res, next)=>{
-    const filterBooks = req.query.filterBooks;
-    let filter = [];
-    filter.push(filterBooks);
-    console.log(filter);
-    let results =[];
+    const filterBooks = req.query.filterBooks; 
+    let results = [];
+    const priceRange ={
+        '1-20' : book=>book.price >=1 && book.price <= 20,
+        '20-50' : book=>book.price > 20 && book.price <= 50,
+        '50-100' : book=>book.price > 50 && book.price <= 100,
+        '100+' : book=>book.price > 100,
+        'accounting': book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()),
+        'computer-science': book=>book.subject.toLowerCase().split(' ').join('-').includes(filterBooks.toLowerCase()),
+        'marketing': book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()),
+    }
+   
+    // console.log(typeof(filterBooks));
     modelBook.find()
     .then(books => {
-        // if(books){
-        //     filter.forEach(filter=>{
-        //         if(filter === '1-20', '20-50'){
-        //             results = books.filter(book=>book.price >=1 && book.price <= 50);
-        //         }
-        //         console.log(results);
-        //     })
-        //     res.render('./textbook/books', {books, results,a});
-        // }else{
-            
-        // }
-        
-        if(filterBooks){
-            if(filterBooks === '1-20'){
-                results = books.filter(book=>book.price >=1 && book.price <= 20);
-            }else if(filterBooks === '20-50'){
-                results = books.filter(book=>book.price > 20 && book.price <= 50);
-            }else if(filterBooks === '50-100'){
-                results = books.filter(book=>book.price > 50 && book.price <= 100);
-            }else if(filterBooks === '1-20','20-50'){
-                results = books.filter(book=>book.price >= 1 && book.price <= 50);
-            }else if(filterBooks === '1-20','20-50','50-100'){
-                results = books.filter(book=>book.price >= 1 && book.price <= 100);
-            }
+        if(filterBooks && priceRange[filterBooks]){
+            results = books.filter(priceRange[filterBooks]);
             console.log(results);
-        } else {
-            results = books;
         }
+        // if(filterBooks === 'accounting'){
+        //     results = books.filter(book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()));
+        //     console.log(results);
+        // }
         res.render('./textbook/books', {books, results,filterBooks});
     })
     .catch(err => next(err));

@@ -7,140 +7,140 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <div class="container border text-break sticky-top p-3">
+                    <form action="/books" method="get">
+                        <div class="container border text-break sticky-top p-3">
 
-                        <h1>Filters</h1>
+                            <h1>Filters</h1>
 
-                        <!--accordion to minimize the filtering options-->
+                            <!--accordion to minimize the filtering options-->
 
-                        <div class="accordion" id="filterAccordion">
-                            <!--accordion item #1: price filter options-->
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button 
-                                    class="accordion-button collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#priceFilter"
-                                    aria-expanded="false"
-                                    aria-controls="priceFilter"
+                            <div class="accordion" id="filterAccordion">
+                                <!--accordion item #1: price filter options-->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button 
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#priceFilter"
+                                        aria-expanded="false"
+                                        aria-controls="priceFilter"
+                                        >
+                                            Price
+                                        </button>
+
+                                    </h3>
+                                    <div
+                                        id="priceFilter"
+                                        class="accordion-collapse collapse show"
+                                        data-bs-parent="#filterAccordion"
                                     >
-                                        Price
-                                    </button>
+                                    
+                                            <div class="accordion-body">
+                                                
+                                                <div class="form-check">
+                                                
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="1-20" id="priceOption1"
+                                                    <% if (filterBooks && filterBooks.includes('1-20')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="priceOption1">
+                                                        $1 - $20
+                                                    </label>
+                                                </div>
+                                                
 
-                                </h3>
-                                <div
-                                    id="priceFilter"
-                                    class="accordion-collapse collapse show"
-                                    data-bs-parent="#filterAccordion"
-                                >
-                                    <form action="/books" method="get">
-                                        <div class="accordion-body">
-                                            
-                                            <div class="form-check">
-                                               
-                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="1-20" id="priceOption1"
-                                                <% if (filterBooks && filterBooks.includes('1-20')) {%>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="20-50" id="priceOption2"
+                                                    <% if (filterBooks && filterBooks.includes('20-50')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="priceOption2">
+                                                        $20 - $50
+                                                    </label>
+                                                </div> 
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="50-100" id="priceOption3"
+                                                    <% if (filterBooks && filterBooks.includes('50-100')) {%>
                                                     checked
-                                                <%}%>>
-                                                <label class="form-check-label" for="priceOption1">
-                                                    $1 - $20
-                                                </label>
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="priceOption3">
+                                                        $50 - $100
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="100+" id="priceOption4"
+                                                    <%if (filterBooks && filterBooks.includes('100+')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="priceOption4">
+                                                        > $100
+                                                    </label>
+                                                </div>
+
+                                                <!-- <input class="btn btn-success my-2" type="submit" value="Submit"> -->
+
                                             </div>
-                                            
+                                        </form>
+                                    </div>
 
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="20-50" id="priceOption2"
-                                                <% if (filterBooks && filterBooks.includes('20-50')) {%>
-                                                    checked
-                                                <%}%>>
-                                                <label class="form-check-label" for="priceOption2">
-                                                    $20 - $50
-                                                </label>
-                                            </div> 
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="50-100" id="priceOption3"
-                                                <% if (filterBooks && filterBooks.includes('50-100')) {%>
-                                                   checked
-                                                <%}%>>
-                                                <label class="form-check-label" for="priceOption3">
-                                                    $50 - $100
-                                                </label>
-                                            </div>
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="100+" id="priceOption4"
-                                                <% if (filterBooks && filterBooks.includes('100+')) {%>
-                                                    checked
-                                                 <%}%>>
-                                                <label class="form-check-label" for="priceOption4">
-                                                    > $100
-                                                </label>
-                                            </div>
-
-                                            <input class="btn btn-success my-2" type="submit" value="Submit">
-
-                                        </div>
-                                    </form>
                                 </div>
 
-                            </div>
+                                <!--future accordion items-->
 
-                            <!--future accordion items-->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button 
+                                        class="accordion-button collapsed show"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#subjectFilter"
+                                        aria-expanded="false"
+                                        aria-controls="subjectFilter"
+                                        >
+                                            Subject
+                                        </button>
 
-                            <div class="accordion-item">
-                                <h3 class="accordion-header">
-                                    <button 
-                                    class="accordion-button collapsed"
-                                    type="button"
-                                    data-bs-toggle="collapse"
-                                    data-bs-target="#subjectFilter"
-                                    aria-expanded="false"
-                                    aria-controls="subjectFilter"
+                                    </h3>
+                                    <div
+                                        id="subjectFilter"
+                                        class="accordion-collapse collapse show"
+                                        data-bs-parent="#filterAccordion"
                                     >
-                                        Subject
-                                    </button>
+                                            <div class="accordion-body">
+                                                
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="accounting" id="subjectOption1">
+                                                    <label class="form-check-label" for="subjectOption1">
+                                                        Accounting
+                                                    </label>
+                                                </div>
 
-                                </h3>
-                                <div
-                                    id="subjectFilter"
-                                    class="accordion-collapse collapse show"
-                                    data-bs-parent="#filterAccordion"
-                                >
-                                        <div class="accordion-body">
-                                            
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="accounting" id="subjectOption1">
-                                                <label class="form-check-label" for="subjectOption1">
-                                                    Accounting
-                                                </label>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="computer-science" id="subjectOption2">
+                                                    <label class="form-check-label" for="subjectOption2">
+                                                        Computer Science
+                                                    </label>
+                                                </div> 
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="filterBooks" type="radio" value="marketing" id="subjectOption3">
+                                                    <label class="form-check-label" for="subjectOption3">
+                                                        Marketing
+                                                    </label>
+                                                </div>
+
+                                                <input class="btn btn-success my-2" type="submit" value="Submit">
+
                                             </div>
+                                    </div>
 
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="computer-science" id="subjectOption2">
-                                                <label class="form-check-label" for="subjectOption2">
-                                                    Computer Science
-                                                </label>
-                                            </div> 
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="marketing" id="subjectOption3">
-                                                <label class="form-check-label" for="subjectOption3">
-                                                    Marketing
-                                                </label>
-                                            </div>
-
-                                            <input class="btn btn-success my-2" type="submit" value="Submit">
-
-                                        </div>
                                 </div>
-
                             </div>
                         </div>
-
-
-                    </div>
+                    </form>
 
                 </div>
 

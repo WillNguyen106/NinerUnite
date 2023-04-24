@@ -32,6 +32,7 @@ const cartRoutes = require('./routes/cartRoutes');//for cart routes to the cart 
 // Create app
 const app = express();
 
+
 // Configure app
 let port = 8084;
 let host = 'localhost';
