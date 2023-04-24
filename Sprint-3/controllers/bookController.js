@@ -6,16 +6,52 @@ const {DateTime} = require("luxon");
 
 // Function that find all books
 exports.index = (req, res, next)=>{
+    const filterBooks = req.query.filterBooks;
+    let filter = [];
+    filter.push(filterBooks);
+    console.log(filter);
     let results =[];
-    
     modelBook.find()
     .then(books => {
-        results = books.filter(book=>book.price >= 1 && book.price <= 20);
-        console.log(results);
-        res.render('./textbook/books', {books, results});
+        // if(books){
+        //     filter.forEach(filter=>{
+        //         if(filter === '1-20', '20-50'){
+        //             results = books.filter(book=>book.price >=1 && book.price <= 50);
+        //         }
+        //         console.log(results);
+        //     })
+        //     res.render('./textbook/books', {books, results,a});
+        // }else{
+            
+        // }
+        
+        if(filterBooks){
+            switch (filterBooks) {
+                case '1-20':
+                  results = books.filter(book => book.price >= 1 && book.price <= 20);
+                  break;
+                case '20-50':
+                  results = books.filter(book => book.price > 20 && book.price <= 50);
+                  break;
+                case '50-100':
+                  results = books.filter(book => book.price > 50 && book.price <= 100);
+                  break;
+                case '1-20,20-50':
+                  results = books.filter(book => book.price >= 1 && book.price <= 50);
+                  break;
+                case '1-20,20-50,50-100':
+                  results = books.filter(book => book.price >= 1 && book.price <= 100);
+                  break;
+                default:
+                  results = books;
+                break;
+            }
+        }
+        res.render('./textbook/books', {books, results,filterBooks});
     })
     .catch(err => next(err));
 }
+
 // Function that create new book post and save new post
 exports.new = (req,res)=>{
     res.render('./textbook/new');

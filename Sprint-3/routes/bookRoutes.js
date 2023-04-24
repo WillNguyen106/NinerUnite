@@ -7,8 +7,11 @@ const {validateId} = require('../middlewares/validator');
 
 const router = express.Router();
 
+
 //GET /textbooks: send all textbooks products to the user
 router.get('/', controllerBook.index);
+
+
 
 /*
     *Allow users to create a new textbook post
@@ -41,6 +44,5 @@ router.put('/:id',validateId,isLoggedIn,isUserBookPost,fileUpload, controllerBoo
 
 //DELETE /books/:id: delete textbook identified by id
 router.delete('/:id',validateId,isLoggedIn,isUserBookPost,controllerBook.delete);
-
 
 module.exports = router;

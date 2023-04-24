@@ -31,35 +31,49 @@
                                 </h3>
                                 <div
                                     id="priceFilter"
-                                    class="accordion-collapse collapse"
+                                    class="accordion-collapse collapse show"
                                     data-bs-parent="#filterAccordion"
                                 >
                                     <form action="/books" method="get">
                                         <div class="accordion-body">
                                             
                                             <div class="form-check">
-                                                <input class="form-check-input" name="q" type="checkbox" value="1-20" id="priceOption1">
+                                               
+                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="1-20" id="priceOption1"
+                                                <% if (filterBooks && filterBooks.includes('1-20')) {%>
+                                                    checked
+                                                <%}%>>
                                                 <label class="form-check-label" for="priceOption1">
                                                     $1 - $20
                                                 </label>
                                             </div>
+                                            
 
                                             <div class="form-check">
-                                                <input class="form-check-input" name="q" type="checkbox" value="20-50" id="priceOption2">
+                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="20-50" id="priceOption2"
+                                                <% if (filterBooks && filterBooks.includes('20-50')) {%>
+                                                    checked
+                                                <%}%>>
                                                 <label class="form-check-label" for="priceOption2">
                                                     $20 - $50
                                                 </label>
                                             </div> 
 
                                             <div class="form-check">
-                                                <input class="form-check-input" name="q" type="checkbox" value="50-100" id="priceOption3">
+                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="50-100" id="priceOption3"
+                                                <% if (filterBooks && filterBooks.includes('50-100')) {%>
+                                                   checked
+                                                <%}%>>
                                                 <label class="form-check-label" for="priceOption3">
                                                     $50 - $100
                                                 </label>
                                             </div>
 
                                             <div class="form-check">
-                                                <input class="form-check-input" name="q" type="checkbox" value="100+" id="priceOption4">
+                                                <input class="form-check-input" name="filterBooks" type="checkbox" value="100+" id="priceOption4"
+                                                <% if (filterBooks && filterBooks.includes('100+')) {%>
+                                                    checked
+                                                 <%}%>>
                                                 <label class="form-check-label" for="priceOption4">
                                                     > $100
                                                 </label>
