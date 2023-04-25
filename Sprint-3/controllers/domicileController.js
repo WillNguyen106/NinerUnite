@@ -4,8 +4,24 @@ const {DateTime} = require("luxon");
 
 // Function that find all domiciles
 exports.index = (req,res,next)=>{
+    const filterDomiciles = req.query.filterTechs;
+    let results = [];
+    const filterOptions ={
+        '1-100' : domicile=>domicile.price >=1 && domicile.price <= 100,
+        '100-300' : domicile=>domicile.price > 100 && domicile.price <= 300,
+        '300-600' : domicile=>domicile.price > 300 && domicile.price <= 600,
+        '600+' : domicile=>domicile.price > 600,
+        'samsung': domicile=>domicile.brand.toLowerCase().includes(filterDomiciles.toLowerCase()),
+        'apple': domicile=>domicile.brand.toLowerCase().split(' ').join('-').includes(filterDomiciles.toLowerCase()),
+        'microsoft': domicile=>domicile.brand.toLowerCase().includes(filterDomiciles.toLowerCase()),
+    }
     modelDomicile.find()
-    .then(domiciles=>res.render('./domicile/domiciles',{domiciles}))
+    .then(domiciles=>{
+        if(filterDomiciles && filterOptions[filterDomiciles]){
+            results = domiciles.filter(filterOptions[filterDomiciles]);
+        }
+        res.render('./domicile/domiciles',{domiciles,results,filterDomiciles})
+    })
     .catch(err=>next(err));
 }
 

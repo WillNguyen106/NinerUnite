@@ -4,8 +4,26 @@ const {DateTime} = require("luxon");
 
 // Function that find all techs
 exports.index = (req, res, next)=>{
+    const filterTechs = req.query.filterTechs;
+    let results = [];
+    const filterOptions ={
+        '1-100' : tech=>tech.price >=1 && tech.price <= 100,
+        '100-300' : tech=>tech.price > 100 && tech.price <= 300,
+        '300-600' : tech=>tech.price > 300 && tech.price <= 600,
+        '600+' : tech=>tech.price > 600,
+        'samsung': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
+        'apple': tech=>tech.brand.toLowerCase().split(' ').join('-').includes(filterTechs.toLowerCase()),
+        'microsoft': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
+    }
+
     modelTech.find()
-    .then(techs => res.render('./tech/techs',{techs}))
+    .then(techs =>{ 
+        console.log(techs);
+        if(filterTechs && filterOptions[filterTechs]){
+            results = techs.filter(filterOptions[filterTechs]);
+        }
+        res.render('./tech/techs',{techs, results, filterTechs});
+    })
     .catch(err => next(err));
 };
 
