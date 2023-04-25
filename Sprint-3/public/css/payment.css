@@ -133,3 +133,19 @@ input.form-control:hover {
     font-size: 14px;
     font-weight: 600;
 }
+
+.transaction {
+    background-color: #005035;
+}
+
+/* Center perfectly in the middle */
+.centered {
+    position: fixed; /* or absolute */
+    top: 40%;
+    left: 10%;
+  }
+
+  .transaction_page {
+        background-image: url(../images/other/copyright\ image.png);
+        background-size: cover;
+  }
