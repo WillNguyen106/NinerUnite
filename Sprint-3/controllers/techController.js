@@ -4,7 +4,9 @@ const {DateTime} = require("luxon");
 
 // Function that find all techs
 exports.index = (req, res, next)=>{
-    const filterTechs = req.query.filterTechs;
+    const filterByPrice = req.query.price;
+    const filterByBrand = req.query.brand;
+
     let results = [];
     const filterOptions ={
         '1-100' : tech=>tech.price >=1 && tech.price <= 100,
@@ -12,17 +14,20 @@ exports.index = (req, res, next)=>{
         '300-600' : tech=>tech.price > 300 && tech.price <= 600,
         '600+' : tech=>tech.price > 600,
         'samsung': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
-        'apple': tech=>tech.brand.toLowerCase().split(' ').join('-').includes(filterTechs.toLowerCase()),
+        'apple': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
         'microsoft': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
     }
 
     modelTech.find()
     .then(techs =>{ 
-        console.log(techs);
-        if(filterTechs && filterOptions[filterTechs]){
-            results = techs.filter(filterOptions[filterTechs]);
+        if(filterByPrice && filterOptions[filterByPrice]){
+            results = techs.filter(filterOptions[filterByPrice]);
         }
-        res.render('./tech/techs',{techs, results, filterTechs});
+        
+        if(filterByBrand && filterOptions[filterByBrand]){
+            results = techs.filter(filterOptions[filterByBrand]);
+        }
+        res.render('./tech/techs',{techs, results, filterByPrice, filterByBrand});
     })
     .catch(err => next(err));
 };

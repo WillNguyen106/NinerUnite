@@ -6,8 +6,8 @@ const {DateTime} = require("luxon");
 // Function that find all books
 exports.index = (req, res, next)=>{
     //ge the filtering options from the query
-    const filterByPrice = req.query.filterByPrice;
-    const filterBySubject = req.query.filterBySubject;
+    const filterByPrice = req.query.price;
+    const filterBySubject = req.query.subject;
 
     let results = [];
     const filterOptions ={

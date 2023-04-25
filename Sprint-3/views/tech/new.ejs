@@ -38,11 +38,25 @@
                 <!--Name/Brand Section-->
                 <div class="row mb-4 w-75">
                     <div class="col-md-2 col-form-label">
-                        <label for="brand" class="form-label fw-bold">Name/Brand:</label>
+                        <label for="brand" class="form-label fw-bold">Brand:</label>
+                    </div>
+                    <div class="col-md-10">
+                        <select class="form-select" name="device" aria-label="--Select a Device--" required>
+                            <option selected value="">--Select a Device--</option>
+                            <option value="laptop">Laptop</option>
+                            <option value="smartphone">Smartphone</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="headphone">Headphone</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-4 w-75">
+                    <div class="col-md-2 col-form-label">
+                        <label for="title" class="form-label fw-bold">Title:</label>
                     </div>
                     <div class="col-md-10">
                         <input class="form-control inputBox text-dark border-0" type="text" id="brand" name="brand"
-                            placeholder="Ex: Apple MacBook Pro13&quot;, Bose Headphones" required>
+                            placeholder="Ex: MacBook Pro13&quot;, Bose Headphones" required>
                     </div>
                 </div>
 

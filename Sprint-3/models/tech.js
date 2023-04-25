@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const techSchema = new Schema({
     user : {type:Schema.Types.ObjectId, ref: 'User'},
+    device: {type: String, required: [true,'device is required']},
     brand:{type: String, required: [true, 'brand is required']},
     description: {type: String, required: [true, 'description is required'], 
             minLength: [10, 'description should have at least 10 character']},

@@ -47,7 +47,7 @@
                                                 
                                                 <div class="form-check">
                                                 
-                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="1-20" id="priceOption1"
+                                                    <input class="form-check-input" name="price" type="radio" value="1-20" id="priceOption1"
                                                     <% if (filterByPrice && filterByPrice.includes('1-20')) {%>
                                                         checked
                                                     <%}%>>
@@ -58,7 +58,7 @@
                                                 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="20-50" id="priceOption2"
+                                                    <input class="form-check-input" name="price" type="radio" value="20-50" id="priceOption2"
                                                     <% if (filterByPrice && filterByPrice.includes('20-50')) {%>
                                                         checked
                                                     <%}%>>
@@ -68,7 +68,7 @@
                                                 </div> 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="50-100" id="priceOption3"
+                                                    <input class="form-check-input" name="price" type="radio" value="50-100" id="priceOption3"
                                                     <% if (filterByPrice && filterByPrice.includes('50-100')) {%>
                                                     checked
                                                     <%}%>>
@@ -78,7 +78,7 @@
                                                 </div>
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="100+" id="priceOption4"
+                                                    <input class="form-check-input" name="price" type="radio" value="100+" id="priceOption4"
                                                     <%if (filterByPrice && filterByPrice.includes('100+')) {%>
                                                         checked
                                                     <%}%>>
@@ -119,7 +119,7 @@
                                             <div class="accordion-body">
                                                 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBySubject" type="radio" value="accounting" id="subjectOption1"
+                                                    <input class="form-check-input" name="subject" type="radio" value="accounting" id="subjectOption1"
                                                     <%if (filterBySubject && filterBySubject.includes('accounting')) {%>
                                                         checked
                                                     <%}%>>
@@ -129,7 +129,7 @@
                                                 </div>
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBySubject" type="radio" value="computer-science" id="subjectOption2"
+                                                    <input class="form-check-input" name="subject" type="radio" value="computer-science" id="subjectOption2"
                                                     <%if (filterBySubject && filterBySubject.includes('computer-science')) {%>
                                                         checked
                                                     <%}%>>
@@ -139,7 +139,7 @@
                                                 </div> 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBySubject" type="radio" value="marketing" id="subjectOption3"
+                                                    <input class="form-check-input" name="subject" type="radio" value="marketing" id="subjectOption3"
                                                     <%if (filterBySubject && filterBySubject.includes('marketing')) {%>
                                                         checked
                                                     <%}%>>
