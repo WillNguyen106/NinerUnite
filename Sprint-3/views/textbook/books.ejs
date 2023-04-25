@@ -15,6 +15,7 @@
                                 </div>
                                 <div class="col">
                                     <input id="clearFilter" class="btn btn-success my-2" type="submit" value="Clear Filter">
+                                    <!-- <a class="btn btn-secondary my-2" href='/books'>Clear Filters</a> -->
                                 </div>
                             </div>
 
@@ -46,8 +47,8 @@
                                                 
                                                 <div class="form-check">
                                                 
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="1-20" id="priceOption1"
-                                                    <% if (filterBooks && filterBooks.includes('1-20')) {%>
+                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="1-20" id="priceOption1"
+                                                    <% if (filterByPrice && filterByPrice.includes('1-20')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption1">
@@ -57,8 +58,8 @@
                                                 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="20-50" id="priceOption2"
-                                                    <% if (filterBooks && filterBooks.includes('20-50')) {%>
+                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="20-50" id="priceOption2"
+                                                    <% if (filterByPrice && filterByPrice.includes('20-50')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption2">
@@ -67,8 +68,8 @@
                                                 </div> 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="50-100" id="priceOption3"
-                                                    <% if (filterBooks && filterBooks.includes('50-100')) {%>
+                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="50-100" id="priceOption3"
+                                                    <% if (filterByPrice && filterByPrice.includes('50-100')) {%>
                                                     checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption3">
@@ -77,8 +78,8 @@
                                                 </div>
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="100+" id="priceOption4"
-                                                    <%if (filterBooks && filterBooks.includes('100+')) {%>
+                                                    <input class="form-check-input" name="filterByPrice" type="radio" value="100+" id="priceOption4"
+                                                    <%if (filterByPrice && filterByPrice.includes('100+')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption4">
@@ -118,8 +119,8 @@
                                             <div class="accordion-body">
                                                 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="accounting" id="subjectOption1"
-                                                    <%if (filterBooks && filterBooks.includes('accounting')) {%>
+                                                    <input class="form-check-input" name="filterBySubject" type="radio" value="accounting" id="subjectOption1"
+                                                    <%if (filterBySubject && filterBySubject.includes('accounting')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="subjectOption1">
@@ -128,8 +129,8 @@
                                                 </div>
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="computer-science" id="subjectOption2"
-                                                    <%if (filterBooks && filterBooks.includes('computer-science')) {%>
+                                                    <input class="form-check-input" name="filterBySubject" type="radio" value="computer-science" id="subjectOption2"
+                                                    <%if (filterBySubject && filterBySubject.includes('computer-science')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="subjectOption2">
@@ -138,8 +139,8 @@
                                                 </div> 
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="filterBooks" type="radio" value="marketing" id="subjectOption3"
-                                                    <%if (filterBooks && filterBooks.includes('marketing')) {%>
+                                                    <input class="form-check-input" name="filterBySubject" type="radio" value="marketing" id="subjectOption3"
+                                                    <%if (filterBySubject && filterBySubject.includes('marketing')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="subjectOption3">

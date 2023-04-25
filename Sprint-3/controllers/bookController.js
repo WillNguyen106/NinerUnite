@@ -5,24 +5,34 @@ const {DateTime} = require("luxon");
 
 // Function that find all books
 exports.index = (req, res, next)=>{
-    const filterBooks = req.query.filterBooks;
+    //ge the filtering options from the query
+    const filterByPrice = req.query.filterByPrice;
+    const filterBySubject = req.query.filterBySubject;
+
     let results = [];
     const filterOptions ={
         '1-20' : book=>book.price >=1 && book.price <= 20,
         '20-50' : book=>book.price > 20 && book.price <= 50,
         '50-100' : book=>book.price > 50 && book.price <= 100,
         '100+' : book=>book.price > 100,
-        'accounting': book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()),
-        'computer-science': book=>book.subject.toLowerCase().split(' ').join('-').includes(filterBooks.toLowerCase()),
-        'marketing': book=>book.subject.toLowerCase().includes(filterBooks.toLowerCase()),
+        'accounting': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
+        'computer-science': book=>book.subject.toLowerCase().split(' ').join('-').includes(filterBySubject.toLowerCase()),
+        'marketing': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
     }
-    
+
     modelBook.find()
     .then(books => {
-        if(filterBooks && filterOptions[filterBooks]){
-            results = books.filter(filterOptions[filterBooks]);
+        //first filter by price
+        if(filterByPrice && filterOptions[filterByPrice]){
+            results = books.filter(filterOptions[filterByPrice]);
         }
-        res.render('./textbook/books', {books, results,filterBooks});
+        //then filter the previous results by subject
+        if(filterBySubject && filterOptions[filterBySubject]){
+            results = results.filter(filterOptions[filterBySubject]);
+        }
+        console.log(results)
+        //results = books.filter(filterOptions[filterBooks]);
+        res.render('./textbook/books', {books, results, filterByPrice, filterBySubject});
     })
     .catch(err => next(err));
 }
