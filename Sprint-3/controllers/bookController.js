@@ -1,4 +1,3 @@
-const book = require('../models/book');
 const modelBook = require('../models/book');
 const modelCart = require('../models/cart');
 const {DateTime} = require("luxon");
@@ -18,19 +17,29 @@ exports.index = (req, res, next)=>{
         'accounting': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
         'computer-science': book=>book.subject.toLowerCase().split(' ').join('-').includes(filterBySubject.toLowerCase()),
         'marketing': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
+        'biology': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
+        'english': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
+        'health-psychology': book=>book.subject.toLowerCase().split(' ').join('-').includes(filterBySubject.toLowerCase()),
+        'music': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
+        'philosophy': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
+        'sociology': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
     }
 
     modelBook.find()
     .then(books => {
+
         //first filter by price
         if(filterByPrice && filterOptions[filterByPrice]){
             results = books.filter(filterOptions[filterByPrice]);
+            console.log(results);
         }
-        //then filter the previous results by subject
-        if(filterBySubject && filterOptions[filterBySubject]){
-            results = results.filter(filterOptions[filterBySubject]);
+
+         //then filter the previous results by subject
+         if(filterBySubject && filterOptions[filterBySubject]){
+            results = books.filter(filterOptions[filterBySubject]);
+            console.log(results);
         }
-        console.log(results)
+       
         //results = books.filter(filterOptions[filterBooks]);
         res.render('./textbook/books', {books, results, filterByPrice, filterBySubject});
     })

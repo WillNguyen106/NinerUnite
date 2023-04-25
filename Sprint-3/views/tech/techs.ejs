@@ -28,7 +28,7 @@
                                         aria-expanded="false"
                                         aria-controls="priceFilter"
                                         >
-                                        Price
+                                            <strong>Price</strong>
                                         </button>
 
                                     </h3>
@@ -41,7 +41,7 @@
                                                 
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="price" type="radio" value="1-100" id="priceOption1"
-                                                    <% if (filterTechs && filterTechs.includes('1-100')) {%>
+                                                    <% if (filterByPrice && filterByPrice.includes('1-100')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption1">
@@ -51,7 +51,7 @@
 
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="price" type="radio" value="100-300" id="priceOption2"
-                                                    <% if (filterTechs && filterTechs.includes('100-300')) {%>
+                                                    <% if (filterByPrice && filterByPrice.includes('100-300')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption2">
@@ -61,7 +61,7 @@
 
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="price" type="radio" value="300-600" id="priceOption3"
-                                                    <% if (filterTechs && filterTechs.includes('300-600')) {%>
+                                                    <% if (filterByPrice && filterByPrice.includes('300-600')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption3">
@@ -71,7 +71,7 @@
 
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="price" type="radio" value="600+" id="priceOption4"
-                                                    <% if (filterTechs && filterTechs.includes('600+')) {%>
+                                                    <% if (filterByPrice && filterByPrice.includes('600+')) {%>
                                                         checked
                                                     <%}%>>
                                                     <label class="form-check-label" for="priceOption4">
@@ -93,37 +93,77 @@
                                         class="accordion-button collapsed"
                                         type="button"
                                         data-bs-toggle="collapse"
-                                        data-bs-target="#brandFilter"
+                                        data-bs-target="#deviceFilter"
                                         aria-expanded="false"
-                                        aria-controls="brandFilter"
+                                        aria-controls="deviceFilter"
                                         >
-                                        Brand
+                                            <strong>Device</strong>
                                         </button>
 
                                     </h3>
                                     <div
-                                        id="brandFilter"
-                                        class="accordion-collapse collapse"
+                                        id="deviceFilter"
+                                        class="accordion-collapse collapse show"
                                         
                                     >
                                     <div class="accordion-body">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="brand" type="radio" value="samsung" id="brandOption1"
-                                            <% if (filterTechs && filterTechs.includes('samsung')) {%>
+                                            <input class="form-check-input" name="device" type="radio" value="laptop" id="deviceOptions1"
+                                            <% if (filterByDevice && filterByDevice.includes('laptop')) {%>
                                                 checked
                                             <%}%>>
-                                            <label class="form-check-label" for="brandOption1">
-                                                Samsung
+                                            <label class="form-check-label" for="deviceOptions1">
+                                                Laptop
                                             </label>
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" name="brand" type="radio" value="apple" id="brandOption2"
-                                            <% if (filterTechs && filterTechs.includes('apple')) {%>
+                                            <input class="form-check-input" name="device" type="radio" value="smartphone" id="deviceOptions2"
+                                            <% if (filterByDevice && filterByDevice.includes('smartphone')) {%>
                                                 checked
                                             <%}%>>
-                                            <label class="form-check-label" for="brandOption2">
-                                                Apple
+                                            <label class="form-check-label" for="deviceOptions2">
+                                                Smartphone
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="device" type="radio" value="tablet" id="deviceOptions3"
+                                            <% if (filterByDevice && filterByDevice.includes('tablet')) {%>
+                                                checked
+                                            <%}%>>
+                                            <label class="form-check-label" for="deviceOptions3">
+                                                Tablet
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="device" type="radio" value="headphone" id="deviceOptions3"
+                                            <% if (filterByDevice && filterByDevice.includes('headphone')) {%>
+                                                checked
+                                            <%}%>>
+                                            <label class="form-check-label" for="deviceOptions3">
+                                                Headphone
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="device" type="radio" value="speaker" id="deviceOptions4"
+                                            <% if (filterByDevice && filterByDevice.includes('speaker')) {%>
+                                                checked
+                                            <%}%>>
+                                            <label class="form-check-label" for="deviceOptions4">
+                                                Speaker
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="device" type="radio" value="printer" id="deviceOptions5"
+                                            <% if (filterByDevice && filterByDevice.includes('printer')) {%>
+                                                checked
+                                            <%}%>>
+                                            <label class="form-check-label" for="deviceOptions5">
+                                                Printer
                                             </label>
                                         </div>
 

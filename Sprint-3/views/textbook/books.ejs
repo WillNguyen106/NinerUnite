@@ -33,7 +33,7 @@
                                         aria-expanded="false"
                                         aria-controls="priceFilter"
                                         >
-                                            Price
+                                            <strong>Price</strong>
                                         </button>
 
                                     </h3>
@@ -107,13 +107,13 @@
                                         aria-expanded="false"
                                         aria-controls="subjectFilter"
                                         >
-                                            Subject
+                                            <strong>Subject</strong> 
                                         </button>
 
                                     </h3>
                                     <div
                                         id="subjectFilter"
-                                        class="accordion-collapse collapse"
+                                        class="accordion-collapse collapse show"
                                         
                                     >
                                             <div class="accordion-body">
@@ -136,7 +136,7 @@
                                                     <label class="form-check-label" for="subjectOption2">
                                                         Computer Science
                                                     </label>
-                                                </div> 
+                                                </div>  
 
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="subject" type="radio" value="marketing" id="subjectOption3"
@@ -145,6 +145,61 @@
                                                     <%}%>>
                                                     <label class="form-check-label" for="subjectOption3">
                                                         Marketing
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="subject" type="radio" value="biology" id="subjectOption4"
+                                                    <%if (filterBySubject && filterBySubject.includes('biology')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="subjectOption4">
+                                                        Biology
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="subject" type="radio" value="english" id="subjectOption5"
+                                                    <%if (filterBySubject && filterBySubject.includes('english')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="subjectOption5">
+                                                        English
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="subject" type="radio" value="health-psychology" id="subjectOption6"
+                                                    <%if (filterBySubject && filterBySubject.includes('health-psychology')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="subjectOption6">
+                                                        Health psychology
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="subject" type="radio" value="music" id="subjectOption7"
+                                                    <%if (filterBySubject && filterBySubject.includes('music')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="subjectOption7">
+                                                        Music
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="subject" type="radio" value="philosophy" id="subjectOption8"
+                                                    <%if (filterBySubject && filterBySubject.includes('philosophy')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="subjectOption8">
+                                                        Philosophy
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="subject" type="radio" value="sociology" id="subjectOption9"
+                                                    <%if (filterBySubject && filterBySubject.includes('sociology')) {%>
+                                                        checked
+                                                    <%}%>>
+                                                    <label class="form-check-label" for="subjectOption9">
+                                                        Sociology
                                                     </label>
                                                 </div>
 

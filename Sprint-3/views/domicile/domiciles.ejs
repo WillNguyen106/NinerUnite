@@ -27,7 +27,7 @@
                                 aria-expanded="false"
                                 aria-controls="priceFilter"
                                 >
-                                Price
+                                <strong>Price</strong>
                                 </button>
 
                             </h3>
@@ -39,23 +39,23 @@
                                     <div class="accordion-body">
                                         
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1000-2000" id="priceOption1">
+                                            <input class="form-check-input" name="price" type="radio" value="400-600" id="priceOption1">
                                             <label class="form-check-label" for="priceOption1">
-                                                $1000 - $2000
+                                                $400 - $600
                                             </label>
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="20-50" id="priceOption2">
+                                            <input class="form-check-input" name="price" type="radio" value="1000-1500" id="priceOption2">
                                             <label class="form-check-label" for="priceOption2">
-                                                $3000 - $5000
+                                                $1000 - $1500
                                             </label>
                                         </div> 
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="5000+" id="priceOption3">
+                                            <input class="form-check-input" name="price" type="radio" value="2000+" id="priceOption3">
                                             <label class="form-check-label" for="priceOption3">
-                                                > $5000
+                                                > $2000
                                             </label>
                                         </div>
 
@@ -63,6 +63,48 @@
                                     </div>
                             </div>
 
+                        </div>
+
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button
+                                class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#typeFilter"
+                                aria-expanded="false"
+                                aria-controls="typeFilter"
+                                >
+                                    <strong>Type</strong>
+                                </button>
+
+                            </h3>
+                            <div
+                                id="typeFilter"
+                                class="accordion-collapse collapse show"
+                                
+                            >
+                                <div class="accordion-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="type" type="radio" value="dorm" id="typeOption1">
+                                        <label class="form-check-label" for="typeOption1">
+                                            Dorm
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="type" type="radio" value="apartment" id="typeOption2">
+                                        <label class="form-check-label" for="typeOption2">
+                                            Apartment
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="type" type="radio" value="townhouse" id="typeOption3">
+                                        <label class="form-check-label" for="typeOption3">
+                                            Townhouse
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!--future accordion items-->
@@ -77,36 +119,36 @@
                                 aria-expanded="false"
                                 aria-controls="bedFilter"
                                 >
-                                    Number of Beds
+                                    <strong>Beds</strong>
                                 </button>
 
                             </h3>
                             <div
                                 id="bedFilter"
-                                class="accordion-collapse collapse"
+                                class="accordion-collapse collapse show"
                                 
                             >
                                 <div class="accordion-body">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" id="bedOption1">
+                                        <input class="form-check-input" name="bed" type="radio" value="1" id="bedOption1">
                                         <label class="form-check-label" for="bedOption1">
                                             1
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="2" id="bedOption2">
+                                        <input class="form-check-input" name="bed" type="radio" value="2" id="bedOption2">
                                         <label class="form-check-label" for="bedOption2">
                                             2
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="3" id="bedOption3">
+                                        <input class="form-check-input" name="bed" type="radio" value="3" id="bedOption3">
                                         <label class="form-check-label" for="bedOption3">
                                             3
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="4" id="bedOption4">
+                                        <input class="form-check-input" name="bed" type="radio" value="4" id="bedOption4">
                                         <label class="form-check-label" for="bedOption4">
                                             4
                                         </label>
@@ -126,42 +168,42 @@
                                 aria-expanded="false"
                                 aria-controls="bathFilter"
                                 >
-                                    Number of Baths
+                                    <strong>Baths</strong>
                                 </button>
 
                             </h3>
                             <div
                                 id="bathFilter"
-                                class="accordion-collapse collapse"
+                                class="accordion-collapse collapse show"
                                 
                             >
                                 <div class="accordion-body">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" id="bathOption1">
+                                        <input class="form-check-input" name="bath" type="radio" value="1" id="bathOption1">
                                         <label class="form-check-label" for="bathOption1">
                                             1
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1.5" id="bathOption1.5">
+                                        <input class="form-check-input" name="bath" type="radio" value="1.5" id="bathOption1.5">
                                         <label class="form-check-label" for="bathOption1.5">
                                             1.5
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="2" id="bathOption2">
+                                        <input class="form-check-input" name="bath" type="radio" value="2" id="bathOption2">
                                         <label class="form-check-label" for="bedOption2">
                                             2
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="2.5" id="bathOption2.5">
+                                        <input class="form-check-input" name="bath" type="radio" value="2.5" id="bathOption2.5">
                                         <label class="form-check-label" for="bedOption2.5">
                                             2.5
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="3" id="bathOption3">
+                                        <input class="form-check-input" name="bath" type="radio" value="3" id="bathOption3">
                                         <label class="form-check-label" for="bedOption3">
                                             3
                                         </label>

@@ -5,7 +5,7 @@ const {DateTime} = require("luxon");
 // Function that find all techs
 exports.index = (req, res, next)=>{
     const filterByPrice = req.query.price;
-    const filterByBrand = req.query.brand;
+    const filterByDevice = req.query.device;
 
     let results = [];
     const filterOptions ={
@@ -13,9 +13,12 @@ exports.index = (req, res, next)=>{
         '100-300' : tech=>tech.price > 100 && tech.price <= 300,
         '300-600' : tech=>tech.price > 300 && tech.price <= 600,
         '600+' : tech=>tech.price > 600,
-        'samsung': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
-        'apple': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
-        'microsoft': tech=>tech.brand.toLowerCase().includes(filterTechs.toLowerCase()),
+        'laptop': tech=>tech.device.toLowerCase().includes(filterByDevice.toLowerCase()),
+        'smartphone': tech=>tech.device.toLowerCase().includes(filterByDevice.toLowerCase()),
+        'tablet': tech=>tech.device.toLowerCase().includes(filterByDevice.toLowerCase()),
+        'headphone': tech=>tech.device.toLowerCase().includes(filterByDevice.toLowerCase()),
+        'speaker': tech=>tech.device.toLowerCase().includes(filterByDevice.toLowerCase()),
+        'printer': tech=>tech.device.toLowerCase().includes(filterByDevice.toLowerCase()),
     }
 
     modelTech.find()
@@ -24,10 +27,10 @@ exports.index = (req, res, next)=>{
             results = techs.filter(filterOptions[filterByPrice]);
         }
         
-        if(filterByBrand && filterOptions[filterByBrand]){
-            results = techs.filter(filterOptions[filterByBrand]);
+        if(filterByDevice && filterOptions[filterByDevice]){
+            results = techs.filter(filterOptions[filterByDevice]);
         }
-        res.render('./tech/techs',{techs, results, filterByPrice, filterByBrand});
+        res.render('./tech/techs',{techs, results, filterByPrice, filterByDevice});
     })
     .catch(err => next(err));
 };
