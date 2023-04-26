@@ -13,7 +13,7 @@
                         <!--carousel for showing multiple images with clickable gallery-->
                         <!--referenced: https://www.w3schools.com/howto/howto_js_slideshow_gallery.asp-->
 
-                        <div id="imageCarousel" data-bs-interval="false" class="carousel slide">
+                        <div id="imageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <!--this is where the images will be-->
                             <!--each carousel item is where an item can be placed-->
                             <div class="carousel-inner">
@@ -22,12 +22,12 @@
                                 <%for (let i = 0; i < book.image.length; i++){ %>
                                     <%if(book.image[i].data && i == 0){%>
                                         <div id="image<%=i%>" class="carousel-item active">
-                                            <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image[i].contentType%>;base64,
+                                            <img class=" img-fluid d-block w-100 imageCenter" src="data:<%=book.image[i].contentType%>;base64,
                                                 <%=book.image[i].data.toString('base64')%>" alt="">
                                         </div>
                                     <%} else if (book.image[i].data){%>
                                         <div id="image<%=i%>" class="carousel-item">
-                                            <img class=" img-fluid w-75 imageCenter" src="data:<%=book.image[i].contentType%>;base64,
+                                            <img class=" img-fluid d-block w-100 imageCenter" src="data:<%=book.image[i].contentType%>;base64,
                                                 <%=book.image[i].data.toString('base64')%>" alt="">
                                         </div>
                                     <% } %>
@@ -52,7 +52,7 @@
 
                                 <div class="col d-flex">
 
-                                        <button class="link" id="button<%=i%>"><%=i%></button>
+                                        <button class="link" id="button<%#=i%>"><%#=i%></button>
 
                                 </div>
 

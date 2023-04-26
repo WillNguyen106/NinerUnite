@@ -3,6 +3,7 @@ const userController = require('../controllers/userController');
 const {isGuest, isLoggedIn, isProfileOwner} = require('../middlewares/auth');// for validating guest or register user
 const {logInLimiter} = require('../middlewares/rateLimiters');// limiting login failure  5 times
 const {profileFileUpload} = require('../middlewares/profileFileUpload');
+const {validateSignUp, validateLogIn, validateResult} = require('../middlewares/validator');
 
 
 
@@ -13,7 +14,7 @@ router.get('/index', isLoggedIn, userController.index);
 router.get('/login', isGuest, userController.login);
 
 //progress login process
-router.post('/login', logInLimiter, isGuest, userController.process);
+router.post('/login', logInLimiter, isGuest, validateLogIn, validateResult, userController.process);
 
 //get the sign up form
 
@@ -21,7 +22,7 @@ router.get('/signup', isGuest, userController.signup);
 
 //POST /users: create a new user
 
-router.post('/', isGuest, userController.newUser);
+router.post('/', isGuest, validateSignUp, validateResult, userController.newUser);
 
 //GET /users/profile/:id get a member profile
 router.get('/profile/:id', isLoggedIn, userController.profile);

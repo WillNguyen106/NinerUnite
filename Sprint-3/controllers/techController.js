@@ -6,8 +6,9 @@ const {DateTime} = require("luxon");
 exports.index = (req, res, next)=>{
     const filterByPrice = req.query.price;
     const filterByDevice = req.query.device;
-
+    
     let results = [];
+    // Create Map for filter
     const filterOptions ={
         '1-100' : tech=>tech.price >=1 && tech.price <= 100,
         '100-300' : tech=>tech.price > 100 && tech.price <= 300,
@@ -23,10 +24,12 @@ exports.index = (req, res, next)=>{
 
     modelTech.find()
     .then(techs =>{ 
+        
+        // Filter by price
         if(filterByPrice && filterOptions[filterByPrice]){
             results = techs.filter(filterOptions[filterByPrice]);
         }
-        
+        // Filter by device
         if(filterByDevice && filterOptions[filterByDevice]){
             results = techs.filter(filterOptions[filterByDevice]);
         }

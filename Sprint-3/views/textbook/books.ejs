@@ -14,8 +14,7 @@
                                     <h1>Filters</h1>
                                 </div>
                                 <div class="col">
-                                    <input id="clearFilter" class="btn btn-success my-2" type="submit" value="Clear Filter">
-                                    <!-- <a class="btn btn-secondary my-2" href='/books'>Clear Filters</a> -->
+                                    <a class="btn btn-secondary my-2" href='/books'>Clear Filters</a>
                                 </div>
                             </div>
 
@@ -94,6 +93,7 @@
                                     </div>
 
                                 </div>
+                            
 
                                 <!--future accordion items-->
 
@@ -226,20 +226,34 @@
                         </tr>
         
                     <tbody>
-                    <%if(results.length > 0){%>
-                        <%results.forEach(result=>{%>
-                            <tr class="select listItem">
-                                <td class="">
-                                    <a  href="/books/<%=result.id%>"><p><%= result.title %></p></a>
-                                </td>
-                                <td>
-                                    <p><%= result.author %></p>
-                                </td>
-                                <td>
-                                    <p>$<%= result.price %></p>
-                                </td>
-                            </tr>
-                        <%})%>
+                    <%if(filterByPrice || filterBySubject) {%>
+                        <%if(results && results.length > 0){%>
+                            <h3><%=results.length%> posts are currently available</h3>
+                            <%results.forEach(result=>{%>
+                                <tr class="select listItem">
+                                    <td class="">
+                                        <a  href="/books/<%=result.id%>"><p><%= result.title %></p></a>
+                                    </td>
+                                    <td>
+                                        <p><%= result.author %></p>
+                                    </td>
+                                    <td>
+                                        <p>$<%= result.price %></p>
+                                    </td>
+                                </tr>
+                            <%})%>
+                        <%}else{%>
+                            <h2>0 posts are currently available</h2>
+                            <td>
+                                <img src="/images/other/sadface.png" alt="">
+                            </td>
+                            <td>
+                                <img src="/images/other/sadface.png" alt="">
+                            </td>
+                            <td>
+                                <img src="/images/other/sadface.png" alt="">
+                            </td>
+                        <%}%>
                     <%}else{%>
                         <%books.forEach(book=>{%>
                             <tr class="select listItem">

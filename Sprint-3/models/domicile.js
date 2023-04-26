@@ -11,7 +11,7 @@ const domicileSchema = new Schema({
         minLength: [10, 'description should have at least 10 character']},
     type:{type: String, required:[true,'type is required']},
     bed:{type: Number, required:[true,'bed is required']},
-    bath:{type:Number, required:[true,'bath is required']},
+    bath:{type: String, required:[true,'bath is required']},
     payment: {type: String, required:[true, 'payment is required'], 
         minLength: [1, 'payment should not be 0']},
     phone:{type:String},

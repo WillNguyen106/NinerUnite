@@ -14,9 +14,9 @@
 } */
 
 .imageCenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    width: 500px;
+    height:450px;
+    margin: auto;
 }
 
 /* .item {

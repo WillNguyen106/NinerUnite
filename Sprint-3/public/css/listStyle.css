@@ -29,3 +29,9 @@
 .thumbnailImg {
     object-fit: fill;
 }
+
+.imageCenter {
+    width: 400px;
+    height:250px;
+    margin: auto;
+}

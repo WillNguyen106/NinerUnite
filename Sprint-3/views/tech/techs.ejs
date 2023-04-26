@@ -10,10 +10,15 @@
                 <div class="col-md-3">
                     <form action="/techs" method="get">
                         <div class="container border text-break sticky-top p-3">
-
-                            <h1>Filters</h1>
-                            <a class="btn btn-secondary my-2" href='/techs'>Clear Filters</a>
-
+                            <div class="row">
+                                <div class="col">
+                                    <h1>Filters</h1>
+                                </div>
+                                <div class="col">
+                                    <a class="btn btn-secondary my-2" href='/techs'>Clear Filters</a>
+                                </div>
+                            </div>
+                            
                             <!--accordion to minimize the filtering options-->
 
                             <div class="accordion" id="filterAccordion">
@@ -43,7 +48,7 @@
                                                     <input class="form-check-input" name="price" type="radio" value="1-100" id="priceOption1"
                                                     <% if (filterByPrice && filterByPrice.includes('1-100')) {%>
                                                         checked
-                                                    <%}%>>
+                                                    <%}%> required>
                                                     <label class="form-check-label" for="priceOption1">
                                                         $1 - $100
                                                     </label>
@@ -195,17 +200,28 @@
                         </tr>
         
                     <tbody>
-                        <%if(results.length > 0){%>
-                            <%results.forEach(result=>{%>
-                                <tr class="select listItem">
-                                    <td class="">
-                                        <a  href="/techs/<%=result.id%>"><p><%= result.brand %></p></a>
-                                    </td>
-                                    <td>
-                                        <p>$<%= result.price %></p>
-                                    </td>
-                                </tr>
-                            <%})%>
+                        <%if(filterByPrice || filterByDevice) {%>
+                            <%if(results.length > 0){%>
+                                <h3><%=results.length%> posts are currently available</h3>
+                                <%results.forEach(result=>{%>
+                                    <tr class="select listItem">
+                                        <td class="">
+                                            <a  href="/techs/<%=result.id%>"><p><%= result.brand %></p></a>
+                                        </td>
+                                        <td>
+                                            <p>$<%= result.price %></p>
+                                        </td>
+                                    </tr>
+                                <%})%>
+                            <%}else{%>
+                                <h2>0 posts are currently available</h2>
+                                <td>
+                                    <img src="/images/other/sadface.png" alt="">
+                                </td>
+                                <td>
+                                    <img src="/images/other/sadface.png" alt="">
+                                </td>
+                            <%}%>
                         <%}else{%>
                             <%techs.forEach(tech=>{%>
                                 <tr class="select listItem">

@@ -7,8 +7,9 @@ exports.index = (req, res, next)=>{
     //ge the filtering options from the query
     const filterByPrice = req.query.price;
     const filterBySubject = req.query.subject;
-
+    
     let results = [];
+    // Create Map for filter
     const filterOptions ={
         '1-20' : book=>book.price >=1 && book.price <= 20,
         '20-50' : book=>book.price > 20 && book.price <= 50,
@@ -25,22 +26,19 @@ exports.index = (req, res, next)=>{
         'sociology': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
     }
 
+
     modelBook.find()
     .then(books => {
-
-        //first filter by price
+        
+        // Filter by price
         if(filterByPrice && filterOptions[filterByPrice]){
             results = books.filter(filterOptions[filterByPrice]);
-            console.log(results);
         }
-
-         //then filter the previous results by subject
-         if(filterBySubject && filterOptions[filterBySubject]){
+        
+        // Filter by subject
+        if(filterBySubject && filterOptions[filterBySubject]){
             results = books.filter(filterOptions[filterBySubject]);
-            console.log(results);
         }
-       
-        //results = books.filter(filterOptions[filterBooks]);
         res.render('./textbook/books', {books, results, filterByPrice, filterBySubject});
     })
     .catch(err => next(err));
@@ -180,10 +178,5 @@ exports.delete = (req,res, next)=>{
     })
     .catch(err=>next(err));
 };
-
-// Function filterBooks
-function filterItems(filterBooks){
-
-}
 
 
