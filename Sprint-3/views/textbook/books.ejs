@@ -232,7 +232,7 @@
                             <h3><%=results.length%> posts are currently available</h3>
                             <%results.forEach(result=>{%>
                                 <tr class="select listItem">
-                                    <td class="">
+                                    <td class="col-lg-4">
                                         <a  href="/books/<%=result.id%>"><p><%= result.title %></p></a>
                                     </td>
                                     <td>
@@ -247,7 +247,7 @@
                                 </tr>
                             <%})%>
                         <%}else{%>
-                            <h2>0 posts are currently available</h2>
+                            <h2>No results found</h2>
                             <td>
                                 <img src="/images/other/sadface.png" alt="">
                             </td>
@@ -261,11 +261,14 @@
                     <%}else{%>
                         <%books.forEach(book=>{%>
                             <tr class="select listItem">
-                                <td class="">
+                                <td class="col-lg-4">
                                     <a  href="/books/<%=book.id%>"><p><%= book.title %></p></a>
                                 </td>
                                 <td>
                                     <p><%= book.author %></p>
+                                </td>
+                                <td>
+                                    <p><%= book.subject %></p>
                                 </td>
                                 <td>
                                     <p>$<%= book.price %></p>

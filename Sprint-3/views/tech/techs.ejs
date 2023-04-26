@@ -195,6 +195,7 @@
                     <table class="table border text-break">
                         <tr>
                             <th scope="col">Tech Name/Brand</th>
+                            <th scope="col">Device</th>
                             <th scope="col">Price</th>
         
                         </tr>
@@ -209,12 +210,18 @@
                                             <a  href="/techs/<%=result.id%>"><p><%= result.brand %></p></a>
                                         </td>
                                         <td>
+                                            <p><%= result.device %></p>
+                                        </td>
+                                        <td>
                                             <p>$<%= result.price %></p>
                                         </td>
                                     </tr>
                                 <%})%>
                             <%}else{%>
-                                <h2>0 posts are currently available</h2>
+                                <h2>No results found</h2>
+                                <td>
+                                    <img src="/images/other/sadface.png" alt="">
+                                </td>
                                 <td>
                                     <img src="/images/other/sadface.png" alt="">
                                 </td>
@@ -227,6 +234,9 @@
                                 <tr class="select listItem">
                                     <td class="">
                                         <a  href="/techs/<%=tech.id%>"><p><%= tech.brand %></p></a>
+                                    </td>
+                                    <td>
+                                        <p><%= tech.device %></p>
                                     </td>
                                     <td>
                                         <p>$<%= tech.price %></p>
