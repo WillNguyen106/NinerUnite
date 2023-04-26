@@ -8,6 +8,7 @@ exports.index = (req,res,next)=>{
     const filterByType = req.query.type;
     const filterByBed = req.query.bed;
     const filterByBath = req.query.bath;
+    let multiFilter = [];
     let results = [];
     // Create Map for filter
     const filterOptions ={
@@ -29,21 +30,23 @@ exports.index = (req,res,next)=>{
     }
     modelDomicile.find()
     .then(domiciles=>{
-        
-        // Filter by price
-        if(filterByPayment && filterOptions[filterByPayment]){
+        if(filterByPayment && filterByType && filterByBed && filterByBath){
+            // Filter by Payment and Type and Bed and Bath
+            results = domiciles.filter(filterOptions[filterByPayment])
+                                .filter(filterOptions[filterByType])
+                                .filter(filterOptions[filterByBed])
+                                .filter(filterOptions[filterByBath]);                     
+        }else if((filterByPayment && filterOptions[filterByPayment])){
+            // Filter by Payment
             results = domiciles.filter(filterOptions[filterByPayment]);
-        }
-        // Filter by type
-        if(filterByType && filterOptions[filterByType]){
+        }else if(filterByType && filterOptions[filterByType]){
+            // Filter by Type
             results = domiciles.filter(filterOptions[filterByType]);
-        }
-        // Filter by bed
-        if(filterByBed && filterOptions[filterByBed]){
+        }else if(filterByBed && filterOptions[filterByBed]){
+            // Filter by Bed
             results = domiciles.filter(filterOptions[filterByBed]);
-        }
-        // Filter by bath
-        if(filterByBath && filterOptions[filterByBath]){
+        }else if(filterByBath && filterOptions[filterByBath]){
+            // Filter by Bath
             results = domiciles.filter(filterOptions[filterByBath]);
         }
         res.render('./domicile/domiciles',{domiciles,results,filterByBath,filterByBed,filterByPayment,filterByType});

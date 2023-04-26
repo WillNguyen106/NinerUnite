@@ -7,7 +7,6 @@ exports.index = (req, res, next)=>{
     //ge the filtering options from the query
     const filterByPrice = req.query.price;
     const filterBySubject = req.query.subject;
-    
     let results = [];
     // Create Map for filter
     const filterOptions ={
@@ -26,19 +25,31 @@ exports.index = (req, res, next)=>{
         'sociology': book=>book.subject.toLowerCase().includes(filterBySubject.toLowerCase()),
     }
 
-
     modelBook.find()
     .then(books => {
-        
-        // Filter by price
-        if(filterByPrice && filterOptions[filterByPrice]){
+        // Filter by Price and Subject
+        if((filterByPrice && filterOptions[filterByPrice]) && (filterBySubject && filterOptions[filterBySubject])){
+            results = books.filter(filterOptions[filterByPrice]).filter(filterOptions[filterBySubject]);
+        }else if(filterByPrice && filterOptions[filterByPrice]){
+            // Filter by Price
             results = books.filter(filterOptions[filterByPrice]);
-        }
-        
-        // Filter by subject
-        if(filterBySubject && filterOptions[filterBySubject]){
+        }else if(filterBySubject && filterOptions[filterBySubject]){
+            // Filter by Subject
             results = books.filter(filterOptions[filterBySubject]);
         }
+        
+        
+        //Filter by price
+        // if(filterByPrice && filterOptions[filterByPrice] && filterBySubject === undefined){
+        //     results = books.filter(filterOptions[filterByPrice]);
+        //     console.log(results);
+        // }else if(filterBySubject && filterOptions[filterBySubject] && filterByPrice === undefined){
+        //     results = books.filter(filterOptions[filterBySubject]);
+        // }else if(filterByPrice && filterBySubject){
+        //     multiFilter = books.filter(filterOptions[filterByPrice]);
+        //     results = multiFilter.filter(filterOptions[filterBySubject]);
+        //     console.log(results);
+        // }
         res.render('./textbook/books', {books, results, filterByPrice, filterBySubject});
     })
     .catch(err => next(err));

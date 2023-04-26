@@ -12,15 +12,11 @@ const domicileSchema = new Schema({
     type:{type: String, required:[true,'type is required']},
     bed:{type: Number, required:[true,'bed is required']},
     bath:{type: String, required:[true,'bath is required']},
-    payment: {type: String, required:[true, 'payment is required'], 
+    payment: {type: Number, required:[true, 'payment is required'], 
         minLength: [1, 'payment should not be 0']},
     phone:{type:String},
     email:{type: String},
     image: [{data: Buffer, contentType: String}],
 }, {timestamps:true});
-
-// address:  street, city, state, zipcode
-// 1234 Candy Rush, Charlotte
-// 1st case: same number and street, different city
 
 module.exports = mongoose.model('Domicile', domicileSchema);
