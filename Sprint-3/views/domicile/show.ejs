@@ -1,4 +1,4 @@
-<%- include('../partials/header.ejs', {cs: 'bookDescriptionStyles' })%>
+<%- include('../partials/header.ejs', {cs: 'domicileDescriptionStyles' })%>
     <%if(user.id==domicile.user._id){%>
         <!--TODO: Display edit and delete button-->
         <%}%>
@@ -105,7 +105,7 @@
                 <p><b>Description:</b>
                     <%=domicile.description%>
                 </p>
-                <p><b>Type:</b>
+                <p class="text-capitalize"><b>Type:</b>
                     <%=domicile.type%>
                 </p>
                 <p><b>Bedrooms:</b>

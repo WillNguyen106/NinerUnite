@@ -292,7 +292,7 @@
                                                 <!--if there is at least one image in image array, the one at index[0]-->
                                                 <!--will be displayed-->
                                                 <% if(domicile.image.length > 0){%>
-                                                    <img class="img-fluid imageCenter" src="data:<%=domicile.image[0].contentType%>;base64,
+                                                    <img class="img-fluid object-fit-cover" src="data:<%=domicile.image[0].contentType%>;base64,
                                                     <%=domicile.image[0].data.toString('base64')%>"> 
                                                 <!--if there is no image provided, default no image is provided-->
                                                 <%} else { %>
@@ -305,7 +305,7 @@
                                                     <h3 class="card-title"><%= domicile.title %></h3>
                                                     <p class="card-text"><%= domicile.address %></p>
                                                     <p class="card-text"><%= domicile.description %></p>
-                                                    <p class="card-text">Type: <%= domicile.type %> | Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
+                                                    <p class="card-text">Type: <span class="text-capitalize"><%= domicile.type %></span> | Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
                                                     <p class="card-text">$<%= domicile.payment %></p>
                                                     
                                                     <% if(domicile.phone && !domicile.email ) {%>
@@ -330,7 +330,7 @@
                                 </div>
                             <%});%>
                         <% }else{%>
-                            <img src="/images/other/no_results_found.webp">
+                            <img class="img-fluid" src="/images/other/no_results_found.webp">
                         <%} %>
                 <%}else{%>
                     <%domiciles.forEach(domicile=>{%>
@@ -345,7 +345,7 @@
                                         <!--if there is at least one image in image array, the one at index[0]-->
                                         <!--will be displayed-->
                                         <% if(domicile.image.length > 0){%>
-                                            <img class="img-fluid imageCenter ms-5" src="data:<%=domicile.image[0].contentType%>;base64,
+                                            <img class="img-fluid object-fit-cover" src="data:<%=domicile.image[0].contentType%>;base64,
                                             <%=domicile.image[0].data.toString('base64')%>"> 
                                         <!--if there is no image provided, default no image is provided-->
                                         <%} else { %>
@@ -358,7 +358,7 @@
                                             <h3 class="card-title"><%= domicile.title %></h3>
                                             <p class="card-text"><%= domicile.address %></p>
                                             <p class="card-text"><%= domicile.description %></p>
-                                            <p class="card-text">Type: <%= domicile.type %> | Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
+                                            <p class="card-text">Type: <span class="text-capitalize"><%= domicile.type %> </span>| Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
                                             <p class="card-text">$<%= domicile.payment %></p>
                                             
                                             <% if(domicile.phone && !domicile.email ) {%>

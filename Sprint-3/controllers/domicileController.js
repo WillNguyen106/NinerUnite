@@ -22,11 +22,11 @@ exports.index = (req,res,next)=>{
         '2': domicile=>domicile.bed == 2,
         '3': domicile=>domicile.bed == 3,
         '4': domicile=>domicile.bed == 4,
-        '1': domicile=>domicile.bed == 1,
-        '1.5': domicile=>domicile.bath == 1.5,
-        '2': domicile=>domicile.bath == 2,
-        '2.5': domicile=>domicile.bath == 2.5,
-        '3': domicile=>domicile.bath == 3,
+        '1': domicile=>parseFloat(domicile.bath) == 1,
+        '1.5': domicile=>parseFloat(domicile.bath) == 1.5,
+        '2': domicile=>parseFloat(domicile.bath) == 2,
+        '2.5': domicile=>parseFloat(domicile.bath) == 2.5,
+        '3': domicile=>parseFloat(domicile.bath) == 3,
     }
     modelDomicile.find()
     .then(domiciles=>{
@@ -49,6 +49,7 @@ exports.index = (req,res,next)=>{
             // Filter by Bath
             results = domiciles.filter(filterOptions[filterByBath]);
         }
+        console.log(results);
         res.render('./domicile/domiciles',{domiciles,results,filterByBath,filterByBed,filterByPayment,filterByType});
     })
     .catch(err=>next(err));
