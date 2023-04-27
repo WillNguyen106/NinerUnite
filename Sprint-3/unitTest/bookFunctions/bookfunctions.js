@@ -1,7 +1,3 @@
-// const book = require('../../models/book');
-// const model = require('../../models/book');
-// const routes = require('../../routes/bookRoutes');
-
 const books =[
     {
         title: "java",

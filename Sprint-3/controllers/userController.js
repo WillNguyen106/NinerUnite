@@ -4,8 +4,6 @@ const modelTech = require('../models/tech');
 const modelDomicile = require("../models/domicile");
 const modelCart = require('../models/cart');
 
-//const modelDomicile = require('../models/book');
-
 
 
 exports.index = (req, res,next) => {

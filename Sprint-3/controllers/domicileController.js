@@ -6,9 +6,13 @@ const {DateTime} = require("luxon");
 exports.index = (req,res,next)=>{
     const filterByPayment = req.query.price;
     const filterByType = req.query.type;
-    const filterByBed = req.query.bed;
-    const filterByBath = req.query.bath;
-    let multiFilter = [];
+    // Distinct between key of bed and bath.
+    //Bed
+    let queryBed = req.query.bed;
+    const filterByBed = queryBed + "bed";
+    //Bath
+    let queryBath = req.query.bath;
+    const filterByBath = queryBath + "bath";
     let results = [];
     // Create Map for filter
     const filterOptions ={
@@ -18,15 +22,15 @@ exports.index = (req,res,next)=>{
         'dorm': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
         'apartment': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
         'townhouse': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
-        '1': domicile=>domicile.bed == 1,
-        '2': domicile=>domicile.bed == 2,
-        '3': domicile=>domicile.bed == 3,
-        '4': domicile=>domicile.bed == 4,
-        '1': domicile=>parseFloat(domicile.bath) == 1,
-        '1.5': domicile=>parseFloat(domicile.bath) == 1.5,
-        '2': domicile=>parseFloat(domicile.bath) == 2,
-        '2.5': domicile=>parseFloat(domicile.bath) == 2.5,
-        '3': domicile=>parseFloat(domicile.bath) == 3,
+        '1bed': domicile=>parseFloat(domicile.bed) == 1,
+        '2bed': domicile=>parseFloat(domicile.bed) == 2,
+        '3bed': domicile=>parseFloat(domicile.bed) == 3,
+        '4bed': domicile=>parseFloat(domicile.bed) == 4,
+        '1bath': domicile=>parseFloat(domicile.bath) == 1,
+        '1.5bath': domicile=>parseFloat(domicile.bath) == 1.5,
+        '2bath': domicile=>parseFloat(domicile.bath) == 2,
+        '2.5bath': domicile=>parseFloat(domicile.bath) == 2.5,
+        '3bath': domicile=>parseFloat(domicile.bath) == 3,
     }
     modelDomicile.find()
     .then(domiciles=>{
@@ -49,7 +53,8 @@ exports.index = (req,res,next)=>{
             // Filter by Bath
             results = domiciles.filter(filterOptions[filterByBath]);
         }
-        console.log(results);
+
+        
         res.render('./domicile/domiciles',{domiciles,results,filterByBath,filterByBed,filterByPayment,filterByType});
     })
     .catch(err=>next(err));
@@ -117,6 +122,7 @@ exports.show = (req,res, next)=>{
     modelDomicile.findById(id).populate('user','firstName lastName').lean()// Promise
     .then(domicile=>{
         if(domicile){
+            console.log(typeof(domicile.bed));
             domicile.createdAt = DateTime.fromJSDate(domicile.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
             return res.render('./domicile/show',{id, domicile});
         }else{
