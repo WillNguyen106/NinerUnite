@@ -14,7 +14,7 @@
                             <div class="col">
                                 <h1>Filters</h1>
                             </div>
-                            <div class="col">
+                            <div class="col text-end">
                                 <a class="btn btn-secondary my-2" href='/domiciles'>Clear Filters</a>
 
                             </div>
@@ -40,8 +40,7 @@
                                 </h3>
                                 <div
                                     id="priceFilter"
-                                    class="accordion-collapse collapse show"
-                                    
+                                    class="accordion-collapse collapse show"   
                                 >
                                         <div class="accordion-body">
                                             
@@ -66,12 +65,12 @@
                                             </div> 
 
                                             <div class="form-check">
-                                                <input class="form-check-input" name="price" type="radio" value="2000+" id="priceOption3"
-                                                <% if (filterByPayment && filterByPayment.includes('2000+')) {%>
+                                                <input class="form-check-input" name="price" type="radio" value="1500+" id="priceOption3"
+                                                <% if (filterByPayment && filterByPayment.includes('1500+')) {%>
                                                     checked
                                                 <%}%>>
                                                 <label class="form-check-label" for="priceOption3">
-                                                    > $2000
+                                                    > $1500
                                                 </label>
                                             </div>
 
