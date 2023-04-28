@@ -52,8 +52,9 @@ exports.index = (req,res,next)=>{
         }
 
         if (filterFunctions.length > 0) {
-            console.log(filterFunctions);
-            results = domiciles.filter(domicile => filterFunctions.every(filterForCheck => filterForCheck(domicile)));
+            const domicileLists = domiciles.filter(domicile => filterFunctions.every(filterForCheck => filterForCheck(domicile)));
+            // Sort the results in order of price
+            results = domicileLists.sort((domicile1, domicile2)=>domicile1.payment-domicile2.payment);
         }
 
         // Mutiple combination filter options that we can not use if/else statement

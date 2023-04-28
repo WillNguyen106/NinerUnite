@@ -35,7 +35,9 @@ exports.index = (req, res, next)=>{
         }
         
         if(filterFunctions.length > 0){
-            results = techs.filter(tech=>filterFunctions.every(filterForCheck=>filterForCheck(tech)));
+            const techLists = techs.filter(tech=>filterFunctions.every(filterForCheck=>filterForCheck(tech)));
+            // Sort the results in order of price
+            results = techLists.sort((tech1, tech2)=>tech1.price-tech2.price);
         }
 
 
