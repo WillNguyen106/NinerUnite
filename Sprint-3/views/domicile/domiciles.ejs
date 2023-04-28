@@ -7,14 +7,14 @@
 
         <div class="row">
             <!--filter section-->
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <form action="/domiciles" method="get">
                     <div class="container border text-break sticky-top p-3">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-md-6">
                                 <h1>Filters</h1>
                             </div>
-                            <div class="col text-end">
+                            <div class="col-md-6 text-end">
                                 <a class="btn btn-secondary my-2" href='/domiciles'>Clear Filters</a>
 
                             </div>
@@ -274,7 +274,7 @@
             
 
             <!--cards section-->
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <% if(filterByBath || filterByBed || filterByPayment || filterByType) {%>
                         <!--cards-->
                         <%if(results.length > 0){%>
