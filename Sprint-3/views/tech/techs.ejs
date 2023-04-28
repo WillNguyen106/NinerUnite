@@ -48,7 +48,7 @@
                                                     <input class="form-check-input" name="price" type="radio" value="1-100" id="priceOption1"
                                                     <% if (filterByPrice && filterByPrice.includes('1-100')) {%>
                                                         checked
-                                                    <%}%> required>
+                                                    <%}%> >
                                                     <label class="form-check-label" for="priceOption1">
                                                         $1 - $100
                                                     </label>
@@ -210,7 +210,7 @@
                                             <a  href="/techs/<%=result.id%>"><p><%= result.brand %></p></a>
                                         </td>
                                         <td>
-                                            <p><%= result.device %></p>
+                                            <p class="text-capitalize"><%= result.device %></p>
                                         </td>
                                         <td>
                                             <p>$<%= result.price %></p>
@@ -236,7 +236,7 @@
                                         <a  href="/techs/<%=tech.id%>"><p><%= tech.brand %></p></a>
                                     </td>
                                     <td>
-                                        <p><%= tech.device %></p>
+                                        <p class="text-capitalize"><%= tech.device %></p>
                                     </td>
                                     <td>
                                         <p>$<%= tech.price %></p>

@@ -3,6 +3,7 @@ img {
     width: 300px;
     object-fit: cover;
     clip-path: circle();
+
 }
 
 /*on screens that are smaller than 768 pixels, make the image responsive*/

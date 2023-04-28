@@ -12,7 +12,7 @@
             <div class="col-md-6">
 
                 <% if (profile.image.data) { %>
-                    <div class="container">
+                    <div class="container mb-3">
 
                         <img class="border" src="data:<%=profile.image.contentType%>;base64,
                         <%=profile.image.data.toString('base64')%>" alt="">
@@ -20,7 +20,7 @@
                     </div>
 
                 <%} else { %>
-                    <img class="border mb-3" src="/images/other/profiledefault.png"> 
+                    <img class=" mb-3" src="/images/other/profiledefault.png"> 
                 <% } %>
                     
 
