@@ -6,56 +6,70 @@ const {DateTime} = require("luxon");
 exports.index = (req,res,next)=>{
     const filterByPayment = req.query.price;
     const filterByType = req.query.type;
-    // Distinct between key of bed and bath.
-    //Bed
-    let queryBed = req.query.bed;
-    const filterByBed = queryBed + "bed";
-    //Bath
-    let queryBath = req.query.bath;
-    const filterByBath = queryBath + "bath";
+    const filterByBed = req.query.bed;
+    const filterByBath = req.query.bath;
+    const filterByBedKey = filterByBed + 'bed';
+    const filterByBathKey = filterByBath + 'bath';
     let results = [];
-    // Create Map for filter
+    
+    // Create an object with key-value pair for filter
     const filterOptions ={
-        '400-600' : domicile=>domicile.payment >=400 && domicile.payment <= 600,
+        //Key: queries
+        // Value: function of different value of query
+        '400-600' : domicile=>domicile.payment >= 400 && domicile.payment <= 600,
         '1000-1500': domicile=>domicile.payment > 1000 && domicile.payment <= 1500,
         '2000+' : domicile=>domicile.payment > 2000,
         'dorm': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
         'apartment': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
         'townhouse': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
-        '1bed': domicile=>parseFloat(domicile.bed) == 1,
-        '2bed': domicile=>parseFloat(domicile.bed) == 2,
-        '3bed': domicile=>parseFloat(domicile.bed) == 3,
-        '4bed': domicile=>parseFloat(domicile.bed) == 4,
-        '1bath': domicile=>parseFloat(domicile.bath) == 1,
-        '1.5bath': domicile=>parseFloat(domicile.bath) == 1.5,
-        '2bath': domicile=>parseFloat(domicile.bath) == 2,
-        '2.5bath': domicile=>parseFloat(domicile.bath) == 2.5,
-        '3bath': domicile=>parseFloat(domicile.bath) == 3,
+        '1bed': domicile=>domicile.bed == 1,
+        '2bed': domicile=>domicile.bed == 2,
+        '3bed': domicile=>domicile.bed == 3,
+        '4bed': domicile=>domicile.bed == 4,
+        '1bath': domicile=>parseFloat(domicile.bath) === 1,
+        '1.5bath': domicile=>parseFloat(domicile.bath) === 1.5,
+        '2bath': domicile=>parseFloat(domicile.bath) === 2,
+        '2.5bath': domicile=>parseFloat(domicile.bath) === 2.5,
+        '3bath': domicile=>parseFloat(domicile.bath) === 3,
     }
     modelDomicile.find()
     .then(domiciles=>{
-        if(filterByPayment && filterByType && filterByBed && filterByBath){
-            // Filter by Payment and Type and Bed and Bath
-            results = domiciles.filter(filterOptions[filterByPayment])
-                                .filter(filterOptions[filterByType])
-                                .filter(filterOptions[filterByBed])
-                                .filter(filterOptions[filterByBath]);                     
-        }else if((filterByPayment && filterOptions[filterByPayment])){
-            // Filter by Payment
-            results = domiciles.filter(filterOptions[filterByPayment]);
-        }else if(filterByType && filterOptions[filterByType]){
-            // Filter by Type
-            results = domiciles.filter(filterOptions[filterByType]);
-        }else if(filterByBed && filterOptions[filterByBed]){
-            // Filter by Bed
-            results = domiciles.filter(filterOptions[filterByBed]);
-        }else if(filterByBath && filterOptions[filterByBath]){
-            // Filter by Bath
-            results = domiciles.filter(filterOptions[filterByBath]);
+        const filterFunctions = [];
+        if(filterByPayment && filterOptions[filterByPayment]){
+            filterFunctions.push(filterOptions[filterByPayment]);
         }
 
+        if(filterByType && filterOptions[filterByType]){
+            filterFunctions.push(filterOptions[filterByType]);
+        }
         
-        res.render('./domicile/domiciles',{domiciles,results,filterByBath,filterByBed,filterByPayment,filterByType});
+        if(filterByBedKey && filterOptions[filterByBedKey]){
+            filterFunctions.push(filterOptions[filterByBedKey]);
+        }
+        
+        if(filterByBathKey && filterOptions[filterByBathKey]){
+            filterFunctions.push(filterOptions[filterByBathKey]);
+        }
+
+        if (filterFunctions.length > 0) {
+            console.log(filterFunctions);
+            results = domiciles.filter(domicile => filterFunctions.every(filterForCheck => filterForCheck(domicile)));
+        }
+
+        // Mutiple combination filter options that we can not use if/else statement
+        // Some conditions are confused to each other if we do not distinct and set it correctly
+        // Undefined is still a value but it has not been assigned any valid value yet
+        // The function still receive the undefined value but will throw exception
+        // We have to make sure the filter query and the function that take its query are not undefine. 
+        
+        res.render('./domicile/domiciles',{
+            domiciles: domiciles,
+            results: results,
+            filterByPayment: filterByPayment,
+            filterByType: filterByType,
+            filterByBed: filterByBed,
+            filterByBath: filterByBath,
+        });
     })
     .catch(err=>next(err));
 }

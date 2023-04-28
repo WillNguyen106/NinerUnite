@@ -6,10 +6,13 @@ const {DateTime} = require("luxon");
 exports.index = (req, res, next)=>{
     //ge the filtering options from the query
     const filterByPrice = req.query.price;
+    console.log(filterByPrice);
     const filterBySubject = req.query.subject;
     let results = [];
-    // Create Map for filter
+    // Create an object with key-value pair for filter
     const filterOptions ={
+        // key : queries
+        // value: functions
         '1-20' : book=>book.price >=1 && book.price <= 20,
         '20-50' : book=>book.price > 20 && book.price <= 50,
         '50-100' : book=>book.price > 50 && book.price <= 100,
@@ -27,28 +30,30 @@ exports.index = (req, res, next)=>{
 
     modelBook.find()
     .then(books => {
-        // Filter by Price and Subject
-        if((filterByPrice && filterOptions[filterByPrice]) && (filterBySubject && filterOptions[filterBySubject])){
-            results = books.filter(filterOptions[filterByPrice]).filter(filterOptions[filterBySubject]);
-        }else if(filterByPrice && filterOptions[filterByPrice]){
-            // Filter by Price
-            results = books.filter(filterOptions[filterByPrice]);
-        }else if(filterBySubject && filterOptions[filterBySubject]){
-            // Filter by Subject
-            results = books.filter(filterOptions[filterBySubject]);
+        let filterFunctions = [];
+        if(filterByPrice && filterOptions[filterByPrice]){
+            filterFunctions.push(filterOptions[filterByPrice]);
+            
         }
-        
-        
-        //Filter by price
-        // if(filterByPrice && filterOptions[filterByPrice] && filterBySubject === undefined){
+
+        if(filterBySubject && filterOptions[filterBySubject]){
+            filterFunctions.push(filterOptions[filterBySubject]);
+        }
+
+        if(filterFunctions.length > 0){
+            const bookLists = books.filter(book=>filterFunctions.every(filterForCheck=>filterForCheck(book)));
+            results = bookLists.sort((min,max)=>min.price-max.price);
+        }
+
+        // // Filter by Price and Subject
+        // if((filterByPrice && filterOptions[filterByPrice]) && (filterBySubject && filterOptions[filterBySubject])){
+        //     results = books.filter(filterOptions[filterByPrice]).filter(filterOptions[filterBySubject]);
+        // }else if(filterByPrice && filterOptions[filterByPrice]){
+        //     // Filter by Price
         //     results = books.filter(filterOptions[filterByPrice]);
-        //     console.log(results);
-        // }else if(filterBySubject && filterOptions[filterBySubject] && filterByPrice === undefined){
+        // }else if(filterBySubject && filterOptions[filterBySubject]){
+        //     // Filter by Subject
         //     results = books.filter(filterOptions[filterBySubject]);
-        // }else if(filterByPrice && filterBySubject){
-        //     multiFilter = books.filter(filterOptions[filterByPrice]);
-        //     results = multiFilter.filter(filterOptions[filterBySubject]);
-        //     console.log(results);
         // }
         res.render('./textbook/books', {books, results, filterByPrice, filterBySubject});
     })

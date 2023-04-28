@@ -7,7 +7,7 @@ exports.index = (req, res, next)=>{
     const filterByPrice = req.query.price;
     const filterByDevice = req.query.device;
     let results = [];
-    // Create Map for filter
+    // Create an object with key-value pair for filter
     const filterOptions ={
         '1-100' : tech=>tech.price >=1 && tech.price <= 100,
         '100-300' : tech=>tech.price > 100 && tech.price <= 300,
@@ -22,17 +22,33 @@ exports.index = (req, res, next)=>{
     }
 
     modelTech.find()
-    .then(techs =>{ 
-        // Filter by Price and Device
-        if((filterByPrice && filterOptions[filterByPrice]) && (filterByDevice && filterOptions[filterByDevice])){
-            results = techs.filter(filterOptions[filterByPrice]).filter(filterOptions[filterByDevice]);
-        }else if(filterByDevice && filterOptions[filterByDevice]){
-            //Filter by Device
-            results = techs.filter(filterOptions[filterByDevice]);
-        }else if(filterByPrice && filterOptions[filterByPrice]){
-            //Filter by Price
-            results = techs.filter(filterOptions[filterByPrice]);
+    .then(techs =>{
+        // Create array of functions 
+        let filterFunctions = [];
+        // If filterByPrice is exist, push all the functions that match the query into the array
+        if(filterByPrice && filterOptions[filterByPrice]){
+            filterFunctions.push(filterOptions[filterByPrice]);
         }
+        // If filterByDevice is exist, push all the functions that match the query into the array
+        if(filterByDevice && filterOptions[filterByDevice]){
+            filterFunctions.push(filterOptions[filterByDevice]);
+        }
+        
+        if(filterFunctions.length > 0){
+            results = techs.filter(tech=>filterFunctions.every(filterForCheck=>filterForCheck(tech)));
+        }
+
+
+        // // Filter by Price and Device
+        // if((filterByPrice && filterOptions[filterByPrice]) && (filterByDevice && filterOptions[filterByDevice])){
+        //     results = techs.filter(filterOptions[filterByPrice]).filter(filterOptions[filterByDevice]);
+        // }else if(filterByDevice && filterOptions[filterByDevice]){
+        //     //Filter by Device
+        //     results = techs.filter(filterOptions[filterByDevice]);
+        // }else if(filterByPrice && filterOptions[filterByPrice]){
+        //     //Filter by Price
+        //     results = techs.filter(filterOptions[filterByPrice]);
+        // }
         res.render('./tech/techs',{techs, results, filterByPrice, filterByDevice});
     })
     .catch(err => next(err));
