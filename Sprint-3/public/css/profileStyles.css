@@ -3,11 +3,10 @@ img {
     width: 300px;
     object-fit: cover;
     clip-path: circle();
-
 }
 
 /*on screens that are smaller than 768 pixels, make the image responsive*/
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     img {
         max-width: 100%;
         height: auto;

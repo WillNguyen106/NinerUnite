@@ -1,53 +1,49 @@
 <%- include('../partials/header.ejs', {cs: 'profileStyles' })%>
 
     <!-- Primary Table for All Elements -->
-    <div class="container flex-row w-50 text-center">
+    <div class="container w-75 text-center">
         <%if(user.id == profile._id){%>
-        <h3 class="fs-1 py-5 mb-4">My Profile</h3>
+        <h3 class="fs-1 py-5 mb-2">My Profile</h3>
         <% } else { %>
-            <h3 class="fs-1 py-5 mb-4"> Profile</h3>
+            <h3 class="fs-1 py-5 mb-2"> Profile</h3>
         <% } %>
 
-        <div class="row">
-            <div class="col-md-6">
-
+        <!--align center aligns the profile picture in the middle-->
+        <div class="row align-items-center">
+            <div class="col-lg-6 mx-auto">
                 <% if (profile.image.data) { %>
                     <div class="container mb-3">
-
                         <img class="border" src="data:<%=profile.image.contentType%>;base64,
                         <%=profile.image.data.toString('base64')%>" alt="">
-
+                        <h3 class="my-3"><%= profile.firstName%> <%= profile.lastName%></h3>
                     </div>
 
                 <%} else { %>
-                    <img class=" mb-3" src="/images/other/profiledefault.png"> 
+                    <img class="border mb-3" src="/images/other/profiledefault.png"> 
                 <% } %>
                     
 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-lg-6">
 
                 <!-- Secondary Table for Account Information -->
-                <div class="container shadow mb-3 rounded-4 p-3 text-wrap">
-                    <p><b>About Me:</b>
-                        <hr>
-                        <% if(profile.biograph){ %>
-                            <%= profile.biograph%>
-                        <%} else {%>
-                            You have not told us anything yet!
-                        <%} %>
-                    </p>
-
-                </div>
-
-                    <div class="container shadow p-3 mb-3 rounded-4 text-wrap">
-                        <p><b>First Name:</b> <%= profile.firstName%></p>
-                        <p><b>Last Name:</b> <%= profile.lastName%></p>
-                        <p><b>Email:</b> <%= profile.email%></p>
-                        <p><b>Phone:</b> <%= profile.phoneNum%></p>
-                        <p><b>Number of posts:</b> <%- postNum%> posts</p>
+                <div class="container shadow mb-3 rounded-4 p-3 text-wrap text-start">
+                    <div>
+                        <h4>About Me:</h4>
+                        <p class="border p-3">
+                            <% if(profile.biograph){ %>
+                                <%= profile.biograph%>
+                            <%} else {%>
+                                You have not told us anything yet!
+                            <%} %>
+                        </p>
+                        
                     </div>
+                    <h4>Info:</h4>
+                    <p><b>Email:</b> <%= profile.email%></p>
+                    <p><b>Phone:</b> <%= profile.phoneNum%></p>
+                    <p><b>Number of posts:</b> <%- postNum%> posts</p>
 
                 </div>
 
@@ -55,17 +51,22 @@
 
         </div>
 
-        <div class="row text-center">
-        <!--update button-->
-        <%if(user.id == profile._id){%>
-            <form>
-                <td class="pt-4"><!-- Buttons to Change Account Details -->
-                    <button class="btn btn-outline-secondary btn-lg text-end m-3" type="submit" formmethod="GET" formaction="/users/<%= profile.id %>/edit">Update</button>
-                </td>
-            </form>
-        <%}%>
 
+        <!--update button section-->
+        <div class="row text-center">
+            <!--update button-->
+            <%if(user.id == profile._id){%>
+                <form>
+                    <!-- Buttons to Change Account Details -->
+                    <button class="btn btn-outline-secondary btn-lg text-end m-3" type="submit" formmethod="GET" formaction="/users/<%= profile.id %>/edit">Update</button>
+                </form>
+            <%}%>
+    
         </div>
+
+    </div>
+
+
 
 
     </div>

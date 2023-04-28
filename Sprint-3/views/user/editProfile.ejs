@@ -1,13 +1,13 @@
 <%- include('../partials/header.ejs', {cs: 'profileStyles' })%>
 
     <!-- Primary Table for All Elements -->
-    <div class="container w-50 text-center">
+    <div class="container w-75 text-center">
         <form action="/users/<%= profile.id%>?_method=PUT" enctype="multipart/form-data" method='POST'>
         <h3 class="fs-1 py-5 mb-4">My Profile</h3>
 
         <!--profile picture and info section-->
-        <div class="row mb-3">
-            <div class="col-md-6">
+        <div class="row align-items-center mb-3">
+            <div class="col-md-6 mx-auto">
                 <% if (profile.image.data) { %>
                     <img class=" mb-3" src="data:<%=profile.image.contentType%>;base64,
                     <%=profile.image.data.toString('base64')%>" alt="">
@@ -21,27 +21,27 @@
 
                 <table class="table text-break">
                     <tr>
-                        <th>First Name:</th>
+                        <th>First Name</th>
                         <td>
                             <input class="form-control inputBox text-dark border-1" type="text" id="firstName"
                                 name="firstName" value="<%= profile.firstName%>">
                         </td>
                     </tr>
                     <tr>
-                        <th>Last Name:</th>
+                        <th>Last Name</th>
                         <td>
                             <input class="form-control inputBox text-dark border-1" type="text" id="lastName"
                                 name="lastName" value="<%= profile.lastName%>">
                         </td>
                     </tr>
                     <tr>
-                        <th>Email:</th>
+                        <th>Email</th>
                         <td>
                             <%=profile.email%>
                         </td>
                     </tr>
                     <tr>
-                        <th>Phone:</th>
+                        <th>Phone</th>
                         <td>
                             <input class="form-control inputBox text-dark border-1" type="text" id="firstName"
                                 name="phoneNum" value="<%= profile.phoneNum%>">
@@ -55,7 +55,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th>Image:</th>
+                        <th>Image</th>
                         <td><input class="form-control" type="file" id="image" name="image" accept="image/*"></td>
                     </tr>
                 </table>
