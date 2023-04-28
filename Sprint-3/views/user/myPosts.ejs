@@ -62,6 +62,7 @@
                         <th scope="col"></th>
                         <th scope="col">Book Title</th>
                         <th scope="col">Book Author</th>
+                        <th scope="col">Subject</th>
                         <th scope="col">Price</th>
                     </tr>
         
@@ -106,6 +107,9 @@
                             <p><%= book.author %></p>
                         </td>
                         <td>
+                            <p><%= book.subject %></p>
+                        </td>
+                        <td>
                             <p>$<%= book.price %></p>
                         </td>
                     </tr>
@@ -130,6 +134,7 @@
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Tech Name/Brand</th>
+                        <th scope="col">Device</th>
                         <th scope="col">Price</th>
     
                     </tr>
@@ -169,6 +174,9 @@
                         <!--brand counts for tech items name and brand-->
                         <td >
                             <a href="/techs/<%=tech.id%>"><p><%=tech.brand%></p></a>
+                        </td>
+                        <td>
+                            <p><%=tech.device %></p>
                         </td>
                         <td>
                             <p>$<%=tech.price %></p>
@@ -220,8 +228,23 @@
                                             <h3 class="card-title"><%= domicile.title %></h3>
                                             <p class="card-text"><%= domicile.address %></p>
                                             <p class="card-text"><%= domicile.description %></p>
-                                            <p class="card-text">Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
+                                            <p class="card-text">Type: <span class="text-capitalize"><%= domicile.type %> </span>| Bed(s): <%= domicile.bed %> | Bath(s): <%= domicile.bath%></p>
                                             <p class="card-text">$<%= domicile.payment %></p>
+                                            
+                                            <% if(domicile.phone && !domicile.email ) {%>
+                                                <!--if post includes phone number but not email-->
+                                                <p class="card-text"><b>Contact Me:</b> <%= domicile.phone %> </p>
+                                            <% } %>
+                                            
+                                            <% if(!domicile.phone && domicile.email ) {%>
+                                                <!--if post includes email but not phone-->
+                                                <p class="card-text"><b>Contact Me:</b> <%= domicile.email %></p>
+                                            <% } %>
+                                            <% if(domicile.phone && domicile.email ) {%>
+                                                <!--if post includes both email and phone-->
+                                                <p class="card-text"><b>Contact Me:</b> <%= domicile.phone %> | <%= domicile.email %></p>
+                                            <% } %>
+
                                         </div>
                                     </div>
                                     </div>

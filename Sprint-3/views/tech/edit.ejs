@@ -8,6 +8,25 @@
         <!--horizontal center by using bootstrap's grid alignment for rows-->
         <div class="row justify-content-center">
 
+            <!--type section-->
+            <div class="row mb-4 w-75">
+                <div class="col-md-2 col-form-label">
+                    <label for="device" class="form-label fw-bold">Device:</label>
+                </div>
+                <div class="col-md-10">
+                    <span id="deviceListValue" hidden><%= tech.device%></span>
+                    <select id="deviceList" class="form-select" name="device" aria-label="--Select a Device--" required>
+                        <option selected value="">--Select a Device--</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Headphone">Headphone</option>
+                        <option value="Speaker">Speaker</option>
+                        <option value="Printer">Printer</option>
+                    </select>
+                </div>
+            </div>
+
             <!--Name/Brand Section-->
             <div class="row mb-4 w-75">
                 <div class="col-md-2 col-form-label">
@@ -109,4 +128,6 @@
     </form>
 
 </div>
+
+<script src="/javascript/techEdit.js"></script>
     <%- include('../partials/footer.ejs')%>

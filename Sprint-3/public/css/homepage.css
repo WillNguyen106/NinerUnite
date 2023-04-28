@@ -1,29 +1,29 @@
-.green {
-    background-color: #005035;
+.firstBanner{
+
+    /*linear gradient will go from one color to the other and apply it to the background image*/
+    background-image: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, 0.05)), url(../images/other/image5.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+    /* z-index: -1; */
+   
 }
 
 
-/* .navbar-color {
-    background-color:#005035;
-} */
-
-
-/* .brand-font {
-    font-family: 'Bebas Neue', cursive;
-} */
-
-.green_hover:hover {
-    background-color: #026342;
+.thirdBanner {
+    background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(../images/other/image1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+   
+   
 }
 
-.yellow {
-    background-color: #928403;
-}
 
-.yellow:hover {
-    background-color: #cebb16;
-}
 
-.personal_space {
-    margin: 20px;
+.section2{
+    background-image: linear-gradient(to right, #A49665, #802F2D);
+    
 }

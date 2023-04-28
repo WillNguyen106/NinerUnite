@@ -31,7 +31,8 @@
         <table class="table border text-break">
             <thead>
                 <tr>
-                    <th scope="col">Brand</th>
+                    <th scope="col">Name/Brand</th>
+                    <th scope="col">Device</th>
                     <th scope="col">Price</th>
                 </tr>
             </thead>
@@ -39,6 +40,7 @@
             <%results.forEach(tech=>{%>
                 <tr class="selectRow">
                     <td class="productName"><a href="/techs/<%=tech.id%>"><%=tech.brand%></a></td>
+                    <td><%=tech.device%></td>
                     <td>$<%=tech.price%></td>
                 </tr>
             <%});%>

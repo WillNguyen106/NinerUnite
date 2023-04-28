@@ -16,7 +16,9 @@ footer {
 
 /* this is the image behind the search bar on the homepage */
 .index {
-    background-image: url(../images/other/image3.jpg);
+    /* background-image: url(../images/other/UNCCClock.jpeg); */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)), url(../images/other/UNCCClock.jpeg);
+    background-position: center;
     background-size: cover;
 }
 
@@ -25,6 +27,13 @@ footer {
     #searchSelect {
         width: 25%;
     }
+}
+
+.green {
+    background-color: #005035;
+}
+.green_hover:hover {
+    background-color: #026342;
 }
 
 .navbar-color {

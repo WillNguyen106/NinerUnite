@@ -18,7 +18,7 @@ exports.index = (req,res,next)=>{
         // Value: function of different value of query
         '400-600' : domicile=>domicile.payment >= 400 && domicile.payment <= 600,
         '1000-1500': domicile=>domicile.payment > 1000 && domicile.payment <= 1500,
-        '2000+' : domicile=>domicile.payment > 2000,
+        '1500+' : domicile=>domicile.payment > 1500,
         'dorm': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
         'apartment': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
         'townhouse': domicile=>domicile.type.toLowerCase().includes(filterByType.toLowerCase()),
@@ -116,7 +116,7 @@ exports.search = (req,res,next)=>{
                 if(domicile.title.toLowerCase().includes(d.toLowerCase()) 
                     || domicile.type.toLowerCase().includes(d.toLowerCase())
                     || domicile.address.toLowerCase().includes(d.toLowerCase()) 
-                    || domicile.payment.toLowerCase().includes(d.toLowerCase())
+                    || domicile.payment.toString().includes(d)
                     || domicile.bed.toString().includes(d) 
                     || domicile.bath.toString().includes(d))
                     {
