@@ -137,7 +137,7 @@ exports.show = (req,res, next)=>{
     modelDomicile.findById(id).populate('user','firstName lastName').lean()// Promise
     .then(domicile=>{
         if(domicile){
-            console.log(typeof(domicile.bed));
+            console.log(domicile.type);
             domicile.createdAt = DateTime.fromJSDate(domicile.createdAt).toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY);
             return res.render('./domicile/show',{id, domicile});
         }else{
@@ -205,7 +205,7 @@ exports.update = (req,res, next)=>{
 exports.delete = (req,res, next)=>{
     let id = req.params.id;
 
-    modelBook.findByIdAndDelete(id, {useFindAndModify: false})
+    modelDomicile.findByIdAndDelete(id, {useFindAndModify: false})
     .then(domicile => {
         return res.redirect('/users/myPosts');
     })

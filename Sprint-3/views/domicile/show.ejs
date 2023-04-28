@@ -21,12 +21,12 @@
                                     <%for (let i=0; i < domicile.image.length; i++){ %>
                                         <%if(domicile.image[i].data && i==0){%>
                                             <div class="carousel-item active">
-                                                <img class=" img-fluid w-75 imageCenter" src="data:<%=domicile.image[i].contentType%>;base64,
+                                                <img class=" img-fluid" src="data:<%=domicile.image[i].contentType%>;base64,
                                          <%=domicile.image[i].data.toString('base64')%>" alt="">
                                             </div>
                                             <%} else if (domicile.image[i].data){%>
                                                 <div class="carousel-item">
-                                                    <img class=" img-fluid w-75 imageCenter" src="data:<%=domicile.image[i].contentType%>;base64,
+                                                    <img class=" img-fluid" src="data:<%=domicile.image[i].contentType%>;base64,
                                          <%=domicile.image[i].data.toString('base64')%>" alt="">
                                                 </div>
                                                 <% } %>
@@ -54,14 +54,14 @@
                     </div>
                 </div>
                 <!-- This is the div for all the title elements -->
-                <div class="ps-4">
+                <div class="ps-4 ms-4">
                     <p>Posted <%=domicile.createdAt%> by <a href="/users/profile/<%=domicile.user._id%>">
                                 <%=domicile.user.firstName + ' ' + domicile.user.lastName%>
                             </a>
                     </p>
-                    <h3>
+                    <h2>
                         <%=domicile.title%>
-                    </h3>
+                    </h2>
                     <!--if the user is the owner of the post, they are able to edit and delete the post from show page-->
                     <%if(user.id==domicile.user._id){%>
                         <form>

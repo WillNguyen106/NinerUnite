@@ -42,6 +42,7 @@ exports.index = (req, res, next)=>{
 
         if(filterFunctions.length > 0){
             const bookLists = books.filter(book=>filterFunctions.every(filterForCheck=>filterForCheck(book)));
+            // Sort the results in order of price
             results = bookLists.sort((min,max)=>min.price-max.price);
         }
 
