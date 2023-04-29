@@ -78,9 +78,7 @@ exports.addBook = (req, res, next) => {
         if(filter.length != 0){
             // console.log(filter);
             req.flash('error', 'Your selected book item is already in the cart!');
-            req.session.save((err)=>{
-                res.redirect("/cart");
-            });
+            res.redirect("/cart");
         }else{
             let item = new Cart();
             item.userId = req.session.user.id;
@@ -93,8 +91,8 @@ exports.addBook = (req, res, next) => {
             .then(item => {
                 req.flash('success', 'You have successfully add an book item to the cart!');
                 // Update Item count after successfully
+                req.session.user.ItemsCount += 1;
                 req.session.save((err)=>{
-                    req.session.user.ItemsCount += 1;
                     return res.redirect('/books');
                 });   
             })
@@ -135,8 +133,8 @@ exports.addTech = (req, res, next) => {
                 // console.log(item);
                 req.flash('success', 'You have successfully add an tech item to the cart!');
                 // Update Item count after successfully
+                req.session.user.ItemsCount += 1;
                 req.session.save((err)=>{
-                    req.session.user.ItemsCount += 1;
                     return res.redirect('/techs');
                 });
                 
@@ -163,8 +161,8 @@ exports.delete = (req, res, next) => {
         // console.log(cart);
         req.flash('success', 'You have successfully delete an item from the cart!');
         // Update Item count after successfully
+        req.session.user.ItemsCount -= 1;
         req.session.save((err)=>{
-            req.session.user.ItemsCount -= 1;
             res.redirect('/cart');
         });
     })

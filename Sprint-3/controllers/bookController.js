@@ -6,7 +6,6 @@ const {DateTime} = require("luxon");
 exports.index = (req, res, next)=>{
     //ge the filtering options from the query
     const filterByPrice = req.query.price;
-    console.log(filterByPrice);
     const filterBySubject = req.query.subject;
     let results = [];
     // Create an object with key-value pair for filter
