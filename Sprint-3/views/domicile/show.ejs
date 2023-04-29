@@ -4,7 +4,7 @@
         <%}%>
             <!--TODO: Image-->
             <!-- Div for style purposes -->
-            <div class="bg-light py-4">
+            <div class="bg-light py-4 border-bottom border-2 border-warning">
                 <div class="container col-lg-6 p-3 d-flex align-items-center justify-content-center">
                     <div class="border">
                         <%if(domicile.image.length> 0){%>
@@ -101,78 +101,78 @@
                         <%}%>
                 </div>
             </div>
-            <hr class="border-top border-2 border-warning"">
+
             <!-- Displaying the Information -->
-            <div class=" container fs-5">
-            <!-- Address -->
-            <div class="row mb-4 w-75">
-                <p class="col-md-2 align-center fw-bold">Address:</p>
-                <p class="col-md-10 align-center">
-                    <%=domicile.address%>
-                </p>
-            </div>
-
-            <!-- Description -->
-            <div class="row mb-4 w-75">
-                <p class="col-md-2 align-center fw-bold">Description:</p>
-                <p class="col-md-10 align-center">
-                    <%=domicile.description%>
-                </p>
-            </div>
-
-            <!-- Type -->
-            <div class="row mb-4 w-75">
-                <p class="col-md-2 align-center fw-bold">Type:</p>
-                <p class="col-md-10 align-center">
-                    <%=domicile.type%>
-                </p>
-            </div>
-
-            <!-- Bedroom -->
-            <div class="row mb-4 w-75">
-                <p class="col-md-2 align-center fw-bold">Bedrooms:</p>
-                <p class="col-md-10 align-center">
-                    <%=domicile.bed%>
-                </p>
-            </div>
-
-            <!-- Bathroom -->
-            <div class="row mb-4 w-75">
-                <p class="col-md-2 align-center fw-bold">Bathrooms:</p>
-                <p class="col-md-10 align-center">
-                    <%=domicile.bath%>
-                </p>
-            </div>
-
-            <!-- Payment -->
-            <div class="row mb-4 w-75">
-                <p class="col-md-2 align-center fw-bold">Payment:</p>
-                <p class="col-md-10 align-center">
-                    <%=domicile.payment%>
-                </p>
-            </div>
-
-            <!-- Phone -->
-            <%if(domicile.phone!=""){%>
+            <div class="my-4 pt-4 container fs-5 border border-secondary rounded">
+                <!-- Address -->
                 <div class="row mb-4 w-75">
-                    <p class="col-md-2 align-center fw-bold">Phone:</p>
+                    <p class="col-md-2 align-center">Address:</p>
                     <p class="col-md-10 align-center">
-                        <%=domicile.phone%>
+                        <%=domicile.address%>
                     </p>
                 </div>
-                <%}%>
 
-                    <!-- Email -->
-                    <%if(domicile.email!=""){%>
-                        <div class="row mb-4 w-75">
-                            <p class="col-md-2 align-center fw-bold">Email:</p>
-                            <p class="col-md-10 align-center">
-                                <%=domicile.email%>
-                            </p>
-                        </div>
-                        <%}%>
+                <!-- Description -->
+                <div class="row mb-4 w-75">
+                    <p class="col-md-2 align-center">Description:</p>
+                    <p class="col-md-10 align-center">
+                        <%=domicile.description%>
+                    </p>
+                </div>
+
+                <!-- Type -->
+                <div class="row mb-4 w-75">
+                    <p class="col-md-2 align-center">Type:</p>
+                    <p class="col-md-10 align-center">
+                        <%=domicile.type%>
+                    </p>
+                </div>
+
+                <!-- Bedroom -->
+                <div class="row mb-4 w-75">
+                    <p class="col-md-2 align-center">Bedrooms:</p>
+                    <p class="col-md-10 align-center">
+                        <%=domicile.bed%>
+                    </p>
+                </div>
+
+                <!-- Bathroom -->
+                <div class="row mb-4 w-75">
+                    <p class="col-md-2 align-center">Bathrooms:</p>
+                    <p class="col-md-10 align-center">
+                        <%=domicile.bath%>
+                    </p>
+                </div>
+
+                <!-- Payment -->
+                <div class="row mb-4 w-75">
+                    <p class="col-md-2 align-center">Payment:</p>
+                    <p class="col-md-10 align-center">
+                       $ <%=domicile.payment%>
+                    </p>
+                </div>
+
+                <!-- Phone -->
+                <%if(domicile.phone!=""){%>
+                    <div class="row mb-4 w-75">
+                        <p class="col-md-2 align-center">Phone:</p>
+                        <p class="col-md-10 align-center">
+                            <%=domicile.phone%>
+                        </p>
+                    </div>
+                    <%}%>
+
+                        <!-- Email -->
+                        <%if(domicile.email!=""){%>
+                            <div class="row mb-4 w-75">
+                                <p class="col-md-2 align-center">Email:</p>
+                                <p class="col-md-10 align-center">
+                                    <%=domicile.email%>
+                                </p>
                             </div>
+                            <%}%>
+            </div>
 
-                            <!--no add to cart button necessary for domicile posts-->
+            <!--no add to cart button necessary for domicile posts-->
 
-                            <%- include('../partials/footer.ejs')%>
+            <%- include('../partials/footer.ejs')%>
