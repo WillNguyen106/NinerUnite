@@ -12,7 +12,7 @@
 
                             <!--carousel for showing multiple images-->
 
-                            <div id="imageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel>
+                            <div id="imageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                                 <!--this is where the images will be-->
                                 <!--each carousel item is where an item can be placed-->
                                 <div class="carousel-inner">
@@ -29,23 +29,25 @@
                                                     <img class=" img-fluid" src="data:<%=domicile.image[i].contentType%>;base64,
                                          <%=domicile.image[i].data.toString('base64')%>" alt="">
                                                 </div>
-                                                <% } %>
+                                        <% } %>
 
-                                                    <%}%>
+                                    <%}%>
 
                                 </div>
                                 <!--carousel buttons-->
                                 <!--background colors of buttons are blue because it is hard to see-->
                                 <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
                                 </button>
+                                
+
                             </div>
                             <%} else{%>
                                 <!--TODO: modify this line-->
@@ -123,7 +125,7 @@
                 <!-- Type -->
                 <div class="row mb-4 w-75">
                     <p class="col-md-2 align-center">Type:</p>
-                    <p class="col-md-10 align-center">
+                    <p class="col-md-10 align-center text-capitalize">
                         <%=domicile.type%>
                     </p>
                 </div>
