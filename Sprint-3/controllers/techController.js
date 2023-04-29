@@ -39,18 +39,6 @@ exports.index = (req, res, next)=>{
             // Sort the results in order of price
             results = techLists.sort((tech1, tech2)=>tech1.price-tech2.price);
         }
-
-
-        // // Filter by Price and Device
-        // if((filterByPrice && filterOptions[filterByPrice]) && (filterByDevice && filterOptions[filterByDevice])){
-        //     results = techs.filter(filterOptions[filterByPrice]).filter(filterOptions[filterByDevice]);
-        // }else if(filterByDevice && filterOptions[filterByDevice]){
-        //     //Filter by Device
-        //     results = techs.filter(filterOptions[filterByDevice]);
-        // }else if(filterByPrice && filterOptions[filterByPrice]){
-        //     //Filter by Price
-        //     results = techs.filter(filterOptions[filterByPrice]);
-        // }
         res.render('./tech/techs',{techs, results, filterByPrice, filterByDevice});
     })
     .catch(err => next(err));
