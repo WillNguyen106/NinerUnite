@@ -35,3 +35,12 @@
     height:250px;
     margin: auto;
 }
+
+
+/*on screens that are smaller than 450 pixels, make table scrollable*/
+@media (max-width: 450px) {
+    .tableScroll {
+        display: block;
+        overflow: scroll;
+    }
+}
