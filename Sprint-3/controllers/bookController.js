@@ -45,17 +45,6 @@ exports.index = (req, res, next)=>{
             // Sort the results in order of price
             results = bookLists.sort((min,max)=>min.price-max.price);
         }
-
-        // // Filter by Price and Subject
-        // if((filterByPrice && filterOptions[filterByPrice]) && (filterBySubject && filterOptions[filterBySubject])){
-        //     results = books.filter(filterOptions[filterByPrice]).filter(filterOptions[filterBySubject]);
-        // }else if(filterByPrice && filterOptions[filterByPrice]){
-        //     // Filter by Price
-        //     results = books.filter(filterOptions[filterByPrice]);
-        // }else if(filterBySubject && filterOptions[filterBySubject]){
-        //     // Filter by Subject
-        //     results = books.filter(filterOptions[filterBySubject]);
-        // }
         res.render('./textbook/books', {books, results, filterByPrice, filterBySubject});
     })
     .catch(err => next(err));
