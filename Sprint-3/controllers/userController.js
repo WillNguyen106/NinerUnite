@@ -120,11 +120,11 @@ exports.process =  (req, res, next) => {
 //for the owner of the profile
 exports.profile =  (req, res, next) => {
     let id = req.params.id;
-    Promise.all([User.findOne({_id: id}), modelBook.find({user: id}), modelTech.find({user: id})])
+    Promise.all([User.findOne({_id: id}), modelBook.find({user: id}), modelTech.find({user: id}), modelDomicile.find({user: id})])
     .then(results => {
-        const[profile, books,techs] = results;
-        let postNum = books.length + techs.length;
-    //    console.log(postNum);
+        const[profile, books,techs, domiciles] = results;
+        let postNum = books.length + techs.length + domiciles.length;
+        //console.log(postNum);
         //console.log(profile);
         res.render('./user/profile', {profile, books,techs, postNum});
     })
