@@ -217,7 +217,7 @@ exports.transaction = (req, res, next) => {
         Cart.deleteMany({userId: user.id})
         .then(results => {
             req.session.user.ItemsCount = 0;
-            res.render('./cart/completeTransaction')
+            res.render('./cart/completeTransaction');
         
         })
         .catch(err=>next(err));
